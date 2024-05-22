@@ -1,5 +1,12 @@
 # DreamCatcher
 
+## How to run the django webpage: 
+
+go into repository: 
+django/mysite
+
+run the following command: 
+python manage.py runserver
 
 
 ## Getting started
