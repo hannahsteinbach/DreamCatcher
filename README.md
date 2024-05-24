@@ -1,9 +1,17 @@
 # DreamCatcher
 
-## How to run the django webpage: 
+## How to run the bibble webpage: 
 
 go into repository: 
 django/mysite
+
+run the following command: 
+python manage.py runserver
+
+## How to run the dreamcatcher <3: 
+
+go into repository: 
+django/dreamcatcher
 
 run the following command: 
 python manage.py runserver
