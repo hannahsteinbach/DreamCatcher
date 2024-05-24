@@ -1,0 +1,35 @@
+/* static/css/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#E6E6FA;
+}
+
+header, nav, main, footer {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+header {
+    background-color: #f8f9fa;
+    border: 1px solid #000000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #6c757d;
+}
