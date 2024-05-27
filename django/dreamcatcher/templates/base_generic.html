@@ -8,6 +8,30 @@
 <body>
     <header>
         <h1>DreamCatcher🫧🌌</h1>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "success" %}
+                    <div class="success">{{ message }}</div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! Get ready to explore your dreams </p>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'login' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Login</button>
+            </form>
+            </form>
+            <form method="post" action="{% url 'signup' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Sign up</button>
+            </form>
+        {% endif %}
     </header>
     <main>
         {% block content %}

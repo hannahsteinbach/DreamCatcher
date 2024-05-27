@@ -1,15 +1,31 @@
-/* static/css/styles.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color:#E6E6FA;
+    background-color: #E6E6FA;
 }
+
 
 header, nav, main, footer {
     padding: 20px;
     margin: 0 auto;
     max-width: 800px;
+}
+
+
+button, .button {
+    border: none;
+    background-color: #652559;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 header {

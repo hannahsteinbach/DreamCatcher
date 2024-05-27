@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up✍🏽</title>
+    <style>
+        body {
+            background-color: #E6E6FA;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .signup-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 50px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .signup-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .signup-container input[type="text"],
+        .signup-container input[type="email"],
+        .signup-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .signup-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #652559;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create a new account</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            {% if form.username.errors %}
+                <p class="error-message">{{ form.username.errors }}</p>
+            {% endif %}
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            {% if form.email.errors %}
+                <p class="error-message">{{ form.email.errors }}</p>
+            {% endif %}
+            <label for="password1">Password:</label>
+            <input type="password" id="password1" name="password1" placeholder="Enter your password">
+            {% if form.password1.errors %}
+                <p class="error-message">{{ form.password1.errors }}</p>
+            {% endif %}
+            <label for="password2">Confirm Password:</label>
+            <input type="password" id="password2" name="password2" placeholder="Enter the same password as before, for verification">
+            {% if form.password2.errors %}
+                <p class="error-message">{{ form.password2.errors }}</p>
+            {% endif %}
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</body>
+</html>
