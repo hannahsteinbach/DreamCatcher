@@ -41,6 +41,11 @@
             align-items: flex-end;
         }
 
+        .overlay button {
+            padding: 20px 40px;
+            font-size: 36px;
+        }
+
         #more-info {
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.5);
@@ -62,14 +67,6 @@
             </div>
             <div class="subtitle">explore your dreams</div>
             <div class="subtitle">💫🫧🪐</div>
-            <div class="overlay">
-                <p>Welcome, {{ user.username }}!
-                    Let's take a journey into your subconscious. </p>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
-            </div>
         {% else %}
             <div class="brand">
                 <div>Dream</div>
