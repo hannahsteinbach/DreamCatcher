@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from .forms import SignUpForm
 import logging
@@ -11,37 +8,36 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-
 def home(request):
-    return render(request, 'dreams/home.html')
+    if request.user.is_authenticated:
+        return redirect('dreams:home_logged_in')
+    return render(request, 'base_generic.html')
 
+@login_required
+def home_logged_in(request):
+    return render(request, 'home.html')
 
 @login_required
 def log_dream(request):
     return render(request, 'dreams/log_dream.html')
 
-
 @login_required
 def questionnaires(request):
     return render(request, 'dreams/questionnaires.html')
-
 
 @login_required
 def dream_journal(request):
     return render(request, 'dreams/dream_journal.html')
 
-
 @login_required
 def personal_statistics(request):
     return render(request, 'dreams/personal_statistics.html')
-
 
 @login_required
 def logout_view(request):
     logout(request)
     messages.success(request, 'You have successfully logged out. Sweet Dreams 🌙')
     return redirect('dreams:home')
-
 
 def signup(request):
     if request.method == 'POST':

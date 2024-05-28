@@ -5,7 +5,7 @@
     <style>
         body {
             background-color: #E6E6FA;
-            color: black;
+            color: #3D3D3D;
             font-family: Arial, sans-serif;
         }
         .signup-container {
@@ -41,10 +41,10 @@
         .signup-container input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #652559;
+            background-color: #BECDDE;
             border: 1px solid #ccc;
             border-radius: 5px;
-            color: white;
+            color: #3D3D3D;
             font-size: 16px;
             font-weight: bold;
         }
@@ -56,7 +56,7 @@
 </head>
 <body>
     <div class="signup-container">
-        <h2>Create a new account</h2>
+        <h2>Create a new account ✍🏽</h2>
         <form method="post">
             {% csrf_token %}
             <label for="username">Username:</label>
@@ -79,7 +79,7 @@
             {% if form.password2.errors %}
                 <p class="error-message">{{ form.password2.errors }}</p>
             {% endif %}
-            <input type="submit" value="Sign Up">
+            <input type="submit" value="Sign up">
         </form>
     </div>
 </body>

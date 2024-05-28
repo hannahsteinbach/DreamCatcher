@@ -5,7 +5,7 @@
     <style>
         body {
             background-color: #E6E6FA;
-            color: black;
+            color: #3D3D3D;
             font-family: Arial, sans-serif;
         }
         .login-container {
@@ -37,21 +37,37 @@
         .login-container input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #702963;
+            background-color: #BECDDE;
             border: 1px solid #ccc;
             border-radius: 5px;
-            color: white;
+            color: #3D3D3D;
             font-size: 16px;
         }
         .error-message {
-            color: red;
-            margin-bottom: 20px;
+            color: #FFC1CC;
+            margin-bottom: 10px;
+        }
+        .signup-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>Welcome to the DreamCatcher!</h2>
+        <h2>Login 👤</h2>
+        {% if form.errors %}
+            <div class="error-message">
+                <ul>
+                    {% for field, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <label for="username">Username:</label>
@@ -60,6 +76,7 @@
             <input type="password" id="password" name="password">
             <input type="submit" value="Login">
         </form>
+        <p class="signup-message">You don't have an account yet? Sign up  <a href="{% url 'signup' %}">here</a>, it's free!</p>
     </div>
 </body>
 </html>
