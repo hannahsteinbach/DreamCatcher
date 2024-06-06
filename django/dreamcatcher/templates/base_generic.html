@@ -22,30 +22,36 @@
             text-align: center;
             position: relative;
         }
-        .full-screen .brand {
+        .brand {
             font-size: 10vw;
             line-height: 1;
             color: #3D3D3D;
+            margin-bottom: 20px;
         }
-        .full-screen .subtitle {
-            font-size: 2vw;
-            margin-top: 20px;
-            color: #3D3D3D;
+        .subtitle {
+            font-size: 1.5vw;
+            margin-top: 10px;
+            color: #6D6D6D;
+        }
+        .emojis {
+            font-size: 3vw;
+            margin-top: 50px;
         }
         .overlay {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 20px;
         }
-
         .overlay button {
-            padding: 20px 40px;
-            font-size: 36px;
+            padding: 20px;
+            font-size: 31px;
+            margin: 0 5px;
+            width: 150px;
         }
-
+        #explore-dreams {
+            margin-top: 10px;
+        }
         #more-info {
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.5);
@@ -53,50 +59,54 @@
             margin-top: 50px;
             box-sizing: border-box;
             width: 100%;
-}
-
-
+        }
+        .messages {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #3D3D3D;
+            font-size: 26px;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>
     <div class="full-screen">
-        {% if user.is_authenticated %}
-            <div class="brand">
-                <div>Dream</div>
-                <div>Catcher</div>
-            </div>
-            <div class="subtitle">explore your dreams</div>
-            <div class="subtitle">💫🫧🪐</div>
-        {% else %}
-            <div class="brand">
-                <div>Dream</div>
-                <div>Catcher</div>
-            </div>
-            <div class="subtitle">explore your dreams</div>
-            <div class="subtitle">💫🫧🪐</div>
-            <div class="overlay">
-                <form method="post" action="{% url 'login' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit">Login</button>
-                </form>
-                <form method="post" action="{% url 'signup' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit">Sign up</button>
-                </form>
+        <div class="brand">
+            <div>Dream</div>
+            <div>Catcher</div>
+        </div>
+        {% if messages %}
+            <div class="messages" style="background-color: rgba(255, 255, 255, 0.3); color: #3D3D3D; font-size: 15px; font-weight: normal;">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
             </div>
         {% endif %}
+        <div class="overlay">
+            <form method="post" action="{% url 'login' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Log in</button>
+            </form>
+            <form method="post" action="{% url 'signup' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
+        <div class="emojis">💫🫧🪐</div>
+        <div id="explore-dreams" class="subtitle">explore your dreams</div>
     </div>
     <main>
-    {% block content %}
-    {% endblock %}
-    <section id="more-info">
-        <h2>More about the DreamCatcher</h2>
-        <p>Learn how DreamCatcher works .... add more content</p>
-    </section>
-</main>
-
+        {% block content %}
+        {% endblock %}
+        <section id="more-info">
+            <h2>More about the DreamCatcher</h2>
+            <p>Learn how DreamCatcher works .... add more content</p>
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach</p>
+        <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
 </body>
 </html>

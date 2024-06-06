@@ -1,0 +1,17 @@
+{% extends "base_generic_small.html" %}
+
+{% load static%}
+
+{% block title %}👯‍About us {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1> Meet the creators! 👩🏼‍💻👩🏻‍💻</h1>
+        <img src="{% static 'images/creators.jpg' %}" alt="Creators of DreamCatcher" class="img-fluid" style="max-width: 500px; height: auto;">
+        <h2> Raluca Rilla</h2>
+        <p> Raluca is a princess. 👸🏼 </p>
+        <h2> Hannah Steinbach</h2>
+        <p> Hannah is a princess. 👸🏻 </p>
+        <p> They are both just girls. 🎀 </p>
+    </div>
+{% endblock %}
