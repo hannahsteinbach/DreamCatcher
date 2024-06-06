@@ -1,7 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Log a Dream🖋️{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
@@ -11,22 +13,55 @@
             width: 100%;
             height: 100%;
             font-family: Arial, sans-serif;
-        }
-        .container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            text-align: center;
         }
-        .container h2 {
-            margin-top: 0;
+        .chat-container {
+            background:  #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .chat-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+        .chat-form input[type="text"] {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .chat-form input[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e3047;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .chat-form input[type="submit"]:hover {
+            background-color: #BECDDE;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Log a New Dream🖋️</h2>
+    <div class="chat-container">
+        <h2>Log a new dream🖋️</h2>
     </div>
+    <form class="chat-form" method="post" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
+        {% csrf_token %}
+        <input type="text" id="content" name="content" placeholder="Enter last night's dream">
+        <input type="submit" value="Enter">
+    </form>
 </body>
 </html>
