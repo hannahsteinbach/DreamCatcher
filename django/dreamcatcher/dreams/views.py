@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from .models import Dream
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from django.db.models import F
 from django.shortcuts import get_object_or_404
 
 
@@ -58,7 +59,7 @@ def questionnaires(request):
 
 @login_required
 def dream_journal(request):
-    dreams = Dream.objects.filter(user=request.user)
+    dreams = Dream.objects.filter(user=request.user).order_by('-date')
     return render(request, 'dreams/dream_journal.html', {'dreams': dreams})
 
 @login_required

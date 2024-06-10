@@ -101,9 +101,9 @@
     <div class="container">
         <div class="dreams">
             {% if dreams %}
-                {% for dream in dreams %}
+                {% for dream in dreams reversed%}
                     <div class="dream">
-                        <h3 class="dream-date">{{ dream.date }}</h3>
+                        <h3 class="dream-date">{{ dream.date }}{{dream.time}}</h3>
                         <p class="dream-content">{{ dream.content }}</p>
                         <form action="{% url 'dreams:delete_dream' dream.id %}" method="post">
                             {% csrf_token %}
