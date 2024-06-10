@@ -1,10 +1,14 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 from .forms import SignUpForm
 import logging
+from django.shortcuts import render, redirect
+from .models import Dream
+from django.contrib.auth.decorators import login_required
+from datetime import date
+from django.shortcuts import get_object_or_404
+
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +27,30 @@ def home_logged_in(request):
 
 @login_required
 def log_dream(request):
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        user = request.user
+        dream = Dream.objects.create(
+            user=user,
+            date=date.today(),
+            content=content,
+            shared=False,
+            processed=False
+        )
+        dream.save()
+        messages.success(request, 'Your dream was successfully saved!')
+        return render(request, 'dreams/log_dream.html')
     return render(request, 'dreams/log_dream.html')
+
+
+@login_required
+def delete_dream(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
+    if request.method == 'POST':
+        dream.delete()
+        messages.success(request, 'Dream deleted successfully!')
+    return redirect('dreams:dream_journal')
+
 
 @login_required
 def questionnaires(request):
@@ -31,7 +58,8 @@ def questionnaires(request):
 
 @login_required
 def dream_journal(request):
-    return render(request, 'dreams/dream_journal.html')
+    dreams = Dream.objects.filter(user=request.user)
+    return render(request, 'dreams/dream_journal.html', {'dreams': dreams})
 
 @login_required
 def personal_statistics(request):

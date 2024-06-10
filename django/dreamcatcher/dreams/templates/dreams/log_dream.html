@@ -18,8 +18,41 @@
             justify-content: space-between;
             align-items: center;
         }
-        .chat-container {
-            background:  #FFFFFF;
+        .sidenav {
+			height:100%;
+			width:180px;
+			position: fixed;
+			z-index:1;
+			top:0;
+			left:0;
+			background-color: rgba(0,0,0,0.1);
+			overflow-x: :hidden;
+			padding-top:20px;
+		}
+
+		.sidenav a {
+			padding:6px 8px 6px 18px;
+			text-decoration: none;
+			font-size:18px;
+			color: #3D3D3D;
+			display:block;
+		}
+
+		.sidenav a:hover{
+			color: black;
+		}
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container h2 {
+            margin-top: 0;
+        }
+        .header{
+            background: #FFFFFF;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 40%;
@@ -31,7 +64,7 @@
             flex-direction: column;
             gap: 10px;
             width: 80%;
-            margin-bottom: 20px;
+            margin-bottom: 80px;
         }
         .chat-form input[type="text"] {
             padding: 15px;
@@ -55,7 +88,14 @@
     </style>
 </head>
 <body>
-    <div class="chat-container">
+    <div class="sidenav">
+		<a href="/">Home</a>
+		<a href="{% url 'dreams:questionnaires' %}">Questionnaires</a>
+        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+        <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
+        <a href="{% url 'logout' %}">Log out</a>
+	</div>
+    <div class="header">
         <h2>Log a new dream🖋️</h2>
     </div>
     <form class="chat-form" method="post" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
@@ -63,5 +103,17 @@
         <input type="text" id="content" name="content" placeholder="Enter last night's dream">
         <input type="submit" value="Enter">
     </form>
+    {% if messages %}
+    <div class="alert alert-success">
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 </body>
+<footer>
+        <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
+</footer>
 </html>
