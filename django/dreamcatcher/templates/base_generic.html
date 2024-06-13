@@ -5,13 +5,15 @@
     <title>{% block title %}DreamCatcher🫧🌌{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #DAE9FB, #E6E6FA, #F2E3F4);
+            font-family: 'Raleway', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background: linear-gradient(to right, #e1ccec, #d1d1f9, #cde0f8);
         }
         .full-screen {
             display: flex;
@@ -25,13 +27,13 @@
         .brand {
             font-size: 10vw;
             line-height: 1;
-            color: #3D3D3D;
+            color: #5A189A;
             margin-bottom: 20px;
         }
         .subtitle {
             font-size: 1.5vw;
             margin-top: 10px;
-            color: #6D6D6D;
+            color: #9D4EDD;
         }
         .emojis {
             font-size: 3vw;
@@ -45,9 +47,18 @@
         }
         .overlay button {
             padding: 20px;
-            font-size: 31px;
-            margin: 0 5px;
+            font-size: 1.5vw;
+            margin: 0 10px;
             width: 150px;
+            border-radius: 15px;
+            background-color: #7B2CBF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .overlay button:hover {
+            background-color: #9D4EDD;
         }
         #explore-dreams {
             margin-top: 10px;
@@ -55,7 +66,7 @@
         #more-info {
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.5);
-            color: #3D3D3D;
+            color: #5A189A;
             margin-top: 50px;
             box-sizing: border-box;
             width: 100%;
@@ -65,7 +76,7 @@
             padding: 10px;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.7);
-            color: #3D3D3D;
+            color: #5A189A;
             font-size: 26px;
             font-weight: normal;
         }
@@ -78,7 +89,7 @@
             <div>Catcher</div>
         </div>
         {% if messages %}
-            <div class="messages" style="background-color: rgba(255, 255, 255, 0.3); color: #3D3D3D; font-size: 15px; font-weight: normal;">
+            <div class="messages" style="background-color: rgba(255, 255, 255, 0.3); color: #5A189A; font-size: 15px; font-weight: normal;">
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
@@ -94,7 +105,7 @@
                 <button type="submit">Sign up</button>
             </form>
         </div>
-        <div class="emojis">💫🫧🪐</div>
+        <div class="emojis">💫🫧🪁</div>
         <div id="explore-dreams" class="subtitle">explore your dreams</div>
     </div>
     <main>
