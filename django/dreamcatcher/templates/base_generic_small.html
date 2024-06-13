@@ -8,6 +8,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Spicy+Rice:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
         
         body, html {
@@ -29,6 +30,8 @@
             font-size: 3vw;
             color: #5a1a8b;
             font-family: 'Raleway', sans-serif;
+            font-weight: normal;
+            letter-spacing: 1px;
         }
         .logout-button {
             position: absolute;
@@ -96,9 +99,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>
-            <span style="color: #2561641;">DreamCatcher</span>
-        </h1>
+        <h1>DreamCatcher</h1>
         <div class="logout-button">
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">

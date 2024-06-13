@@ -17,10 +17,13 @@ button,
     font-size: 1.2vw;
     margin: 0 10px;
     border-radius: 25px;
-    background-color: #7851a9;
-    color: white;
+    color: #7851a9; 
+    border: 2px solid #7851a9; 
+    background-color: transparent; 
+    letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
     display: inline-block;
     cursor: pointer;
     border: none;
@@ -30,12 +33,12 @@ button,
 .button:hover,
 button:hover {
     background-color: #9579d1;
+    color: white;
     transform: scale(1.05);
 }
 
 .button {
     width: auto;
-    font-family: 'Poppins', sans-serif;
 }
 
 header {
