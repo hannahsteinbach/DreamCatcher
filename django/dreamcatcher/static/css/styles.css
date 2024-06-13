@@ -1,5 +1,5 @@
 body {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #E6E6FA;
@@ -11,18 +11,31 @@ header, nav, main, footer {
     max-width: 800px;
 }
 
-button, .button {
-    border: none;
-    background-color: #BECDDE;
-    color: #3D3D3D;
-    padding: 12px 24px;
+button,
+.button {
+    padding: 15px 30px;
+    font-size: 1.2vw;
+    margin: 0 10px;
+    border-radius: 25px;
+    background-color: #7851a9;
+    color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
-    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover,
+button:hover {
+    background-color: #9579d1;
+    transform: scale(1.05);
+}
+
+.button {
+    width: auto;
+    font-family: 'Poppins', sans-serif;
 }
 
 header {

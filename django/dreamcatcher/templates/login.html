@@ -3,59 +3,94 @@
 <head>
     <title>Login👤</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
         body {
-            background-color: #E6E6FA;
+            background: linear-gradient(to right, #e7c3f1, #cdb4eb, #b9c9ec, #e6eeff);
+            background-size: 600% 600%;
+            animation: gradientAnimation 9s ease infinite;
             color: #3D3D3D;
-            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .login-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 50px;
-            background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .login-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #5a1a8b;
         }
         .login-container label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             font-weight: bold;
+            color: #3d1e54;
         }
         .login-container input[type="text"],
         .login-container input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
         }
         .login-container input[type="submit"] {
             width: 100%;
-            padding: 10px;
-            background-color: #BECDDE;
-            border: 1px solid #ccc;
+            padding: 12px;
+            background-color: #7851a9;
+            border: none;
             border-radius: 5px;
-            color: #3D3D3D;
-            font-size: 16px;
+            color: white;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .error-message {
-            color: #FFC1CC;
-            margin-bottom: 10px;
+        .login-container input[type="submit"]:hover {
+            background-color: #9579d1;
+            transform: scale(1.05);
         }
-        .signup-message {
+        .error-message ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            color: #d05dd2;
+            margin-bottom: 20px;
+        }
+        .signup-message, .forgot-password {
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
+            color: #3d1e54;
         }
-        .forgot-password {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
+        .signup-message a, .forgot-password a {
+            color: #7851a9;
+            text-decoration: none;
+        }
+
+        .signup-message a:hover, .forgot-password a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -79,7 +114,7 @@
             <input type="text" id="username" name="username">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password">
-            <input type="submit" value="Login">
+            <input type="submit" value="Log in">
         </form>
         <p class="signup-message">You don't have an account yet? Sign up <a href="{% url 'signup' %}">here</a>, it's free!</p>
         <p class="forgot-password">Forgot your password? Reset it <a href="{% url 'password_reset' %}">here</a>.</p>
