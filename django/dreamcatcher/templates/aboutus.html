@@ -1,17 +1,142 @@
-{% extends "base_generic_small.html" %}
+{% load static %}
 
-{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us 👯‍♀️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
 
-{% block title %}👯‍About us {% endblock %}
+        body, html {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #e7c3f1, #cdb4eb, #b9c9ec, #e6eeff);
+        }
+    
+        .image-container img {
+            width: 100%; 
+            max-width: 600px;
+            border-radius: 0; 
+        }
+        .person-container {
+            display: flex;
+            justify-content: center;
+            max-width: 800px; 
+            margin: auto; 
+        }
+        .person {
+            flex: 1;
+            padding: 20px;
+            background-color: rgba(127, 197, 243, 0.217);
+            border: 2px solid #5a1a8b; 
+            margin: 10px;
+            text-align: center;
+            border-radius: 0;
+        }
+        .person h2 {
+            color: #5a1a8b; 
+        }
+        .person p {
+            color: #2e0e47; 
+            margin-top: 10px;
+        }
+        .together {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #5a1a8b; 
+        }
+        .join-us {
+            font-size: 1.2rem; 
+            margin-top: 10px; 
+            color: #5a1a8b;
+        }
+        .emojis {
+            font-size: 2rem; 
+            margin-top: 10px; 
+        }
+        h1 {
+            color: #5a1a8b;
+        }
+        .overlay {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .overlay button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            width: 150px;
+            margin: 0 10px;
+            border-radius: 25px;
+            background-color: transparent; 
+            color: #7851a9; 
+            border: 2px solid #7851a9; 
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            letter-spacing: 1px;
+            transition: transform 0.5s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .overlay button:hover {
+            background-color: #9579d1;
+            color: white;
+            transform: scale(1.05);
+        }
+        .join-us-container {
+            width: 100%;
+            background-color: transparent;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>👩🏻‍💻 Meet the creators! 👩🏼‍💻</h1>
 
-{% block content %}
-    <div class="container">
-        <h1> Meet the creators! 👩🏼‍💻👩🏻‍💻</h1>
-        <img src="{% static 'images/creators.jpg' %}" alt="Creators of DreamCatcher" class="img-fluid" style="max-width: 500px; height: auto;">
-        <h2> Raluca Rilla</h2>
-        <p> Raluca is a princess. 👸🏼 </p>
-        <h2> Hannah Steinbach</h2>
-        <p> Hannah is a princess. 👸🏻 </p>
-        <p> They are both just girls. 🎀 </p>
-    </div>
-{% endblock %}
+        <div class="image-container">
+            <img src="{% static 'images/creators.jpg' %}" alt="Creators of DreamCatcher">
+        </div>
+        
+        <div class="person-container">
+            <div class="person">
+                <h2>Hannah Steinbach</h2>
+                <p>Hallo! I am Hannah, and I am a princess. 👸🏻</p>
+                <p>My DreamCatcher is filled with predictions for who the next German Chancellor will be and with fears about my bestie cheating.</p>
+            </div>
+            
+            <div class="person">
+                <h2>Raluca Rilla</h2>
+                <p>Ciao. I am Raluca, and I am a princess. 👸🏼</p>
+                <p>My dreams often push me to fantasize about things I shouldn't be doing, so I'm keeping track of them to never run out of bad ideas. </p>
+            </div>
+        </div>
+        
+        <p class="together">Together, we never cease to dream big... And when we can't dream any bigger, we never fail to dream wilder.</p>
+        
+        </div>
+        <div class="join-us-container">
+            <p class="join-us"><b>Join us</b> in documenting the hilarious, the scary, and the plain weird. </p>
+            <p class="emojis"> 🍬🪼🪻🫐</p>
+            <div class="overlay">
+                <form method="post" action="{% url 'login' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Log in</button>
+                </form>
+                <form method="post" action="{% url 'signup' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+        <div style="height: 70px;"></div>
+    </body>
+</html>
