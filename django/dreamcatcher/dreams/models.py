@@ -8,3 +8,7 @@ class Dream(models.Model):
     content = models.TextField()
     shared = models.BooleanField(default=False)
     processed = models.BooleanField(default=False)
+    is_favorite = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.date}: {self.content[:50]}"

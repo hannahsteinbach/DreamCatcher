@@ -1,7 +1,7 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
-from .forms import SignUpForm
+from .forms import SignUpForm, DreamForm
 import logging
 from django.shortcuts import render, redirect
 from .models import Dream
@@ -51,6 +51,25 @@ def delete_dream(request, dream_id):
     if request.method == 'POST':
         dream.delete()
         messages.success(request, 'Dream deleted successfully!')
+    return redirect('dreams:dream_journal')
+
+@login_required
+def edit_dream(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    if request.method == 'POST':
+        form = DreamForm(request.POST, instance=dream)
+        if form.is_valid():
+            form.save()
+            return redirect('dreams:dream_journal')
+    else:
+        form = DreamForm(instance=dream)
+    return render(request, 'dreams/edit_dream.html', {'form': form})
+
+@login_required
+def add_to_favorites(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dream.is_favorite = True
+    dream.save()
     return redirect('dreams:dream_journal')
 
 
