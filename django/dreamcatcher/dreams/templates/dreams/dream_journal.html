@@ -1,4 +1,5 @@
 {% load static %}
+{% load highlight %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,28 +31,26 @@
             position: relative;
         }
         .sidenav {
-			height:100%;
-			width:180px;
-			position: fixed;
-			z-index:1;
-			top:0;
-			left:0;
-			background-color: rgba(0,0,0,0.1);
-			overflow-x: :hidden;
-			padding-top:50px;
-		}
-
-		.sidenav a {
-			padding:6px 8px 6px 18px;
-			text-decoration: none;
-			font-size:18px;
-			color: #3D3D3D;
-			display:block;
-		}
-
-		.sidenav a:hover{
-			color: black;
-		}
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.1);
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 18px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #3D3D3D;
+            display: block;
+        }
+        .sidenav a:hover {
+            color: black;
+        }
         .container {
             justify-content: center;
             width: calc(100% - 200px);
@@ -61,7 +60,7 @@
             margin-left: 200px;
             margin-top: 30px;
             z-index: 1;
-}
+        }
         .container h2 {
             margin-top: 0;
         }
@@ -89,6 +88,20 @@
             font-size: 20px;
             font-weight: normal;
         }
+        .highlight {
+            background-color: #FFC2D1;
+        }
+        .search-form input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .search-form button {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -103,15 +116,27 @@
         <a href="{% url 'logout' %}">Log out</a>
     </div>
     <div class="container">
+        <form class="search-form" method="get" action="{% url 'dreams:dream_journal' %}">
+            <input type="text" name="q" placeholder="Search dreams" value="{{ request.GET.q }}">
+            <button type="submit">Search</button>
+        </form>
         <div class="dreams">
             {% if dreams %}
-                {% for dream in dreams reversed%}
+                {% for dream in dreams|dictsortreversed:"date" %}
                     <div class="dream">
-                        <h3 class="dream-date">{{ dream.date }}{{dream.time}}</h3>
-                        <p class="dream-content">{{ dream.content }}</p>
+                        <h3 class="dream-date">{{ dream.date }}</h3>
+                        <p class="dream-content">
+                            {% if query %}
+                                {% autoescape off %}
+                                {{ dream.content|safe|highlight:query }}
+                                {% endautoescape %}
+                            {% else %}
+                                {{ dream.content }}
+                            {% endif %}
+                        </p>
                         <form action="{% url 'dreams:delete_dream' dream.id %}" method="post">
                             {% csrf_token %}
-                            <button type="submit">Remove dream from journal</button>
+                            <button type="submit" style="padding: 5px 10px; font-size: 12px; border: none; border-radius: 3px; cursor: pointer;">Remove dream from journal</button>
                         </form>
                     </div>
                 {% endfor %}
@@ -119,5 +144,4 @@
         </div>
     </div>
 </body>
-
 </html>
