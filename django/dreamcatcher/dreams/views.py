@@ -68,48 +68,127 @@ def edit_dream(request, dream_id):
         form = DreamForm(instance=dream)
     return render(request, 'dreams/edit_dream.html', {'form': form})
 
-@login_required
-def view_favorite(request):
-    favorite_dreams = Dream.objects.filter(user=request.user, is_favorite=True).order_by('-date')
-
-    context = {
-        'dreams': favorite_dreams,
-        'is_favorite_view': True, 
-    }
-    return render(request, 'dreams/dream_journal.html', context)
 
 @login_required
 def add_to_favorites(request, dream_id):
-    dream = get_object_or_404(Dream, id=dream_id)
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.is_favorite = True
     dream.save()
     return redirect('dreams:dream_journal')
 
+
 @login_required
 def remove_from_favorites(request, dream_id):
-    dream = get_object_or_404(Dream, id=dream_id)
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.is_favorite = False
     dream.save()
     return redirect('dreams:dream_journal')
 
+@login_required
+def share_dream(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
+    dream.shared = True
+    dream.save()
+    return redirect('dreams:dream_journal')
 
 @login_required
-def questionnaires(request):
-    return render(request, 'dreams/questionnaires.html')
-
+def unshare_dream(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
+    dream.shared = False
+    dream.save()
+    return redirect('dreams:dream_journal')
 
 @login_required
-def dream_journal(request):
+def gallery(request):
+    query = request.GET.get('q', '')
+    user = Dream.user
     dreams = Dream.objects.all()
-    query = request.GET.get('q')
-    sort_option = request.GET.get('sort')
+
+    if query:
+        dreams = dreams.filter(content__icontains=query)
 
     context = {
         'dreams': dreams,
         'query': query,
-        'sort_option': sort_option,
+        'user': user,
+    }
+    return render(request, 'dreams/gallery.html', context)
+
+@login_required
+def like_dream(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dream.is_liked = True
+    dream.save()
+    return redirect('dreams:gallery')
+
+
+@login_required
+def delike_dream(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dream.is_liked = False
+    dream.save()
+    return redirect('dreams:gallery')
+
+@login_required
+def dream_journal(request):
+    query = request.GET.get('q', '')
+    dreams = Dream.objects.filter(user=request.user)
+
+    if query:
+        dreams = dreams.filter(content__icontains=query)
+
+    context = {
+        'dreams': dreams,
+        'query': query,
     }
     return render(request, 'dreams/dream_journal.html', context)
+
+
+@login_required
+def view_favorite(request):
+    query = request.GET.get('q', '')
+    dreams = Dream.objects.filter(is_favorite=True)
+
+    if query:
+        dreams = dreams.filter(content__icontains=query)
+
+    context = {
+        'dreams': dreams,
+        'query': query,
+        'is_favorite_view': True,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
+
+@login_required
+def view_shared(request):
+    query = request.GET.get('q', '')
+    dreams = Dream.objects.filter(shared=True)
+
+    if query:
+        dreams = dreams.filter(content__icontains=query)
+
+    context = {
+        'dreams': dreams,
+        'query': query,
+        'is_shared_view': True,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
+
+@login_required
+def view_liked(request):
+    query = request.GET.get('q', '')
+    dreams = Dream.objects.filter(shared=True)
+
+    if query:
+        dreams = dreams.filter(content__icontains=query)
+
+    context = {
+        'dreams': dreams,
+        'query': query,
+        'user': request.user,
+        'is_liked_view': True,
+    }
+    return render(request, 'dreams/gallery.html', context)
 
 @login_required
 def personal_statistics(request):

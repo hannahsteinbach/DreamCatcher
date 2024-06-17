@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Dream journal 📔{% endblock %}</title>
+    <title>{% block title %}Dream Gallery🎭{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
@@ -212,11 +212,12 @@
 </head>
 <body>
     <div class="header">
-        <h2>Dream Journal 📔</h2>
+        <h2>View and rate other people's dreams 🎭</h2>
+    </div>
     </div>
     <div class="sidenav">
         <a href="/">Home</a>
-        <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
+        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
         <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
         <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
         <a href="{% url 'logout' %}">Log out</a>
@@ -229,68 +230,49 @@
         </form>
         <div class="button-container">
             <div>
-                {% if is_favorite_view %}
-                    <a href="{% url 'dreams:dream_journal' %}" class="button">View all dreams</a>
+                {% if is_liked_view %}
+                    <a href="{% url 'dreams:gallery' %}" class="button">View all dreams</a>
                 {% else %}
-                    <a href="{% url 'dreams:view_favorite' %}" class="button">View favorite dreams</a>
-                {% endif %}
-            </div>
-            <div>
-                {% if is_shared_view %}
-                    <a href="{% url 'dreams:dream_journal' %}" class="button">View all dreams</a>
-                {% else %}
-                    <a href="{% url 'dreams:view_shared' %}" class="button">View shared dreams</a>
+                    <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams (check again)</a>
                 {% endif %}
             </div>
         </div>
         <div class="dreams">
             {% if dreams %}
                 {% for dream in dreams|dictsortreversed:"date" %}
-                    {% if not query or query|lower in dream.content|lower %}
-                        <div class="dream">
-                            <h3 class="dream-date">{{ dream.date }}</h3>
-                            <p class="dream-content">
-                                {% autoescape off %}
-                                {{ dream.content|safe|highlight:query }}
-                                {% endautoescape %}
-                            </p>
-                            <div class="menu">
-                                <span class="icon">⋮</span>
-                                <div class="menu-content">
-                                    <a href="{% url 'dreams:edit_dream' dream.id %}">Edit dream</a>
-                                    {% if dream.is_favorite %}
-                                        <form action="{% url 'dreams:remove_from_favorites' dream.id %}" method="post" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit">Remove from favorites</button>
-                                        </form>
-                                    {% else %}
-                                        <form action="{% url 'dreams:add_to_favorites' dream.id %}" method="post" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit">Add to favorites</button>
-                                        </form>
-                                    {% endif %}
-                                    {% if dream.shared %}
-                                        <form action="{% url 'dreams:unshare_dream' dream.id %}" method="post" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit">Unshare dream</button>
-                                        </form>
-                                    {% else %}
-                                        <form action="{% url 'dreams:share_dream' dream.id %}" method="post" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit">Share dream online</button>
-                                        </form>
-                                    {% endif %}
-                                    <form action="{% url 'dreams:delete_dream' dream.id %}" method="post" style="display:inline;">
-                                        {% csrf_token %}
-                                        <button type="submit">Remove dream from journal</button>
-                                    </form>
+                    {% if dream.shared%}
+                        {% if not query or query|lower in dream.content|lower %}
+                            <div class="dream">
+                                <h3 class="dream-date">{{ dream.date }}</h3>
+                                <h3 class="dream-user">@{{ dream.user }}</h3>
+                                <p class="dream-content">
+                                    {% autoescape off %}
+                                    {{ dream.content|safe|highlight:query }}
+                                    {% endautoescape %}
+                                </p>
+
+                                <div class="menu">
+                                    <span class="icon">⋮</span>
+                                    <div class="menu-content">
+                                        {% if dream.is_liked %}
+                                            <form action="{% url 'dreams:delike_dream' dream.id %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit">Remove like</button>
+                                            </form>
+                                        {% else %}
+                                            <form action="{% url 'dreams:like_dream' dream.id %}" method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit">Like dream</button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             {% else %}
-                <p>No dreams found.</p>
+                <p>No shared dreams found.</p>
             {% endif %}
         </div>
     </div>
