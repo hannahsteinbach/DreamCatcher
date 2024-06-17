@@ -19,13 +19,16 @@ def home(request):
         return redirect('dreams:home_logged_in')
     return render(request, 'base_generic.html')
 
+
 def aboutus(request):
     return render(request, 'aboutus.html')
+
 
 @login_required
 def home_logged_in(request):
     messages.success(request, f'Welcome, {request.user.username}! Let\'s take a journey into your subconscious 🗺️')
     return render(request, 'home.html')
+
 
 @login_required
 def log_dream(request):
@@ -66,9 +69,26 @@ def edit_dream(request, dream_id):
     return render(request, 'dreams/edit_dream.html', {'form': form})
 
 @login_required
+def view_favorite(request):
+    favorite_dreams = Dream.objects.filter(user=request.user, is_favorite=True).order_by('-date')
+
+    context = {
+        'dreams': favorite_dreams,
+        'is_favorite_view': True, 
+    }
+    return render(request, 'dreams/dream_journal.html', context)
+
+@login_required
 def add_to_favorites(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
     dream.is_favorite = True
+    dream.save()
+    return redirect('dreams:dream_journal')
+
+@login_required
+def remove_from_favorites(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dream.is_favorite = False
     dream.save()
     return redirect('dreams:dream_journal')
 
@@ -77,16 +97,19 @@ def add_to_favorites(request, dream_id):
 def questionnaires(request):
     return render(request, 'dreams/questionnaires.html')
 
+
 @login_required
 def dream_journal(request):
+    dreams = Dream.objects.all()
     query = request.GET.get('q')
-    if query:
-        dreams = Dream.objects.filter(
-            Q(content__icontains=query) | Q(date__icontains=query)
-        ).order_by('-date')
-    else:
-        dreams = Dream.objects.all().order_by('-date')
-    return render(request, 'dreams/dream_journal.html', {'dreams': dreams, 'query': query})
+    sort_option = request.GET.get('sort')
+
+    context = {
+        'dreams': dreams,
+        'query': query,
+        'sort_option': sort_option,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
 
 @login_required
 def personal_statistics(request):
@@ -97,6 +120,7 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You have successfully logged out. Sweet Dreams 🌙')
     return redirect('home')
+
 
 def signup(request):
     if request.method == 'POST':

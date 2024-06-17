@@ -10,7 +10,9 @@ urlpatterns = [
     path('journal/', views.dream_journal, name='dream_journal'),
     path('edit_dream/<int:dream_id>/', views.edit_dream, name='edit_dream'),
     path('add_to_favorites/<int:dream_id>/', views.add_to_favorites, name='add_to_favorites'),
+    path('remove_from_favorites/<int:dream_id>/', views.remove_from_favorites, name='remove_from_favorites'),
     path('delete_dream/<int:dream_id>/', views.delete_dream, name='delete_dream'),
+    path('view_favorite/', views.view_favorite, name='view_favorite'),
     path('statistics/', views.personal_statistics, name='personal_statistics'),
     path('questionnaires/', views.questionnaires, name='questionnaires'),
 ]

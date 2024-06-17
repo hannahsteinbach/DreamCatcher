@@ -63,9 +63,11 @@
             margin-top: 20px;
         }
         .form-container {
-            width: 100%;
+            width: 400%;
             max-width: 400px;
             margin-bottom: 20px;
+            justify-content: center;
+            text-align: center;
         }
         .form-container input[type="text"],
         .form-container textarea {
@@ -74,7 +76,8 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            height: 100px; /* Increased height for the text area */
+            height: 100px;
+            font: 'DM Sans', sans-serif;
         }
         .form-container button[type="submit"] {
             padding: 10px;
@@ -85,6 +88,7 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font: inherit;
         }
         .form-container button[type="submit"]:hover {
             background-color: #BECDDE;
