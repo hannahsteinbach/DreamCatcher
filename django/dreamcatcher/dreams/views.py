@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetView
 from .forms import SignUpForm, DreamForm
 import logging
 from django.shortcuts import render, redirect
-from .models import Dream
+from .models import Dream, DreamLike
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.db.models import F
@@ -89,6 +89,7 @@ def share_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = True
     dream.save()
+    messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
 @login_required
@@ -96,13 +97,17 @@ def unshare_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = False
     dream.save()
+    messages.success(request, 'Dream unshared successfully!')
     return redirect('dreams:dream_journal')
+
 
 @login_required
 def gallery(request):
     query = request.GET.get('q', '')
-    user = Dream.user
-    dreams = Dream.objects.all()
+    dreams = Dream.objects.filter(shared=True)
+
+    for dream in dreams:
+        dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
 
     if query:
         dreams = dreams.filter(content__icontains=query)
@@ -110,24 +115,29 @@ def gallery(request):
     context = {
         'dreams': dreams,
         'query': query,
-        'user': user,
+        'is_liked_view': False,
     }
     return render(request, 'dreams/gallery.html', context)
+
 
 @login_required
 def like_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
-    dream.is_liked = True
-    dream.save()
-    return redirect('dreams:gallery')
 
+    DreamLike.objects.create(user=request.user, dream=dream)
+
+    return redirect(request.META.get('HTTP_REFERER', 'dreams:gallery'))
 
 @login_required
-def delike_dream(request, dream_id):
+def unlike_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
-    dream.is_liked = False
-    dream.save()
-    return redirect('dreams:gallery')
+
+    existing_like = DreamLike.objects.filter(user=request.user, dream=dream).first()
+
+    if existing_like:
+        existing_like.delete()
+
+    return redirect(request.META.get('HTTP_REFERER', 'dreams:gallery'))
 
 @login_required
 def dream_journal(request):
@@ -147,7 +157,7 @@ def dream_journal(request):
 @login_required
 def view_favorite(request):
     query = request.GET.get('q', '')
-    dreams = Dream.objects.filter(is_favorite=True)
+    dreams = Dream.objects.filter(is_favorite=True, user=request.user)
 
     if query:
         dreams = dreams.filter(content__icontains=query)
@@ -174,10 +184,11 @@ def view_shared(request):
     }
     return render(request, 'dreams/dream_journal.html', context)
 
+
 @login_required
-def view_liked(request):
+def view_own_shared(request):
     query = request.GET.get('q', '')
-    dreams = Dream.objects.filter(shared=True)
+    dreams = Dream.objects.filter(user=request.user, shared=True)
 
     if query:
         dreams = dreams.filter(content__icontains=query)
@@ -185,10 +196,37 @@ def view_liked(request):
     context = {
         'dreams': dreams,
         'query': query,
-        'user': request.user,
-        'is_liked_view': True,
+        'is_shared_view': True,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
+
+
+# views.py
+
+@login_required
+def view_liked(request):
+    query = request.GET.get('q', '')
+
+    liked_dream_likes = DreamLike.objects.filter(user=request.user)
+
+    liked_dreams = [dream_like.dream for dream_like in liked_dream_likes]
+
+    for dream in liked_dreams:
+        dream.is_liked_by_user = True
+        dream.likes_count = dream.likes_count
+        dream.liked_users = dream.liked_users()
+
+    if query:
+        liked_dreams = [dream for dream in liked_dreams if query.lower() in dream.content.lower()]
+
+    context = {
+        'dreams': liked_dreams,
+        'query': query,
+        'view_liked': True,
     }
     return render(request, 'dreams/gallery.html', context)
+
+
 
 @login_required
 def personal_statistics(request):

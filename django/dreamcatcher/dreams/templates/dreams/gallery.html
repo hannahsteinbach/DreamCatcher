@@ -19,7 +19,7 @@
             align-items: center;
         }
         .header {
-            background:  #FFFFFF;
+            background: #FFFFFF;
             color: #3D3D3D;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -107,6 +107,12 @@
             margin-bottom: 5px;
             color: #3D3D3D;
         }
+        .dream-user {
+            font-size: 16px;
+            font-weight: bold;
+            color: #3D3D3D;
+            margin-bottom: 5px;
+        }
         .dream-content {
             font-size: 15px;
             margin-top: 5px;
@@ -159,7 +165,7 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #1e3047 ;
+            background-color: #1e3047;
             color: white;
             font-size: 14px;
             cursor: pointer;
@@ -195,6 +201,21 @@
             background-color: #FFC2D1;
             font-weight: bold;
         }
+        .like-info {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .like-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        .like-info .liked-users {
+            font-size: 14px;
+            color: #666;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -214,7 +235,6 @@
     <div class="header">
         <h2>View and rate other people's dreams 🎭</h2>
     </div>
-    </div>
     <div class="sidenav">
         <a href="/">Home</a>
         <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
@@ -223,7 +243,7 @@
         <a href="{% url 'logout' %}">Log out</a>
     </div>
     <div class="container">
-        <form class="search-form" method="get" action="{% url 'dreams:dream_journal' %}">
+        <form class="search-form" method="get" action="{% url 'dreams:gallery' %}">
             <input id="searchInput" type="text" name="q" placeholder="Search dreams" value="{{ query }}">
             <button type="submit">Search</button>
             <button type="button" onclick="clearSearch()">Clear</button>
@@ -240,7 +260,7 @@
         <div class="dreams">
             {% if dreams %}
                 {% for dream in dreams|dictsortreversed:"date" %}
-                    {% if dream.shared%}
+                    {% if dream.shared %}
                         {% if not query or query|lower in dream.content|lower %}
                             <div class="dream">
                                 <h3 class="dream-date">{{ dream.date }}</h3>
@@ -250,12 +270,26 @@
                                     {{ dream.content|safe|highlight:query }}
                                     {% endautoescape %}
                                 </p>
-
+                                <div class="like-info">
+                                    <p>Likes: {{ dream.likes_count }} </p>
+                                    <p>Liked by:
+                                        {% for user in dream.liked_users %}
+                                            {{ user.username }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
                                 <div class="menu">
-                                    <span class="icon">⋮</span>
+                                    <span class="icon">
+                                        {% if dream.is_liked_by_user %}
+                                            🖤️
+                                        {% else %}
+                                            🤍
+                                        {% endif %}
+                                    </span>
                                     <div class="menu-content">
-                                        {% if dream.is_liked %}
-                                            <form action="{% url 'dreams:delike_dream' dream.id %}" method="post" style="display:inline;">
+                                        {% if dream.is_liked_by_user %}
+                                            <form action="{% url 'dreams:unlike_dream' dream.id %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
                                                 <button type="submit">Remove like</button>
                                             </form>
@@ -272,7 +306,7 @@
                     {% endif %}
                 {% endfor %}
             {% else %}
-                <p>No shared dreams found.</p>
+                <p>No liked dreams found.</p>
             {% endif %}
         </div>
     </div>
