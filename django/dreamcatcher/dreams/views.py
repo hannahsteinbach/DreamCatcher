@@ -222,7 +222,7 @@ def view_liked(request):
     context = {
         'dreams': liked_dreams,
         'query': query,
-        'view_liked': True,
+        'is_liked_view': True,
     }
     return render(request, 'dreams/gallery.html', context)
 

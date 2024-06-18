@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Dream Gallery🎭{% endblock %}</title>
+    <title>{% block title %}Dream Gallery 🎞️ {% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
@@ -233,7 +233,7 @@
 </head>
 <body>
     <div class="header">
-        <h2>Dream Gallery🎭</h2>
+        <h2>Dream Gallery 🎞️</h2>
     </div>
     <div class="sidenav">
         <a href="/">Home</a>
@@ -274,8 +274,8 @@
                                     <p>Likes: {{ dream.likes_count }} </p>
                                     <p>Liked by:
                                         {% for user in dream.liked_users %}
-                                            {{ user.username }}
-                                            {% if not forloop.last %}, {% endif %}
+                                            @{{ user.username }}
+                                            {% if not forloop.last %} {% endif %}
                                         {% endfor %}
                                     </p>
                                 </div>
