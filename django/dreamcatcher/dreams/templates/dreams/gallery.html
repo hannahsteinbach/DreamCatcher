@@ -233,7 +233,7 @@
 </head>
 <body>
     <div class="header">
-        <h2>View and rate other people's dreams 🎭</h2>
+        <h2>Dream Gallery🎭</h2>
     </div>
     <div class="sidenav">
         <a href="/">Home</a>
@@ -253,7 +253,7 @@
                 {% if is_liked_view %}
                     <a href="{% url 'dreams:gallery' %}" class="button">View all dreams</a>
                 {% else %}
-                    <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams (check again)</a>
+                    <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
                 {% endif %}
             </div>
         </div>
@@ -282,21 +282,21 @@
                                 <div class="menu">
                                     <span class="icon">
                                         {% if dream.is_liked_by_user %}
-                                            🖤️
+                                            ♥
                                         {% else %}
-                                            🤍
+                                            ♡
                                         {% endif %}
                                     </span>
                                     <div class="menu-content">
                                         {% if dream.is_liked_by_user %}
                                             <form action="{% url 'dreams:unlike_dream' dream.id %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
-                                                <button type="submit">Remove like</button>
+                                                <button type="submit">Unlike</button>
                                             </form>
                                         {% else %}
                                             <form action="{% url 'dreams:like_dream' dream.id %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
-                                                <button type="submit">Like dream</button>
+                                                <button type="submit">Like</button>
                                             </form>
                                         {% endif %}
                                     </div>
