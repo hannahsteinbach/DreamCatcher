@@ -195,6 +195,21 @@
             background-color: #FFC2D1;
             font-weight: bold;
         }
+        .keyword{
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .keyword p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        .keyword .liked-users {
+            font-size: 14px;
+            color: #666;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -253,6 +268,12 @@
                 {% autoescape off %}
                 {{ dream.content|safe|highlight:query }}
                 {% endautoescape %}
+            </p>
+            <p class="keyword">
+                Extracted keywords:
+                {% for keyword in dream.keywords %}
+                {{ keyword }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
             </p>
             <div class="menu">
                 <span class="icon">⋮</span>

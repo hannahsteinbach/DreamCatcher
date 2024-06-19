@@ -270,6 +270,12 @@
                                     {{ dream.content|safe|highlight:query }}
                                     {% endautoescape %}
                                 </p>
+                                <p class="like-info">
+                                    Extracted keywords:
+                                    {% for keyword in dream.keywords %}
+                                    {{ keyword }}{% if not forloop.last %},{% endif %}
+                                    {% endfor %}
+                                </p>
                                 <div class="like-info">
                                     <p>Likes: {{ dream.likes_count }} </p>
                                     <p>Liked by:
