@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from keybert import KeyBERT
 import json
+import re
 
 
 class Dream(models.Model):
@@ -11,20 +12,22 @@ class Dream(models.Model):
     shared = models.BooleanField(default=False)
     processed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
-    keywords = models.JSONField(default=list, blank=True)  # Use JSONField to store keywords as a list
+    keywords = models.JSONField(default=list, blank=True)
 
     def save(self, *args, **kwargs):
-        # Ensure content is a string
+
         content_str = str(self.content)
 
-        # Extract keywords using KeyBERT
         kw_model = KeyBERT()
-        keywords = kw_model.extract_keywords(content_str, keyphrase_ngram_range=(1, 1), stop_words=None)
+        keywords = kw_model.extract_keywords(content_str, keyphrase_ngram_range=(1, 1),
+                                             top_n=5, stop_words=None)
+        #top_n: how many keywords should be extracted?
+        #keyphrase_ngram_range: how long should the keyphrases be? (i think only one should be good)
+        #can also add more, e.g. how diverse the results should be
 
-        # Store only the keywords as a list of strings
-        self.keywords = [keyword[0] for keyword in keywords]
+        self.keywords = [keyword[0] for keyword in keywords if not
+                         re.compile(r'dream(ed|t)?', re.IGNORECASE).match(keyword[0])]
 
-        # Save the instance
         super().save(*args, **kwargs)
 
     def likes_count(self):

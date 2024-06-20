@@ -89,6 +89,27 @@
         .search-form button:hover {
             background-color: #BECDDE;
         }
+        .keyword-form {
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            display: inline;
+        }
+        .keyword-form button {
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            color: #856088;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            gap: 10px;
+        }
+        .keyword-form button:hover {
+            background-color: #856088;
+            color: #f0f0f0;
+        }
         .dreams {
             width: 100%;
             max-width: 900px;
@@ -270,10 +291,13 @@
                                     {{ dream.content|safe|highlight:query }}
                                     {% endautoescape %}
                                 </p>
-                                <p class="like-info">
-                                    Extracted keywords:
+                                <p class="keyword-form">
                                     {% for keyword in dream.keywords %}
-                                    {{ keyword }}{% if not forloop.last %},{% endif %}
+                                    <form class="keyword-form" method="get" action="{% url 'dreams:gallery' %}">
+                                        <input type="hidden" name="q" value="{{ keyword }}">
+                                        <button type="submit">{{ keyword }}</button>
+                                    </form>
+                                    {% if not forloop.last %}{% endif %}
                                     {% endfor %}
                                 </p>
                                 <div class="like-info">
