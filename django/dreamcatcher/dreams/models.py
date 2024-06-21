@@ -39,8 +39,6 @@ class Dream(models.Model):
     def __str__(self):
         return f"{self.date}: {self.content[:50]}"
 
-    def __str__(self):
-        return f"{self.date}: {self.content[:50]}"
 
 
 class DreamLike(models.Model):
