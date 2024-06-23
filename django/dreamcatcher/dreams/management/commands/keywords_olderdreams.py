@@ -23,4 +23,4 @@ class Command(BaseCommand):
 
 
 
-# how to run? -> like this: in django/dreamcatcher/python run command manage.py keywords_olderdreams
+# how to run? -> like this: in django/dreamcatcher/python manage.py keywords_olderdreams

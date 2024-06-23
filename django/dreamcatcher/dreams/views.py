@@ -34,13 +34,15 @@ def home_logged_in(request):
 def log_dream(request):
     if request.method == 'POST':
         content = request.POST.get('content')
+        classification = request.POST.get('classification')
         user = request.user
         dream = Dream.objects.create(
             user=user,
             date=date.today(),
             content=content,
             shared=False,
-            processed=False
+            processed=False,
+            classification=classification
         )
         dream.save()
         messages.success(request, 'Your dream was successfully saved!')
@@ -105,6 +107,7 @@ def unshare_dream(request, dream_id):
 def gallery(request):
     query = request.GET.get('q', '')
     dreams = Dream.objects.filter(shared=True)
+    class_query = request.GET.get('classification', '')
 
     for dream in dreams:
         dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
@@ -112,10 +115,14 @@ def gallery(request):
     if query:
         dreams = dreams.filter(content__icontains=query)
 
+    if class_query:
+        dreams = dreams.filter(classification=class_query)
+
     context = {
         'dreams': dreams,
         'query': query,
         'is_liked_view': False,
+        'class_query': class_query
     }
     return render(request, 'dreams/gallery.html', context)
 
@@ -139,17 +146,24 @@ def unlike_dream(request, dream_id):
 
     return redirect(request.META.get('HTTP_REFERER', 'dreams:gallery'))
 
+
+
 @login_required
 def dream_journal(request):
     query = request.GET.get('q', '')
+    class_query = request.GET.get('classification', '')
     dreams = Dream.objects.filter(user=request.user)
 
     if query:
         dreams = dreams.filter(content__icontains=query)
 
+    if class_query:
+        dreams = dreams.filter(classification=class_query)
+
     context = {
         'dreams': dreams,
         'query': query,
+        'class_query': class_query
     }
     return render(request, 'dreams/dream_journal.html', context)
 
@@ -200,8 +214,6 @@ def view_own_shared(request):
     }
     return render(request, 'dreams/dream_journal.html', context)
 
-
-# views.py
 
 @login_required
 def view_liked(request):

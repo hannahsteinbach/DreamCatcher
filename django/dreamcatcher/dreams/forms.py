@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class DreamForm(forms.ModelForm):
     class Meta:
         model = Dream
-        fields = ['date', 'content', 'shared']
+        fields = ['date', 'content', 'shared', 'classification']
 
 
 class SignUpForm(UserCreationForm):

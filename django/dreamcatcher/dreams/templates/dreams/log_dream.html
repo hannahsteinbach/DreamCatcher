@@ -77,6 +77,12 @@
             border-radius: 5px;
             font-size: 16px;
         }
+        .chat-form input[type="text"] {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
         .chat-form input[type="submit"] {
             padding: 10px;
             border: none;
@@ -103,9 +109,26 @@
     <div class="header">
         <h2>Log a new dream🖋️</h2>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.menu').forEach(menu => {
+                menu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+    </script>
     <form class="chat-form" method="post" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
         {% csrf_token %}
         <input type="text" id="content" name="content" placeholder="Enter last night's dream">
+        <select id="classification" name="classification">
+            <option value="">Classify your dream</option>
+            <option value="0">Nightmare</option>
+            <option value="1">Mundane dream</option>
+            <option value="2">Lucid dream</option>
+            <option value="3">Existential dream</option>
+            <option value="4">None</option>
+        </select>
         <input type="submit" value="Enter">
     </form>
     {% if messages %}

@@ -110,6 +110,27 @@
             background-color: #856088;
             color: #f0f0f0;
         }
+        .class-form {
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            display: inline;
+        }
+        .class-form button {
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            background-color: #856088;
+            color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            gap: 10px;
+        }
+        .class-form button:hover {
+            background-color: #f0f0f0;
+            color: #856088;
+        }
         .dreams {
             width: 100%;
             max-width: 900px;
@@ -290,6 +311,15 @@
                                     {% autoescape off %}
                                     {{ dream.content|safe|highlight:query }}
                                     {% endautoescape %}
+                                </p>
+                                <p class="class-form">
+                                    {% if dream.classification %}
+                                    Type of Dream:
+                                    <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
+                                        <input type="hidden" name="classification" value="{{dream.classification}}">
+                                        <button type="submit">{{ dream.classification_string}}</button>
+                                    {%endif%}
+                                    </form>
                                 </p>
                                 <p class="keyword-form">
                                     {% for keyword in dream.keywords %}
