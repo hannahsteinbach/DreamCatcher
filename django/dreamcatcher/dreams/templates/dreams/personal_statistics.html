@@ -6,29 +6,347 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
-        
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header {
+            background:  #FFFFFF;
+            color: #3D3D3D;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            text-align: center;
+            margin-top: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.1);
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 18px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #3D3D3D;
+            display: block;
+        }
+        .sidenav a:hover {
+            color: black;
         }
         .container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            justify-content: flex-start;
+            width: calc(100% - 200px);
+            margin-left: 200px;
+            margin-top: 30px;
+            z-index: 1;
         }
         .container h2 {
             margin-top: 0;
         }
+        .search-form {
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .search-form input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            height: 40px;
+        }
+        .search-form button {
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            background-color: #1e3047;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .search-form button:hover {
+            background-color: #BECDDE;
+        }
+        .keyword-form {
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            display: inline;
+        }
+        .keyword-form button {
+            padding: 5px 10px;
+            font-size: 15px;
+            cursor: pointer;
+            background-color: #856088;
+            color: #f0f0f0;
+            border: 1px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            gap: 12px;
+            margin: 2px;
+        }
+        .keyword-form button:hover {
+            background-color: #f0f0f0;
+            color: #856088;
+        }
+        .class-form {
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            display: inline;
+        }
+        .class-form button {
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            background-color: #856088;
+            color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            gap: 10px;
+        }
+        .class-form button:hover {
+            background-color: #f0f0f0;
+            color: #856088;
+        }
+        .dreams {
+            width: 100%;
+            max-width: 900px;
+        }
+        .dream {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: relative;
+            width: 100%;
+        }
+        .dream-date {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #3D3D3D;
+        }
+        .dream-content {
+            font-size: 15px;
+            margin-top: 5px;
+            color: #3D3D3D;
+        }
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .menu .icon {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .menu-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            width: 220px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .menu-content a, .menu-content button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            font-size: inherit;
+            letter-spacing: inherit;
+        }
+        .menu-content a:hover, .menu-content button:hover {
+            background-color: #f1f1f1;
+            border-radius: 0;
+        }
+        .menu.active .menu-content {
+            display: block;
+        }
+        .button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e3047 ;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: inherit;
+            letter-spacing: inherit;
+        }
+        .button:hover {
+            background-color: #BECDDE;
+        }
+        .menu-button {
+            padding: 12px 16px;
+            border: none;
+            background: none;
+            color: #3D3D3D;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .menu-button:hover {
+            background-color: #f1f1f1;
+            border-radius: 0;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #FFC2D1;
+            font-weight: bold;
+        }
+        #classification {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #856088;
+            color: white;
+            cursor: pointer;
+        }
+        #classification option {
+            padding: 8px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            color: #856088;
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.menu').forEach(menu => {
+                menu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.querySelector('.search-form').submit();
+        }
+    </script>
 </head>
 <body>
-    <div class="container">
+<div class="header">
         <h2>Personal Statistics 📊</h2>
     </div>
+<div class="sidenav">
+        <a href="/">Home</a>
+        <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
+        <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
+        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+        <a href="{% url 'logout' %}">Log out</a>
+    </div>
+<div class="dreams">
+    <div class="dream">
+        <h3>Amount of dreams </h3>
+        <p class="dream-content">
+                    {% autoescape off %}
+                    {{ dream_count|safe}}
+                    {% endautoescape %}
+        </p>
+    </div>
+    <div class="dream">
+        <h3>Types of dreams </h3>
+            <ul>
+                <li> Nightmares: {{nightmare_count}}% </li>
+                <li> Mundane Dreams: {{mundane_count}}% </li>
+                <li> Lucid dreams: {{lucid_count}}% </li>
+                <li> Existential dreams: {{existential_count}}% </li>
+                <li> Not classified: {{none_count}}% </li>
+            </ul>
+    </div>
+    <div class="dream">
+        <h3>Top 10 Keywords</h3>
+        <ul>
+            {% for keyword,count in top_10_keywords %}
+            <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
+                <input type="hidden" name="q" value="{{ keyword }}">
+                        <button type="submit">{{ keyword }}</button>
+            </form> {{count}} occurrences </li>
+            {%endfor%}
+        </ul>
+    </div>
+    <div class="dream">
+        <h3>People</h3>
+    </div>
+    <div class="dream">
+        <h3>Emotions</h3>
+    </div>
+    <div class="dream">
+        <h3>Favorite dreams</h3>
+        <p class="dream-content">
+                    {% autoescape off %}
+                    You have marked {{ favorite_count|safe}} dreams as favorite
+                    {% endautoescape %}
+        </p>
+        <div class="button-container">
+            <a href="{% url 'dreams:view_favorite' %}" class="button">View favorite dreams</a>
+        </div>
+    </div>
+    <div class="dream">
+        <h3>Shared dreams</h3>
+        <p class="dream-content">
+                    {% autoescape off %}
+                    You have shared {{ shared_count|safe}} dreams
+                    {% endautoescape %}
+        </p>
+        <div class="button-container">
+            <a href="{% url 'dreams:view_own_shared' %}" class="button">View shared dreams</a>
+        </div>
+    </div>
+    <div class="dream">
+        <h3>Liked dreams</h3>
+        <p class="dream-content">
+                    {% autoescape off %}
+                    You have liked {{ liked_count|safe}} dreams
+                    {% endautoescape %}
+        </p>
+        <div class="button-container">
+            <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
+        </div>
+    </div>
+
 </body>
 </html>

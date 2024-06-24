@@ -50,7 +50,6 @@ class Dream(models.Model):
         return f"{self.date}: {self.content[:50]}"
 
 
-
 class DreamLike(models.Model):
     dream = models.ForeignKey(Dream, on_delete=models.CASCADE, related_name='likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE)

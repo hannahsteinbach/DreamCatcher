@@ -258,6 +258,20 @@
             font-size: 14px;
             color: #666;
         }
+        #classification {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #856088;
+            color: white;
+            cursor: pointer;
+        }
+        #classification option {
+            padding: 8px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            color: #856088;
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -287,6 +301,13 @@
     <div class="container">
         <form class="search-form" method="get" action="{% url 'dreams:gallery' %}">
             <input id="searchInput" type="text" name="q" placeholder="Search dreams" value="{{ query }}">
+            <select id="classification" name="classification">
+                <option value="">All dream types</option>
+                <option value="0"{% if class_query == '0' %}selected{% endif %}>Nightmares</option>
+                <option value="1"{% if class_query == '1' %}selected{% endif %}>Mundane dreams</option>
+                <option value="2"{% if class_query == '2' %}selected{% endif %}>Lucid dreams</option>
+                <option value="3"{% if class_query == '3' %}selected{% endif %}>Existential dreams</option>
+            </select>
             <button type="submit">Search</button>
             <button type="button" onclick="clearSearch()">Clear</button>
         </form>
@@ -314,7 +335,6 @@
                                 </p>
                                 <p class="class-form">
                                     {% if dream.classification %}
-                                    Type of Dream:
                                     <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
                                         <input type="hidden" name="classification" value="{{dream.classification}}">
                                         <button type="submit">{{ dream.classification_string}}</button>

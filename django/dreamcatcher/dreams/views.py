@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.db.models import F
 from django.db.models import Q
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
+from collections import Counter
 
 
 logger = logging.getLogger(__name__)
@@ -242,7 +244,53 @@ def view_liked(request):
 
 @login_required
 def personal_statistics(request):
-    return render(request, 'dreams/personal_statistics.html')
+    dreams = Dream.objects.filter(user=request.user)
+
+    # get number og dreams
+    dream_count = dreams.count()
+
+    # get number of liked dreams
+    liked_dream_likes = DreamLike.objects.filter(user=request.user)
+    liked_dreams = [dream_like.dream for dream_like in liked_dream_likes]
+    liked_count = len(liked_dreams)
+
+    # get number of shared dreams
+    shared_count = Dream.objects.filter(shared=True, user=request.user).count()
+
+    # get number of favorite dreams
+    favorite_count = Dream.objects.filter(is_favorite=True, user=request.user).count()
+
+    # get overview of (own) classification of dreams
+    nightmare_count = round(dreams.filter(classification='0').count()/dream_count * 100)
+    mundane_count = round(dreams.filter(classification='1').count()/dream_count * 100)
+    lucid_count = round(dreams.filter(classification='2').count()/dream_count * 100)
+    existential_count = round(dreams.filter(classification='3').count()/dream_count * 100)
+    none_count = round(100-nightmare_count-mundane_count-lucid_count-existential_count/dream_count * 100)
+
+    # keywords
+    all_keywords = []
+    for dream in dreams:
+        all_keywords.extend(dream.keywords)
+
+    keywords_counted = Counter(all_keywords)
+
+    top_10_keywords = keywords_counted.most_common(10)
+
+    context = {
+        'dreams': dreams,
+        'dream_count': dream_count,
+        'liked_count': liked_count,
+        'nightmare_count': nightmare_count,
+        'mundane_count': mundane_count,
+        'lucid_count': lucid_count,
+        'existential_count': existential_count,
+        'none_count': none_count,
+        'shared_count': shared_count,
+        'favorite_count': favorite_count,
+        'top_10_keywords': top_10_keywords
+    }
+
+    return render(request, 'dreams/personal_statistics.html', context)
 
 @login_required
 def logout_view(request):
