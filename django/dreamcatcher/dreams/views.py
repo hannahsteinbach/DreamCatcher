@@ -251,7 +251,7 @@ def view_liked(request):
 def personal_statistics(request):
     dreams = Dream.objects.filter(user=request.user)
 
-    # get number og dreams
+    # get number of dreams
     dream_count = dreams.count()
 
     # get number of liked dreams
@@ -270,7 +270,7 @@ def personal_statistics(request):
     mundane_count = round(dreams.filter(classification='1').count()/dream_count * 100)
     lucid_count = round(dreams.filter(classification='2').count()/dream_count * 100)
     existential_count = round(dreams.filter(classification='3').count()/dream_count * 100)
-    none_count = round(100-nightmare_count-mundane_count-lucid_count-existential_count/dream_count * 100)
+    none_count = 100-nightmare_count-mundane_count-lucid_count-existential_count
 
     # keywords
     all_keywords = []
@@ -287,7 +287,7 @@ def personal_statistics(request):
     sadness_count = round(dreams.filter(emotion='Sadness').count() / dream_count * 100)
     confusion_count = round(dreams.filter(emotion='Confusion').count() / dream_count * 100)
     happiness_count = round(dreams.filter(emotion='Happiness').count() / dream_count * 100)
-    none_emotion_count = round(100 - anger_count - apprehension_count - sadness_count - confusion_count - happiness_count/ dream_count * 100)
+    none_emotion_count = 100-anger_count-apprehension_count-sadness_count-confusion_count-happiness_count
 
     # characters
     all_characters = []

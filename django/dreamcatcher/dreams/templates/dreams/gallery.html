@@ -346,18 +346,27 @@
         </div>
     </div>
     <div class="container">
-        <form class="search-form" method="get" action="{% url 'dreams:gallery' %}">
+        <form class="search-form" method="get" action="{% url 'dreams:dream_journal' %}">
             <input id="searchInput" type="text" name="q" placeholder="Search dreams" value="{{ query }}">
             <select id="classification" name="classification">
                 <option value="">All dream types</option>
-                <option value="0"{% if class_query == '0' %}selected{% endif %}>Nightmares</option>
-                <option value="1"{% if class_query == '1' %}selected{% endif %}>Mundane dreams</option>
-                <option value="2"{% if class_query == '2' %}selected{% endif %}>Lucid dreams</option>
-                <option value="3"{% if class_query == '3' %}selected{% endif %}>Existential dreams</option>
+                <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>
+                <option value="1" {% if class_query == '1' %}selected{% endif %}>Mundane dreams</option>
+                <option value="2" {% if class_query == '2' %}selected{% endif %}>Lucid dreams</option>
+                <option value="3" {% if class_query == '3' %}selected{% endif %}>Existential dreams</option>
+            </select>
+            <select id="emotion" name="emotion">
+                <option value="">All emotions</option>
+                <option value="Anger" {% if emotion_query == 'Anger' %}selected{% endif %}>Anger</option>
+                <option value="Apprehension" {% if emotion_query == 'Apprehension' %}selected{% endif %}>Apprehension</option>
+                <option value="Sadness" {% if emotion_query == 'Sadness' %}selected{% endif %}>Sadness</option>
+                <option value="Confusion" {% if emotion_query == 'Confusion' %}selected{% endif %}>Confusion</option>
+                <option value="Happiness" {% if emotion_query == 'Happiness' %}selected{% endif %}>Happiness</option>
             </select>
             <button type="submit">Search</button>
             <button type="button" onclick="clearSearch()">Clear</button>
         </form>
+    </div>
         <div class="dreams">
             {% if dreams %}
                 {% for dream in dreams|dictsortreversed:"date" %}
