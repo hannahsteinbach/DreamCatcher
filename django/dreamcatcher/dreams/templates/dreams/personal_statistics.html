@@ -25,6 +25,7 @@
             width: 40%;
             text-align: center;
             margin-top: 20px;
+            margin-left: 180px;
             z-index: 2;
             position: relative;
         }
@@ -58,23 +59,31 @@
             margin-left: 200px;
             margin-top: 30px;
             z-index: 1;
+            max-width: 1200px;
+            margin-left: 180px;
+            margin: 0 auto;
         }
         .container h2 {
             margin-top: 0;
         }
         .search-form {
-            margin-bottom: 20px;
             text-align: center;
-            width: 100%;
-        }
-        .search-form input[type="text"] {
             width: 50%;
+            margin-left: 200px;
+        }
+
+        .search-form input[type="text"] {
+            width: 100%;
             padding: 10px;
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 10px;
             height: 40px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+
         }
+
         .search-form button {
             padding: 5px 10px;
             font-size: 12px;
@@ -84,37 +93,44 @@
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            margin-bottom: 20px;
         }
+
         .search-form button:hover {
             background-color: #BECDDE;
         }
+
         .keyword-form {
             margin-bottom: 20px;
             text-align: center;
             width: 100%;
+            font-size: 13px;
             display: inline;
+            margin: 0 auto;
         }
         .keyword-form button {
             padding: 5px 10px;
-            font-size: 15px;
+            font-size: 12px;
             cursor: pointer;
-            background-color: #856088;
-            color: #f0f0f0;
-            border: 1px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            gap: 12px;
-            margin: 2px;
-        }
-        .keyword-form button:hover {
             background-color: #f0f0f0;
             color: #856088;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            gap: 10px;
+        }
+        .keyword-form button:hover {
+            background-color: #856088;
+            color: #f0f0f0;
         }
         .class-form {
             margin-bottom: 20px;
+            margin-bottom: 20px;
             text-align: center;
             width: 100%;
+            font-size: 13px;
             display: inline;
+            margin: 0 auto;
         }
         .class-form button {
             padding: 5px 10px;
@@ -134,6 +150,7 @@
         .dreams {
             width: 100%;
             max-width: 900px;
+            margin-left: 180px;
         }
         .dream {
             margin-bottom: 10px;
@@ -150,7 +167,7 @@
             color: #3D3D3D;
         }
         .dream-content {
-            font-size: 15px;
+            font-size: 16px;
             margin-top: 5px;
             color: #3D3D3D;
         }
@@ -201,16 +218,16 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #1e3047 ;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s;
             font-family: inherit;
+            margin-left: 180px;
             letter-spacing: inherit;
         }
         .button:hover {
-            background-color: #BECDDE;
+            background-color: #FFC2D1 ;
         }
         .menu-button {
             padding: 12px 16px;
@@ -230,8 +247,9 @@
         }
         .button-container {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 10px;
+            margin-top: 20px;
         }
         .highlight {
             background-color: #FFC2D1;
@@ -251,6 +269,30 @@
             font-size: 14px;
             background-color: #f0f0f0;
             color: #856088;
+        }
+        #classification {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #856088;
+            color: white;
+            cursor: pointer;
+        }
+        #emotion option {
+            padding: 8px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            color: #856088;
+        }
+        #emotion {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #856088;
+            color: white;
+            cursor: pointer;
         }
     </style>
     <script>
@@ -309,10 +351,26 @@
         </ul>
     </div>
     <div class="dream">
-        <h3>People</h3>
+        <h3>Top 10 Characters</h3>
+        <ul>
+            {% for character,count in top_10_characters %}
+            <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
+                <input type="hidden" name="q" value="{{ character }}">
+                        <button type="submit">{{ character }}</button>
+            </form> {{count}} occurrences </li>
+            {%endfor%}
+        </ul>
     </div>
     <div class="dream">
         <h3>Emotions</h3>
+        <ul>
+                <li> Anger: {{anger_count}}% </li>
+                <li> Apprehension: {{apprehension_count}}% </li>
+                <li> Sadness: {{sadness_count}}% </li>
+                <li> Confusion: {{confusion_count}}% </li>
+                <li> Happiness: {{happiness_count}}% </li>
+                <li> Not classified: {{none_emotion_count}}% </li>
+            </ul>
     </div>
     <div class="dream">
         <h3>Favorite dreams</h3>

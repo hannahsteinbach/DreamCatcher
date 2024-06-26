@@ -47,7 +47,7 @@ def log_dream(request):
             classification=classification
         )
         dream.save()
-        messages.success(request, 'Your dream was successfully saved!')
+        messages.success(request, """You successfully logged your dream.""")
         return render(request, 'dreams/log_dream.html')
     return render(request, 'dreams/log_dream.html')
 
@@ -154,6 +154,7 @@ def unlike_dream(request, dream_id):
 def dream_journal(request):
     query = request.GET.get('q', '')
     class_query = request.GET.get('classification', '')
+    emotion_query = request.GET.get('emotion', '')
     dreams = Dream.objects.filter(user=request.user)
 
     if query:
@@ -162,10 +163,14 @@ def dream_journal(request):
     if class_query:
         dreams = dreams.filter(classification=class_query)
 
+    if emotion_query:
+        dreams = dreams.filter(emotion=emotion_query)
+
     context = {
         'dreams': dreams,
         'query': query,
-        'class_query': class_query
+        'class_query': class_query,
+        'emotion_query': emotion_query,
     }
     return render(request, 'dreams/dream_journal.html', context)
 
@@ -276,6 +281,23 @@ def personal_statistics(request):
 
     top_10_keywords = keywords_counted.most_common(10)
 
+    # get overview of emotions of dreams
+    anger_count = round(dreams.filter(emotion='Anger').count() / dream_count * 100)
+    apprehension_count = round(dreams.filter(emotion='Apprehension').count() / dream_count * 100)
+    sadness_count = round(dreams.filter(emotion='Sadness').count() / dream_count * 100)
+    confusion_count = round(dreams.filter(emotion='Confusion').count() / dream_count * 100)
+    happiness_count = round(dreams.filter(emotion='Happiness').count() / dream_count * 100)
+    none_emotion_count = round(100 - anger_count - apprehension_count - sadness_count - confusion_count - happiness_count/ dream_count * 100)
+
+    # characters
+    all_characters = []
+    for dream in dreams:
+        all_characters.extend(dream.persons)
+
+    characters_counted = Counter(all_characters)
+
+    top_10_characters = characters_counted.most_common(10)
+
     context = {
         'dreams': dreams,
         'dream_count': dream_count,
@@ -287,7 +309,14 @@ def personal_statistics(request):
         'none_count': none_count,
         'shared_count': shared_count,
         'favorite_count': favorite_count,
-        'top_10_keywords': top_10_keywords
+        'top_10_keywords': top_10_keywords,
+        'top_10_characters': top_10_characters,
+        'anger_count': anger_count,
+        'apprehension_count': apprehension_count,
+        'sadness_count': sadness_count,
+        'confusion_count': confusion_count,
+        'happiness_count': happiness_count,
+        'none_emotion_count': none_emotion_count,
     }
 
     return render(request, 'dreams/personal_statistics.html', context)
