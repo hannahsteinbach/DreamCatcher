@@ -16,6 +16,7 @@ from collections import Counter
 
 logger = logging.getLogger(__name__)
 
+
 def home(request):
     if request.user.is_authenticated:
         return redirect('dreams:home_logged_in')
@@ -52,47 +53,55 @@ def log_dream(request):
     return render(request, 'dreams/log_dream.html')
 
 
+
 @login_required
 def delete_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     if request.method == 'POST':
         dream.delete()
-        messages.success(request, 'Dream deleted successfully!')
     return redirect('dreams:dream_journal')
 
 @login_required
 def edit_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
+
     if request.method == 'POST':
         form = DreamForm(request.POST, instance=dream)
         if form.is_valid():
-            form.save()
+            dream.content = form.cleaned_data['content']
+            dream.add_metadata()
+            dream.save()
             return redirect('dreams:dream_journal')
     else:
         form = DreamForm(instance=dream)
+
     return render(request, 'dreams/edit_dream.html', {'form': form})
+
 
 
 @login_required
 def add_to_favorites(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.is_favorite = True
-    dream.save()
-    return redirect('dreams:dream_journal')
+    dream.save(update_fields=['is_favorite'])
+    messages.success(request, 'Dream was successfully added to favorites!')
+    # all messages dont work
+    return redirect(request.META.get('HTTP_REFERER', 'dreams:dream_journal'))
 
 
 @login_required
 def remove_from_favorites(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.is_favorite = False
-    dream.save()
-    return redirect('dreams:dream_journal')
+    dream.save(update_fields=['is_favorite'])
+    messages.success(request, 'Dream was successfully removed from favorites!')
+    return redirect(request.META.get('HTTP_REFERER', 'dreams:dream_journal'))
 
 @login_required
 def share_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = True
-    dream.save()
+    dream.save(update_fields=['shared'])
     messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
@@ -100,7 +109,7 @@ def share_dream(request, dream_id):
 def unshare_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = False
-    dream.save()
+    dream.save(update_fields=['shared'])
     messages.success(request, 'Dream unshared successfully!')
     return redirect('dreams:dream_journal')
 
@@ -265,9 +274,7 @@ def personal_statistics(request):
     dream_count = dreams.count()
 
     # get number of liked dreams
-    liked_dream_likes = DreamLike.objects.filter(user=request.user)
-    liked_dreams = [dream_like.dream for dream_like in liked_dream_likes]
-    liked_count = len(liked_dreams)
+    liked_count = DreamLike.objects.filter(user=request.user).count()
 
     # get number of shared dreams
     shared_count = Dream.objects.filter(shared=True, user=request.user).count()
@@ -364,7 +371,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
 
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'password_reset.html'

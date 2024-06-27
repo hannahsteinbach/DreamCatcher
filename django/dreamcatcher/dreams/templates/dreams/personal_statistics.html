@@ -345,7 +345,7 @@
         <ul>
             {% for keyword,count in top_10_keywords %}
             <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                <input type="hidden" name="q" value="{{ keyword }}">
+                <input type="hidden" name="keyword" value="{{ keyword }}">
                         <button type="submit">{{ keyword }}</button>
             </form> {{count}} occurrences </li>
             {%endfor%}
@@ -398,10 +398,6 @@
     <div class="dream">
         <h3>Liked dreams</h3>
         <p class="dream-content">
-                    {% autoescape off %}
-                    You have liked {{ liked_count|safe}} dreams
-                    {% endautoescape %}
-        </p>
         <div class="button-container">
             <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
         </div>

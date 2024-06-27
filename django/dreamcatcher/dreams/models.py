@@ -18,15 +18,15 @@ class Dream(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     content = models.TextField()
-    shared = models.BooleanField(default=False) # own model (so it does not get processed each time you share/unshare)
+    shared = models.BooleanField(default=False)
     processed = models.BooleanField(default=False)
-    is_favorite = models.BooleanField(default=False) # own model
+    is_favorite = models.BooleanField(default=False)
     keywords = models.JSONField(default=list, blank=True)
     classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='4')
     persons = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)
 
-    def save(self, *args, **kwargs):
+    def add_metadata(self):
         content_str = str(self.content)
 
         # Extract keywords using KeyBERT
@@ -92,6 +92,11 @@ class Dream(models.Model):
         # Get persons according to Van de Castle
         self.persons = [person for person in NER_predictions]
 
+        self.processed = True
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.add_metadata()
         super().save(*args, **kwargs)
 
     def likes_count(self):
