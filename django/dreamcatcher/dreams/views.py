@@ -110,6 +110,7 @@ def gallery(request):
     query = request.GET.get('q', '')
     dreams = Dream.objects.filter(shared=True)
     class_query = request.GET.get('classification', '')
+    keyword_query = request.GET.get('keyword', '')
 
     for dream in dreams:
         dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
@@ -120,11 +121,15 @@ def gallery(request):
     if class_query:
         dreams = dreams.filter(classification=class_query)
 
+    if keyword_query:
+        dreams = dreams.filter(keywords__icontains=keyword_query)
+
     context = {
         'dreams': dreams,
         'query': query,
         'is_liked_view': False,
-        'class_query': class_query
+        'class_query': class_query,
+        'keyword_query': keyword_query,
     }
     return render(request, 'dreams/gallery.html', context)
 
@@ -156,6 +161,7 @@ def dream_journal(request):
     class_query = request.GET.get('classification', '')
     emotion_query = request.GET.get('emotion', '')
     dreams = Dream.objects.filter(user=request.user)
+    keyword_query = request.GET.get('keyword', '')
 
     if query:
         dreams = dreams.filter(content__icontains=query)
@@ -166,11 +172,15 @@ def dream_journal(request):
     if emotion_query:
         dreams = dreams.filter(emotion=emotion_query)
 
+    if keyword_query:
+        dreams = dreams.filter(keywords__icontains=keyword_query)
+
     context = {
         'dreams': dreams,
         'query': query,
         'class_query': class_query,
         'emotion_query': emotion_query,
+        'keyword_query': keyword_query,
     }
     return render(request, 'dreams/dream_journal.html', context)
 

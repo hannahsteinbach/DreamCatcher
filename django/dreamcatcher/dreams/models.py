@@ -5,6 +5,7 @@ import json
 import dreamy
 import re
 
+
 class Dream(models.Model):
     classification_options = [
         ('0', 'Nightmare'),

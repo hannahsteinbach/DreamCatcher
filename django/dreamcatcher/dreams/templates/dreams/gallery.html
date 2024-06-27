@@ -411,7 +411,7 @@
                                 <p class="keyword-form">
                                     {% for keyword in dream.keywords %}
                                     <form class="keyword-form" method="get" action="{% url 'dreams:gallery' %}">
-                                        <input type="hidden" name="q" value="{{ keyword }}">
+                                        <input type="hidden" name="keyword" value="{{ keyword }}">
                                         <button type="submit">{{ keyword }}</button>
                                     </form>
                                     {% if not forloop.last %}{% endif %}

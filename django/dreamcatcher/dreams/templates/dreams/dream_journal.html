@@ -406,7 +406,7 @@
                 Keywords:
                 {% for keyword in dream.keywords %}
                 <form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                    <input type="hidden" name="q" value="{{ keyword }}">
+                    <input type="hidden" name="keyword" value="{{ keyword }}">
                     <button type="submit">{{ keyword }}</button>
                 </form>
                 {% endfor %}
