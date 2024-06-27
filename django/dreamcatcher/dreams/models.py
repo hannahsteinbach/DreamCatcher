@@ -17,9 +17,9 @@ class Dream(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     content = models.TextField()
-    shared = models.BooleanField(default=False)
+    shared = models.BooleanField(default=False) # own model (so it does not get processed each time you share/unshare)
     processed = models.BooleanField(default=False)
-    is_favorite = models.BooleanField(default=False)
+    is_favorite = models.BooleanField(default=False) # own model
     keywords = models.JSONField(default=list, blank=True)
     classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='4')
     persons = models.JSONField(default=list, blank=True)

@@ -403,7 +403,7 @@
                                     {%if dream.emotion%}
                                     Prevalent emotion:
                                         <form class="class-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                                        <input type="hidden" name="q" value="{{ dream.emotion }}">
+                                        <input type="hidden" name="emotion" value="{{ dream.emotion }}">
                                         <button type="submit">{{ dream.emotion }}</button>
                                     </form>
                                     {%endif%}
