@@ -169,12 +169,13 @@ def dream_journal(request):
     query = request.GET.get('q', '')
     class_query = request.GET.get('classification', '')
     emotion_query = request.GET.get('emotion', '')
+    person_query = request.GET.get('person', '')
     dreams = Dream.objects.filter(user=request.user)
     keyword_query = request.GET.get('keyword', '')
 
     if query:
         dreams = dreams.filter(content__icontains=query)
-
+        
     if class_query:
         dreams = dreams.filter(classification=class_query)
 
@@ -184,12 +185,16 @@ def dream_journal(request):
     if keyword_query:
         dreams = dreams.filter(keywords__icontains=keyword_query)
 
+    if person_query:
+        dreams = dreams.filter(persons__icontains=person_query)
+
     context = {
         'dreams': dreams,
         'query': query,
         'class_query': class_query,
         'emotion_query': emotion_query,
         'keyword_query': keyword_query,
+        'person_query': person_query,
     }
     return render(request, 'dreams/dream_journal.html', context)
 

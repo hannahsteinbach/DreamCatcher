@@ -12,24 +12,9 @@ report = """Fernando and I were at my parents' home in the office when we notice
 # Create a DataFrame
 reports = [report]
 
-sentiment = "SA"
 persons = "NER"
 batch_size = 16
 device = "cpu"
-
-sentiment_lookup = {"AN": "Anger",
-                   "AP": "Apprehension",
-                   "SD": "Sadness",
-                   "CO": "Confusion",
-                   "HA": "Happiness"}
-
-
-SA_predictions = dreamy.annotate_reports(
-    reports,
-    task=sentiment,
-    device=device,
-    batch_size=batch_size,
-)
 
 NER_predictions = dreamy.annotate_reports(
     reports,
@@ -38,21 +23,11 @@ NER_predictions = dreamy.annotate_reports(
     batch_size=batch_size,
 )
 
-max = 0
-for sentiment in SA_predictions[0]:
-    if sentiment['score'] > max:
-        max = sentiment['score']
-        highest_label = sentiment['label']
-
-
-print(SA_predictions[0])
 print(NER_predictions)
 
 
-NER_predictions = NER_predictions.strip("[]").strip("'").split(";")
-
-print(NER_predictions)
-
+NER_predictions = NER_predictions[0].split(";")
+NER_predictions.remove('')
 
 #print("Sentiment:", sentiment_lookup[highest_label])
-print("Person: ", NER_predictions[0])
+print("Person: ", NER_predictions)

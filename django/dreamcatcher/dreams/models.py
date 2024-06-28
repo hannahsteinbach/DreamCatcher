@@ -89,8 +89,11 @@ class Dream(models.Model):
         }
         self.emotion = sentiment_lookup[highest_label]
 
+        NER_predictions = NER_predictions[0].split(";")
+        NER_predictions.remove('')
+
         # Get persons according to Van de Castle
-        self.persons = [person for person in NER_predictions]
+        self.persons = NER_predictions
 
         self.processed = True
 

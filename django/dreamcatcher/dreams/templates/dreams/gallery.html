@@ -393,7 +393,7 @@
                                     Characters (Hall/Van de Castle):
                                     {% for person in dream.persons %}
                                         <form class="class-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                                            <input type="hidden" name="q" value="{{ person }}">
+                                            <input type="hidden" name="person" value="{{ person }}">
                                             <button type="submit">{{ person }}</button>
                                         </form>
                                     {% endfor %}
