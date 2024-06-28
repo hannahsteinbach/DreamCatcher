@@ -342,7 +342,7 @@
     </div>
    <div class="container">
         <form class="search-form" method="get" action="{% url 'dreams:dream_journal' %}">
-            <input id="searchInput" type="text" name="q" placeholder="Search dreams for content" value="{{ query }}">
+            <input id="searchInput" type="text" name="q" placeholder="Search dreams" value="{{ query }}">
             <select id="classification" name="classification">
                 <option value="">All dream types</option>
                 <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>

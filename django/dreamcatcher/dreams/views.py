@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from collections import Counter
+import re
 
 
 logger = logging.getLogger(__name__)
@@ -119,20 +120,27 @@ def gallery(request):
     query = request.GET.get('q', '')
     dreams = Dream.objects.filter(shared=True)
     class_query = request.GET.get('classification', '')
+    emotion_query = request.GET.get('emotion', '')
     keyword_query = request.GET.get('keyword', '')
     person_query = request.GET.get('person', '')
 
     for dream in dreams:
         dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
 
+    # if query:
+    #     dreams = dreams.filter(content__icontains=query) - > for substring
+
     if query:
-        dreams = dreams.filter(content__icontains=query)
+        dreams = dreams.filter(Q(content__iregex=r'\b{}\b'.format(re.escape(query))))  # query for whole word
 
     if class_query:
         dreams = dreams.filter(classification=class_query)
 
+    if emotion_query:
+        dreams = dreams.filter(emotion=emotion_query)
+
     if keyword_query:
-        dreams = dreams.filter(keywords__icontains=keyword_query)
+        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
     if person_query:
         dreams = dreams.filter(persons__icontains=person_query)
@@ -145,6 +153,7 @@ def gallery(request):
         'class_query': class_query,
         'keyword_query': keyword_query,
         'person_query': person_query,
+        'emotion_query': emotion_query,
     }
     return render(request, 'dreams/gallery.html', context)
 
@@ -179,8 +188,11 @@ def dream_journal(request):
     dreams = Dream.objects.filter(user=request.user)
     keyword_query = request.GET.get('keyword', '')
 
+        # if query:
+        #     dreams = dreams.filter(content__icontains=query) - > for substring
+
     if query:
-        dreams = dreams.filter(content__icontains=query)
+        dreams = dreams.filter(Q(content__iregex=r'\b{}\b'.format(re.escape(query))))  # query for whole word
 
     if class_query:
         dreams = dreams.filter(classification=class_query)
@@ -189,7 +201,7 @@ def dream_journal(request):
         dreams = dreams.filter(emotion=emotion_query)
 
     if keyword_query:
-        dreams = dreams.filter(keywords__icontains=keyword_query)
+        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
     if person_query:
         dreams = dreams.filter(persons__icontains=person_query)
