@@ -120,6 +120,7 @@ def gallery(request):
     dreams = Dream.objects.filter(shared=True)
     class_query = request.GET.get('classification', '')
     keyword_query = request.GET.get('keyword', '')
+    person_query = request.GET.get('person', '')
 
     for dream in dreams:
         dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
@@ -133,12 +134,17 @@ def gallery(request):
     if keyword_query:
         dreams = dreams.filter(keywords__icontains=keyword_query)
 
+    if person_query:
+        dreams = dreams.filter(persons__icontains=person_query)
+
+
     context = {
         'dreams': dreams,
         'query': query,
         'is_liked_view': False,
         'class_query': class_query,
         'keyword_query': keyword_query,
+        'person_query': person_query,
     }
     return render(request, 'dreams/gallery.html', context)
 
@@ -175,7 +181,7 @@ def dream_journal(request):
 
     if query:
         dreams = dreams.filter(content__icontains=query)
-        
+
     if class_query:
         dreams = dreams.filter(classification=class_query)
 
