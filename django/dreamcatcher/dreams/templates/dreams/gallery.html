@@ -382,6 +382,7 @@
                                 </p>
                                 <p class="class-form">
                                     {% if dream.classification %}
+                                    Type of dream:
                                     <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
                                         <input type="hidden" name="classification" value="{{dream.classification}}">
                                         <button type="submit">{{ dream.classification_string}}</button>
@@ -409,6 +410,7 @@
                                     {%endif%}
                                 </p>
                                 <p class="keyword-form">
+                                    Keywords:
                                     {% for keyword in dream.keywords %}
                                     <form class="keyword-form" method="get" action="{% url 'dreams:gallery' %}">
                                         <input type="hidden" name="keyword" value="{{ keyword }}">

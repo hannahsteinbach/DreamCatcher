@@ -103,9 +103,9 @@
         .keyword-form {
             margin-bottom: 20px;
             text-align: center;
-            width: 100%;
+            width: auto%;
             font-size: 13px;
-            display: inline;
+            display: inline-block;
             margin: 0 auto;
         }
         .keyword-form button {
@@ -117,7 +117,6 @@
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
-            gap: 10px;
         }
         .keyword-form button:hover {
             background-color: #856088;
@@ -131,6 +130,7 @@
             font-size: 13px;
             display: inline;
             margin: 0 auto;
+            gap: 12px;
         }
         .class-form button {
             padding: 5px 10px;
@@ -141,7 +141,7 @@
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
-            gap: 10px;
+            gap: 15px;
         }
         .class-form button:hover {
             background-color: #f0f0f0;
@@ -251,6 +251,7 @@
             gap: 12px;
             margin-bottom: 10px;
             margin-top: 20px;
+            gap: 12px;
         }
         .highlight {
             background-color: #FFC2D1;
@@ -347,7 +348,12 @@
             <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
                 <input type="hidden" name="keyword" value="{{ keyword }}">
                         <button type="submit">{{ keyword }}</button>
-            </form> {{count}} occurrences </li>
+            </form> {% if count == 1%}
+                    {{count}} occurrence
+                    {% else %}
+                    {{count}} occurrences
+                    {% endif %}
+                    </li>
             {%endfor%}
         </ul>
     </div>
@@ -356,9 +362,14 @@
         <ul>
             {% for character,count in top_10_characters %}
             <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                <input type="hidden" name="q" value="{{ character }}">
+                <input type="hidden" name="person" value="{{ character }}">
                         <button type="submit">{{ character }}</button>
-            </form> {{count}} occurrences </li>
+            </form> {% if count == 1%}
+                    {{count}} occurrence
+                    {% else %}
+                    {{count}} occurrences
+                    {% endif %}
+                    </li>
             {%endfor%}
         </ul>
     </div>

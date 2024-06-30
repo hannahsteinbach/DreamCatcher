@@ -306,11 +306,20 @@ def personal_statistics(request):
     favorite_count = Dream.objects.filter(is_favorite=True, user=request.user).count()
 
     # get overview of (own) classification of dreams
-    nightmare_count = round(dreams.filter(classification='0').count()/dream_count * 100)
-    mundane_count = round(dreams.filter(classification='1').count()/dream_count * 100)
-    lucid_count = round(dreams.filter(classification='2').count()/dream_count * 100)
-    existential_count = round(dreams.filter(classification='3').count()/dream_count * 100)
-    none_count = 100-nightmare_count-mundane_count-lucid_count-existential_count
+    if dream_count > 0:
+        nightmare_count = round(dreams.filter(classification='0').count()/dream_count * 100)
+        mundane_count = round(dreams.filter(classification='1').count()/dream_count * 100)
+        lucid_count = round(dreams.filter(classification='2').count()/dream_count * 100)
+        existential_count = round(dreams.filter(classification='3').count()/dream_count * 100)
+        none_count = 100-nightmare_count-mundane_count-lucid_count-existential_count
+
+    else:
+        nightmare_count = 0
+        mundane_count = 0
+        lucid_count = 0
+        existential_count = 0
+        none_count = 0
+
 
     # keywords
     all_keywords = []
@@ -322,12 +331,21 @@ def personal_statistics(request):
     top_10_keywords = keywords_counted.most_common(10)
 
     # get overview of emotions of dreams
-    anger_count = round(dreams.filter(emotion='Anger').count() / dream_count * 100)
-    apprehension_count = round(dreams.filter(emotion='Apprehension').count() / dream_count * 100)
-    sadness_count = round(dreams.filter(emotion='Sadness').count() / dream_count * 100)
-    confusion_count = round(dreams.filter(emotion='Confusion').count() / dream_count * 100)
-    happiness_count = round(dreams.filter(emotion='Happiness').count() / dream_count * 100)
-    none_emotion_count = 100-anger_count-apprehension_count-sadness_count-confusion_count-happiness_count
+    if dream_count > 0:
+        anger_count = round(dreams.filter(emotion='Anger').count() / dream_count * 100)
+        apprehension_count = round(dreams.filter(emotion='Apprehension').count() / dream_count * 100)
+        sadness_count = round(dreams.filter(emotion='Sadness').count() / dream_count * 100)
+        confusion_count = round(dreams.filter(emotion='Confusion').count() / dream_count * 100)
+        happiness_count = round(dreams.filter(emotion='Happiness').count() / dream_count * 100)
+        none_emotion_count = 100-anger_count-apprehension_count-sadness_count-confusion_count-happiness_count
+
+    else:
+        anger_count = 0
+        apprehension_count = 0
+        sadness_count = 0
+        confusion_count = 0
+        happiness_count = 0
+        none_emotion_count = 0
 
     # characters
     all_characters = []
