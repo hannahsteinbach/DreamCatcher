@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Tiny5:wght@400;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
 
         body, html {
             margin: 0;
@@ -75,7 +75,7 @@
             transition: background-color 0.3s, transform 0.3s;
             letter-spacing: 1px;
             transition: transform 0.5s ease;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Manrope', sans-serif;
         }
         .overlay button:hover {
             background-color: #9579d1;
@@ -87,14 +87,19 @@
         }
         #more-info {
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
-            color: #3d1e54;
             margin-top: 50px;
-            border-radius: 15px;
+            border: 3px solid #5a1a8b;
+            border-top: 0;
+            border-bottom: 0;
+            border-radius: 25px;
+            color: #5a1a8b;
             box-sizing: border-box;
             width: 100%;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.2vw;
+            line-height: 1.5;
         }
+
         .messages {
             margin: 10px 0;
             padding: 10px;
@@ -103,6 +108,16 @@
             color: #3d1e54;
             font-size: 26px;
             font-weight: normal;
+        }
+        .playlist-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .playlist-container iframe {
+            border-radius: 12px;
+            width: 45%;
+            height: 352px;
         }
 
         html {
@@ -142,8 +157,15 @@
         {% endblock %}
         <section id="more-info">
             <h2>More about the DreamCatcher</h2>
-            <p>The DreamCatcher is a digital dream journal powered by a Large Language Model. You can use it to digitally store and access your dreams.
-            </p>
+            <p>The DreamCatcher is a digital dream journal powered by a Large Language Model. You can use it to digitally store and access your dreams.</p>
+        </section>
+        <section id="more-info">
+            <h2>Dreamy Tunes</h2>
+            <p>In case you're curious about what we listen to while working on the DreamCatcher...</p>
+            <div class="playlist-container">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3qcG06thoT5dON4ZBigN8N?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ro/playlist/dreamcatching/pl.u-BNA6rMJF1NLNW5V"></iframe>
+            </div>
         </section>
     </main>
     <footer>
@@ -155,10 +177,13 @@
             var emojis = document.querySelector('.emojis');
             var buttons = document.querySelectorAll('.overlay button');
             var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-            subtitle.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
-            emojis.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
+            var maxScroll = 80;
+            var scrollFactor = Math.min(scrolled * 0.3, maxScroll);
+
+            subtitle.style.transform = 'translateY(' + scrollFactor + 'px)';
+            emojis.style.transform = 'translateY(' + scrollFactor + 'px)';
             buttons.forEach(function(button) {
-                button.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
+                button.style.transform = 'translateY(' + scrollFactor + 'px)';
             });
         });
     </script>
