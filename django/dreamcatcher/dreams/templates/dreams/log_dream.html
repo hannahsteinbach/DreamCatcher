@@ -8,40 +8,39 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
         }
         .sidenav {
-			height:100%;
-			width:180px;
-			position: fixed;
-			z-index:1;
-			top:0;
-			left:0;
-			background-color: rgba(0,0,0,0.1);
-			overflow-x: :hidden;
-			padding-top:50px;
-		}
-
-		.sidenav a {
-			padding:6px 8px 6px 18px;
-			text-decoration: none;
-			font-size:18px;
-			color: #3D3D3D;
-			display:block;
-		}
-
-		.sidenav a:hover{
-			color: black;
-		}
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.1);
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 18px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #3D3D3D;
+            display: block;
+        }
+        .sidenav a:hover {
+            color: black;
+        }
         .container {
             display: flex;
             flex-direction: column;
@@ -59,7 +58,7 @@
             margin-top: 0;
         }
         .header {
-            background:  #FFFFFF;
+            background: #FFFFFF;
             color: #3D3D3D;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -74,29 +73,31 @@
             text-align: center;
             width: 60%;
             margin-left: 200px;
+            max-width: 400px; 
+            margin-bottom: 20px;
         }
         .chat-form input[type="text"] {
             width: 100%;
             padding: 10px;
             font-size: 14px;
-            height: 100px;
+            height: 120px; 
             resize: vertical;
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             border-radius: 10px;
-            height: 40px;
             margin-bottom: 10px;
-            background-color: #f0f0f0;
-
+            background-color: #ffffff;
+            font-family: 'Manrope', sans-serif; 
         }
         .chat-form input[type="submit"] {
-            padding: 10px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #1e3047;
+            background-color: #82a3f0da;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-family: 'Manrope', sans-serif;
         }
         .chat-form input[type="submit"]:hover {
             background-color: #BECDDE;
@@ -106,9 +107,10 @@
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: #1e3047;
+            background-color: #82a3f0da;
             color: white;
             cursor: pointer;
+            font-family: 'Manrope', sans-serif;
         }
         #classification option {
             padding: 8px;
@@ -120,27 +122,18 @@
 </head>
 <body>
     <div class="sidenav">
-		<a href="/">Home</a>
-		<a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
+        <a href="/">Home</a>
+        <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
         <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
         <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
         <a href="{% url 'logout' %}">Log out</a>
-	</div>
-    <div class="header">
-        <h2>Log a new dream🖋️</h2>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.querySelectorAll('.menu').forEach(menu => {
-                menu.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                });
-            });
-        });
-    </script>
-    <form class="chat-form" method="post" style="width: 100%; max-width: 400px; margin-bottom: 20px;">
+    <div class="header">
+        <h2>Log a Dream🖋️</h2>
+    </div>
+    <form class="chat-form" method="post">
         {% csrf_token %}
-        <input type="text" id="content" name="content" placeholder="Enter last night's dream">
+        <input type="text" id="content" name="content" placeholder="What have you been dreaming about lately?">
         <select id="classification" name="classification">
             <option value="">Classify your dream</option>
             <option value="0">Nightmare</option>
@@ -159,9 +152,9 @@
             {% endfor %}
         </ul>
     </div>
-{% endif %}
-</body>
-<footer>
+    {% endif %}
+    <footer>
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
-</footer>
+    </footer>
+</body>
 </html>
