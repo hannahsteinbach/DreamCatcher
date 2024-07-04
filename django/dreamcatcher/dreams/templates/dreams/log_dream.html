@@ -76,25 +76,26 @@
         }
         .chat-form {
             text-align: center;
-            width: 60%;
+            width: 80%;
             margin-left: 200px;
-            max-width: 400px; 
+            max-width: 600px;
+            margin-top: 80px;
             margin-bottom: 20px;
         }
-        .chat-form input[type="text"] {
+        .chat-form textarea {
             width: 100%;
             padding: 10px;
-            font-size: 14px;
-            height: 120px; 
+            font-size: 18px;
+            height: 200px;
             resize: vertical;
             border: 1px solid #ffffff;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             background-color: #ffffff;
-            font-family: 'Manrope', sans-serif; 
+            font-family: 'Manrope', sans-serif;
         }
         .chat-form input[type="submit"] {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 5px;
             background-color: #82a3f0da;
@@ -123,6 +124,31 @@
             background-color: #f0f0f0;
             color: #1e3047;
         }
+        .playlist-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-left: 200px; /* Adjust to center from left margin */
+        }
+        .playlist-container iframe {
+            border-radius: 12px;
+            width: 45%;
+            height: 352px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .show-playlists .playlist-container {
+            display: flex;
+        }
+
+        .centered-text {
+            text-align: center;
+            margin-left: 200px; /* Adjust to center from left margin */
+        }
+
     </style>
 </head>
 <body>
@@ -139,7 +165,7 @@
     </div>
     <form class="chat-form" method="post">
         {% csrf_token %}
-        <input type="text" id="content" name="content" placeholder="What have you been dreaming about lately?">
+        <textarea id="content" name="content" placeholder="What have you been dreaming about lately?" rows="4"></textarea>
         <select id="classification" name="classification">
             <option value="">Classify your dream</option>
             <option value="0">Nightmare</option>
@@ -150,6 +176,15 @@
         </select>
         <input type="submit" value="Enter">
     </form>
+    <section class="content">
+        <div class="centered-text">
+            <p>Make the wait fly by with our dreamy tunes...</p>
+        </div>
+        <div class="playlist-container">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3qcG06thoT5dON4ZBigN8N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ro/playlist/dreamcatching/pl.u-BNA6rMJF1NLNW5V"></iframe>
+        </div>
+    </section>
     {% if messages %}
     <div class="alert alert-success">
         <ul>
@@ -162,5 +197,21 @@
     <footer>
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
+    <script>
+        window.addEventListener('scroll', function() {
+            var subtitle = document.querySelector('.subtitle');
+            var emojis = document.querySelector('.emojis');
+            var buttons = document.querySelectorAll('.overlay button');
+            var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+            var maxScroll = 80;
+            var scrollFactor = Math.min(scrolled * 0.3, maxScroll);
+
+            subtitle.style.transform = 'translateY(' + scrollFactor + 'px)';
+            emojis.style.transform = 'translateY(' + scrollFactor + 'px)';
+            buttons.forEach(function(button) {
+                button.style.transform = 'translateY(' + scrollFactor + 'px)';
+            });
+        });
+    </script>
 </body>
 </html>
