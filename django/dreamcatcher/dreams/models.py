@@ -34,7 +34,7 @@ class Dream(models.Model):
         keywords = kw_model.extract_keywords(
             content_str,
             keyphrase_ngram_range=(1, 1),
-            top_n=5,
+            top_n=7,
             stop_words='english',
             use_mmr=True,
             diversity=0.7
@@ -48,9 +48,11 @@ class Dream(models.Model):
         # afterwards: ted tears bulgarian souvenir
         # all information on keybert: https://github.com/MaartenGr/KeyBERT
 
-        self.keywords = [keyword[0] for keyword in keywords if
+        keywords = [keyword[0] for keyword in keywords if
                          not re.compile(r'dream(ed|t)?', re.IGNORECASE).match(keyword[0])]
 
+        filtered_keywords = keywords[:5]
+        self.keywords = filtered_keywords
         # Sentiment Analysis and Named Entity Recognition, using DReamY
         reports = [content_str]
         sentiment = "SA"
@@ -97,7 +99,7 @@ class Dream(models.Model):
 
         self.processed = True
 
-    def save(self, *args, **kwargs):
+def save(self, *args, **kwargs):
         if not self.pk:
             self.add_metadata()
         super().save(*args, **kwargs)
