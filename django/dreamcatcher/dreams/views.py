@@ -71,13 +71,20 @@ def edit_dream(request, dream_id):
         form = DreamForm(request.POST, instance=dream)
         if form.is_valid():
             dream_ac = form.cleaned_data['content']
-            dream.date = form.cleaned_data['date']
-            dream.classification = form.cleaned_data['classification']
-            if dream_bc != dream_ac:
-                dream.content = dream_ac
-                dream.add_metadata() # only generate metadata again if content was changed
-            dream.save()
-            return redirect('dreams:dream_journal')
+            dream_date = form.cleaned_data['date']
+            if dream_date > date.today():
+                form.add_error('date', 'The date cannot be in the future.')
+            elif dream_date < date(1970, 1, 1):
+                form.add_error('date', 'The date cannot be earlier than 1970.')
+            
+            if not form.errors:
+                dream.date = dream_date
+                dream.classification = form.cleaned_data['classification']
+                if dream_bc != dream_ac:
+                    dream.content = dream_ac
+                    dream.add_metadata() # only generate metadata again if content was changed
+                dream.save()
+                return redirect('dreams:dream_journal')
     else:
         form = DreamForm(instance=dream)
 
