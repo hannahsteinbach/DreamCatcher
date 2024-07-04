@@ -1,10 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from keybert import KeyBERT
+from langchain_community.llms import ollama
 import json
-import dreamy
-import re
-
 
 class Dream(models.Model):
     classification_options = [
@@ -14,7 +11,6 @@ class Dream(models.Model):
         ('3', 'Existential Dream'),
         ('4', 'None'),
     ]
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
     content = models.TextField()
@@ -25,84 +21,39 @@ class Dream(models.Model):
     classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='4')
     persons = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)
+    #titles = models.JSONField(default=list, blank=True)
 
     def add_metadata(self):
         content_str = str(self.content)
 
-        # Extract keywords using KeyBERT
-        kw_model = KeyBERT()
-        keywords = kw_model.extract_keywords(
-            content_str,
-            keyphrase_ngram_range=(1, 1),
-            top_n=7,
-            stop_words='english',
-            use_mmr=True,
-            diversity=0.7
-        )
-        # top_n: how many keywords should be extracted?
-        # keyphrase_ngram_range: how long should the keyphrases be? (i think only one should be good)
-        # can also add more, e.g. how diverse the results should be
-        # use_mmr: Maximal Margin Relevance, based on cosine similarity
-        # diversity: how diverse should the key words be? (what do you think)
-        # before adding use_mmr and diversity: Ted dream: ted, tears, bulgarian, crying
-        # afterwards: ted tears bulgarian souvenir
-        # all information on keybert: https://github.com/MaartenGr/KeyBERT
+        # initialization
+        llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
 
-        keywords = [keyword[0] for keyword in keywords if
-                         not re.compile(r'dream(ed|t)?', re.IGNORECASE).match(keyword[0])]
-
-        filtered_keywords = keywords[:5]
-        self.keywords = filtered_keywords
-        # Sentiment Analysis and Named Entity Recognition, using DReamY
-        reports = [content_str]
-        sentiment = "SA"
-        persons = "NER"
-        batch_size = 16
-        device = "cpu"
-
-        SA_predictions = dreamy.annotate_reports(
-            reports,
-            task=sentiment,
-            device=device,
-            batch_size=batch_size,
+        dream_prompt = (
+            f"This is my dream: {content_str}\n\n"
+            "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
+            "- titles: Three title options to choose from, formatted as a Python list of strings.\n"
+            "- keywords: A list of exactly 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words.\n"
+            "- emotion: The prevalent emotion from these options formatted as a list: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
+            "- named_entities: All named entities found in the dream, formatted as a Python list of strings.\n"
+            "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
 
-        NER_predictions = dreamy.annotate_reports(
-            reports,
-            task=persons,
-            device=device,
-            batch_size=batch_size,
-        )
+        # response generation
+        response = llm.invoke(dream_prompt)
+        response = json.loads(response)
 
-        # Get the emotion with highest score
-        max_score = 0
-        for sentiment in SA_predictions[0]:
-            if sentiment['score'] > max_score:
-                max_score = sentiment['score']
-                highest_label = sentiment['label']
-
-        # Get emotion to label
-        sentiment_lookup = {
-            "AN": "Anger",
-            "AP": "Apprehension",
-            "SD": "Sadness",
-            "CO": "Confusion",
-            "HA": "Happiness"
-        }
-        self.emotion = sentiment_lookup[highest_label]
-
-        NER_predictions = NER_predictions[0].split(";")
-        NER_predictions.remove('')
-
-        # Get persons according to Van de Castle
-        self.persons = NER_predictions
-
+        # metadata extraction
+        #self.titles = response.get('titles', [])
+        self.keywords = response.get('keywords', [])
+        self.emotion = response.get('emotion', [])
+        self.persons = response.get('named_entities', [])
         self.processed = True
 
     def save(self, *args, **kwargs):
-            if not self.pk:
-                self.add_metadata()
-            super().save(*args, **kwargs)
+        if not self.pk:
+            self.add_metadata()
+        super().save(*args, **kwargs)
 
     def likes_count(self):
         return self.likes.count()

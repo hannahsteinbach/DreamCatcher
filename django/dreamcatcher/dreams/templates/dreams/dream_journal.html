@@ -384,7 +384,7 @@
             </p>
             <p class="class-form">
                 {%if dream.persons%}
-                Characters (Hall/Van de Castle):
+                Characters and places:
                 {% for person in dream.persons %}
                     <form class="class-form" method="get" action="{% url 'dreams:dream_journal' %}">
                         <input type="hidden" name="person" value="{{ person }}">
