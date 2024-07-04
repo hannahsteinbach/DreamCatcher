@@ -99,10 +99,10 @@ class Dream(models.Model):
 
         self.processed = True
 
-def save(self, *args, **kwargs):
-        if not self.pk:
-            self.add_metadata()
-        super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+            if not self.pk:
+                self.add_metadata()
+            super().save(*args, **kwargs)
 
     def likes_count(self):
         return self.likes.count()
