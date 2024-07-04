@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Dream Gallery 🎞️ {% endblock %}</title>
+    <title>{% block title %}Dream Gallery {% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎞️</text></svg>">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
@@ -41,16 +42,24 @@
             overflow-x: hidden;
             padding-top: 50px;
         }
+
         .sidenav a {
             padding: 6px 8px 6px 18px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             color: #3D3D3D;
             display: block;
+            border-bottom: 1px solid #ddd;
         }
+
+        .sidenav a:last-child {
+            border-bottom: none;
+        }
+
         .sidenav a:hover {
             color: black;
         }
+
         .container {
             display: flex;
             flex-direction: column;
@@ -331,8 +340,9 @@
     </div>
     <div class="sidenav">
         <a href="/">Home</a>
-        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+        <a href="{% url 'dreams:gallery' %}"><b>Dream Gallery</b></a>
         <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
+        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
         <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
         <a href="{% url 'logout' %}">Log out</a>
     </div>

@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Personal Statistics 📊{% endblock %}</title>
+    <title>{% block title %}Personal Statistics{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
@@ -42,10 +43,14 @@
         }
         .sidenav a {
             padding: 6px 8px 6px 18px;
-            text-decoration: none;
-            font-size: 18px;
+            text-decoration: blink;
+            font-size: 16px;
             color: #3D3D3D;
             display: block;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidenav a:last-child {
+            border-bottom: none;
         }
         .sidenav a:hover {
             color: black;
@@ -320,6 +325,7 @@
         <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
         <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
         <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+        <a href="{% url 'dreams:personal_statistics' %}"><b>Personal Statistics</b></a>
         <a href="{% url 'logout' %}">Log out</a>
     </div>
 <div class="dreams">
