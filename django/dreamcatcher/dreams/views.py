@@ -65,12 +65,17 @@ def delete_dream(request, dream_id):
 @login_required
 def edit_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
+    dream_bc = dream.content
 
     if request.method == 'POST':
         form = DreamForm(request.POST, instance=dream)
         if form.is_valid():
-            dream.content = form.cleaned_data['content']
-            dream.add_metadata()
+            dream_ac = form.cleaned_data['content']
+            dream.date = form.cleaned_data['date']
+            dream.classification = form.cleaned_data['classification']
+            if dream_bc != dream_ac:
+                dream.content = dream_ac
+                dream.add_metadata() # only generate metadata again if content was changed
             dream.save()
             return redirect('dreams:dream_journal')
     else:
