@@ -1,0 +1,11 @@
+<!-- add_comment.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Add Comment to {{ dream.title }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post Comment</button>
+  </form>
+{% endblock %}

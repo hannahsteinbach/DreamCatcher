@@ -442,7 +442,11 @@
                     {% else %}
                     <form action="{% url 'dreams:share_dream' dream.id %}" method="post" style="display:inline;">
                         {% csrf_token %}
-                        <button type="submit">Share dream online</button>
+                        <button type="submit">Share dream</button>
+                    </form>
+                     <form action="{% url 'dreams:share_dream_anon' dream.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Share dream anonymously</button>
                     </form>
                     {% endif %}
                     {% endif %}

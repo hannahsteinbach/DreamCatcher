@@ -12,6 +12,7 @@ urlpatterns = [
     path('add_to_favorites/<int:dream_id>/', views.add_to_favorites, name='add_to_favorites'),
     path('remove_from_favorites/<int:dream_id>/', views.remove_from_favorites, name='remove_from_favorites'),
     path('share_dream/<int:dream_id>/', views.share_dream, name='share_dream'),
+    path('share_dream_anon/<int:dream_id>/', views.share_dream_anon, name='share_dream_anon'),
     path('unshare_dream/<int:dream_id>/', views.unshare_dream, name='unshare_dream'),
     path('delete_dream/<int:dream_id>/', views.delete_dream, name='delete_dream'),
     path('like_dream/<int:dream_id>/', views.like_dream, name='like_dream'),
@@ -20,6 +21,8 @@ urlpatterns = [
     path('view_shared/', views.view_shared, name='view_shared'),
     path('view_own_shared/', views.view_own_shared, name='view_own_shared'),
     path('view_liked', views.view_liked, name='view_liked'),
+    path('add_comment/<int:dream_id>/', views.add_comment, name='add_comment'),
+    path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     path('statistics/', views.personal_statistics, name='personal_statistics'),
     path('gallery/', views.gallery, name='gallery'),
 ]

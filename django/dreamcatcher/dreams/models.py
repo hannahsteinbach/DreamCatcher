@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from langchain_community.llms import ollama
+from django.contrib.auth import get_user_model
 import json
 
 class Dream(models.Model):
@@ -15,6 +16,7 @@ class Dream(models.Model):
     date = models.DateField()
     content = models.TextField()
     shared = models.BooleanField(default=False)
+    anon = models.BooleanField(default=False)
     processed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
     keywords = models.JSONField(default=list, blank=True)
@@ -78,3 +80,16 @@ class DreamLike(models.Model):
 
     def __str__(self):
         return f"{self.user.username} likes {self.dream}"
+
+
+class Comment(models.Model):
+    dream = models.ForeignKey(Dream, related_name='comments', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.author.username} - {self.text}'
+
+    def can_delete(self, user):
+        return user == self.author

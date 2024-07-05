@@ -225,11 +225,11 @@
             display: block;
         }
         .button {
-            padding: 10px;
+            padding: 8px, 12px;
             border: none;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
             transition: background-color 0.3s;
             font-family: inherit;
@@ -280,6 +280,23 @@
         .like-info .liked-users {
             font-size: 14px;
             color: #666;
+        }
+        .comment {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .comment p {
+            font-size: 14px;
+            color: #7851a9;
+            margin: 0;
+        }
+        .comment-text {
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #3D3D3D;
         }
         #classification {
             padding: 8px;
@@ -377,30 +394,32 @@
             <button type="button" onclick="clearSearch()">Clear</button>
         </form>
     </div>
-        <div class="dreams">
-            {% if dreams %}
-                {% for dream in dreams|dictsortreversed:"date" %}
-                    {% if dream.shared %}
-                        {% if not query or query|lower in dream.content|lower %}
-                            <div class="dream">
-                                <h3 class="dream-date">{{ dream.date }}</h3>
-                                <h3 class="dream-user">@{{ dream.user }}</h3>
-                                <p class="dream-content">
-                                    {% autoescape off %}
-                                    {{ dream.content|safe|highlight:query }}
-                                    {% endautoescape %}
-                                </p>
-                                <p class="class-form">
-                                    {% if dream.classification %}
+    <div class="dreams">
+        {% if dreams %}
+            {% for dream in dreams|dictsortreversed:"date" %}
+                {% if dream.shared %}
+                    {% if not query or query|lower in dream.content|lower %}
+                        <div class="dream">
+                            <h3 class="dream-date">{{ dream.date }}</h3>
+                            {% if not dream.anon %}
+                                <h2 class="dream-user">@{{ dream.user }}</h2>
+                            {% endif %}
+                            <p class="dream-content">
+                                {% autoescape off %}
+                                {{ dream.content|safe|highlight:query }}
+                                {% endautoescape %}
+                            </p>
+                            <p class="class-form">
+                                {% if dream.classification %}
                                     Type of dream:
                                     <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
-                                        <input type="hidden" name="classification" value="{{dream.classification}}">
-                                        <button type="submit">{{ dream.classification_string}}</button>
-                                    {%endif%}
+                                        <input type="hidden" name="classification" value="{{ dream.classification }}">
+                                        <button type="submit">{{ dream.classification_string }}</button>
                                     </form>
-                                </p>
-                                <p class="class-form">
-                                    {%if dream.persons%}
+                                {% endif %}
+                            </p>
+                            <p class="class-form">
+                                {% if dream.persons %}
                                     Characters (Hall/Van de Castle):
                                     {% for person in dream.persons %}
                                         <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
@@ -408,66 +427,93 @@
                                             <button type="submit">{{ person }}</button>
                                         </form>
                                     {% endfor %}
-                                    {% endif %}
-                                </p>
-                                <p class="class-form">
-                                    {%if dream.emotion%}
+                                {% endif %}
+                            </p>
+                            <p class="class-form">
+                                {% if dream.emotion %}
                                     Prevalent emotion:
-                                        <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
+                                    <form class="class-form" method="get" action="{% url 'dreams:gallery' %}">
                                         <input type="hidden" name="emotion" value="{{ dream.emotion }}">
                                         <button type="submit">{{ dream.emotion }}</button>
                                     </form>
-                                    {%endif%}
-                                </p>
-                                <p class="keyword-form">
-                                    Keywords:
-                                    {% for keyword in dream.keywords %}
+                                {% endif %}
+                            </p>
+                            <p class="keyword-form">
+                                Keywords:
+                                {% for keyword in dream.keywords %}
                                     <form class="keyword-form" method="get" action="{% url 'dreams:gallery' %}">
                                         <input type="hidden" name="keyword" value="{{ keyword }}">
                                         <button type="submit">{{ keyword }}</button>
                                     </form>
                                     {% if not forloop.last %}{% endif %}
+                                {% endfor %}
+                            </p>
+                            <h5>Likes</h5>
+                            <div class="like-info">
+                                <p>Likes: {{ dream.likes_count }}</p>
+                                <p>Liked by:
+                                    {% for user in dream.liked_users %}
+                                        @{{ user.username }}
+                                        {% if not forloop.last %} {% endif %}
                                     {% endfor %}
                                 </p>
-                                <div class="like-info">
-                                    <p>Likes: {{ dream.likes_count }} </p>
-                                    <p>Liked by:
-                                        {% for user in dream.liked_users %}
-                                            @{{ user.username }}
-                                            {% if not forloop.last %} {% endif %}
-                                        {% endfor %}
-                                    </p>
-                                </div>
-                                <div class="menu">
-                                    <span class="icon">
-                                        {% if dream.is_liked_by_user %}
-                                            ♥
-                                        {% else %}
-                                            ♡
-                                        {% endif %}
-                                    </span>
-                                    <div class="menu-content">
-                                        {% if dream.is_liked_by_user %}
-                                            <form action="{% url 'dreams:unlike_dream' dream.id %}" method="post" style="display:inline;">
-                                                {% csrf_token %}
-                                                <button type="submit">Unlike</button>
-                                            </form>
-                                        {% else %}
-                                            <form action="{% url 'dreams:like_dream' dream.id %}" method="post" style="display:inline;">
-                                                {% csrf_token %}
-                                                <button type="submit">Like</button>
-                                            </form>
-                                        {% endif %}
-                                    </div>
+                            </div>
+                            <div class="menu">
+                                <span class="icon">
+                                    {% if dream.is_liked_by_user %}
+                                        ♥
+                                    {% else %}
+                                        ♡
+                                    {% endif %}
+                                </span>
+                                <div class="menu-content">
+                                    {% if dream.is_liked_by_user %}
+                                        <form action="{% url 'dreams:unlike_dream' dream.id %}" method="post" style="display:inline;">
+                                            {% csrf_token %}
+                                            <button type="submit">Unlike</button>
+                                        </form>
+                                    {% else %}
+                                        <form action="{% url 'dreams:like_dream' dream.id %}" method="post" style="display:inline;">
+                                            {% csrf_token %}
+                                            <button type="submit">Like</button>
+                                        </form>
+                                    {% endif %}
                                 </div>
                             </div>
-                        {% endif %}
+                            <div>
+                                <h5>Comments</h5>
+                                <div class="comment-section">
+                                    {% for comment in dream.comments.all %}
+                                        <div class="comment">
+                                            <p>@<b>{{ comment.author }}</b> — {{ comment.created_date }} </p>
+                                            <div class="comment-text">
+                                                {{ comment.text }}
+                                            </div>
+                                            {% if comment.author == request.user %}
+                                                <form method="post" action="{% url 'dreams:delete_comment' comment.id %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" style="font-size: smaller; padding: 5px;">Delete</button>
+                                                </form>
+                                            {% endif %}
+                                        </div>
+                                    {% empty %}
+                                        <p>No comments yet.</p>
+                                    {% endfor %}
+                                </div>
+                                <form method="post" action="{% url 'dreams:add_comment' dream.id %}">
+                                    {% csrf_token %}
+                                    <input type="text" name="text" placeholder="Write a comment..." required>
+                                    <button type="submit" style="font-size: smaller; padding: 5px;">Post</button>
+                                </form>
+                            </div>
+                        </div>
                     {% endif %}
-                {% endfor %}
-            {% else %}
-                <p>No liked dreams found.</p>
-            {% endif %}
-        </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No liked dreams found.</p>
+        {% endif %}
     </div>
 </body>
 </html>
+
