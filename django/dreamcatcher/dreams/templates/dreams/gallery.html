@@ -489,7 +489,7 @@
                                             <div class="comment-text">
                                                 {{ comment.text }}
                                             </div>
-                                            {% if comment.author == request.user %}
+                                            {% if comment.author == request.user or dream.user == request.user %}
                                                 <form method="post" action="{% url 'dreams:delete_comment' comment.id %}">
                                                     {% csrf_token %}
                                                     <button type="submit" style="font-size: smaller; padding: 5px;">Delete</button>
