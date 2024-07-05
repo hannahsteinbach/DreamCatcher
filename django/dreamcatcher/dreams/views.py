@@ -64,6 +64,7 @@ def delete_dream(request, dream_id):
         dream.delete()
     return redirect('dreams:dream_journal')
 
+
 @login_required
 def edit_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
@@ -78,6 +79,7 @@ def edit_dream(request, dream_id):
                 form.add_error('date', 'The date cannot be in the future.')
             elif dream_date < date(1970, 1, 1):
                 form.add_error('date', 'The date cannot be earlier than 1970.')
+<<<<<<< HEAD
 
             if not form.errors:
                 dream.date = dream_date
@@ -89,6 +91,22 @@ def edit_dream(request, dream_id):
                 return redirect('dreams:dream_journal')
 
 
+=======
+
+            if not form.errors:
+                dream.date = dream_date
+                dream.classification = form.cleaned_data['classification']
+                if dream_bc != dream_ac:
+                    dream.content = dream_ac
+                    dream.add_metadata()  # only generate metadata again if content was changed
+                dream.save()
+                return redirect('dreams:dream_journal')
+    else:
+        form = DreamForm(instance=dream)
+
+    return render(request, 'dreams/edit_dream.html', {'form': form})
+
+>>>>>>> 7ee09cc6a835cba2265c308ae5f0817243925ff0
 @login_required
 def add_to_favorites(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
