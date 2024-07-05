@@ -1,10 +1,12 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
-from .forms import SignUpForm, DreamForm
+from django.views.generic.detail import DetailView
+from django.http import HttpResponseForbidden
+from .forms import SignUpForm, DreamForm, CommentForm
 import logging
 from django.shortcuts import render, redirect
-from .models import Dream, DreamLike
+from .models import Dream, DreamLike, Comment
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.db.models import F
@@ -62,6 +64,7 @@ def delete_dream(request, dream_id):
         dream.delete()
     return redirect('dreams:dream_journal')
 
+
 @login_required
 def edit_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
@@ -76,21 +79,19 @@ def edit_dream(request, dream_id):
                 form.add_error('date', 'The date cannot be in the future.')
             elif dream_date < date(1970, 1, 1):
                 form.add_error('date', 'The date cannot be earlier than 1970.')
-            
+
             if not form.errors:
                 dream.date = dream_date
                 dream.classification = form.cleaned_data['classification']
                 if dream_bc != dream_ac:
                     dream.content = dream_ac
-                    dream.add_metadata() # only generate metadata again if content was changed
+                    dream.add_metadata()  # only generate metadata again if content was changed
                 dream.save()
                 return redirect('dreams:dream_journal')
     else:
         form = DreamForm(instance=dream)
 
     return render(request, 'dreams/edit_dream.html', {'form': form})
-
-
 
 @login_required
 def add_to_favorites(request, dream_id):
@@ -114,7 +115,19 @@ def remove_from_favorites(request, dream_id):
 def share_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = True
+    dream.anon = False
     dream.save(update_fields=['shared'])
+    dream.save(update_fields=['anon'])
+    messages.success(request, 'Dream shared successfully!')
+    return redirect('dreams:dream_journal')
+
+@login_required
+def share_dream_anon(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
+    dream.shared = True
+    dream.anon = True
+    dream.save(update_fields=['shared'])
+    dream.save(update_fields=['anon'])
     messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
@@ -156,7 +169,6 @@ def gallery(request):
 
     if person_query:
         dreams = dreams.filter(persons__icontains=person_query)
-
 
     context = {
         'dreams': dreams,
@@ -300,7 +312,6 @@ def view_liked(request):
     return render(request, 'dreams/gallery.html', context)
 
 
-
 @login_required
 def personal_statistics(request):
     dreams = Dream.objects.filter(user=request.user)
@@ -424,6 +435,40 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+@login_required
+def add_comment(request, dream_id):
+    dream = get_object_or_404(Dream, pk=dream_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.dream = dream
+            comment.author = request.user
+            comment.save()
+            return redirect('dreams:gallery')
+    else:
+        form = CommentForm()
+
+    comments = dream.comments.all()
+
+    context = {
+        'form': form,
+        'dream': dream,
+        'comments': comments,
+    }
+    return render(request, 'dreams/gallery.html', context)
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if comment.can_delete(request.user):
+        comment.delete()
+    else:
+        return HttpResponseForbidden("You do not have permission to delete this comment.")
+    return redirect('dreams:gallery')
 
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'password_reset.html'
