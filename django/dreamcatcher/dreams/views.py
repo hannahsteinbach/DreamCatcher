@@ -169,7 +169,8 @@ def gallery(request):
     class_query = request.GET.get('classification', '')
     emotion_query = request.GET.get('emotion', '')
     keyword_query = request.GET.get('keyword', '')
-    person_query = request.GET.get('person', '')
+    character_query = request.GET.get('character', '')
+    place_query = request.GET.get('place', '')
 
     for dream in dreams:
         dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
@@ -189,8 +190,11 @@ def gallery(request):
     if keyword_query:
         dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
-    if person_query:
-        dreams = dreams.filter(persons__icontains=person_query)
+    if character_query:
+        dreams = dreams.filter(characters__icontains=character_query)
+
+    if place_query:
+        dreams = dreams.filter(places__icontains=place_query)
 
     context = {
         'dreams': dreams,
@@ -198,7 +202,8 @@ def gallery(request):
         'is_liked_view': False,
         'class_query': class_query,
         'keyword_query': keyword_query,
-        'person_query': person_query,
+        'character_query': character_query,
+        'place_query': place_query,
         'emotion_query': emotion_query,
     }
     return render(request, 'dreams/gallery.html', context)
@@ -230,7 +235,8 @@ def dream_journal(request):
     query = request.GET.get('q', '')
     class_query = request.GET.get('classification', '')
     emotion_query = request.GET.get('emotion', '')
-    person_query = request.GET.get('person', '')
+    character_query = request.GET.get('character', '')
+    place_query = request.GET.get('place', '')
     dreams = Dream.objects.filter(user=request.user)
     keyword_query = request.GET.get('keyword', '')
 
@@ -249,8 +255,11 @@ def dream_journal(request):
     if keyword_query:
         dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
-    if person_query:
-        dreams = dreams.filter(persons__icontains=person_query)
+    if character_query:
+        dreams = dreams.filter(characters__icontains=character_query)
+
+    if place_query:
+        dreams = dreams.filter(places__icontains=place_query)
 
     context = {
         'dreams': dreams,
@@ -258,7 +267,8 @@ def dream_journal(request):
         'class_query': class_query,
         'emotion_query': emotion_query,
         'keyword_query': keyword_query,
-        'person_query': person_query,
+        'character_query': character_query,
+        'place_query': place_query
     }
     return render(request, 'dreams/dream_journal.html', context)
 
@@ -395,11 +405,20 @@ def personal_statistics(request):
     # characters
     all_characters = []
     for dream in dreams:
-        all_characters.extend(dream.persons)
+        all_characters.extend(dream.characters)
 
     characters_counted = Counter(all_characters)
 
     top_10_characters = characters_counted.most_common(10)
+
+    # places
+    all_places = []
+    for dream in dreams:
+        all_places.extend(dream.places)
+
+    places_counted = Counter(all_places)
+
+    top_10_places = places_counted.most_common(10)
 
     context = {
         'dreams': dreams,
@@ -414,6 +433,7 @@ def personal_statistics(request):
         'favorite_count': favorite_count,
         'top_10_keywords': top_10_keywords,
         'top_10_characters': top_10_characters,
+        'top_10_places': top_10_places,
         'anger_count': anger_count,
         'apprehension_count': apprehension_count,
         'sadness_count': sadness_count,

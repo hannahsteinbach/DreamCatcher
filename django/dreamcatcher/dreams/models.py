@@ -21,7 +21,8 @@ class Dream(models.Model):
     is_favorite = models.BooleanField(default=False)
     keywords = models.JSONField(default=list, blank=True)
     classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='4')
-    persons = models.JSONField(default=list, blank=True)
+    characters = models.JSONField(default=list, blank=True)
+    places = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)
     #titles = models.JSONField(default=list, blank=True)
 
@@ -37,7 +38,8 @@ class Dream(models.Model):
             "- titles: Three title options to choose from, formatted as a Python list of strings.\n"
             "- keywords: A list of exactly 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words.\n"
             "- emotion: The prevalent emotion from these options formatted as a list: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
-            "- named_entities: All named entities found in the dream, formatted as a Python list of strings.\n"
+            "- characters: All characters found in the dream, formatted as a Python list of strings.\n"
+            "- places: All places mentioned in the dream, formatted as a Python list of strings.\n"
             "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
 
@@ -49,7 +51,8 @@ class Dream(models.Model):
         #self.titles = response.get('titles', [])
         self.keywords = response.get('keywords', [])
         self.emotion = response.get('emotion', [])
-        self.persons = response.get('named_entities', [])
+        self.characters = response.get('characters', [])
+        self.places = response.get('places', [])
         self.processed = True
 
     def save(self, *args, **kwargs):

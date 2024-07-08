@@ -390,12 +390,23 @@
                 {% endif %}
             </p>
             <p class="class-form">
-                {%if dream.persons%}
-                Characters and places:
-                {% for person in dream.persons %}
+                {% if dream.characters %}
+                Characters:
+                {% for character in dream.characters %} 
                     <form class="class-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                        <input type="hidden" name="person" value="{{ person }}">
-                        <button type="submit">{{ person }}</button>
+                        <input type="hidden" name="character" value="{{ character }}">
+                        <button type="submit">{{ character }}</button>
+                    </form>
+                {% endfor %}
+                {% endif %}
+            </p>
+            <p class="class-form">
+                {% if dream.places %}
+                Places:
+                {% for place in dream.places %}
+                    <form class="class-form" method="get" action="{% url 'dreams:dream_journal' %}">
+                        <input type="hidden" name="place" value="{{ place }}">
+                        <button type="submit">{{ place }}</button>
                     </form>
                 {% endfor %}
                 {% endif %}
