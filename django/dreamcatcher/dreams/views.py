@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
-from .forms import SignUpForm, DreamForm, CommentForm
+from .forms import SignUpForm, DreamForm, CommentForm, DateForm
 import logging
 from django.shortcuts import render, redirect
 from .models import Dream, DreamLike, Comment
@@ -42,6 +42,7 @@ def log_dream(request):
         content = request.POST.get('content')
         classification = request.POST.get('classification')
         user = request.user
+
         dream = Dream.objects.create(
             user=user,
             date=date.today(),
@@ -50,11 +51,31 @@ def log_dream(request):
             processed=False,
             classification=classification
         )
-        dream.save()
-        messages.success(request, """You successfully logged your dream.""")
-        return render(request, 'dreams/log_dream.html')
-    return render(request, 'dreams/log_dream.html')
 
+        form = DateForm(request.POST, instance=dream)
+        if form.is_valid():
+
+            dream_date = form.cleaned_data['date']
+
+            if not dream_date:
+                dream_date = date.today()
+
+            if dream_date > date.today():
+                form.add_error('date', 'The date cannot be in the future.')
+            elif dream_date < date(1970, 1, 1):
+                form.add_error('date', 'The date cannot be earlier than 1970.')
+
+            if not form.errors:
+                dream.date = dream_date
+                dream.save()
+                return redirect('dreams:log_dream')
+        else:
+            messages.error(request, "Failed to log your dream. Please correct the errors below.")
+
+    else:
+        form = DateForm(initial={'date': date.today()})
+
+    return render(request, 'dreams/log_dream.html', {'form': form})
 
 
 @login_required
