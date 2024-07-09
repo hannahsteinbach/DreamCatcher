@@ -50,7 +50,7 @@ class Dream(models.Model):
         # metadata extraction
         #self.titles = response.get('titles', [])
         self.keywords = response.get('keywords', [])
-        self.emotion = response.get('emotion', [])
+        self.emotion = response.get('emotion', "")
         self.characters = response.get('characters', [])
         self.places = response.get('places', [])
         self.processed = True

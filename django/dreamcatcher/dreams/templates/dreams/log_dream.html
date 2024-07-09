@@ -98,28 +98,30 @@
             font-family: 'Manrope', sans-serif;
         }
         .chat-form input[type="submit"] {
-            padding: 12px 24px;
+            padding: 10px 24px;
             border: none;
-            border-radius: 5px;
-            background-color: #82a3f0da;
+            border-radius: 4px;
+            background-color: rgb(104 96 240);
             color: white;
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s;
+            height: 46px;
+            line-height: normal;
             font-family: 'Manrope', sans-serif;
         }
         .chat-form input[type="submit"]:hover {
-            background-color: #BECDDE;
+            background-color: rgba(103, 96, 240, 0.659);
         }
         #classification {
-            padding: 8px;
+            padding: 10px;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             border-radius: 4px;
-            background-color: #82a3f0da;
-            color: white;
+            background-color: #ffffff;
             cursor: pointer;
             font-family: 'Manrope', sans-serif;
+            height: 46px;
         }
         #classification option {
             padding: 8px;
@@ -132,13 +134,13 @@
             width: 50%;
             padding: 10px;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             border-radius: 4px;
-            background-color: #82a3f0da;
-            color: white;
+            background-color: #ffffff;
             cursor: pointer;
             margin-bottom: 10px;
             box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
         }
 
         .playlist-container {
@@ -165,7 +167,30 @@
             text-align: center;
             margin-left: 200px;
         }
+        #loading-icon {
+        width: 40px; 
+        height: 40px; 
+        margin-right: 10px;
+        }
+        #loading-content {
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        }
+        #loading-container {
+            display: none;
+            text-align: center;
+        }
+        #loading-message {
+        font-size: 16px;
+        margin: 0;
+        }
 
+        #loading-info {
+            font-size: 16px; 
+            margin: 0;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -180,7 +205,7 @@
     <div class="header">
         <h2>Log a Dream🖋️</h2>
     </div>
-    <form class="chat-form" method="post">
+    <form class="chat-form" method="post", onsubmit="return handleSubmit()">
         {% csrf_token %}
         <input type="date" id="id_date" name="date">
         <textarea id="content" name="content" placeholder="What have you been dreaming about lately?" rows="4"></textarea>
@@ -196,7 +221,15 @@
     </form>
     <section class="content">
         <div class="centered-text">
-            <p>Make the wait fly by with our dreamy tunes...</p>
+            <div id="loading-container" style="display: none; text-align: center;">
+                <div id="loading-content">
+                    <img id="loading-icon" src="{% static 'images/loading.gif' %}" alt="Loading...">
+                    <p id="loading-message">Currently logging your dream 💌</p>
+                </div>
+                <p id="loading-info">Make the wait fly by with our dreamy tunes...</p>
+            </div>
+            <p id="default-message">Some dreamy tunes to get you in the right headspace 💭</p>
+        </div>
         </div>
         <div class="playlist-container">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3qcG06thoT5dON4ZBigN8N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -216,20 +249,18 @@
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
     <script>
-        window.addEventListener('scroll', function() {
-            var subtitle = document.querySelector('.subtitle');
-            var emojis = document.querySelector('.emojis');
-            var buttons = document.querySelectorAll('.overlay button');
-            var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-            var maxScroll = 80;
-            var scrollFactor = Math.min(scrolled * 0.3, maxScroll);
+        function handleSubmit() {
+        const defaultMessage = document.getElementById('default-message');
+        const loadingContainer = document.getElementById('loading-container');
+        const submitButton = document.getElementById('submit-button');
 
-            subtitle.style.transform = 'translateY(' + scrollFactor + 'px)';
-            emojis.style.transform = 'translateY(' + scrollFactor + 'px)';
-            buttons.forEach(function(button) {
-                button.style.transform = 'translateY(' + scrollFactor + 'px)';
-            });
-        });
+        defaultMessage.style.display = 'none';
+        loadingContainer.style.display = 'block';
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = 'rgba(103, 96, 240, 0.659)';
+
+        return true;
+        }
     </script>
 
 </body>
