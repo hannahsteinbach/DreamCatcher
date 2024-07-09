@@ -24,12 +24,16 @@ class DateForm(forms.ModelForm):
         model = Dream
         fields = ['date']
 
-
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['text']
+
+
+class TitleForm(forms.ModelForm):
+    class Meta:
+        model = Dream
+        fields = ['optional_titles', 'titles']
 
 
 class SignUpForm(UserCreationForm):

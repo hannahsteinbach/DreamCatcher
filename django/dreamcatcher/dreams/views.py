@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
-from .forms import SignUpForm, DreamForm, CommentForm, DateForm
+from .forms import SignUpForm, DreamForm, CommentForm, DateForm, TitleForm
 import logging
 from django.shortcuts import render, redirect
 from .models import Dream, DreamLike, Comment
@@ -75,7 +75,8 @@ def log_dream(request):
     else:
         form = DateForm(initial={'date': date.today()})
 
-    return render(request, 'dreams/log_dream.html', {'form': form})
+    return render(request, 'dreams/choose_title.html', {'form': form})
+
 
 @login_required
 def choose_title(request, dream_id):
