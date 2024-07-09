@@ -24,7 +24,7 @@ class Dream(models.Model):
     characters = models.JSONField(default=list, blank=True)
     places = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)
-    #titles = models.JSONField(default=list, blank=True)
+    titles = models.JSONField(default=list, blank=True)
 
     def add_metadata(self):
         content_str = str(self.content)
@@ -48,7 +48,7 @@ class Dream(models.Model):
         response = json.loads(response)
 
         # metadata extraction
-        #self.titles = response.get('titles', [])
+        self.titles = response.get('titles', [])
         self.keywords = response.get('keywords', [])
         self.emotion = response.get('emotion', "")
         self.characters = response.get('characters', [])

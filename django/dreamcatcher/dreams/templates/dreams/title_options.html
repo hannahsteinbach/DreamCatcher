@@ -77,72 +77,8 @@
             z-index: 2;
             position: relative;
         }
-        .chat-form {
-            text-align: center;
-            width: 80%;
-            margin-left: 200px;
-            max-width: 600px;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
-        .chat-form textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            height: 200px;
-            resize: vertical;
-            border: 1px solid #ffffff;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            background-color: #ffffff;
-            font-family: 'Manrope', sans-serif;
-        }
-        .chat-form input[type="submit"] {
-            padding: 10px 24px;
-            border: none;
-            border-radius: 4px;
-            background-color: rgb(104 96 240);
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            height: 46px;
-            line-height: normal;
-            font-family: 'Manrope', sans-serif;
-        }
-        .chat-form input[type="submit"]:hover {
-            background-color: rgba(103, 96, 240, 0.659);
-        }
-        #classification {
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ffffff;
-            border-radius: 4px;
-            background-color: #ffffff;
-            cursor: pointer;
-            font-family: 'Manrope', sans-serif;
-            height: 46px;
-        }
-        #classification option {
-            padding: 8px;
-            font-size: 14px;
-            background-color: #f0f0f0;
-            color: #1e3047;
-        }
-
-        #id_date {
-            width: 50%;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ffffff;
-            border-radius: 4px;
-            background-color: #ffffff;
-            cursor: pointer;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            font-family: 'Manrope', sans-serif;
-        }
-
+       
+    
         .playlist-container {
             display: flex;
             justify-content: center;
@@ -248,6 +184,20 @@
     <footer>
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
+    <script>
+        function handleSubmit() {
+        const defaultMessage = document.getElementById('default-message');
+        const loadingContainer = document.getElementById('loading-container');
+        const submitButton = document.getElementById('submit-button');
+
+        defaultMessage.style.display = 'none';
+        loadingContainer.style.display = 'block';
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = 'rgba(103, 96, 240, 0.659)';
+
+        return true;
+        }
+    </script>
 
 </body>
 </html>
