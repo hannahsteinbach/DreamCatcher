@@ -368,8 +368,24 @@
         <ul>
             {% for character,count in top_10_characters %}
             <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                <input type="hidden" name="person" value="{{ character }}">
+                <input type="hidden" name="character" value="{{ character }}">
                         <button type="submit">{{ character }}</button>
+            </form> {% if count == 1%}
+                    {{count}} occurrence
+                    {% else %}
+                    {{count}} occurrences
+                    {% endif %}
+                    </li>
+            {%endfor%}
+        </ul>
+    </div>
+    <div class="dream">
+        <h3>Top 10 Places</h3>
+        <ul>
+            {% for place,count in top_10_places%}
+            <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
+                <input type="hidden" name="place" value="{{ place }}">
+                        <button type="submit">{{ place }}</button>
             </form> {% if count == 1%}
                     {{count}} occurrence
                     {% else %}
