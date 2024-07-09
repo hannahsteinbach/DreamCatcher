@@ -77,6 +77,25 @@ def log_dream(request):
 
     return render(request, 'dreams/log_dream.html', {'form': form})
 
+@login_required
+def choose_title(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    optional_titles = dream.optional_titles
+    if request.method == 'POST':
+        form = TitleForm(request.POST, instance=dream)
+        if form.is_valid():
+            dream_title = form.cleaned_data['title']
+            if not dream_title:
+                dream_title = optional_titles[0]
+            if not form.errors:
+                dream.title = dream_title
+                dream.save()
+                return redirect('dreams:dream_journal')
+    else:
+        form = DateForm(initial={'date': date.today()})
+
+    return render(request, 'dreams/log_dream.html', {'form': form})
+
 
 @login_required
 def delete_dream(request, dream_id):

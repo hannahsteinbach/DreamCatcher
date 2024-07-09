@@ -77,8 +77,6 @@
             z-index: 2;
             position: relative;
         }
-       
-    
         .playlist-container {
             display: flex;
             justify-content: center;
@@ -90,7 +88,6 @@
             width: 45%;
             height: 352px;
         }
-
         html {
             scroll-behavior: smooth;
         }
@@ -102,30 +99,7 @@
         .centered-text {
             text-align: center;
             margin-left: 200px;
-        }
-        #loading-icon {
-        width: 40px; 
-        height: 40px; 
-        margin-right: 10px;
-        }
-        #loading-content {
-        display: flex;
-        align-items: center;
-        justify-content: center; 
-        }
-        #loading-container {
-            display: none;
-            text-align: center;
-        }
-        #loading-message {
-        font-size: 16px;
-        margin: 0;
-        }
-
-        #loading-info {
-            font-size: 16px; 
-            margin: 0;
-            margin-bottom: 20px;
+            font-family: 'Manrope', 'sans-serif';
         }
     </style>
 </head>
@@ -139,34 +113,12 @@
         <a href="{% url 'logout' %}">Log out</a>
     </div>
     <div class="header">
-        <h2>Log a Dream🖋️</h2>
+        <h2>Dream titles 📰</h2>
     </div>
-    <form class="chat-form" method="post", onsubmit="return handleSubmit()">
-        {% csrf_token %}
-        <input type="date" id="id_date" name="date">
-        <textarea id="content" name="content" placeholder="What have you been dreaming about lately?" rows="4"></textarea>
-        <select id="classification" name="classification">
-            <option value="">Classify your dream</option>
-            <option value="0">Nightmare</option>
-            <option value="1">Mundane dream</option>
-            <option value="2">Lucid dream</option>
-            <option value="3">Existential dream</option>
-            <option value="4">None</option>
-        </select>
-        <input type="submit" value="Enter">
-    </form>
     <section class="content">
         <div class="centered-text">
-            <div id="loading-container" style="display: none; text-align: center;">
-                <div id="loading-content">
-                    <img id="loading-icon" src="{% static 'images/loading.gif' %}" alt="Loading...">
-                    <p id="loading-message">Currently logging your dream 💌</p>
-                </div>
-                <p id="loading-info">Make the wait fly by with our dreamy tunes...</p>
-            </div>
-            <p id="default-message">Some dreamy tunes to get you in the right headspace 💭</p>
-        </div>
-        </div>
+            Choose a title to display in your dream journal from the following options:
+           </div>
         <div class="playlist-container">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3qcG06thoT5dON4ZBigN8N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ro/playlist/dreamcatching/pl.u-BNA6rMJF1NLNW5V"></iframe>
@@ -184,20 +136,7 @@
     <footer>
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
-    <script>
-        function handleSubmit() {
-        const defaultMessage = document.getElementById('default-message');
-        const loadingContainer = document.getElementById('loading-container');
-        const submitButton = document.getElementById('submit-button');
 
-        defaultMessage.style.display = 'none';
-        loadingContainer.style.display = 'block';
-        submitButton.disabled = true;
-        submitButton.style.backgroundColor = 'rgba(103, 96, 240, 0.659)';
-
-        return true;
-        }
-    </script>
 
 </body>
 </html>

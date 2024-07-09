@@ -25,6 +25,7 @@ class DateForm(forms.ModelForm):
         fields = ['date']
 
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
