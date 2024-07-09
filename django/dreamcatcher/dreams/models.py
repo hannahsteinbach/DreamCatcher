@@ -37,9 +37,9 @@ class Dream(models.Model):
             "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
             "- titles: Three title options to choose from, formatted as a Python list of strings.\n"
             "- keywords: A list of exactly 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words.\n"
-            "- emotion: The prevalent emotion from these options formatted as a list: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
-            "- characters: All characters found in the dream, formatted as a Python list of strings.\n"
-            "- places: All places mentioned in the dream, formatted as a Python list of strings.\n"
+            "- emotion: The prevalent emotion from these options formatted as a string: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
+            "- characters: All characters found in the dream, formatted as a Python list of strings. If none are found, return an empty string.\n"
+            "- places: All places mentioned in the dream, formatted as a Python list of strings. If none are found, return an empty string.\n"
             "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
 
