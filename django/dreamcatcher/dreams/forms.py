@@ -33,7 +33,7 @@ class CommentForm(forms.ModelForm):
 class TitleForm(forms.ModelForm):
     class Meta:
         model = Dream
-        fields = ['optional_titles', 'titles']
+        fields = ['optional_titles', 'title']
 
 
 class SignUpForm(UserCreationForm):

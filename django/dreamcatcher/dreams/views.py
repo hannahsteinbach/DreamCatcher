@@ -68,14 +68,14 @@ def log_dream(request):
             if not form.errors:
                 dream.date = dream_date
                 dream.save()
-                return redirect('dreams:log_dream')
+                return redirect('dreams:choose_title')
         else:
             messages.error(request, "Failed to log your dream. Please correct the errors below.")
 
     else:
         form = DateForm(initial={'date': date.today()})
 
-    return render(request, 'dreams/choose_title.html', {'form': form})
+    return render(request, 'dreams/log_dream.html', {'form': form})
 
 
 @login_required

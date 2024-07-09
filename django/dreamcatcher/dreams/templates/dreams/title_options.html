@@ -118,6 +118,13 @@
     <section class="content">
         <div class="centered-text">
             Choose a title to display in your dream journal from the following options:
+            {%if dream.optional_titles%}
+                {% for title in dream.optional_title %}
+                    <form class="keyword-form" method="get" action="{% url 'dreams:choose_dream' %}">
+                        <button type="submit">{{ title }}</button>
+                    </form>
+            {% endfor %}
+            {% endif %}
            </div>
         <div class="playlist-container">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3qcG06thoT5dON4ZBigN8N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
