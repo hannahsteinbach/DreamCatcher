@@ -68,7 +68,7 @@ def log_dream(request):
             if not form.errors:
                 dream.date = dream_date
                 dream.save()
-                return redirect('dreams:choose_title')
+                return redirect('dreams:choose_title', dream_id=dream.id)
         else:
             messages.error(request, "Failed to log your dream. Please correct the errors below.")
 
@@ -83,19 +83,15 @@ def choose_title(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
     optional_titles = dream.optional_titles
     if request.method == 'POST':
-        form = TitleForm(request.POST, instance=dream)
-        if form.is_valid():
-            dream_title = form.cleaned_data['title']
-            if not dream_title:
-                dream_title = optional_titles[0]
-            if not form.errors:
-                dream.title = dream_title
-                dream.save()
-                return redirect('dreams:dream_journal')
-    else:
-        form = DateForm(initial={'date': date.today()})
-
-    return render(request, 'dreams/log_dream.html', {'form': form})
+        selected_title = request.POST.get('title')
+        if selected_title:
+            dream.title = selected_title
+            dream.save()
+            messages.success(request, 'Great choice!')
+            return redirect('dreams:dream_journal')
+        else:
+            messages.error(request, 'Please select a title.')
+    return render(request, 'dreams/choose_title.html', {'dream': dream})
 
 
 @login_required

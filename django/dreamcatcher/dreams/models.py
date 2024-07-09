@@ -25,7 +25,7 @@ class Dream(models.Model):
     places = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)
     optional_titles = models.JSONField(default=list, blank=True)
-    title = models.TextField()
+    title = models.TextField(blank=True)
 
     def add_metadata(self):
         content_str = str(self.content)
@@ -36,25 +36,35 @@ class Dream(models.Model):
         dream_prompt = (
             f"This is my dream: {content_str}\n\n"
             "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
-            "- titles: Three title options to choose from, formatted as a Python list of strings.\n"
-            "- keywords: A list of exactly 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words.\n"
+            "- titleop: Three creative title options, formatted as a Python list of strings.\n"
+            "- keywords: A list of 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words. Only include words from the dream itself. Keywords can also be a fixed expression (e.g. compound nouns). Exclude characters and places from keywords.\n"
             "- emotion: The prevalent emotion from these options formatted as a string: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
-            "- characters: All characters found in the dream, formatted as a Python list of strings. If none are found, return an empty string.\n"
-            "- places: All places mentioned in the dream, formatted as a Python list of strings. If none are found, return an empty string.\n"
+            "- characters: All characters, formatted as a Python list of strings, without articles or pronouns. If none are found, return an empty string.\n"
+            "- places: All places, formatted as a Python list of strings, without articles. If none are found, return an empty string.\n"
             "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
+        try:
+            # response generation
+            response = llm.invoke(dream_prompt)
+            print(response)
+            response = json.loads(response)
 
-        # response generation
-        response = llm.invoke(dream_prompt)
-        response = json.loads(response)
-
-        # metadata extraction
-        self.optional_titles = response.get('titles', [])
-        self.keywords = response.get('keywords', [])
-        self.emotion = response.get('emotion', "")
-        self.characters = response.get('characters', [])
-        self.places = response.get('places', [])
-        self.processed = True
+            # metadata extraction
+            self.optional_titles = response.get('titleop', [])
+            self.keywords = response.get('keywords', [])
+            self.emotion = response.get('emotion', "")
+            self.characters = response.get('characters', [])
+            print(response)
+            self.places = response.get('places', [])
+            self.processed = True
+        except (json.JSONDecodeError, KeyError) as e:
+            self.optional_titles = []
+            self.keywords = []
+            self.emotion = ""
+            self.characters = []
+            self.places = []
+            self.processed = False  
+            print(f"Error processing dream metadata: {e}")
 
     def save(self, *args, **kwargs):
         if not self.pk:

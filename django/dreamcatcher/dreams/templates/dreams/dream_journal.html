@@ -380,6 +380,9 @@
     {% for dream in dreams|dictsortreversed:"date" %}
     {% if not query or query|lower in dream.content|lower %}
     <div class="dream">
+        {% if dream.title %}
+            <h2 class="dream-title">{{ dream.title }}</h2>
+        {% endif %}
         <h3 class="dream-date">{{ dream.date }}</h3>
         <p class="dream-content">
             {% autoescape off %}

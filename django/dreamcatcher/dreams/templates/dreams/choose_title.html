@@ -119,11 +119,14 @@
         <div class="centered-text">
             Choose a title to display in your dream journal from the following options:
             {%if dream.optional_titles%}
-                {% for title in dream.optional_title %}
-                    <form class="keyword-form" method="get" action="{% url 'dreams:choose_dream' %}">
-                        <button type="submit">{{ title }}</button>
+                {% for title in dream.optional_titles %}
+                    <form class="keyword-form" method="post" action="{% url 'dreams:choose_title' dream.id %}">
+                        {% csrf_token %}
+                        <button type="submit" name="title" value="{{ title }}">{{ title }}</button>
                     </form>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <p>No optional titles available. Are you sure you logged a dream?</p>
             {% endif %}
            </div>
         <div class="playlist-container">
