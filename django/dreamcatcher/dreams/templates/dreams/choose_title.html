@@ -122,7 +122,9 @@
                 {% for title in dream.optional_titles %}
                     <form class="keyword-form" method="post" action="{% url 'dreams:choose_title' dream.id %}">
                         {% csrf_token %}
+                        <br>
                         <button type="submit" name="title" value="{{ title }}">{{ title }}</button>
+                        <br>
                     </form>
                 {% endfor %}
             {% else %}

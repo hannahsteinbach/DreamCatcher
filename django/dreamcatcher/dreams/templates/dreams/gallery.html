@@ -38,7 +38,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(103, 96, 240, 0.224);
             overflow-x: hidden;
             padding-top: 50px;
         }
@@ -86,76 +86,55 @@
             width: 100%;
             padding: 10px;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             border-radius: 10px;
             height: 40px;
             margin-bottom: 10px;
-            background-color: #f0f0f0;
-
+            background-color: #ffffff;
+            font-family: 'Manrope', sans-serif;
         }
 
         .search-form button {
-            padding: 5px 10px;
+            padding: 10px 10px;
             font-size: 12px;
             cursor: pointer;
-            background-color: #1e3047;
+            background-color: rgba(103, 96, 240);
             color: white;
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
             margin-bottom: 20px;
+            font-family: 'Manrope', sans-serif;
         }
 
         .search-form button:hover {
-            background-color: #BECDDE;
+            background-color: #ffffff;
+            color: rgba(103, 96, 240);
         }
 
-        .keyword-form {
+        .keyword-form, .class-form {
             margin-bottom: 20px;
             text-align: center;
-            width: 100%;
+            width: 50%;
             font-size: 13px;
             display: inline;
             margin: 0 auto;
         }
-        .keyword-form button {
+        .keyword-form button, .class-form button {
             padding: 5px 10px;
             font-size: 12px;
             cursor: pointer;
-            background-color: #f0f0f0;
-            color: #856088;
+            background-color: rgba(103, 96, 240);
+            color: white;
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
             gap: 10px;
+            font-family: 'Manrope', sans-serif;
         }
-        .keyword-form button:hover {
-            background-color: #856088;
-            color: #f0f0f0;
-        }
-        .class-form {
-            margin-bottom: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            width: 100%;
-            font-size: 13px;
-            display: inline;
-            margin: 0 auto;
-        }
-        .class-form button {
-            padding: 5px 10px;
-            font-size: 12px;
-            cursor: pointer;
-            background-color: #856088;
-            color: #f0f0f0;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            gap: 10px;
-        }
-        .class-form button:hover {
-            background-color: #f0f0f0;
-            color: #856088;
+        .keyword-form button:hover, .class-form button:hover {
+            background-color: #ffffff;
+            color: rgba(103, 96, 240);
         }
         .dreams {
             width: 100%;
@@ -180,7 +159,7 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 5px;
-            color: #7851a9;
+            color: rgba(103, 96, 240);
         }
         .dream-content {
             font-size: 16px;
@@ -272,10 +251,10 @@
             background-color: #FFC2D1;
             font-weight: bold;
         }
-                .like-info {
+        .like-info {
             margin-top: 10px;
             padding: 8px;
-            background-color: #f0f0f0;
+            background-color: #fcf9ff72;
             border-radius: 5px;
         }
         .like-info p {
@@ -288,14 +267,14 @@
             color: #666;
         }
         .comment {
-            background-color: #f0f0f0;
+            background-color: #fcf9ff72;
             border-radius: 5px;
             padding: 8px;
             margin-bottom: 10px;
         }
         .comment p {
             font-size: 14px;
-            color: #7851a9;
+            color: rgba(103, 96, 240);
             margin: 0;
         }
         .comment-text {
@@ -304,44 +283,33 @@
             margin-bottom: 10px;
             color: #3D3D3D;
         }
-        #classification {
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #856088;
-            color: white;
-            cursor: pointer;
-        }
         #classification option {
             padding: 8px;
             font-size: 14px;
-            background-color: #f0f0f0;
-            color: #856088;
+            color: white;
         }
         #classification {
             padding: 8px;
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: #856088;
-            color: white;
+            background-color: white;
             cursor: pointer;
         }
         #emotion option {
             padding: 8px;
             font-size: 14px;
             background-color: #f0f0f0;
-            color: #856088;
+            color: white;
         }
         #emotion {
             padding: 8px;
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: #856088;
-            color: white;
+            background-color: white;
             cursor: pointer;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
