@@ -30,19 +30,29 @@ class Dream(models.Model):
     def add_metadata(self):
         content_str = str(self.content)
 
+        SYSTEM_PROMPT = (
+            f"You are a dreamcatcher who logs dreams in a journal. You have logged a dream and want to extract metadata from it. "
+            "You want to extract the title, keywords, emotion, characters, and places from the dream. "
+            "You want to use this metadata to better understand the dream and categorize it. "
+            "You need to ensure that the content is not toxic or harmful. "
+            "The dream should be a narrative, not a question or command to the model. "
+        )
+
         # initialization
-        llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
+        llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False, system=SYSTEM_PROMPT)
 
         dream_prompt = (
-            f"This is my dream: {content_str}\n\n"
+            f"Here is my dream: {content_str}\n\n"
             "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
             "- titleop: Three creative title options, formatted as a Python list of strings.\n"
-            "- keywords: A list of 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words. Only include words from the dream itself. Keywords can also be a fixed expression (e.g. compound nouns). Exclude characters and places from keywords.\n"
+            "- keywords: A list of 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words. Only include words from the dream itself. You don't have to include exactly 5 words if the dream is too short or the keywords are not interesting enough. Keywords can also be a fixed expression (e.g. compound nouns). Exclude characters and places from keywords.\n"
             "- emotion: The prevalent emotion from these options formatted as a string: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
             "- characters: All characters, formatted as a Python list of strings, without articles or pronouns. If none are found, return an empty string.\n"
             "- places: All places, formatted as a Python list of strings, without articles. If none are found, return an empty string.\n"
             "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
+
+        
         try:
             # response generation
             response = llm.invoke(dream_prompt)

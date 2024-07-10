@@ -117,8 +117,8 @@
     </div>
     <section class="content">
         <div class="centered-text">
-            Choose a title to display in your dream journal from the following options:
             {%if dream.optional_titles%}
+                <p>Choose a title to display in your dream journal from the following options:</p>
                 {% for title in dream.optional_titles %}
                     <form class="keyword-form" method="post" action="{% url 'dreams:choose_title' dream.id %}">
                         {% csrf_token %}
@@ -127,12 +127,9 @@
                 {% endfor %}
             {% else %}
                 <p>No optional titles available. Are you sure you logged a dream?</p>
+                <a type="submit" class="button" href="{% url 'dreams:log_dream' %}">Log a dream</a>
             {% endif %}
            </div>
-        <div class="playlist-container">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3qcG06thoT5dON4ZBigN8N?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ro/playlist/dreamcatching/pl.u-BNA6rMJF1NLNW5V"></iframe>
-        </div>
     </section>
     {% if messages %}
     <div class="alert alert-success">

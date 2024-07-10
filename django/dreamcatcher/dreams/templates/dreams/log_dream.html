@@ -220,6 +220,15 @@
         <input type="submit" value="Enter">
     </form>
     <section class="content">
+            {% if messages %}
+        <div class="alert alert-success">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         <div class="centered-text">
             <div id="loading-container" style="display: none; text-align: center;">
                 <div id="loading-content">
@@ -235,15 +244,6 @@
             <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/ro/playlist/dreamcatching/pl.u-BNA6rMJF1NLNW5V"></iframe>
         </div>
     </section>
-    {% if messages %}
-    <div class="alert alert-success">
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
     <footer>
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
