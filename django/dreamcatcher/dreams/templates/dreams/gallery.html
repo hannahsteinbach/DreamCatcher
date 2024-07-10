@@ -171,10 +171,16 @@
             width: 100%;
         }
         .dream-date {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 5px;
             color: #3D3D3D;
+        }
+        .dream-user {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #7851a9;
         }
         .dream-content {
             font-size: 16px;
@@ -189,7 +195,7 @@
             user-select: none;
         }
         .menu .icon {
-            font-size: 18px;
+            font-size: 30px;
             font-weight: bold;
         }
         .menu-content {
@@ -400,10 +406,13 @@
                 {% if dream.shared %}
                     {% if not query or query|lower in dream.content|lower %}
                         <div class="dream">
-                            <h3 class="dream-date">{{ dream.date }}</h3>
+                            {% if dream.title %}
+                            <h2 class="dream-title">{{ dream.title }}</h2>
+                            {% endif %}
                             {% if not dream.anon %}
                                 <h2 class="dream-user">@{{ dream.user }}</h2>
                             {% endif %}
+                            <h3 class="dream-date">{{ dream.date }}</h3>
                             <p class="dream-content">
                                 {% autoescape off %}
                                 {{ dream.content|safe|highlight:query }}
