@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from langchain_community.llms import ollama
-from django.contrib.auth import get_user_model
 import json
 
 class Dream(models.Model):
@@ -10,7 +9,6 @@ class Dream(models.Model):
         ('1', 'Mundane Dream'),
         ('2', 'Lucid Dream'),
         ('3', 'Existential Dream'),
-        ('4', 'None'),
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
@@ -20,7 +18,7 @@ class Dream(models.Model):
     processed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
     keywords = models.JSONField(default=list, blank=True)
-    classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='4')
+    classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='')
     characters = models.JSONField(default=list, blank=True)
     places = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)

@@ -198,7 +198,8 @@ def gallery(request):
     #     dreams = dreams.filter(content__icontains=query) - > for substring
 
     if query:
-        dreams = dreams.filter(Q(content__iregex=r'\b{}\b'.format(re.escape(query))))  # query for whole word
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query), re.escape(query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if class_query:
         dreams = dreams.filter(classification=class_query)
@@ -207,10 +208,14 @@ def gallery(request):
         dreams = dreams.filter(emotion=emotion_query)
 
     if keyword_query:
-        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(keyword_query), re.escape(keyword_query),
+                                                       re.escape(keyword_query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if character_query:
-        dreams = dreams.filter(characters__icontains=character_query)
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(character_query), re.escape(character_query),
+                                                       re.escape(character_query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
@@ -261,9 +266,11 @@ def dream_journal(request):
 
         # if query:
         #     dreams = dreams.filter(content__icontains=query) - > for substring
+    # find also plural forms and possesive forms
 
     if query:
-        dreams = dreams.filter(Q(content__iregex=r'\b{}\b'.format(re.escape(query))))  # query for whole word
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query), re.escape(query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if class_query:
         dreams = dreams.filter(classification=class_query)
@@ -272,10 +279,12 @@ def dream_journal(request):
         dreams = dreams.filter(emotion=emotion_query)
 
     if keyword_query:
-        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(keyword_query), re.escape(keyword_query), re.escape(keyword_query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if character_query:
-        dreams = dreams.filter(characters__icontains=character_query)
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(character_query), re.escape(character_query), re.escape(character_query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
@@ -426,7 +435,8 @@ def personal_statistics(request):
     for dream in dreams:
         all_characters.extend(dream.characters)
 
-    characters_counted = Counter(all_characters)
+    normalized_characters = [character.lower() for character in all_characters]
+    characters_counted = Counter(normalized_characters)
 
     top_10_characters = characters_counted.most_common(10)
 

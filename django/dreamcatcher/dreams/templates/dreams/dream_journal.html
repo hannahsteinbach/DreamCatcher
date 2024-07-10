@@ -165,7 +165,7 @@
             user-select: none;
         }
         .menu .icon {
-            font-size: 18px;
+            font-size: 30px;
             font-weight: bold;
         }
         .menu-content {
@@ -453,6 +453,12 @@
                     <button type="submit">Add to favorites</button>
                 </form>
                 {% endif %}
+                {% if dream.title%}
+                <form action="{% url 'dreams:choose_title' dream.id %}" method="get" style="display:inline;">
+                    {% csrf_token %}
+                     <button type="submit">Choose new title</button>
+                </form>
+                {%endif%}
                 {% if dream.user == request.user %}
                 {% if dream.shared %}
                 <form action="{% url 'dreams:unshare_dream' dream.id %}" method="post" style="display:inline;">

@@ -365,19 +365,11 @@
     </div>
     <div class="dream">
         <h3>Top 10 Characters</h3>
-        <ul>
-            {% for character,count in top_10_characters %}
-            <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
-                <input type="hidden" name="character" value="{{ character }}">
-                        <button type="submit">{{ character }}</button>
-            </form> {% if count == 1%}
-                    {{count}} occurrence
-                    {% else %}
-                    {{count}} occurrences
-                    {% endif %}
-                    </li>
-            {%endfor%}
-        </ul>
+                {% if plot_data %}
+            <img src="data:image/png;base64,{{ plot_data }}" alt="Top 10 Characters Plot">
+        {% else %}
+            <p>No data available to plot.</p>
+        {% endif %}
     </div>
     <div class="dream">
         <h3>Top 10 Places</h3>
