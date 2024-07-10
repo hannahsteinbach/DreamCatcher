@@ -39,7 +39,9 @@ for index, row in filtered_df.iterrows():
         user.save()
 
     # Create a random date for the dream
-    random_date = datetime.fromtimestamp(random.randint(1, int(datetime.now().timestamp())))
+    start_date = datetime(1970, 1, 1)
+    random_timestamp = random.randint(int(start_date.timestamp()), int(datetime.now().timestamp()))
+    random_date = datetime.fromtimestamp(random_timestamp)
 
     # Create Dream object
     dream = Dream(
