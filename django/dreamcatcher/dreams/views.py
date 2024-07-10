@@ -15,7 +15,10 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from collections import Counter
 import re
-
+from django.db.models import Count
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
 
 logger = logging.getLogger(__name__)
 
@@ -438,7 +441,30 @@ def personal_statistics(request):
     normalized_characters = [character.lower() for character in all_characters]
     characters_counted = Counter(normalized_characters)
 
-    top_10_characters = characters_counted.most_common(10)
+    characters_counted = dict(Counter(normalized_characters))
+
+    top_10_characters = dict(Counter(characters_counted).most_common(10))
+
+    labels = list(top_10_characters.keys())
+    counts = list(top_10_characters.values())
+
+    # Plotting with Matplotlib
+    plt.figure(figsize=(6, 3))
+    plt.gca().set_facecolor('#f0f0f0')
+    plt.bar(labels, counts, color='skyblue')
+
+    plt.xticks(rotation=45)
+    plt.tick_params(axis='both', which='major', labelsize=10, labelcolor='black')
+
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+
+    # Save plot to a bytes buffer
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png', transparent=True)
+    buffer.seek(0)
+    plot_data = base64.b64encode(buffer.getvalue()).decode()
+    buffer.close()
 
     # places
     all_places = []
@@ -466,6 +492,7 @@ def personal_statistics(request):
         'anger_count': anger_count,
         'apprehension_count': apprehension_count,
         'sadness_count': sadness_count,
+        'plot_data': plot_data,
         'confusion_count': confusion_count,
         'happiness_count': happiness_count,
         'none_emotion_count': none_emotion_count,

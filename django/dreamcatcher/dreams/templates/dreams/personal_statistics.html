@@ -27,6 +27,7 @@
             text-align: center;
             margin-top: 20px;
             margin-left: 180px;
+            margin-bottom: 20px;
             z-index: 2;
             position: relative;
         }
@@ -350,7 +351,7 @@
     <div class="dream">
         <h3>Top 10 Keywords</h3>
         <ul>
-            {% for keyword,count in top_10_keywords %}
+            {% for keyword,count in top_10_keywords.items %}
             <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
                 <input type="hidden" name="keyword" value="{{ keyword }}">
                         <button type="submit">{{ keyword }}</button>
@@ -365,11 +366,24 @@
     </div>
     <div class="dream">
         <h3>Top 10 Characters</h3>
-                {% if plot_data %}
-            <img src="data:image/png;base64,{{ plot_data }}" alt="Top 10 Characters Plot">
-        {% else %}
-            <p>No data available to plot.</p>
-        {% endif %}
+            {% if plot_data %}
+                <img src="data:image/png;base64,{{ plot_data }}" alt="Top 10 Characters Plot">
+            {% else %}
+                <p>No data available to plot.</p>
+            {% endif %}
+                <ul>
+            {% for character,count in top_10_characters.items %}
+            <li><form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
+                <input type="hidden" name="character" value="{{ character }}">
+                        <button type="submit">{{ character }}</button>
+            </form> {% if count == 1%}
+                    {{count}} occurrence
+                    {% else %}
+                    {{count}} occurrences
+                    {% endif %}
+                    </li>
+            {%endfor%}
+        </ul>
     </div>
     <div class="dream">
         <h3>Top 10 Places</h3>
