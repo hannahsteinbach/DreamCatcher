@@ -16,6 +16,7 @@ header, nav, main, footer {
     background-color: white;
     color:rgba(103, 96, 240);
     width: auto;
+    text-decoration: none;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -27,7 +28,11 @@ header, nav, main, footer {
     background-color: rgba(103, 96, 240, 0.88);
     color:white;
     width: auto;
-    transition: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+
 }
 
 header {
