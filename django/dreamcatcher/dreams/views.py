@@ -194,13 +194,11 @@ def gallery(request):
     character_query = request.GET.get('character', '')
     place_query = request.GET.get('place', '')
 
-
-    # if query:
-    #     dreams = dreams.filter(content__icontains=query) - > for substring
+    for dream in dreams:
+        dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
 
     if query:
-        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query), re.escape(query))
-        dreams = dreams.filter(Q(content__iregex=regex_pattern))
+        dreams = dreams.filter(Q(content__iregex=r'\b{}\b'.format(re.escape(query))))  # query for whole word
 
     if class_query:
         dreams = dreams.filter(classification=class_query)
@@ -209,19 +207,13 @@ def gallery(request):
         dreams = dreams.filter(emotion=emotion_query)
 
     if keyword_query:
-        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(keyword_query), re.escape(keyword_query),
-                                                       re.escape(keyword_query))
-        dreams = dreams.filter(Q(content__iregex=regex_pattern))
+        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
     if character_query:
-        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(character_query), re.escape(character_query),
-                                                       re.escape(character_query))
-        dreams = dreams.filter(Q(content__iregex=regex_pattern))
+        dreams = dreams.filter(characters__icontains=character_query)
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
-
-    dreams = dreams.order_by('-date', '-id') # order by date, get most recent dream at the top (also considers time)
 
     context = {
         'dreams': dreams,
@@ -241,7 +233,6 @@ def like_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
 
     DreamLike.objects.create(user=request.user, dream=dream)
-
     return redirect(request.META.get('HTTP_REFERER', 'dreams:gallery'))
 
 @login_required
@@ -252,7 +243,7 @@ def unlike_dream(request, dream_id):
 
     if existing_like:
         existing_like.delete()
-
+    print("unlike dream:", dream)
     return redirect(request.META.get('HTTP_REFERER', 'dreams:gallery'))
 
 
@@ -358,9 +349,7 @@ def view_liked(request):
     query = request.GET.get('q', '')
 
     liked_dream_likes = DreamLike.objects.filter(user=request.user)
-
     liked_dreams = [dream_like.dream for dream_like in liked_dream_likes]
-
     for dream in liked_dreams:
         dream.is_liked_by_user = True
         dream.likes_count = dream.likes_count
