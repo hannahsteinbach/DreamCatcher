@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import datetime
 from langchain_community.llms import ollama
 import json
 
@@ -12,6 +14,7 @@ class Dream(models.Model):
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
+    time = models.TimeField()
     content = models.TextField()
     shared = models.BooleanField(default=False)
     anon = models.BooleanField(default=False)
@@ -54,7 +57,6 @@ class Dream(models.Model):
         try:
             # response generation
             response = llm.invoke(dream_prompt)
-            print(response)
             response = json.loads(response)
 
             # metadata extraction
@@ -76,6 +78,7 @@ class Dream(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
+            self.combine_date_time()
             self.add_metadata()
         super().save(*args, **kwargs)
 
@@ -84,6 +87,10 @@ class Dream(models.Model):
 
     def liked_users(self):
         return [like.user for like in self.likes.all()]
+
+    def combine_date_time(self):
+        # Combine date and time into a datetime object
+        self.datetime = datetime.combine(self.date, self.time)
 
     def classification_string(self):
         return dict(self.classification_options).get(self.classification, "No classification")

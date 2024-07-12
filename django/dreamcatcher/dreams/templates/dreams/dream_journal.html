@@ -277,10 +277,6 @@
             letter-spacing: inherit;
             color: white;
         }
-        .button:hover {
-            background-color: rgba(103, 96, 240);
-            color: #ffffff;
-        }
         .buttons-container {
             display: flex;
             gap: 12px;
@@ -379,13 +375,13 @@
 </div>
 <div class="dreams">
     {% if dreams %}
-    {% for dream in dreams|dictsortreversed:"date" %}
+    {% for dream in dreams%}
     {% if not query or query|lower in dream.content|lower %}
     <div class="dream">
         {% if dream.title %}
             <h2 class="dream-title">{{ dream.title }}</h2>
         {% endif %}
-        <h3 class="dream-date">{{ dream.date }}</h3>
+        <h3 class="dream-date">{{ dream.date }}—{{ dream.time }}</h3>
         <p class="dream-content">
             {% autoescape off %}
             {{ dream.content|safe|highlight:query }}
@@ -432,7 +428,9 @@
             {%endif%}
         </p>
         <p class="keyword-form">
+            {%if dream.keywords%}
             Keywords:
+            {%endif%}
             {% for keyword in dream.keywords %}
             <form class="keyword-form" method="get" action="{% url 'dreams:dream_journal' %}">
                 <input type="hidden" name="keyword" value="{{ keyword }}">

@@ -73,7 +73,7 @@
             text-align: center;
             margin-top: 20px;
             margin-left: 180px;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             z-index: 2;
             position: relative;
         }
@@ -131,7 +131,20 @@
         }
 
         #id_date {
-            width: 50%;
+            width: 35%;
+            padding: 10px;
+            margin-right: 5px;
+            font-size: 14px;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            background-color: #ffffff;
+            cursor: pointer;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+        }
+        #id_time{
+            width: 35%;
             padding: 10px;
             font-size: 14px;
             border: 1px solid #ffffff;
@@ -207,7 +220,7 @@
     </div>
     <form class="chat-form" method="post", onsubmit="return handleSubmit()">
         {% csrf_token %}
-        <input type="date" id="id_date" name="date">
+        <input type="date" id="id_date" name="date"><input type="time" id="id_time" name="time">
         <textarea id="content" name="content" placeholder="What have you been dreaming about lately?" rows="4"></textarea>
         <select id="classification" name="classification">
             <option value="">Classify your dream</option>

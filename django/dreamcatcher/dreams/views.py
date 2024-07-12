@@ -118,6 +118,7 @@ def edit_dream(request, dream_id):
         if form.is_valid():
             dream_ac = form.cleaned_data['content']
             dream_date = form.cleaned_data['date']
+            dream_time = form.cleaned_data['time']
             if dream_date > date.today():
                 form.add_error('date', 'The date cannot be in the future.')
             elif dream_date < date(1970, 1, 1):
@@ -125,6 +126,7 @@ def edit_dream(request, dream_id):
 
             if not form.errors:
                 dream.date = dream_date
+                dream.time = dream_time
                 dream.classification = form.cleaned_data['classification']
                 if dream_bc != dream_ac:
                     dream.content = dream_ac
@@ -214,7 +216,8 @@ def gallery(request):
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
-        
+
+
     context = {
         'dreams': dreams,
         'query': query,
@@ -282,6 +285,7 @@ def dream_journal(request):
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
+    dreams = dreams.order_by('-date', '-time')
 
     context = {
         'dreams': dreams,
@@ -302,7 +306,7 @@ def view_favorite(request):
 
     if query:
         dreams = dreams.filter(content__icontains=query)
-
+    dreams = dreams.order_by('-date', '-time')
     context = {
         'dreams': dreams,
         'query': query,
@@ -317,6 +321,8 @@ def view_shared(request):
 
     if query:
         dreams = dreams.filter(content__icontains=query)
+
+    dreams = dreams.order_by('-date', '-time')
 
     context = {
         'dreams': dreams,
@@ -333,6 +339,8 @@ def view_own_shared(request):
 
     if query:
         dreams = dreams.filter(content__icontains=query)
+
+    dreams = dreams.order_by('-date', '-time')
 
     context = {
         'dreams': dreams,
