@@ -214,7 +214,7 @@ def gallery(request):
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
-
+        
     context = {
         'dreams': dreams,
         'query': query,
@@ -282,8 +282,6 @@ def dream_journal(request):
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
-
-    dreams = dreams.order_by('-date', '-id') # order by date, get most recent dream at the top (also considers time)
 
     context = {
         'dreams': dreams,
