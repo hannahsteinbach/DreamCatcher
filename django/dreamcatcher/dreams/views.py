@@ -194,8 +194,6 @@ def gallery(request):
     character_query = request.GET.get('character', '')
     place_query = request.GET.get('place', '')
 
-    for dream in dreams:
-        dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
 
     # if query:
     #     dreams = dreams.filter(content__icontains=query) - > for substring
@@ -222,6 +220,8 @@ def gallery(request):
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
+
+    dreams = dreams.order_by('-date', '-id') # order by date, get most recent dream at the top (also considers time)
 
     context = {
         'dreams': dreams,
@@ -291,6 +291,8 @@ def dream_journal(request):
 
     if place_query:
         dreams = dreams.filter(places__icontains=place_query)
+
+    dreams = dreams.order_by('-date', '-id') # order by date, get most recent dream at the top (also considers time)
 
     context = {
         'dreams': dreams,

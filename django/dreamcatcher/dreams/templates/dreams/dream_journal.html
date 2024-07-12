@@ -379,7 +379,7 @@
 </div>
 <div class="dreams">
     {% if dreams %}
-    {% for dream in dreams|dictsortreversed:"date" %}
+    {% for dream in dreams%}
     {% if not query or query|lower in dream.content|lower %}
     <div class="dream">
         {% if dream.title %}

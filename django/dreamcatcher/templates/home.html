@@ -4,16 +4,24 @@
 
 
 {% block content %}
+
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
     <div class="container">
-    <h2>What would you like to do?</h2>
-    <nav class="menu">
-        <ul class="grid-menu">
-            <li class="button"><a href="{% url 'dreams:log_dream' %}" class="no-underline full-button">Log a new dream</a></li>
-            <li class="button"><a href="{% url 'dreams:gallery' %}" class="no-underline full-button">Look at the Dream Gallery</a></li>
-            <li class="button"><a href="{% url 'dreams:dream_journal'%}" class="no-underline full-button">Browse your dream journal</a></li>
-            <li class="button"><a href="{% url 'dreams:personal_statistics' %}" class="no-underline full-button">Check your personal statistics</a></li>
-        </ul>
-    </nav>
-</div>
+        <h2>What would you like to do?</h2>
+        <nav class="menu">
+            <ul class="grid-menu">
+                <li class="button"><a href="{% url 'dreams:log_dream' %}" class="no-underline full-button"><b>Log a new dream</b></a></li>
+                <li class="button"><a href="{% url 'dreams:gallery' %}" class="no-underline full-button"><b>Look at the Dream Gallery</b></a></li>
+                <li class="button"><a href="{% url 'dreams:dream_journal'%}" class="no-underline full-button"><b>Browse your dream journal</b></a></li>
+                <li class="button"><a href="{% url 'dreams:personal_statistics' %}" class="no-underline full-button"><b>Check your personal statistics</b></a></li>
+            </ul>
+        </nav>
+        <section id="more-info">
+            <h2>Learn about the functionalities</h2>
+            <p>Log a new dream: </p>
+            <p>The dream journal: </p>
+            <p>The dream gallery: </p>
+            <p>Your personal statistics: </p>
+        </section>
+    </div>
 {% endblock %}

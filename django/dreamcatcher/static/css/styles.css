@@ -57,3 +57,19 @@ footer {
     color: #6c757d;
 }
 
+#more-info {
+    padding: 20px;
+    margin-top: 50px;
+    border: 3px solid #5a1a8b;
+    border-top: 0;
+    border-bottom: 0;
+    border-radius: 25px;
+    color: #5a1a8b;
+    box-sizing: border-box;
+    width: 100%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.2vw;
+    line-height: 1.5;
+}
+
+
