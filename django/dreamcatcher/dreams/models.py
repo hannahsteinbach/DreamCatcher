@@ -78,7 +78,6 @@ class Dream(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.combine_date_time()
             self.add_metadata()
         super().save(*args, **kwargs)
 
@@ -87,10 +86,6 @@ class Dream(models.Model):
 
     def liked_users(self):
         return [like.user for like in self.likes.all()]
-
-    def combine_date_time(self):
-        # Combine date and time into a datetime object
-        self.datetime = datetime.combine(self.date, self.time)
 
     def classification_string(self):
         return dict(self.classification_options).get(self.classification, "No classification")
