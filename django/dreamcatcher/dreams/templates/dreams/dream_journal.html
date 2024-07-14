@@ -443,42 +443,42 @@
             <div class="menu-content">
                 <a href="{% url 'dreams:edit_dream' dream.id %}">Edit dream</a>
                 {% if dream.is_favorite %}
+                <a href="{% url 'dreams:remove_from_favorites' dream.id %}">Remove from favorites</a>
                 <form action="{% url 'dreams:remove_from_favorites' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Remove from favorites</button>
                 </form>
                 {% else %}
+                <a href="{% url 'dreams:add_to_favorites' dream.id %}">Add to favorites</a>
                 <form action="{% url 'dreams:add_to_favorites' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Add to favorites</button>
                 </form>
                 {% endif %}
                 {% if dream.title%}
+                <a href="{% url 'dreams:choose_title' dream.id %}">Choose new title</a>
                 <form action="{% url 'dreams:choose_title' dream.id %}" method="get" style="display:inline;">
                     {% csrf_token %}
-                     <button type="submit">Choose new title</button>
                 </form>
                 {%endif%}
                 {% if dream.user == request.user %}
                 {% if dream.shared %}
+                <a href="{% url 'dreams:unshare_dream' dream.id %}">Unshare dream</a>
                 <form action="{% url 'dreams:unshare_dream' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Unshare dream</button>
                 </form>
                 {% else %}
+                <a href="{% url 'dreams:share_dream' dream.id %}">Share dream</a>
                 <form action="{% url 'dreams:share_dream' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Share dream</button>
                 </form>
+                <a href="{% url 'dreams:share_dream_anon' dream.id %}">Share dream anonymously</a>
                  <form action="{% url 'dreams:share_dream_anon' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Share dream anonymously</button>
                 </form>
                 {% endif %}
                 {% endif %}
+                <a href="{% url 'dreams:delete_dream' dream.id %}">Remove dream from journal</a>
                 <form action="{% url 'dreams:delete_dream' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit">Remove dream from journal</button>
                 </form>
             </div>
         </div>

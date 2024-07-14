@@ -16,6 +16,8 @@ from django.shortcuts import get_object_or_404
 from collections import Counter
 import re
 from django.db.models import Count
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
