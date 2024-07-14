@@ -1,86 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👤</text></svg>">
+    <title>Sign Up</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
 
         body {
-            background-color: #E6E6FA;
+            background: linear-gradient(to right, #e7c3f1, #cdb4eb, #b9c9ec, #e6eeff);
+            background-size: 600% 600%;
+            animation: gradientAnimation 9s ease infinite;
             color: #3D3D3D;
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .signup-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 50px;
-            background-color: #f8f9fa;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
         }
         .signup-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-size: 24px;
-            font-weight: bold;
+            color: rgba(103, 96, 240);
+            font-family: 'Manrope', sans-serif;
         }
         .signup-container label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             font-weight: bold;
+            color: #3d1e54;
         }
         .signup-container input[type="text"],
         .signup-container input[type="email"],
         .signup-container input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 16px;
+            font-family: 'Manrope', sans-serif;
         }
         .signup-container input[type="submit"] {
             width: 100%;
-            padding: 10px;
-            background-color: #BECDDE;
-            border: 1px solid #ccc;
+            padding: 12px;
+            background-color: rgba(103, 96, 240);
+            border: none;
             border-radius: 5px;
-            color: #3D3D3D;
-            font-size: 16px;
-            font-weight: bold;
+            color: white;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-family: 'Manrope', sans-serif;
         }
-        .error-message {
-            color: red;
-            font-size: 12px;
+        .signup-container input[type="submit"]:hover {
+            background-color: rgba(103, 96, 240, 0.659);
+            font-family: 'Manrope', sans-serif;
+        }
+        .error-message ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            color: #4d419a;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="signup-container">
-        <h2>Create a new account✍🏽</h2>
+        <h2>Create a new account ✍🏽</h2>
         <form method="post">
             {% csrf_token %}
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
             {% if form.username.errors %}
-                <p class="error-message">{{ form.username.errors }}</p>
+                <div class="error-message">
+                    <ul>
+                        {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email">
             {% if form.email.errors %}
-                <p class="error-message">{{ form.email.errors }}</p>
+                <div class="error-message">
+                    <ul>
+                        {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
             <label for="password1">Password:</label>
             <input type="password" id="password1" name="password1" placeholder="Enter your password">
             {% if form.password1.errors %}
-                <p class="error-message">{{ form.password1.errors }}</p>
+                <div class="error-message">
+                    <ul>
+                        {% for error in form.password1.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
             <label for="password2">Confirm Password:</label>
             <input type="password" id="password2" name="password2" placeholder="Enter the same password as before, for verification">
             {% if form.password2.errors %}
-                <p class="error-message">{{ form.password2.errors }}</p>
+                <div class="error-message">
+                    <ul>
+                        {% for error in form.password2.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
             <input type="submit" value="Sign up">
         </form>
