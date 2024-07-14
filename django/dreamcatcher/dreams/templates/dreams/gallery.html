@@ -383,7 +383,7 @@
                             {% if not dream.anon %}
                                 <h2 class="dream-user">@{{ dream.user }}</h2>
                             {% endif %}
-                            <h3 class="dream-date">{{ dream.date }}—{{ dream.time }}</h3>
+                            <h3 class="dream-date">{{ dream.date }}</h3>
                             <p class="dream-content">
                                 {% autoescape off %}
                                 {{ dream.content|safe|highlight:query }}

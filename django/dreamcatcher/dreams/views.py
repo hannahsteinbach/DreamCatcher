@@ -105,8 +105,7 @@ def choose_title(request, dream_id):
 @login_required
 def delete_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
-    if request.method == 'POST':
-        dream.delete()
+    dream.delete()
     return redirect('dreams:dream_journal')
 
 
@@ -248,7 +247,6 @@ def unlike_dream(request, dream_id):
 
     if existing_like:
         existing_like.delete()
-    print("unlike dream:", dream)
     return redirect(request.META.get('HTTP_REFERER', 'dreams:gallery'))
 
 

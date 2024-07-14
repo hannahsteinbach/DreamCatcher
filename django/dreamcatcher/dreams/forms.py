@@ -10,11 +10,10 @@ class DreamForm(forms.ModelForm):
     current_day = date.today()
     current_year = current_day.year
     date = forms.DateField(label='Date', widget=forms.SelectDateWidget(years=range(1970, current_year+1)), required=False)
-    time = forms.TimeField(label='Time', widget=TimeInput(format='%H:%M'), required=False)
 
     class Meta:
         model = Dream
-        fields = ['date', 'time', 'content', 'classification']
+        fields = ['date', 'content', 'classification']
 
 
 class DateForm(forms.ModelForm):

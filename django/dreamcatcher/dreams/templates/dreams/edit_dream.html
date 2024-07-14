@@ -21,19 +21,6 @@
             justify-content: space-between;
             align-items: center;
         }
-        .header {
-            background: #FFFFFF;
-            color: #3D3D3D;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 40%;
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            margin-left: 180px;
-            z-index: 2;
-            position: relative;
-        }
         .sidenav {
             height: 100%;
             width: 180px;
@@ -41,20 +28,16 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: rgba(103, 96, 240, 0.224);
+            background-color: rgba(0,0,0,0.1);
             overflow-x: hidden;
             padding-top: 50px;
         }
         .sidenav a {
             padding: 6px 8px 6px 18px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             color: #3D3D3D;
             display: block;
-            border-bottom: 1px solid #ddd;
-        }
-        .sidenav a:last-child {
-            border-bottom: none;
         }
         .sidenav a:hover {
             color: black;
@@ -62,57 +45,60 @@
         .container {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: flex-start;
             width: calc(100% - 200px);
-            max-width: 1200px;
+            height: calc(100vh - 150px);
+            margin-left: 200px;
+            z-index: 1;
         }
         .container h2 {
             margin-top: 0;
         }
-        .button {
+        .header {
+            background: #FFFFFF;
+            border-radius: 10px;
+            color: #3D3D3D;
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            margin-left: 230px;
+            margin-bottom: 40px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-container input[type="text"],
+        .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .form-container button[type="submit"] {
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: rgba(103, 96, 240, 0.5);
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-family: 'Manrope', inherit;
-            margin-left: 180px;
-            letter-spacing: inherit;
+            background-color: #1e3047;
             color: white;
-        }
-        .button:hover {
-            background-color: rgba(103, 96, 240);
-            text-decoration: none;
-            color: #ffffff;
-        }
-        .button-container {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
-        .button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(103, 96, 240, 0.5);
-            font-size: 14px;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
-            font-family: 'Manrope', inherit;
-            margin-left: 180px;
-            letter-spacing: inherit;
-            color: white;
+            font: inherit;
         }
-        .buttons-container {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 10px;
-            margin-top: 20px;
+        .form-container button[type="submit"]:hover {
+            background-color: #BECDDE;
         }
     </style>
 </head>

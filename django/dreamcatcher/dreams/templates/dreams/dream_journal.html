@@ -381,7 +381,7 @@
         {% if dream.title %}
             <h2 class="dream-title">{{ dream.title }}</h2>
         {% endif %}
-        <h3 class="dream-date">{{ dream.date }}—{{ dream.time }}</h3>
+        <h3 class="dream-date">{{ dream.date }}</h3>
         <p class="dream-content">
             {% autoescape off %}
             {{ dream.content|safe|highlight:query }}
@@ -476,8 +476,8 @@
                 </form>
                 {% endif %}
                 {% endif %}
-                <a href="{% url 'dreams:delete_dream' dream.id %}">Remove dream from journal</a>
-                <form action="{% url 'dreams:delete_dream' dream.id %}" method="post" style="display:inline;">
+                <a href="{% url 'dreams:delete_dream' dream.id %}" onclick="return confirm('Are you sure you want to remove the dream?');">Remove dream from journal</a>
+                <form action="{% url 'dreams:delete_dream' dream.id %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to remove the dream?');">
                     {% csrf_token %}
                 </form>
             </div>
