@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖋️</text></svg>">
+    <title>{% block title %}Log a Dream{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.1);
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 18px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #3D3D3D;
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidenav a:last-child {
+            border-bottom: none;
+        }
+        .sidenav a:hover {
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: calc(100% - 200px);
+            margin-left: 200px;
+            margin-top: 30px;
+            z-index: 1;
+            max-width: 1200px;
+            margin-left: 180px;
+            margin: 0 auto;
+        }
+        .container h2 {
+            margin-top: 0;
+        }
+        .header {
+            background: #FFFFFF;
+            color: #3D3D3D;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 180px;
+            margin-bottom: 40px;
+            z-index: 2;
+            position: relative;
+        }
+        .playlist-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-left: 200px;
+        }
+        .playlist-container iframe {
+            border-radius: 12px;
+            width: 45%;
+            height: 352px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .show-playlists .playlist-container {
+            display: flex;
+        }
+
+        .centered-text {
+            text-align: center;
+            margin-left: 200px;
+            font-family: 'Manrope', 'sans-serif';
+        }
+    </style>
+</head>
+<body>
+    <div class="sidenav">
+        <a href="/">Home</a>
+        <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
+        <a href="{% url 'dreams:log_dream' %}"><b>Log a dream</b></a>
+        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+        <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
+        <a href="{% url 'logout' %}">Log out</a>
+    </div>
+    <div class="header">
+        <h2>Choose an emotion 🎭 </h2>
+    </div>
+    <section class="content">
+        <div class="centered-text">
+                <p>Determine the prevalent emotion for this dream:</p>
+                {% for emotion in dream.emotion_options %}
+                    <form class="keyword-form" method="post" action="{% url 'dreams:choose_emotion' dream.id %}">
+                        {% csrf_token %}
+                        <br>
+                        {% if emotion == ''%}
+                            <button type="submit" name="emotion" value="{{ emotion }}">none</button>
+                        {%else%}
+                            <button type="submit" name="emotion" value="{{ emotion }}">{{ emotion }}</button>
+                        {%endif%}
+                        <br>
+                    </form>
+                {% endfor %}
+           </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
+    </footer>
+</body>
+</html>

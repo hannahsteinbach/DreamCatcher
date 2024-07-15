@@ -25,6 +25,7 @@ class Dream(models.Model):
     characters = models.JSONField(default=list, blank=True)
     places = models.JSONField(default=list, blank=True)
     emotion = models.CharField(max_length=20, blank=True)
+    emotion_options = ['anger', 'apprehension', 'sadness', 'confusion', 'happiness', '']
     optional_titles = models.JSONField(default=list, blank=True)
     title = models.TextField(blank=True)
 
@@ -64,7 +65,6 @@ class Dream(models.Model):
             self.keywords = response.get('keywords', [])
             self.emotion = response.get('emotion', "")
             self.characters = response.get('characters', [])
-            print(response)
             self.places = response.get('places', [])
             self.processed = True
         except (json.JSONDecodeError, KeyError) as e:

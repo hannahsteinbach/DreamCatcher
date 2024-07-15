@@ -458,6 +458,10 @@
                 <form action="{% url 'dreams:choose_title' dream.id %}" method="get" style="display:inline;">
                     {% csrf_token %}
                 </form>
+                <a href="{% url 'dreams:choose_emotion' dream.id %}">Choose emotion</a>
+                <form action="{% url 'dreams:choose_emotion' dream.id %}" method="get" style="display:inline;">
+                    {% csrf_token %}
+                </form>
                 {%endif%}
                 {% if dream.user == request.user %}
                 {% if dream.shared %}
@@ -477,8 +481,8 @@
                 {% endif %}
                 {% endif %}
                 <a href="{% url 'dreams:delete_dream' dream.id %}" onclick="return confirm('Are you sure you want to remove the dream?');">Remove dream from journal</a>
-                <form action="{% url 'dreams:delete_dream' dream.id %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to remove the dream?');">
-                    {% csrf_token %}
+                    <form action="{% url 'dreams:delete_dream' dream.id %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to remove the dream?');">
+                        {% csrf_token %}
                 </form>
             </div>
         </div>
