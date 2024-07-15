@@ -465,7 +465,7 @@
                 </form>
                 {% if dream.user == request.user %}
                 {% if dream.shared %}
-                <a href="{% url 'dreams:unshare_dream' dream.id %}">Unshare dream</a>
+                <a href="{% url 'dreams:unshare_dream' dream.id %}" onclick="return confirm('Are you sure you want to unshare the dream? All associated likes and comments will be lost.');">Unshare dream</a>
                 <form action="{% url 'dreams:unshare_dream' dream.id %}" method="post" style="display:inline;">
                     {% csrf_token %}
                 </form>

@@ -191,11 +191,10 @@ def unshare_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = False
     dream.save(update_fields=['shared'])
-    existing_like = DreamLike.objects.filter(user=request.user, dream=dream).first()
 
-    if existing_like:
-        existing_like.delete()
-   # messages.success(request, 'Dream unshared successfully!')
+    DreamLike.objects.filter(dream=dream).delete() # remove all likes associated with dream
+
+    Comment.objects.filter(dream=dream).delete() # remove all comments associated with deram
     return redirect('dreams:dream_journal')
 
 
