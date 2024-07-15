@@ -590,7 +590,8 @@ class CustomPasswordResetView(PasswordResetView):
 def home_logged_in(request):
     user = request.user
     dreams = Dream.objects.filter(user=user)
-    show_tutorial = user.is_new
+    # show_tutorial = user.is_new
+    show_tutorial = True # just put this as true as a default for testing
     if show_tutorial:
         user.is_new = False
         user.save()
