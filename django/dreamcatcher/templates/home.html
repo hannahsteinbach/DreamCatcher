@@ -186,15 +186,15 @@
             <p>Let's take a journey into your subconscious 🗺️</p>
             <div class="stats">
                 <div class="stat">
-                    <h3>Dreams Logged</h3>
+                    <h3><a href="{% url 'dreams:dream_journal'%}" style="text-decoration: none; color: inherit;">Dreams logged</a></h3>
                     <p>{{ dream_count }}</p>
                 </div>
                 <div class="stat">
-                    <h3>Dreams Liked</h3>
+                    <h3><a href="{% url 'dreams:view_liked' %}" style="text-decoration: none; color: inherit;"  >Dreams liked</a></h3>
                     <p>{{ liked_count }}</p>
                 </div>
                 <div class="stat">
-                    <h3>Dreams Shared</h3>
+                    <h3><a href="{% url 'dreams:view_own_shared' %}" style="text-decoration: none; color: inherit;">Dreams shared</a></h3>
                     <p>{{ shared_count }}</p>
                 </div>
                 <div class="stat">
