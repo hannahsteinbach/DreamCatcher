@@ -453,7 +453,7 @@
                     {% csrf_token %}
                 </form>
                 {% endif %}
-                {% if dream.optional_title%}
+                {% if dream.optional_titles%}
                 <a href="{% url 'dreams:choose_title' dream.id %}">Choose new title</a>
                 <form action="{% url 'dreams:choose_title' dream.id %}" method="get" style="display:inline;">
                     {% csrf_token %}
