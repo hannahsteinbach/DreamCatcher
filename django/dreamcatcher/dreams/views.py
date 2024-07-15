@@ -70,8 +70,8 @@ def log_dream(request):
                 dream.date = dream_date
                 dream.save()
                 return redirect('dreams:choose_title', dream_id=dream.id)
-        else:
-            messages.error(request, "Failed to log your dream. Please correct the errors below.")
+        #else:
+         #   messages.error(request, "Failed to log your dream. Please correct the errors below.")
 
     else:
         form = DateForm(initial={'date': date.today()})
@@ -95,8 +95,8 @@ def choose_title(request, dream_id):
                     return redirect('dreams:choose_emotion', dream_id=dream.id)
                 else:
                     return redirect('dreams:dream_journal')
-            else:
-                messages.error(request, 'Please select a title.')
+          #  else:
+           #     messages.error(request, 'Please select a title.')
     return render(request, 'dreams/choose_title.html', {'dream': dream})
 
 @login_required
@@ -153,7 +153,7 @@ def add_to_favorites(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.is_favorite = True
     dream.save(update_fields=['is_favorite'])
-    messages.success(request, 'Dream was successfully added to favorites!')
+    #messages.success(request, 'Dream was successfully added to favorites!')
     # all messages dont work
     return redirect(request.META.get('HTTP_REFERER', 'dreams:dream_journal'))
 
@@ -163,7 +163,7 @@ def remove_from_favorites(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.is_favorite = False
     dream.save(update_fields=['is_favorite'])
-    messages.success(request, 'Dream was successfully removed from favorites!')
+    #messages.success(request, 'Dream was successfully removed from favorites!')
     return redirect(request.META.get('HTTP_REFERER', 'dreams:dream_journal'))
 
 @login_required
@@ -173,7 +173,7 @@ def share_dream(request, dream_id):
     dream.anon = False
     dream.save(update_fields=['shared'])
     dream.save(update_fields=['anon'])
-    messages.success(request, 'Dream shared successfully!')
+   # messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
 @login_required
@@ -183,7 +183,7 @@ def share_dream_anon(request, dream_id):
     dream.anon = True
     dream.save(update_fields=['shared'])
     dream.save(update_fields=['anon'])
-    messages.success(request, 'Dream shared successfully!')
+  #  messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
 @login_required
@@ -191,7 +191,11 @@ def unshare_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = False
     dream.save(update_fields=['shared'])
-    messages.success(request, 'Dream unshared successfully!')
+    existing_like = DreamLike.objects.filter(user=request.user, dream=dream).first()
+
+    if existing_like:
+        existing_like.delete()
+   # messages.success(request, 'Dream unshared successfully!')
     return redirect('dreams:dream_journal')
 
 
@@ -209,7 +213,9 @@ def gallery(request):
         dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
 
     if query:
-        dreams = dreams.filter(Q(content__iregex=r'\b{}\b'.format(re.escape(query))))  # query for whole word
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query),
+                                                       re.escape(query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if class_query:
         dreams = dreams.filter(classification=class_query)
@@ -221,10 +227,10 @@ def gallery(request):
         dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
     if character_query:
-        dreams = dreams.filter(characters__icontains=character_query)
+        dreams = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(character_query))))
 
     if place_query:
-        dreams = dreams.filter(places__icontains=place_query)
+        dreams = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place_query))))
 
 
     context = {
@@ -274,7 +280,8 @@ def dream_journal(request):
     # find also plural forms and possesive forms
 
     if query:
-        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query), re.escape(query))
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query),
+                                                       re.escape(query))
         dreams = dreams.filter(Q(content__iregex=regex_pattern))
 
     if class_query:
@@ -284,16 +291,17 @@ def dream_journal(request):
         dreams = dreams.filter(emotion=emotion_query)
 
     if keyword_query:
-        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(keyword_query), re.escape(keyword_query), re.escape(keyword_query))
-        dreams = dreams.filter(Q(content__iregex=regex_pattern))
+        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
 
     if character_query:
-        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(character_query), re.escape(character_query), re.escape(character_query))
-        dreams = dreams.filter(Q(content__iregex=regex_pattern))
+        dreams = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(character_query))))
 
     if place_query:
-        dreams = dreams.filter(places__icontains=place_query)
+        dreams = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place_query))))
+
     dreams = dreams.order_by('-date', '-time')
+
+
 
     context = {
         'dreams': dreams,
@@ -524,7 +532,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            messages.success(request, 'Your account was created successfully!')
+            #messages.success(request, 'Your account was created successfully!')
             return redirect('dreams:home_logged_in')
         else:
             logger.error("Form errors: %s", form.errors)
@@ -567,10 +575,7 @@ def add_comment(request, dream_id):
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
-    if comment.can_delete(request.user):
-        comment.delete()
-    else:
-        return HttpResponseForbidden("You do not have permission to delete this comment.")
+    comment.delete()
     return redirect('dreams:gallery')
 
 class CustomPasswordResetView(PasswordResetView):
@@ -593,7 +598,7 @@ def home_logged_in(request):
     dream_count = dreams.count()
     liked_count = DreamLike.objects.filter(user=user).count()
     shared_count = dreams.filter(shared=True).count()
-    
+
     dream_dates = dreams.order_by('-date').values_list('date', flat=True)
     dream_streak = 1
     for i in range(1, len(dream_dates)):

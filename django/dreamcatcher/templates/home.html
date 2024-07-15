@@ -101,22 +101,34 @@
         .menu li {
             margin: 10px;
         }
-        .button {
-            display: inline-block;
-            padding: 20px 40px;
+         .button {
+            padding: 10px;
             border: none;
-            border-radius: 10px;
-            background-color: rgba(103, 96, 240, 0.7);
-            color: white;
-            font-size: 1.5vw;
-            text-decoration: none;
+            border-radius: 5px;
+            background-color: rgba(103, 96, 240, 0.5);
+            font-size: 22px;
             cursor: pointer;
+            text-decoration: none;
             transition: background-color 0.3s;
+            font-family: 'Manrope', inherit;
+            letter-spacing: inherit;
+            color: white;
+            width: 300px;
+            height: 100px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .button:hover {
             background-color: rgba(103, 96, 240);
-            transform: none;
+            text-decoration: none;
+            width: 300px;
+            font-size: 22px;
+            height: 100px;
+            color: white;
         }
+
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -187,7 +199,11 @@
                 </div>
                 <div class="stat">
                     <h3>Dream Streak</h3>
+                    {%if dream_streak == 1%}
+                    <p>{{ dream_streak }} day</p>
+                    {%else%}
                     <p>{{ dream_streak }} days</p>
+                    {%endif%}
                 </div>
             </div>
             <div id="word-cloud">
@@ -202,6 +218,9 @@
                 <li><a href="{{ personal_statistics_url }}" class="button">Personal Statistics</a></li>
             </ul>
         </nav>
+        <footer>
+            <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
+        </footer>
     </div>
     
     <div id="tutorial" class="tutorial">

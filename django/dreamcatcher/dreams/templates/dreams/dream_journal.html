@@ -363,11 +363,12 @@
         </select>
         <select id="emotion" name="emotion">
             <option value="">All emotions</option>
-            <option value="Anger" {% if emotion_query == 'Anger' %}selected{% endif %}>Anger</option>
-            <option value="Apprehension" {% if emotion_query == 'Apprehension' %}selected{% endif %}>Apprehension</option>
-            <option value="Sadness" {% if emotion_query == 'Sadness' %}selected{% endif %}>Sadness</option>
-            <option value="Confusion" {% if emotion_query == 'Confusion' %}selected{% endif %}>Confusion</option>
-            <option value="Happiness" {% if emotion_query == 'Happiness' %}selected{% endif %}>Happiness</option>
+            <option value="anger" {% if emotion_query == 'Anger' %}selected{% endif %}>Anger</option>
+            <option value="apprehension" {% if emotion_query == 'Apprehension' %}selected{% endif %}>Apprehension</option>
+            <option value="sadness" {% if emotion_query == 'Sadness' %}selected{% endif %}>Sadness</option>
+            <option value="confusion" {% if emotion_query == 'Confusion' %}selected{% endif %}>Confusion</option>
+            <option value="happiness" {% if emotion_query == 'Happiness' %}selected{% endif %}>Happiness</option>
+            <option value="" {% if emotion_query == '' %}selected{% endif %}>None</option>
         </select>
         <button type="submit">Search</button>
         <button type="button" onclick="clearSearch()">Clear</button>

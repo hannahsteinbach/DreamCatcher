@@ -437,6 +437,11 @@
     <div class="dream">
         <h3>Liked dreams</h3>
         <p class="dream-content">
+        <p class="dream-content">
+                    {% autoescape off %}
+                    You have liked {{ liked_count|safe}} dreams
+                    {% endautoescape %}
+        </p>
         <div class="button-container">
             <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
         </div>
