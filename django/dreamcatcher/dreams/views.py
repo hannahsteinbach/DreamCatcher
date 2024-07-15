@@ -21,6 +21,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
+import json
+from django.urls import reverse
 
 logger = logging.getLogger(__name__)
 
@@ -33,12 +35,6 @@ def home(request):
 
 def aboutus(request):
     return render(request, 'aboutus.html')
-
-
-@login_required
-def home_logged_in(request):
-    messages.success(request, f'Welcome, {request.user.username}! Let\'s take a journey into your subconscious 🗺️')
-    return render(request, 'home.html')
 
 
 @login_required
@@ -95,7 +91,6 @@ def choose_title(request, dream_id):
             if selected_title:
                 dream.title = selected_title
                 dream.save()
-                messages.success(request, 'Great choice!')
                 if not dream.emotion:
                     return redirect('dreams:choose_emotion', dream_id=dream.id)
                 else:
@@ -584,3 +579,48 @@ class CustomPasswordResetView(PasswordResetView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+@login_required
+def home_logged_in(request):
+    user = request.user
+    dreams = Dream.objects.filter(user=user)
+    show_tutorial = user.is_new
+    if show_tutorial:
+        user.is_new = False
+        user.save()
+    
+    dream_count = dreams.count()
+    liked_count = DreamLike.objects.filter(user=user).count()
+    shared_count = dreams.filter(shared=True).count()
+    
+    dream_dates = dreams.order_by('-date').values_list('date', flat=True)
+    dream_streak = 1
+    for i in range(1, len(dream_dates)):
+        if (dream_dates[i-1] - dream_dates[i]).days == 1:
+            dream_streak += 1
+        else:
+            break
+
+    all_keywords = []
+    for dream in dreams:
+        all_keywords.extend(dream.keywords)
+    
+    word_count = Counter(all_keywords)
+    word_cloud_data = [{"text": word, "size": count * 10} for word, count in word_count.most_common(20)]
+
+    context = {
+        'dream_count': dream_count,
+        'liked_count': liked_count,
+        'shared_count': shared_count,
+        'dream_streak': dream_streak,
+        'word_cloud_data': json.dumps(word_cloud_data),
+        'show_tutorial': show_tutorial,
+        'log_dream_url': reverse('dreams:log_dream'),
+        'dream_journal_url': reverse('dreams:dream_journal'),
+        'gallery_url': reverse('dreams:gallery'),
+        'personal_statistics_url': reverse('dreams:personal_statistics'),
+
+    }
+    
+    return render(request, 'home.html', context)

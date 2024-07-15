@@ -14,25 +14,24 @@ header, nav, main, footer {
 .button, button {
     font-family: 'Manrope', sans-serif;
     background-color: white;
-    color:rgba(103, 96, 240);
-    width: auto;
+    color: rgba(103, 96, 240);
     text-decoration: none;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     font-size: 18px;
     cursor: pointer;
+    width: 200px; 
+    height: 50px;  
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
 }
-.button:hover, button:hover {
-    font-family: 'Manrope', sans-serif;
-    background-color: rgba(103, 96, 240, 0.88);
-    color:white;
-    width: auto;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
 
+.button:hover, button:hover {
+    background-color: rgba(103, 96, 240, 0.88);
+    color: white;
 }
 
 header {

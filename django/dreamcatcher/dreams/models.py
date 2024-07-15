@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from datetime import datetime
 from langchain_community.llms import ollama
 import json
@@ -28,6 +31,7 @@ class Dream(models.Model):
     emotion_options = ['anger', 'apprehension', 'sadness', 'confusion', 'happiness', '']
     optional_titles = models.JSONField(default=list, blank=True)
     title = models.TextField(blank=True)
+    User.add_to_class('is_new', models.BooleanField(default=True))
 
     def add_metadata(self):
         content_str = str(self.content)
@@ -117,3 +121,9 @@ class Comment(models.Model):
 
     def can_delete(self, user):
         return user == self.author
+    
+@receiver(post_save, sender=User)
+def set_new_user(sender, instance, created, **kwargs):
+    if created:
+        instance.is_new = True
+        instance.save()

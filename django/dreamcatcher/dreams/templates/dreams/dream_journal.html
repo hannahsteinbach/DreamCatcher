@@ -453,16 +453,16 @@
                     {% csrf_token %}
                 </form>
                 {% endif %}
-                {% if dream.title%}
+                {% if dream.optional_title%}
                 <a href="{% url 'dreams:choose_title' dream.id %}">Choose new title</a>
                 <form action="{% url 'dreams:choose_title' dream.id %}" method="get" style="display:inline;">
                     {% csrf_token %}
                 </form>
+                {%endif%}
                 <a href="{% url 'dreams:choose_emotion' dream.id %}">Choose emotion</a>
                 <form action="{% url 'dreams:choose_emotion' dream.id %}" method="get" style="display:inline;">
                     {% csrf_token %}
                 </form>
-                {%endif%}
                 {% if dream.user == request.user %}
                 {% if dream.shared %}
                 <a href="{% url 'dreams:unshare_dream' dream.id %}">Unshare dream</a>
