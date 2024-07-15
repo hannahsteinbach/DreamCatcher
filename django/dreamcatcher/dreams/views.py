@@ -132,7 +132,7 @@ def edit_dream(request, dream_id):
         if form.is_valid():
             dream_ac = form.cleaned_data['content']
             dream_date = form.cleaned_data['date']
-            dream_time = form.cleaned_data['time']
+            dream_time = form.cleaned_data.get('time', dream.time)
             if dream_date > date.today():
                 form.add_error('date', 'The date cannot be in the future.')
             elif dream_date < date(1970, 1, 1):
