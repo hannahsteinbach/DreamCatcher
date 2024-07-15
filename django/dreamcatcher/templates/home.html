@@ -8,7 +8,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;700&display=swap');
         
         body, html {
             margin: 0;
@@ -65,8 +65,8 @@
         }
 
         .stat {
-            width: 200px;  /* Fixed width */
-            height: 100px;  /* Fixed height */
+            width: 200px;  
+            height: 100px; 
             background: rgba(103, 96, 240, 0.1);
             border-radius: 10px;
             padding: 10px;
@@ -84,6 +84,7 @@
         .stat p {
             color: #3D3D3D;
             font-size: 1.2vw;
+            margin-top: 1px;
         }
         #word-cloud {
             margin-top: 20px;
@@ -105,12 +106,12 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: rgba(103, 96, 240, 0.5);
+            background-color: rgba(103, 96, 240, 0.736);
             font-size: 22px;
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s;
-            font-family: 'Manrope', inherit;
+            font-family: 'Manrope';
             letter-spacing: inherit;
             color: white;
             width: 300px;
@@ -183,7 +184,7 @@
     <div class="container">
         <div class="dashboard">
             <h2>Welcome, {{ user.username }}!</h2>
-            <p>Let's take a journey into your subconscious 🗺️</p>
+            <p>Let's take a journey into your subconscious! 🗺️</p>
             <div class="stats">
                 <div class="stat">
                     <h3><a href="{% url 'dreams:dream_journal'%}" style="text-decoration: none; color: inherit;">Dreams logged</a></h3>
@@ -206,9 +207,6 @@
                     {%endif%}
                 </div>
             </div>
-            <div id="word-cloud">
-                <div id="word-cloud-content"></div>
-            </div>
         </div>
         <nav class="menu">
             <ul class="grid-menu">
@@ -218,6 +216,9 @@
                 <li><a href="{{ personal_statistics_url }}" class="button">Personal Statistics</a></li>
             </ul>
         </nav>
+        <div id="word-cloud">
+            <div id="word-cloud-content"></div>
+        </div>
         <footer>
             <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
         </footer>
@@ -289,7 +290,7 @@
                 });
             }
         });
-        // Word cloud code
+      
         var words = {{ word_cloud_data|safe }};
 
         var layout = d3.layout.cloud()

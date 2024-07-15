@@ -97,6 +97,8 @@
         .search-form button {
             padding: 10px 10px;
             font-size: 12px;
+            width: auto;
+            height: auto;
             cursor: pointer;
             background-color: rgba(103, 96, 240);
             color: white;
@@ -122,6 +124,8 @@
         }
         .keyword-form button, .class-form button {
             padding: 5px 10px;
+            width: auto;
+            height: auto;
             font-size: 12px;
             cursor: pointer;
             background-color: rgba(103, 96, 240);
@@ -211,6 +215,8 @@
         }
         .button {
             padding: 8px, 12px;
+            width: auto;
+            height: 30px;
             border: none;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.5);
@@ -220,12 +226,14 @@
             transition: background-color 0.3s;
             font-family: inherit;
             margin-left: 180px;
+            margin-top: 30px;
+            margin-bottom: 30px;
             letter-spacing: inherit;
         }
         .button:hover {
-            background-color: #FFC2D1 ;
+            background-color: rgba(103, 96, 240);
+            color: white;
             text-decoration: none;
-            color: #3D3D3E;
         }
         .menu-button {
             padding: 12px 16px;
@@ -243,14 +251,8 @@
             background-color: #f1f1f1;
             border-radius: 0;
         }
-        .button-container {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
         .highlight {
-            background-color: #FFC2D1;
+            background-color: rgba(103, 96, 240);
             font-weight: bold;
         }
         .like-info {
@@ -351,7 +353,7 @@
     </div>
     <div class="container">
         <form class="search-form" method="get" action="{% url 'dreams:gallery' %}">
-            <input id="searchInput" type="text" name="q" placeholder="Search dreams" value="{{ query }}">
+            <input id="searchInput" type="text" name="q" placeholder="Search everyone's dreams" value="{{ query }}">
             <select id="classification" name="classification">
                 <option value="">All dream types</option>
                 <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>
@@ -485,7 +487,7 @@
                                             {% if comment.author == request.user or dream.user == request.user %}
                                                 <form method="post" action="{% url 'dreams:delete_comment' comment.id %}">
                                                     {% csrf_token %}
-                                                    <button type="submit" style="font-size: smaller; padding: 5px;">Delete</button>
+                                                    <button type="submit" style="font-size: smaller; padding: 5px; width: auto; height: auto;">Delete</button>
                                                 </form>
                                             {% endif %}
                                         </div>
@@ -495,8 +497,8 @@
                                 </div>
                                 <form method="post" action="{% url 'dreams:add_comment' dream.id %}">
                                     {% csrf_token %}
-                                    <input type="text" name="text" placeholder="Write a comment..." required>
-                                    <button type="submit" style="font-size: smaller; padding: 5px;">Post</button>
+                                    <textarea id="comment" name="comment" rows="2" placeholder="Write a comment..." style="font-family: Manrope; width: 200px; margin-top:10px; border-radius: 5px;" required></textarea>
+                                    <button type="submit" style="font-size: smaller; padding: 5px; width: auto; height: auto;">Post</button>
                                 </form>
                             </div>
                         </div>
