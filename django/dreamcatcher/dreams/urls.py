@@ -22,6 +22,7 @@ urlpatterns = [
     path('view_favorite/', views.view_favorite, name='view_favorite'),
     path('view_shared/', views.view_shared, name='view_shared'),
     path('view_own_shared/', views.view_own_shared, name='view_own_shared'),
+    path('users/<str:username>/', views.view_users_dreams, name='view_users_dreams'),
     path('view_liked', views.view_liked, name='view_liked'),
     path('add_comment/<int:dream_id>/', views.add_comment, name='add_comment'),
     path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),

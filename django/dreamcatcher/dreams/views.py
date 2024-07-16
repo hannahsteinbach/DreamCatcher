@@ -6,7 +6,7 @@ from django.http import HttpResponseForbidden
 from .forms import SignUpForm, DreamForm, CommentForm, DateForm, TitleForm
 import logging
 from django.shortcuts import render, redirect
-from .models import Dream, DreamLike, Comment
+from .models import Dream, DreamLike, Comment, User
 from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.db.models import F
@@ -35,7 +35,6 @@ def home(request):
 
 def aboutus(request):
     return render(request, 'aboutus.html')
-
 
 @login_required
 def log_dream(request):
@@ -185,6 +184,51 @@ def share_dream_anon(request, dream_id):
     dream.save(update_fields=['anon'])
   #  messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
+
+
+def view_users_dreams(request, username):
+    user = get_object_or_404(User, username=username)
+    query = request.GET.get('q', '')
+    dreams = Dream.objects.filter(shared=True, user=user, anon=False)
+    class_query = request.GET.get('classification', '')
+    emotion_query = request.GET.get('emotion', '')
+    keyword_query = request.GET.get('keyword', '')
+    character_query = request.GET.get('character', '')
+    place_query = request.GET.get('place', '')
+
+
+    if query:
+        regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query),
+                                                       re.escape(query))
+        dreams = dreams.filter(Q(content__iregex=regex_pattern))
+
+    if class_query:
+        dreams = dreams.filter(classification=class_query)
+
+    if emotion_query:
+        dreams = dreams.filter(emotion=emotion_query)
+
+    if keyword_query:
+        dreams = dreams.filter(Q(keywords__iregex=r'\b{}\b'.format(re.escape(keyword_query))))
+
+    if character_query:
+        dreams = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(character_query))))
+
+    if place_query:
+        dreams = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place_query))))
+
+    context = {
+        'dreams': dreams,
+        'user': user,
+        'query': query,
+        'class_query': class_query,
+        'keyword_query': keyword_query,
+        'character_query': character_query,
+        'place_query': place_query,
+        'emotion_query': emotion_query,
+    }
+    return render(request, 'dreams/gallery.html', context)
+
 
 @login_required
 def unshare_dream(request, dream_id):

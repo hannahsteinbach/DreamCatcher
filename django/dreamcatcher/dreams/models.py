@@ -121,7 +121,8 @@ class Comment(models.Model):
 
     def can_delete(self, user):
         return user == self.author
-    
+
+
 @receiver(post_save, sender=User)
 def set_new_user(sender, instance, created, **kwargs):
     if created:

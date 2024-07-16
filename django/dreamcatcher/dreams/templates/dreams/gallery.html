@@ -383,7 +383,11 @@
                             <h2 class="dream-title">{{ dream.title }}</h2>
                             {% endif %}
                             {% if not dream.anon %}
-                                <h2 class="dream-user">@{{ dream.user }}</h2>
+                                <h2 class="dream-user">
+                                    <a href="{% url 'dreams:view_users_dreams' dream.user.username %}" style="text-decoration: none; color: inherit;">
+                                        @{{ dream.user.username }}
+                                    </a>
+                                </h2>
                             {% endif %}
                             <h3 class="dream-date">{{ dream.date }}</h3>
                             <p class="dream-content">
@@ -448,7 +452,9 @@
                                 <p>Likes: {{ dream.likes_count }}</p>
                                 <p>Liked by:
                                     {% for user in dream.liked_users %}
-                                        @{{ user.username }}
+                                    <a href="{% url 'dreams:view_users_dreams' user.username %}"
+                                                     style="text-decoration: none; color: inherit;">
+                                                    @{{ user.username }}</a>
                                         {% if not forloop.last %} {% endif %}
                                     {% endfor %}
                                 </p>
@@ -480,7 +486,9 @@
                                 <div class="comment-section">
                                     {% for comment in dream.comments.all %}
                                         <div class="comment">
-                                            <p>@<b>{{ comment.author }}</b> — {{ comment.created_date }} </p>
+                                            <p><b><a href="{% url 'dreams:view_users_dreams' comment.author.username %}"
+                                                     style="text-decoration: none; color: inherit;">
+                                                    @{{ comment.author }}</a></h2></b> — {{ comment.created_date }} </p>
                                             <div class="comment-text">
                                                 {{ comment.text }}
                                             </div>
@@ -497,7 +505,7 @@
                                 </div>
                                 <form method="post" action="{% url 'dreams:add_comment' dream.id %}">
                                     {% csrf_token %}
-                                    <textarea id="comment" name="comment" rows="2" placeholder="Write a comment..." style="font-family: Manrope; width: 200px; margin-top:10px; border-radius: 5px;" required></textarea>
+                                    <textarea id="comment" name="text" rows="2" placeholder="Write a comment..." style="font-family: Manrope; width: 200px; margin-top:10px; border-radius: 5px;" required></textarea>
                                     <button type="submit" style="font-size: smaller; padding: 5px; width: auto; height: auto;">Post</button>
                                 </form>
                             </div>
