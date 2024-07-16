@@ -58,6 +58,64 @@
             color: black;
         }
         .container {
+        text-align: center;
+        }
+
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-bar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 800px;
+            margin-top: 20px;
+        }
+
+        .search-bar-container input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .search-bar-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .filters-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filters-container select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            width: auto;
+            height: auto;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+            background-color: #6760f0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #4a3da3;
+        }
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -208,13 +266,15 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
+            height: auto;
+            width: auto;
+            margin-left: 2px;
             background-color: rgba(103, 96, 240, 0.5);
             font-size: 14px;
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s;
             font-family: 'Manrope', inherit;
-            margin-left: 180px;
             letter-spacing: inherit;
             color: white;
         }
@@ -272,12 +332,13 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
+            height: auto;
+            width: auto;
             background-color: rgba(103, 96, 240, 0.5);
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s;
             font-family: 'Manrope', inherit;
-            margin-left: 180px;
             letter-spacing: inherit;
             color: white;
         }
@@ -339,43 +400,41 @@
     <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
     <a href="{% url 'logout' %}">Log out</a>
 </div>
-<div class="button-container">
-    <div>
-        {% if is_favorite_view %}
-        <a href="{% url 'dreams:dream_journal' %}" class="button">View all dreams</a>
-        {% else %}
-        <a href="{% url 'dreams:view_favorite' %}" class="button">View favorite dreams</a>
-        {% endif %}
-    </div>
-    <div>
-        {% if is_shared_view %}
-        <a href="{% url 'dreams:dream_journal' %}" class="button">View all dreams</a>
-        {% else %}
-        <a href="{% url 'dreams:view_own_shared' %}" class="button">View shared dreams</a>
-        {% endif %}
-    </div>
-</div>
 <div class="container">
     <form class="search-form" method="get" action="{% url 'dreams:dream_journal' %}">
-        <input id="searchInput" type="text" name="q" placeholder="Search your dreams" value="{{ query }}">
-        <select id="classification" name="classification">
-            <option value="">All dream types</option>
-            <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>
-            <option value="1" {% if class_query == '1' %}selected{% endif %}>Mundane dreams</option>
-            <option value="2" {% if class_query == '2' %}selected{% endif %}>Lucid dreams</option>
-            <option value="3" {% if class_query == '3' %}selected{% endif %}>Existential dreams</option>
-        </select>
-        <select id="emotion" name="emotion">
-            <option value="">All emotions</option>
-            <option value="anger" {% if emotion_query == 'Anger' %}selected{% endif %}>Anger</option>
-            <option value="apprehension" {% if emotion_query == 'Apprehension' %}selected{% endif %}>Apprehension</option>
-            <option value="sadness" {% if emotion_query == 'Sadness' %}selected{% endif %}>Sadness</option>
-            <option value="confusion" {% if emotion_query == 'Confusion' %}selected{% endif %}>Confusion</option>
-            <option value="happiness" {% if emotion_query == 'Happiness' %}selected{% endif %}>Happiness</option>
-        </select>
-        <button type="submit">Search</button>
-        <button type="button" onclick="clearSearch()">Clear</button>
-       </form>
+        <div class="search-bar-container">
+            <input id="searchInput" type="text" name="q" placeholder="Search your dreams" value="{{ query }}">
+            <button type="submit">Search</button>
+            <button type="button" onclick="clearSearch()">Clear</button>
+        </div>
+        <div class="filters-container">
+            <select id="classification" name="classification">
+                <option value="">All dream types</option>
+                <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>
+                <option value="1" {% if class_query == '1' %}selected{% endif %}>Mundane dreams</option>
+                <option value="2" {% if class_query == '2' %}selected{% endif %}>Lucid dreams</option>
+                <option value="3" {% if class_query == '3' %}selected{% endif %}>Existential dreams</option>
+            </select>
+            <select id="emotion" name="emotion">
+                <option value="">All emotions</option>
+                <option value="anger" {% if emotion_query == 'Anger' %}selected{% endif %}>Anger</option>
+                <option value="apprehension" {% if emotion_query == 'Apprehension' %}selected{% endif %}>Apprehension</option>
+                <option value="sadness" {% if emotion_query == 'Sadness' %}selected{% endif %}>Sadness</option>
+                <option value="confusion" {% if emotion_query == 'Confusion' %}selected{% endif %}>Confusion</option>
+                <option value="happiness" {% if emotion_query == 'Happiness' %}selected{% endif %}>Happiness</option>
+            </select>
+            {% if is_favorite_view %}
+                <a href="{% url 'dreams:dream_journal' %}" class="button">View all dreams</a>
+            {% else %}
+                <a href="{% url 'dreams:view_favorite' %}" class="button">View favorite dreams</a>
+            {% endif %}
+            {% if is_shared_view %}
+                <a href="{% url 'dreams:dream_journal' %}" class="button">View all dreams</a>
+            {% else %}
+                <a href="{% url 'dreams:view_own_shared' %}" class="button">View shared dreams</a>
+            {% endif %}
+        </div>
+    </form>
 </div>
 <div class="dreams">
     {% if dreams %}

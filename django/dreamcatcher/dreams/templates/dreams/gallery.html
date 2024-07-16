@@ -59,7 +59,7 @@
         .sidenav a:hover {
             color: black;
         }
-
+        
         .container {
             display: flex;
             flex-direction: column;
@@ -270,6 +270,9 @@
             font-size: 14px;
             color: #666;
         }
+        .comment-container {
+            align-content: start;
+        }
         .comment {
             background-color: #fcf9ff72;
             border-radius: 5px;
@@ -283,7 +286,6 @@
         }
         .comment-text {
             font-size: 14px;
-            margin-top: 10px;
             margin-bottom: 10px;
             color: #3D3D3D;
         }
@@ -503,11 +505,13 @@
                                         <p>No comments yet.</p>
                                     {% endfor %}
                                 </div>
-                                <form method="post" action="{% url 'dreams:add_comment' dream.id %}">
-                                    {% csrf_token %}
-                                    <textarea id="comment" name="text" rows="2" placeholder="Write a comment..." style="font-family: Manrope; width: 200px; margin-top:10px; border-radius: 5px;" required></textarea>
-                                    <button type="submit" style="font-size: smaller; padding: 5px; width: auto; height: auto;">Post</button>
-                                </form>
+                                <div class="comment-container">
+                                    <form method="post" action="{% url 'dreams:add_comment' dream.id %}">
+                                        {% csrf_token %}
+                                        <textarea id="comment" name="text" rows="2" placeholder="Write a comment..." style="font-family: Manrope; width: 200px; border-radius: 5px;" required></textarea>
+                                        <button type="submit" style="font-size: smaller; padding: 5px; width: auto; height: auto;">Post</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     {% endif %}

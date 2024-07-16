@@ -8,7 +8,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
         
         body, html {
             margin: 0;
@@ -153,6 +153,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 20%;
+            margin: auto;
         }
         .tutorial .next-step, .tutorial .finish-tutorial {
             padding: 10px 20px;
@@ -162,6 +164,7 @@
             color: white;
             font-size: 1.2vw;
             cursor: pointer;
+            height: auto;
             transition: background-color 0.3s;
         }
         .tutorial .next-step:hover, .tutorial .finish-tutorial:hover {
@@ -226,24 +229,28 @@
     
     <div id="tutorial" class="tutorial">
         <div class="step" data-step="0">
-            <p>Welcome to the best place to catch your dreams, dreamer. Let's start with a short walkthrough 🧸</p>
+            <p>Welcome to the best place to catch your dreams. Let's start with a short walkthrough! 🧸</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="1" data-target="log_dream">
-            <p>Here, you can jot down all your dreams, and then patiently wait for the LLM to do its magic 🪄</p>
+            <p>📝</p>
+            <p>Click on <b>Log a new dream</b> and you can jot down your most recent dreams, and then patiently wait for the LLM to do its magic. 🪄</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="2" data-target="dream_journal">
-            <p>Here, you can see all of the dreams we've caught for you. You can search dreams by words, keywords, emotions, characters, and places.</p>
+            <p>📓</p>
+            <p>In your <b>Dream Journal</b>, you can see all of the dreams we've caught for you. You can search dreams by keywords, emotions, characters, and places.</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="3" data-target="gallery">
-            <p>When you want to know more about others' dreams, take a stroll through the Dream Gallery. You can like dreams, leave comments, and share your own dreams (anonymously if that's your thing...)</p>
+            <p>🎨</p>
+            <p>If you want to read about what others have been dreaming about, take a stroll through the <b>Dream Gallery</b>. You can like dreams, leave comments, and share your own dreams (anonymously if that's your thing...)</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="4" data-target="personal_statistics">
-            <p>Here you can see your personal dream statistics and insights.</p>
-            <button class="finish-tutorial">Finish</button>
+            <p>🔎</p>
+            <p>Finally, <b>Personal Statistics</b> has some insights about all of your dreams.</p>
+            <button class="finish-tutorial">Start DreamCatching!</button>
         </div>
     </div>
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -260,17 +267,6 @@
                     steps.forEach((step, index) => {
                         step.style.display = index === stepIndex ? 'block' : 'none';
                     });
-
-                    if (stepIndex > 0) {
-                        const targetButton = document.querySelector(`a[href="{% url 'dreams:home_logged_in' %}${steps[stepIndex].dataset.target}"]`);
-                        if (targetButton) {
-                            const rect = targetButton.getBoundingClientRect();
-                            const step = steps[stepIndex];
-                            step.style.position = 'absolute';
-                            step.style.left = `${rect.right + 10}px`;
-                            step.style.top = `${rect.top}px`;
-                        }
-                    }
                 }
 
                 function nextStep() {
@@ -279,48 +275,49 @@
                         showStep(currentStep);
                     } else {
                         tutorial.style.display = 'none';
+                        sessionStorage.setItem('tutorialDisplayed', 'true');
                     }
                 }
 
-                tutorial.style.display = 'block';
+                tutorial.style.display = 'flex';
                 showStep(currentStep);
 
                 tutorial.querySelectorAll('.next-step, .finish-tutorial').forEach(button => {
                     button.addEventListener('click', nextStep);
                 });
             }
+
+            var words = {{ word_cloud_data|safe }};
+
+            var layout = d3.layout.cloud()
+                .size([500, 300])
+                .words(words.map(function(d) {
+                    return {text: d.text, size: d.size};
+                }))
+                .padding(5)
+                .fontSize(function(d) { return d.size; })
+                .on("end", draw);
+
+            layout.start();
+
+            function draw(words) {
+                d3.select("#word-cloud-content").append("svg")
+                    .attr("width", layout.size()[0])
+                    .attr("height", layout.size()[1])
+                    .append("g")
+                    .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                    .selectAll("text")
+                    .data(words)
+                    .enter().append("text")
+                    .style("font-size", function(d) { return d.size + "px"; })
+                    .style("fill", "#6760f0")
+                    .attr("text-anchor", "middle")
+                    .attr("transform", function(d) {
+                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                    })
+                    .text(function(d) { return d.text; });
+            }
         });
-      
-        var words = {{ word_cloud_data|safe }};
-
-        var layout = d3.layout.cloud()
-            .size([500, 300])
-            .words(words.map(function(d) {
-                return {text: d.text, size: d.size};
-            }))
-            .padding(5)
-            .fontSize(function(d) { return d.size; })
-            .on("end", draw);
-
-        layout.start();
-
-        function draw(words) {
-            d3.select("#word-cloud-content").append("svg")
-                .attr("width", layout.size()[0])
-                .attr("height", layout.size()[1])
-                .append("g")
-                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
-                .selectAll("text")
-                .data(words)
-                .enter().append("text")
-                .style("font-size", function(d) { return d.size + "px"; })
-                .style("fill", "#6760f0")
-                .attr("text-anchor", "middle")
-                .attr("transform", function(d) {
-                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                })
-                .text(function(d) { return d.text; });
-        }
     </script>
 </body>
 </html>
