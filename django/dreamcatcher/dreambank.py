@@ -39,7 +39,7 @@ for index, row in filtered_df.iterrows():
         user.save()
 
     # Create a random date for the dream
-    start_date = datetime(1970, 1, 1)
+    start_date = datetime(2024, 6, 10) # the day we started logging!!
     random_timestamp = random.randint(int(start_date.timestamp()), int(datetime.now().timestamp()))
     random_date = datetime.fromtimestamp(random_timestamp)
 

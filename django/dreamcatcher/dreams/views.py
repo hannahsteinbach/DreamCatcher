@@ -474,11 +474,11 @@ def personal_statistics(request):
 
     # get overview of emotions of dreams
     if dream_count > 0:
-        anger_count = round(dreams.filter(emotion='Anger').count() / dream_count * 100)
-        apprehension_count = round(dreams.filter(emotion='Apprehension').count() / dream_count * 100)
-        sadness_count = round(dreams.filter(emotion='Sadness').count() / dream_count * 100)
-        confusion_count = round(dreams.filter(emotion='Confusion').count() / dream_count * 100)
-        happiness_count = round(dreams.filter(emotion='Happiness').count() / dream_count * 100)
+        anger_count = round(dreams.filter(emotion='anger').count() / dream_count * 100)
+        apprehension_count = round(dreams.filter(emotion='apprehension').count() / dream_count * 100)
+        sadness_count = round(dreams.filter(emotion='aadness').count() / dream_count * 100)
+        confusion_count = round(dreams.filter(emotion='confusion').count() / dream_count * 100)
+        happiness_count = round(dreams.filter(emotion='happiness').count() / dream_count * 100)
         none_emotion_count = 100-anger_count-apprehension_count-sadness_count-confusion_count-happiness_count
 
     else:
@@ -633,8 +633,8 @@ class CustomPasswordResetView(PasswordResetView):
 def home_logged_in(request):
     user = request.user
     dreams = Dream.objects.filter(user=user)
-    # show_tutorial = user.is_new
-    show_tutorial = True # just put this as true as a default for testing
+    show_tutorial = user.is_new
+    # show_tutorial = True # just put this as true as a default for testing
     if show_tutorial:
         user.is_new = False
         user.save()
@@ -644,12 +644,33 @@ def home_logged_in(request):
     shared_count = dreams.filter(shared=True).count()
 
     dream_dates = dreams.order_by('-date').values_list('date', flat=True)
-    dream_streak = 1
+
+    if not dreams:
+        dream_streak = 0
+        max_streak = 0
+    else:
+        dream_streak = 1
+        max_streak = 1
+
     for i in range(1, len(dream_dates)):
         if (dream_dates[i-1] - dream_dates[i]).days == 1:
             dream_streak += 1
+        elif (dream_dates[i-1] - dream_dates[i]).days == 0:
+            dream_streak += 0
         else:
             break
+
+    streaks = []
+    streak = 1
+    for i in range(1, len(dream_dates)):
+        if (dream_dates[i-1] - dream_dates[i]).days == 1:
+            streak += 1
+        elif (dream_dates[i-1] - dream_dates[i]).days == 0:
+            streak += 0
+        else:
+            streak = 1
+        streaks.append(streak)
+    max_streak = max(streaks)
 
     all_keywords = []
     for dream in dreams:
@@ -663,6 +684,7 @@ def home_logged_in(request):
         'liked_count': liked_count,
         'shared_count': shared_count,
         'dream_streak': dream_streak,
+        'max_streak': max_streak,
         'word_cloud_data': json.dumps(word_cloud_data),
         'show_tutorial': show_tutorial,
         'log_dream_url': reverse('dreams:log_dream'),
