@@ -17,7 +17,7 @@ class Dream(models.Model):
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
-    time = models.TimeField(default=timezone.now())
+    time = models.TimeField(default=timezone.now)
     content = models.TextField()
     shared = models.BooleanField(default=False)
     anon = models.BooleanField(default=False)
