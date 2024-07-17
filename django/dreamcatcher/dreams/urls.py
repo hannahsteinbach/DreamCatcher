@@ -8,6 +8,7 @@ urlpatterns = [
     path('home_logged_in/', views.home_logged_in, name='home_logged_in'),
     path('log_dream/', views.log_dream, name='log_dream'),
     path('choose_title/<int:dream_id>/', views.choose_title, name='choose_title'),
+    path('choose_title_log/<int:dream_id>/', views.choose_title_log, name='choose_title_log'),
     path('choose_emotion/<int:dream_id>/', views.choose_emotion, name='choose_emotion'),
     path('journal/', views.dream_journal, name='dream_journal'),
     path('edit_dream/<int:dream_id>/', views.edit_dream, name='edit_dream'),

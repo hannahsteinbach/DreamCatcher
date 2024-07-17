@@ -68,7 +68,7 @@ def log_dream(request):
             if not form.errors:
                 dream.date = dream_date
                 dream.save()
-                return redirect('dreams:choose_title', dream_id=dream.id)
+                return redirect('dreams:choose_title_log', dream_id=dream.id)
         #else:
          #   messages.error(request, "Failed to log your dream. Please correct the errors below.")
 
@@ -79,7 +79,7 @@ def log_dream(request):
 
 
 @login_required
-def choose_title(request, dream_id):
+def choose_title_log(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
     optional_titles = dream.optional_titles
     if not optional_titles:
@@ -96,7 +96,26 @@ def choose_title(request, dream_id):
                     return redirect('dreams:dream_journal')
           #  else:
            #     messages.error(request, 'Please select a title.')
+    return render(request, 'dreams/choose_title_log.html', {'dream': dream})
+
+
+@login_required
+def choose_title(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    optional_titles = dream.optional_titles
+    if not optional_titles:
+        dream.delete()
+    else:
+        if request.method == 'POST':
+            selected_title = request.POST.get('title')
+            if selected_title:
+                dream.title = selected_title
+                dream.save()
+                return redirect('dreams:dream_journal')
+          #  else:
+           #     messages.error(request, 'Please select a title.')
     return render(request, 'dreams/choose_title.html', {'dream': dream})
+
 
 @login_required
 def choose_emotion(request, dream_id):
