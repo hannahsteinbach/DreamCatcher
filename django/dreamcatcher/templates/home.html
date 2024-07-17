@@ -240,16 +240,16 @@
                     {% else %}
                         <p>{{ dream_streak }} days</p>
                     {% endif %}
-                    <p class="max-streak">Longest streak: {{ max_streak }}</p>
+                    <p class="max-streak" style="font-size: 8pt; color: rgba(103, 96, 240)"><b>Longest streak:</b> {{ max_streak }} day(s)</p>
                 </div>
             </div>
         </div>
         <nav class="menu">
             <ul class="grid-menu">
-                <li><a href="{{ log_dream_url }}" class="button">Log a new dream</a></li>
-                <li><a href="{{ dream_journal_url }}" class="button">Dream Journal</a></li>
-                <li><a href="{{ gallery_url }}" class="button">Dream Gallery</a></li>
-                <li><a href="{{ personal_statistics_url }}" class="button">Personal Statistics</a></li>
+                <li><a href="{{ log_dream_url }}" class="button">Log a new dream 📝</a></li>
+                <li><a href="{{ dream_journal_url }}" class="button">Dream Journal 📓</a></li>
+                <li><a href="{{ gallery_url }}" class="button">Dream Gallery 🎨</a></li>
+                <li><a href="{{ personal_statistics_url }}" class="button">Personal Statistics 🔎</a></li>
             </ul>
         </nav>
         <div id="word-cloud">
@@ -266,22 +266,22 @@
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="1" data-target="log_dream">
-            <p>📝</p>
+            <p class="tutemoji" style="font-size: 19pt;">📝</p>
             <p>Click on <b>Log a new dream</b> and you can jot down your most recent dreams, and then patiently wait for the LLM to do its magic. 🪄</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="2" data-target="dream_journal">
-            <p>📓</p>
+            <p class="tutemoji" style="font-size: 19pt;">📓</p>
             <p>In your <b>Dream Journal</b>, you can see all of the dreams we've caught for you. You can search dreams by keywords, emotions, characters, and places.</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="3" data-target="gallery">
-            <p>🎨</p>
+            <p class="tutemoji" style="font-size: 19pt;">🎨</p>
             <p>If you want to read about what others have been dreaming about, take a stroll through the <b>Dream Gallery</b>. You can like dreams, leave comments, and share your own dreams (anonymously if that's your thing...)</p>
             <button class="next-step">Next</button>
         </div>
         <div class="step" data-step="4" data-target="personal_statistics">
-            <p>🔎</p>
+            <p class="tutemoji" style="font-size: 19pt;">🔎</p>
             <p>Finally, <b>Personal Statistics</b> has some insights about all of your dreams.</p>
             <button class="finish-tutorial">Start DreamCatching!</button>
         </div>

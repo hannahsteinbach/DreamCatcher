@@ -62,7 +62,9 @@ class Dream(models.Model):
         try:
             # response generation
             response = llm.invoke(dream_prompt)
+            print(response)
             response = json.loads(response)
+            print(response)
 
             # metadata extraction
             self.optional_titles = response.get('titleop', [])
