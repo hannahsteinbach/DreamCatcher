@@ -53,7 +53,7 @@ class Dream(models.Model):
             "- titleop: Three creative title options, formatted as a Python list of strings.\n"
             "- keywords: A list of 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words. Only include words from the dream itself. You don't have to include exactly 5 words if the dream is too short or the keywords are not interesting enough. Keywords can also be a fixed expression (e.g. compound nouns). Exclude characters and places from keywords.\n"
             "- emotion: The prevalent emotion from these options formatted as a string: anger, apprehension, sadness, confusion, happiness if it is above a 60% threshold, otherwise an empty string.\n"
-            "- characters: All characters, formatted as a Python list of strings, without articles or pronouns. If none are found, return an empty string.\n"
+            "- characters: All characters, formatted as a Python list of strings, without articles or pronouns. A character is a single entity (e.g. a person or animal) that plays an active role in the dream narrative. Recognize  If none are found, return an empty string.\n"
             "- places: All places, formatted as a Python list of strings, without articles. If none are found, return an empty string.\n"
             "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
