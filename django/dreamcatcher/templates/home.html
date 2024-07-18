@@ -27,7 +27,7 @@
         .header h1 {
             margin: 0;
             font-size: 3vw;
-            color: rgba(103, 96, 240);
+            color: #5a1a8b;
             font-family: 'Raleway', sans-serif;
             font-weight: normal;
             letter-spacing: 1px;
@@ -240,7 +240,12 @@
                     {% else %}
                         <p>{{ dream_streak }} days</p>
                     {% endif %}
-                    <p class="max-streak" style="font-size: 8pt; color: rgba(103, 96, 240)"><b>Longest streak:</b> {{ max_streak }} day(s)</p>
+                    <p class="max-streak" style="font-size: 8pt; color: rgba(103, 96, 240)"><b>Longest streak:</b>
+                    {% if dream_streak == 1 %}
+                        {{ max_streak }} day
+                    {% else %}
+                        {{ max_streak }} days</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
