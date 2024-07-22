@@ -523,7 +523,7 @@ def personal_statistics(request):
     labels = list(top_10_characters.keys())
     counts = list(top_10_characters.values())
 
-    # Plotting with Matplotlib
+    # plotting with Matplotlib
     plt.figure(figsize=(6, 3))
     plt.gca().set_facecolor('#f0f0f0')
     plt.bar(labels, counts, color='skyblue')
