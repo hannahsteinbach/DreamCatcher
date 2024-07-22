@@ -127,6 +127,13 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Save changes</button>
+            <div class="centered-text">
+                <div id="loading-container" style="display: none; text-align: center;">
+                    <div id="loading-content">
+                        <img id="loading-icon" src="{% static 'images/loading.gif' %}" alt="Loading...">
+                        <p id="loading-message">Analyzing your dream again 💌</p>
+                    </div>
+            </div>
         </form>
     </div>
 </body>

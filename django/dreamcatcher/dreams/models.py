@@ -6,6 +6,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from datetime import datetime
 from langchain_community.llms import ollama
+from .utils import add_dream_to_collection
+import ollama as emb
 import json
 
 class Dream(models.Model):
@@ -62,9 +64,7 @@ class Dream(models.Model):
         try:
             # response generation
             response = llm.invoke(dream_prompt)
-            print(response)
             response = json.loads(response)
-            print(response)
 
             # metadata extraction
             self.optional_titles = response.get('titleop', [])
@@ -86,6 +86,7 @@ class Dream(models.Model):
         if not self.pk:
             self.add_metadata()
         super().save(*args, **kwargs)
+        add_dream_to_collection(self.id, self.content)
 
     def likes_count(self):
         return self.likes.count()

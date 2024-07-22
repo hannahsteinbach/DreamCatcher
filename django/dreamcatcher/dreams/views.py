@@ -22,6 +22,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import json
+from .utils import collection, find_similar_dreams
 from django.urls import reverse
 
 logger = logging.getLogger(__name__)
@@ -51,6 +52,9 @@ def log_dream(request):
             processed=False,
             classification=classification
         )
+
+        similar_dreams = find_similar_dreams(dream)
+        print("SIMILAR DREAMS ARE", similar_dreams)
 
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
@@ -652,8 +656,7 @@ class CustomPasswordResetView(PasswordResetView):
 def home_logged_in(request):
     user = request.user
     dreams = Dream.objects.filter(user=user)
-    #show_tutorial = user.is_new
-    show_tutorial = True # just put this as true as a default for testing
+    show_tutorial = user.is_new
     if show_tutorial:
         user.is_new = False
         user.save()
@@ -689,7 +692,10 @@ def home_logged_in(request):
         else:
             streak = 1
         streaks.append(streak)
-    max_streak = max(streaks)
+    if len(streaks) > 0:
+        max_streak = max(streaks)
+    else:
+        max_streak = 0
 
     all_keywords = []
     for dream in dreams:
