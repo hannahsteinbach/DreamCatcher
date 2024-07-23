@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import json
-from .utils import collection, find_similar_dreams
+from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection
 from django.urls import reverse
 
 logger = logging.getLogger(__name__)
@@ -53,8 +53,14 @@ def log_dream(request):
             classification=classification
         )
 
-        similar_dreams = find_similar_dreams(dream)
-        print("SIMILAR DREAMS ARE", similar_dreams)
+        add_dream_to_collection(dream.id, dream.content)
+
+        user_dreams = Dream.objects.filter(user=user)
+        dream_count = user_dreams.count()
+        n_results = min(5, dream_count)  # check how many dreams user has, return at most 5
+
+        similar_dreams = find_similar_dreams(dream, user_specific=True, n_results=n_results)
+        print("SIMILAR DREAMS OF USER ARE", similar_dreams)
 
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
@@ -88,6 +94,7 @@ def choose_title_log(request, dream_id):
     optional_titles = dream.optional_titles
     if not optional_titles:
         dream.delete()
+        remove_dream_from_collection(dream_id)
     else:
         if request.method == 'POST':
             selected_title = request.POST.get('title')
@@ -136,6 +143,7 @@ def choose_emotion(request, dream_id):
 def delete_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.delete()
+    remove_dream_from_collection(dream_id)
     return redirect('dreams:dream_journal')
 
 
@@ -160,8 +168,10 @@ def edit_dream(request, dream_id):
                 dream.time = dream_time
                 dream.classification = form.cleaned_data['classification']
                 if dream_bc != dream_ac:
+                    # remove_dream_from_collection(dream_id) remove old embeddings
                     dream.content = dream_ac
                     dream.add_metadata()  # only generate metadata again if content was changed
+                   # add_dream_to_collection(dream.id, dream.content)  # put new embeddings back
                 dream.save()
                 return redirect('dreams:dream_journal')
 
