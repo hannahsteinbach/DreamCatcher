@@ -171,10 +171,10 @@ def edit_dream(request, dream_id):
                 dream.time = dream_time
                 dream.classification = form.cleaned_data['classification']
                 if dream_bc != dream_ac:
-                    # remove_dream_from_collection(dream_id) remove old embeddings
+                    remove_dream_from_collection(dream_id) #remove old embeddings
                     dream.content = dream_ac
                     dream.add_metadata()  # only generate metadata again if content was changed
-                   # add_dream_to_collection(dream.id, dream.content)  # put new embeddings back
+                    add_dream_to_collection(dream.id, dream.content)  # put new embeddings back
                 dream.save()
                 return redirect('dreams:dream_journal')
 

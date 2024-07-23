@@ -30,7 +30,7 @@ def add_dream_to_collection(dream_id, content):
         documents=[dream.content],
         metadatas={"user_id": dream.user.id, "shared": dream.shared}
     )
-    #print(f"Added dream {dream.id} to collection with embeddings {embedding} and metadata user ID {dream.user.id} and shared: {dream.shared}")
+    print(f"Added dream {dream.id} to collection with embeddings {embedding} and metadata user ID {dream.user.id} and shared: {dream.shared}")
 
 
 def remove_dream_from_collection(dream_id):
