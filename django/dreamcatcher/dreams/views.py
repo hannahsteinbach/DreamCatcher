@@ -59,8 +59,11 @@ def log_dream(request):
         dream_count = user_dreams.count()
         n_results = min(5, dream_count)  # check how many dreams user has, return at most 5
 
-        similar_dreams = find_similar_dreams(dream, user_specific=True, n_results=n_results)
-        print("SIMILAR DREAMS OF USER ARE", similar_dreams)
+        similar_dreams_user = find_similar_dreams(dream, user_specific=True, n_results=n_results)
+        print("SIMILAR DREAMS OF USER ARE", similar_dreams_user)
+
+        similar_dreams_all = find_similar_dreams(dream, user_specific=False)
+        print("SIMILAR DREAMS OVERALL ARE", similar_dreams_all)
 
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
