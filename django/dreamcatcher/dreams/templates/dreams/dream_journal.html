@@ -501,6 +501,10 @@
             </form>
             {% endfor %}
         </p>
+        <div class="buttons-container">
+            <a href="{% url 'dreams:view_similar_own' dream.id %}" class="button">View your similar dreams</a>
+            <a href="{% url 'dreams:view_similar_all' dream.id %}" class="button">View similar dreams of other users</a>
+        </div>
         <div class="menu">
             <span class="icon">⋮</span>
             <div class="menu-content">

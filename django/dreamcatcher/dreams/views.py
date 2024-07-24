@@ -59,11 +59,11 @@ def log_dream(request):
         dream_count = user_dreams.count()
         n_results = min(5, dream_count)  # check how many dreams user has, return at most 5
 
-        similar_dreams_user = find_similar_dreams(dream, user_specific=True, n_results=n_results)
-        print("SIMILAR DREAMS OF USER ARE", similar_dreams_user)
+        similar_own_dreams = find_similar_dreams(dream, user_specific=True, n_results=n_results)
+        similar_all_dreams = find_similar_dreams(dream, user_specific=False)
 
-        similar_dreams_all = find_similar_dreams(dream, user_specific=False)
-        print("SIMILAR DREAMS OVERALL ARE", similar_dreams_all)
+        dream.similar_own = similar_own_dreams
+        dream.similar_all = similar_all_dreams
 
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
@@ -89,6 +89,26 @@ def log_dream(request):
         form = DateForm(initial={'date': date.today()})
 
     return render(request, 'dreams/log_dream.html', {'form': form})
+
+
+@login_required()
+def view_similar_own(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dreams = dream.similar_own
+    context = {
+        'dreams': dreams,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
+
+
+@login_required()
+def view_similar_all(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dreams = dream.similar_all
+    context = {
+        'dreams': dreams,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
 
 
 @login_required

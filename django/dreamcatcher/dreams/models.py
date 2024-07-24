@@ -31,6 +31,8 @@ class Dream(models.Model):
     emotion_options = ['anger', 'apprehension', 'sadness', 'confusion', 'happiness', '']
     optional_titles = models.JSONField(default=list, blank=True)
     title = models.TextField(blank=True)
+    similar_own = []
+    similar_all = []
     User.add_to_class('is_new', models.BooleanField(default=True))
 
     def add_metadata(self):
