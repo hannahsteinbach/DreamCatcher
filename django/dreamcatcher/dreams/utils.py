@@ -82,3 +82,11 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
 
     return similar_dreams
 
+
+def update_dream_shared_status_in_collection(dream_id, shared):
+    collection.update(
+        ids=[str(dream_id)],
+        metadatas={"shared": shared}
+    )
+    print(f"Updated dream {dream_id} shared status to {shared} in collection")
+
