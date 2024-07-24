@@ -36,11 +36,11 @@ def add_dream_to_collection(dream_id, content):
 
 def remove_dream_from_collection(dream_id):
     dream = get_dream_by_id(dream_id)
-    print("just a little bit",dream)
-    collection.delete(
-        ids=[str(dream.id)]
-    )
-    print(f"Removed dream {dream.id} from collection")
+    try:
+        collection.delete(ids=[str(dream.id)])
+        print(f"Removed dream {dream.id} from collection.")
+    except Exception as e:
+        print(f"Failed to remove dream {dream_id} from collection. Error: {e}")
 
 
 def find_similar_dreams(new_dream, user_specific=True, n_results=5):
