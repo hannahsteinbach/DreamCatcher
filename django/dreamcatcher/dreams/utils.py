@@ -34,7 +34,7 @@ def add_dream_to_collection(dream_id, content):
 
 
 def remove_dream_from_collection(dream_id):
-    dream = get_dream_by_id(dream_id)
+    dream = get_dream_by_id(dream.id)
     collection.delete(
         ids=[str(dream.id)]
     )

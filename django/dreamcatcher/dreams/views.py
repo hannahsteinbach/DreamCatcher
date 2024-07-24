@@ -96,8 +96,8 @@ def choose_title_log(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
     optional_titles = dream.optional_titles
     if not optional_titles:
-        dream.delete()
         remove_dream_from_collection(dream_id)
+        dream.delete()
     else:
         if request.method == 'POST':
             selected_title = request.POST.get('title')
@@ -153,6 +153,7 @@ def delete_dream(request, dream_id):
 @login_required
 def edit_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
+    remove_dream_from_collection(dream.id)
     dream_bc = dream.content
 
     if request.method == 'POST':
@@ -171,15 +172,15 @@ def edit_dream(request, dream_id):
                 dream.time = dream_time
                 dream.classification = form.cleaned_data['classification']
                 if dream_bc != dream_ac:
-                    remove_dream_from_collection(dream_id) #remove old embeddings
                     dream.content = dream_ac
                     dream.add_metadata()  # only generate metadata again if content was changed
-                    add_dream_to_collection(dream.id, dream.content)  # put new embeddings back
                 dream.save()
                 return redirect('dreams:dream_journal')
 
     else:
         form = DreamForm(instance=dream)
+
+    add_dream_to_collection(dream.id, dream.content) 
 
     return render(request, 'dreams/edit_dream.html', {'form': form})
 
