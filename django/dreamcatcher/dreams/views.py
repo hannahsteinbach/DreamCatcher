@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import json
-from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection
+from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection, get_dream_by_id
 from django.urls import reverse
 
 logger = logging.getLogger(__name__)
@@ -144,9 +144,12 @@ def choose_emotion(request, dream_id):
 
 @login_required
 def delete_dream(request, dream_id):
-    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
-    dream.delete()
-    remove_dream_from_collection(dream_id)
+    dream = get_dream_by_id(dream_id)
+    if dream:
+        remove_dream_from_collection(dream_id)
+        messages.success(request, "Dream deleted successfully.")
+    else:
+        messages.error(request, "Dream does not exist.")
     return redirect('dreams:dream_journal')
 
 

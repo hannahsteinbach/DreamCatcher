@@ -16,6 +16,7 @@ except Exception as e:
 
 def get_dream_by_id(dream_id):
     from .models import Dream
+    print("just give me a reason",Dream.objects.get(id=dream_id))
     return Dream.objects.get(id=dream_id)
 
 
@@ -34,7 +35,8 @@ def add_dream_to_collection(dream_id, content):
 
 
 def remove_dream_from_collection(dream_id):
-    dream = get_dream_by_id(dream.id)
+    dream = get_dream_by_id(dream_id)
+    print("just a little bit",dream)
     collection.delete(
         ids=[str(dream.id)]
     )
