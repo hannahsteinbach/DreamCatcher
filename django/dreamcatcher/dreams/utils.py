@@ -2,7 +2,7 @@ import chromadb
 import ollama
 
 
-client = chromadb.Client()
+client = chromadb.PersistentClient()
 collection_name = 'embeddings_dream'
 
 try:
@@ -38,7 +38,7 @@ def remove_dream_from_collection(dream_id):
     collection.delete(
         ids=[str(dream.id)]
     )
-    #print(f"Added dream {dream.id} to collection with embeddings {embedding} and metadata user ID {dream.user.id} and shared: {dream.shared}")
+    print(f"Removed dream {dream.id} from collection")
 
 
 def find_similar_dreams(new_dream, user_specific=True, n_results=5):
@@ -64,7 +64,10 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
     similar_dreams = [
         {
             "id": query_response['ids'][i],
-            "content": query_response['documents'][i]
+            "content": query_response['documents'][i],
+            "score": query_response['distances'][i], # here we should put a threshold! the smaller the score (distance),
+                                                    # the higher the similarity is
+            "metadatas": query_response['metadatas'][i]
         }
         for i in range(len(query_response['documents']))
     ]
