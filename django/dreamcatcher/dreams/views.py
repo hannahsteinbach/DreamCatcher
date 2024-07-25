@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 import json
-from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection, get_dream_by_id
+from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection, get_dream_by_id, update_dream_shared_status_in_collection
 from django.urls import reverse
 
 logger = logging.getLogger(__name__)
@@ -55,16 +55,6 @@ def log_dream(request):
 
         add_dream_to_collection(dream.id, dream.content)
 
-        user_dreams = Dream.objects.filter(user=user)
-        dream_count = user_dreams.count()
-        n_results = min(5, dream_count)  # check how many dreams user has, return at most 5
-
-        similar_dreams_user = find_similar_dreams(dream, user_specific=True, n_results=n_results)
-        print("SIMILAR DREAMS OF USER ARE", similar_dreams_user)
-
-        similar_dreams_all = find_similar_dreams(dream, user_specific=False)
-        print("SIMILAR DREAMS OVERALL ARE", similar_dreams_all)
-
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
 
@@ -89,6 +79,37 @@ def log_dream(request):
         form = DateForm(initial={'date': date.today()})
 
     return render(request, 'dreams/log_dream.html', {'form': form})
+
+
+@login_required()
+def view_similar_own(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    user = request.user
+
+    user_dreams = Dream.objects.filter(user=user)
+    dream_count = user_dreams.count()
+    n_results = min(6, dream_count)  # check how many dreams user has, return at most 5
+
+    similar_dreams = find_similar_dreams(dream, user_specific=True, n_results=n_results)
+    dreams = [similar_dream for similar_dream in similar_dreams if similar_dream.id != dream.id]
+
+    context = {
+        'dreams': dreams,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
+
+
+@login_required()
+def view_similar_all(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+
+    similar_dreams = find_similar_dreams(dream, user_specific=False)
+    dreams = [similar_dream for similar_dream in similar_dreams if similar_dream.id != dream.id]
+
+    context = {
+        'dreams': dreams,
+    }
+    return render(request, 'dreams/dream_journal.html', context)
 
 
 @login_required
@@ -144,19 +165,20 @@ def choose_emotion(request, dream_id):
 
 @login_required
 def delete_dream(request, dream_id):
-    dream = get_dream_by_id(dream_id)
-    if dream:
+    dream_embedding = get_dream_by_id(dream_id)
+    dream = get_object_or_404(Dream, id=dream_id, user=request.user)
+    if dream_embedding:
         remove_dream_from_collection(dream_id)
         messages.success(request, "Dream deleted successfully.")
     else:
         messages.error(request, "Dream does not exist.")
+    dream.delete()
     return redirect('dreams:dream_journal')
 
 
 @login_required
 def edit_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
-    remove_dream_from_collection(dream.id)
     dream_bc = dream.content
 
     if request.method == 'POST':
@@ -177,13 +199,13 @@ def edit_dream(request, dream_id):
                 if dream_bc != dream_ac:
                     dream.content = dream_ac
                     dream.add_metadata()  # only generate metadata again if content was changed
+                    remove_dream_from_collection(dream.id) #just try this again (delulu queen), if it doesnt work change back
+                    add_dream_to_collection(dream.id, dream.content)
                 dream.save()
                 return redirect('dreams:dream_journal')
 
     else:
         form = DreamForm(instance=dream)
-
-    add_dream_to_collection(dream.id, dream.content) 
 
     return render(request, 'dreams/edit_dream.html', {'form': form})
 
@@ -212,6 +234,9 @@ def share_dream(request, dream_id):
     dream.anon = False
     dream.save(update_fields=['shared'])
     dream.save(update_fields=['anon'])
+    update_dream_shared_status_in_collection(dream.id, shared=True)
+
+
    # messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
@@ -222,6 +247,7 @@ def share_dream_anon(request, dream_id):
     dream.anon = True
     dream.save(update_fields=['shared'])
     dream.save(update_fields=['anon'])
+    update_dream_shared_status_in_collection(dream.id, shared=True)
   #  messages.success(request, 'Dream shared successfully!')
     return redirect('dreams:dream_journal')
 
@@ -275,6 +301,7 @@ def unshare_dream(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id, user=request.user)
     dream.shared = False
     dream.save(update_fields=['shared'])
+    update_dream_shared_status_in_collection(dream.id, shared=False)
 
     DreamLike.objects.filter(dream=dream).delete() # remove all likes associated with dream
 

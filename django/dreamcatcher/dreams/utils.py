@@ -36,11 +36,11 @@ def add_dream_to_collection(dream_id, content):
 
 def remove_dream_from_collection(dream_id):
     dream = get_dream_by_id(dream_id)
-    print("just a little bit",dream)
-    collection.delete(
-        ids=[str(dream.id)]
-    )
-    print(f"Removed dream {dream.id} from collection")
+    try:
+        collection.delete(ids=[str(dream.id)])
+        print(f"Removed dream {dream.id} from collection.")
+    except Exception as e:
+        print(f"Failed to remove dream {dream_id} from collection. Error: {e}")
 
 
 def find_similar_dreams(new_dream, user_specific=True, n_results=5):
@@ -75,10 +75,19 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
     ]
 
     # not get the dream we just logged
-    similar_dreams = [
-        dream for dream in similar_dreams
-        if dream['id'] != str(new_dream.id)
-    ]
+    similar_dreams = [dream for dream in similar_dreams if dream['id'] != str(new_dream.id)]
 
-    return similar_dreams
+    from .models import Dream
+    similar_dream_ids = [dream['id'] for dream in similar_dreams]
+    similar_dream_objs = Dream.objects.filter(id__in=similar_dream_ids)
+
+    return similar_dream_objs
+
+
+def update_dream_shared_status_in_collection(dream_id, shared):
+    collection.update(
+        ids=[str(dream_id)],
+        metadatas={"shared": shared}
+    )
+    print(f"Updated dream {dream_id} shared status to {shared} in collection")
 
