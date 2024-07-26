@@ -44,8 +44,9 @@ def remove_dream_from_collection(dream_id):
 
 
 def find_similar_dreams(new_dream, user_specific=True, n_results=5):
-    response = ollama.embeddings(model="mxbai-embed-large", prompt=new_dream.content)
-    embedding = response["embedding"]
+    dream = get_dream_by_id(new_dream.id)
+    dream_collection = collection.get(ids=[str(dream.id)], include=["embeddings"])
+    embedding = dream_collection['embeddings'][0]
     user_id = new_dream.user.id
 
     if user_specific:
@@ -83,12 +84,11 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
     similar_dreams = [dream for dream in similar_dreams if str(new_dream.id) != dream['id']]
 
     from .models import Dream
-    
     similar_dream_ids = [dream_id for dream in similar_dreams for dream_id in dream['id']]
     similar_dream_ids = [int(dream_id) for dream_id in similar_dream_ids]
     similar_dream_objs = Dream.objects.filter(id__in=similar_dream_ids)
-
     return similar_dream_objs
+
 
 
 def update_dream_shared_status_in_collection(dream_id, shared):

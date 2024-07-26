@@ -545,7 +545,7 @@ def personal_statistics(request):
     if dream_count > 0:
         anger_count = round(dreams.filter(emotion='anger').count() / dream_count * 100)
         apprehension_count = round(dreams.filter(emotion='apprehension').count() / dream_count * 100)
-        sadness_count = round(dreams.filter(emotion='aadness').count() / dream_count * 100)
+        sadness_count = round(dreams.filter(emotion='sadness').count() / dream_count * 100)
         confusion_count = round(dreams.filter(emotion='confusion').count() / dream_count * 100)
         happiness_count = round(dreams.filter(emotion='happiness').count() / dream_count * 100)
         none_emotion_count = 100-anger_count-apprehension_count-sadness_count-confusion_count-happiness_count

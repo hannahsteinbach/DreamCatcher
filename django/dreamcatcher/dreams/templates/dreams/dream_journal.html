@@ -240,6 +240,7 @@
             z-index: 1;
             border-radius: 5px;
             overflow: hidden;
+            margin-bottom: 4px;
         }
         .menu-content a, .menu-content button {
             color: black;
@@ -504,6 +505,13 @@
         <div class="buttons-container">
         </div>
         <div class="menu">
+            <span class="icon">🪞</span>
+            <div class="menu-content">
+                <a href="{% url 'dreams:view_similar_own' dream.id %}">View your own similar dreams</a>
+                <a href="{% url 'dreams:view_similar_all' dream.id %}">View other users' similar dreams</a>
+            </div>
+        </div>
+        <div class="menu">
             <span class="icon">⋮</span>
             <div class="menu-content">
                 <a href="{% url 'dreams:edit_dream' dream.id %}">Edit dream</a>
@@ -518,8 +526,6 @@
                     {% csrf_token %}
                 </form>
                 {% endif %}
-                <a href="{% url 'dreams:view_similar_own' dream.id %}">View your own similar dreams</a>
-                <a href="{% url 'dreams:view_similar_all' dream.id %}">View other users' similar dreams</a>
                 {% if dream.optional_titles%}
                 <a href="{% url 'dreams:choose_title' dream.id %}">Choose new title</a>
                 <form action="{% url 'dreams:choose_title' dream.id %}" method="get" style="display:inline;">
