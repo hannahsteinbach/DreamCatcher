@@ -60,7 +60,12 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
         query_response = collection.query(
             query_embeddings=[embedding],
             n_results=n_results,
-            where={"shared": True}
+            where={
+                "$and": [
+                    {"shared": True}, 
+                    {"user_id": {"$ne": user_id}}  # do not return the user's own dreams
+                ]
+            }
         )
 
     similar_dreams = [
@@ -75,10 +80,12 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
     ]
 
     # not get the dream we just logged
-    similar_dreams = [dream for dream in similar_dreams if dream['id'] != str(new_dream.id)]
+    similar_dreams = [dream for dream in similar_dreams if str(new_dream.id) != dream['id']]
 
     from .models import Dream
-    similar_dream_ids = [dream['id'] for dream in similar_dreams]
+    
+    similar_dream_ids = [dream_id for dream in similar_dreams for dream_id in dream['id']]
+    similar_dream_ids = [int(dream_id) for dream_id in similar_dream_ids]
     similar_dream_objs = Dream.objects.filter(id__in=similar_dream_ids)
 
     return similar_dream_objs
