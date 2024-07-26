@@ -95,6 +95,7 @@ def view_similar_own(request, dream_id):
 
     context = {
         'dreams': dreams,
+        'query': request.GET.get('query', '')
     }
     return render(request, 'dreams/dream_journal.html', context)
 
@@ -108,6 +109,7 @@ def view_similar_all(request, dream_id):
 
     context = {
         'dreams': dreams,
+        'query': request.GET.get('query', '')
     }
     return render(request, 'dreams/dream_journal.html', context)
 
