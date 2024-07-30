@@ -412,6 +412,11 @@
                 <li> Not classified: {{none_emotion_count}}% </li>
             </ul>
     </div>
+    <div id="dream-frequency-chart"></div>
+        <h3>Dream Frequency</h3>
+    <script>
+        Plotly.newPlot('dream-frequency-chart', data, layout);
+    </script>
     <div class="dream">
         <h3>Favorite dreams</h3>
         <p class="dream-content">

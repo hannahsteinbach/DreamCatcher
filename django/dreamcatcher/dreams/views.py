@@ -19,6 +19,7 @@ from django.db.models import Count
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 from io import BytesIO
 import base64
 import json
@@ -573,7 +574,37 @@ def personal_statistics(request):
     labels = list(top_10_characters.keys())
     counts = list(top_10_characters.values())
 
-    # plotting with Matplotlib
+    dream_dates = []
+    for dream in dreams:
+        dream_dates.append(dream.date)
+    
+    dream_dates_counted = Counter(dream_dates)
+    print(dream_dates_counted)
+
+    dates = list(dream_dates_counted.keys())
+    counts = list(dream_dates_counted.values())
+
+    # plot 1: dream count per month
+    plt.figure(figsize=(10, 5))
+    plt.gca().set_facecolor('#f0f0f0')
+    plt.plot(dates, counts, marker='o', linestyle='-', color='skyblue')
+
+    plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
+    plt.xticks(rotation=45)
+    plt.tick_params(axis='both', which='major', labelsize=10, labelcolor='black')
+
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+
+    # bytes buffer
+    buffer1 = BytesIO()
+    plt.savefig(buffer1, format='png', transparent=True)
+    buffer1.seek(0)
+    plot_data1 = base64.b64encode(buffer1.getvalue()).decode()
+    buffer1.close()
+
+    # plot 2: top characters
     plt.figure(figsize=(6, 3))
     plt.gca().set_facecolor('#f0f0f0')
     plt.bar(labels, counts, color='skyblue')
@@ -584,12 +615,12 @@ def personal_statistics(request):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
 
-    # Save plot to a bytes buffer
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png', transparent=True)
-    buffer.seek(0)
-    plot_data = base64.b64encode(buffer.getvalue()).decode()
-    buffer.close()
+    # Save the second plot to a bytes buffer
+    buffer2 = BytesIO()
+    plt.savefig(buffer2, format='png', transparent=True)
+    buffer2.seek(0)
+    plot_data2 = base64.b64encode(buffer2.getvalue()).decode()
+    buffer2.close()
 
     # places
     all_places = []
