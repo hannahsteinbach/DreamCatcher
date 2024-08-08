@@ -572,22 +572,22 @@ def personal_statistics(request):
     top_10_characters = dict(Counter(characters_counted).most_common(10))
 
     labels = list(top_10_characters.keys())
-    counts = list(top_10_characters.values())
+    character_counts = list(top_10_characters.values())
 
     dream_dates = []
     for dream in dreams:
         dream_dates.append(dream.date)
     
     dream_dates_counted = Counter(dream_dates)
-    print(dream_dates_counted)
 
     dates = list(dream_dates_counted.keys())
-    counts = list(dream_dates_counted.values())
+    dream_counts = list(dream_dates_counted.values())
+    dates, counts = zip(*sorted(zip(dates, dream_counts)))
 
     # plot 1: dream count per month
     plt.figure(figsize=(10, 5))
     plt.gca().set_facecolor('#f0f0f0')
-    plt.plot(dates, counts, marker='o', linestyle='-', color='skyblue')
+    plt.plot(dates, dream_counts, marker='o', linestyle='-', color='skyblue')
 
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
@@ -607,7 +607,7 @@ def personal_statistics(request):
     # plot 2: top characters
     plt.figure(figsize=(6, 3))
     plt.gca().set_facecolor('#f0f0f0')
-    plt.bar(labels, counts, color='skyblue')
+    plt.bar(labels, character_counts, color='skyblue')
 
     plt.xticks(rotation=45)
     plt.tick_params(axis='both', which='major', labelsize=10, labelcolor='black')
@@ -648,7 +648,8 @@ def personal_statistics(request):
         'anger_count': anger_count,
         'apprehension_count': apprehension_count,
         'sadness_count': sadness_count,
-        'plot_data': plot_data,
+        'plot_data1': plot_data1,
+        'plot_data2': plot_data2,
         'confusion_count': confusion_count,
         'happiness_count': happiness_count,
         'none_emotion_count': none_emotion_count,
