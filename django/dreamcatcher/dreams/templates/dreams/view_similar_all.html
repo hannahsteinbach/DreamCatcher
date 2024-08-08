@@ -48,6 +48,7 @@
             text-align: center;
             margin-top: 20px;
             margin-left: 180px;
+            margin-bottom: 50px;
             z-index: 2;
             position: relative;
         }
@@ -79,7 +80,7 @@
         .sidenav a:hover {
             color: black;
         }
-        
+
         .container {
             display: flex;
             flex-direction: column;
@@ -338,66 +339,35 @@
             cursor: pointer;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            document.querySelectorAll('.menu').forEach(menu => {
-                menu.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                });
+ <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('.menu').forEach(menu => {
+            menu.addEventListener('click', function() {
+                this.classList.toggle('active');
             });
         });
-        function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.querySelector('.search-form').submit();
-        }
-    </script>
-</head>
-<body>
-    <div class="header">
-        <h2>Dream Gallery 🎞️</h2>
-    </div>
+    });
+    function clearSearch() {
+        document.getElementById('searchInput').value = '';
+        document.querySelector('.search-form').submit();
+    }
+</script>
     <div class="sidenav">
         <a href="/">Home</a>
-        <a href="{% url 'dreams:gallery' %}"><b>Dream Gallery</b></a>
+        <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
         <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
-        <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+        <a href="{% url 'dreams:dream_journal' %}"><b>Dream Journal</b></a>
         <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
         <a href="{% url 'logout' %}">Log out</a>
     </div>
-    <div class="button-container">
-        <div>
-            {% if is_liked_view %}
-                <a href="{% url 'dreams:gallery' %}" class="button">View all dreams</a>
-            {% else %}
-                <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
-            {% endif %}
-        </div>
+
+    <div class="header">
+        <h2> Other user's similar dreams </h2>
     </div>
-    <div class="container">
-        <form class="search-form" method="get" action="{% url 'dreams:gallery' %}">
-            <input id="searchInput" type="text" name="q" placeholder="Search everyone's dreams" value="{{ query }}">
-            <select id="classification" name="classification">
-                <option value="">All dream types</option>
-                <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>
-                <option value="1" {% if class_query == '1' %}selected{% endif %}>Mundane dreams</option>
-                <option value="2" {% if class_query == '2' %}selected{% endif %}>Lucid dreams</option>
-                <option value="3" {% if class_query == '3' %}selected{% endif %}>Existential dreams</option>
-            </select>
-            <select id="emotion" name="emotion">
-                <option value="">All emotions</option>
-                <option value="anger" {% if emotion_query == 'Anger' %}selected{% endif %}>Anger</option>
-                <option value="apprehension" {% if emotion_query == 'Apprehension' %}selected{% endif %}>Apprehension</option>
-                <option value="sadness" {% if emotion_query == 'Sadness' %}selected{% endif %}>Sadness</option>
-                <option value="confusion" {% if emotion_query == 'Confusion' %}selected{% endif %}>Confusion</option>
-                <option value="happiness" {% if emotion_query == 'Happiness' %}selected{% endif %}>Happiness</option>
-            </select>
-            <button type="submit">Search</button>
-            <button type="button" onclick="clearSearch()">Clear</button>
-        </form>
-    </div>
+
     <div class="dreams">
-        {% if dreams %}
-            {% for dream in dreams|dictsortreversed:"date" %}
+        {% if dreams_scores %}
+            {% for dream, score in dreams_scores%}
                 {% if dream.shared %}
                     {% if not query or query|lower in dream.content|lower %}
                         <div class="dream">
@@ -411,6 +381,12 @@
                                     </a>
                                 </h2>
                             {% endif %}
+                            {% if score == 0%}
+                                <h3>Original Dream</h3>
+                            {%else%}
+                                <h3>Similarity Score: {{ score}}</h3>
+                            {%endif%}
+                            </p>
                             <h3 class="dream-date">{{ dream.date }}</h3>
                             <p class="dream-content">
                                 {% autoescape off %}
@@ -503,6 +479,7 @@
                                     {% endif %}
                                 </div>
                             </div>
+                            <div>
                             <div class="menu">
                                 <span class="icon" style="margin-right: 25px">🪞</span>
                                 <div class="menu-content">
@@ -510,7 +487,6 @@
                                     <a href="{% url 'dreams:view_similar_all' dream.id %}">View other users' similar dreams</a>
                                 </div>
                             </div>
-                            <div>
                                 <h5>Comments</h5>
                                 <div class="comment-section">
                                     {% for comment in dream.comments.all %}
@@ -544,21 +520,9 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-            <div class="pagination">
-                <span class="step-links">
-                    {% for page_num in dreams.paginator.page_range %}
-                        {% if page_num == dreams.number %}
-                            <span class="current">{{ page_num }}</span>
-                        {% else %}
-                            <a href="?{% if query %}q={{ query }}{% endif %}{% if class_query %}&classification={{ class_query }}{% endif %}{% if emotion_query %}&emotion={{ emotion_query }}{% endif %}{% if keyword_query %}&keyword={{ keyword_query }}{% endif %}{% if character_query %}&character={{ character_query }}{% endif %}{% if place_query %}&place={{ place_query }}{% endif %}page={{ page_num }}">{{ page_num }}</a>
-                        {% endif %}
-                    {% endfor %}
-                </span>
-            </div>
             {% else %}
                 <p>No liked dreams found.</p>
             {% endif %}
             </div>
         </body>
         </html>
-

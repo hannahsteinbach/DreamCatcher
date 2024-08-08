@@ -1,6 +1,7 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
+from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
 from .forms import SignUpForm, DreamForm, CommentForm, DateForm, TitleForm
@@ -82,38 +83,38 @@ def log_dream(request):
     return render(request, 'dreams/log_dream.html', {'form': form})
 
 
-@login_required()
+@login_required
 def view_similar_own(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
     user = request.user
 
     user_dreams = Dream.objects.filter(user=user)
     dream_count = user_dreams.count()
-    n_results = min(6, dream_count)  # check how many dreams user has, return at most 5
+    n_results = min(6, dream_count)  # Check how many dreams user has, return at most 6
 
-    similar_dreams = find_similar_dreams(dream, user_specific=True, n_results=n_results)
-    dreams = [similar_dream for similar_dream in similar_dreams if similar_dream.id != dream.id]
+    dreams_scores = find_similar_dreams(dream, user, user_specific=True, n_results=n_results)
 
     context = {
-        'dreams': dreams,
-        'query': request.GET.get('query', '')
+        'dreams_scores': dreams_scores,
+        'query': request.GET.get('query', ''),
+        'user': user
     }
-    return render(request, 'dreams/dream_journal.html', context)
+    return render(request, 'dreams/view_similar_own.html', context)
 
 
 @login_required()
 def view_similar_all(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
+    user = request.user
 
-    similar_dreams = find_similar_dreams(dream, user_specific=False)
-    dreams = [similar_dream for similar_dream in similar_dreams if similar_dream.id != dream.id]
+    dreams_scores = find_similar_dreams(dream, user, user_specific=False)
 
     context = {
-        'dreams': dreams,
-        'query': request.GET.get('query', '')
+        'dreams_scores': dreams_scores,
+        'query': request.GET.get('query', ''),
+        'user': user
     }
-    return render(request, 'dreams/dream_journal.html', context)
-
+    return render(request, 'dreams/view_similar_all.html', context)
 
 @login_required
 def choose_title_log(request, dream_id):
@@ -345,9 +346,15 @@ def gallery(request):
     if place_query:
         dreams = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place_query))))
 
+    dreams = dreams.order_by('-date', '-time')
+
+    paginator = Paginator(dreams, 10)  # Show 10 dreams per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
 
     context = {
-        'dreams': dreams,
+        'dreams': page_obj,
         'query': query,
         'is_liked_view': False,
         'class_query': class_query,
@@ -414,10 +421,14 @@ def dream_journal(request):
 
     dreams = dreams.order_by('-date', '-time')
 
+    paginator = Paginator(dreams, 10)  # Show 10 dreams per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
 
 
     context = {
-        'dreams': dreams,
+        'dreams': page_obj,
         'query': query,
         'class_query': class_query,
         'emotion_query': emotion_query,

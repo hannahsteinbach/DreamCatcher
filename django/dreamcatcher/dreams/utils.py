@@ -16,7 +16,6 @@ except Exception as e:
 
 def get_dream_by_id(dream_id):
     from .models import Dream
-    print("just give me a reason",Dream.objects.get(id=dream_id))
     return Dream.objects.get(id=dream_id)
 
 
@@ -43,11 +42,11 @@ def remove_dream_from_collection(dream_id):
         print(f"Failed to remove dream {dream_id} from collection. Error: {e}")
 
 
-def find_similar_dreams(new_dream, user_specific=True, n_results=5):
+def find_similar_dreams(new_dream, user, user_specific=True, n_results=5):
     dream = get_dream_by_id(new_dream.id)
     dream_collection = collection.get(ids=[str(dream.id)], include=["embeddings"])
     embedding = dream_collection['embeddings'][0]
-    user_id = new_dream.user.id
+    user_id = user.id
 
     if user_specific:
         query_response = collection.query(
@@ -80,16 +79,26 @@ def find_similar_dreams(new_dream, user_specific=True, n_results=5):
         for i in range(len(query_response['documents']))
     ]
 
-    # not get the dream we just logged
-    similar_dreams = [dream for dream in similar_dreams if str(new_dream.id) != dream['id']]
+    # map ids to scores
+    id_score_map = {}
+    for dream in similar_dreams:
+        for id_str, score in zip(dream['id'], dream['score']):
+            id_int = int(id_str)
+            id_score_map[id_int] = score
+
+    similar_dream_ids = [id for id in id_score_map]
 
     from .models import Dream
-    similar_dream_ids = [dream_id for dream in similar_dreams for dream_id in dream['id']]
-    similar_dream_ids = [int(dream_id) for dream_id in similar_dream_ids]
+
     similar_dream_objs = Dream.objects.filter(id__in=similar_dream_ids)
-    return similar_dream_objs
 
+    dream_score_tuples = [
+        (dream_obj, id_score_map.get(dream_obj.id, 0))
+        for dream_obj in similar_dream_objs
+    ]
+    sorted_dream_score_tuples = sorted(dream_score_tuples, key=lambda ds: ds[1])
 
+    return sorted_dream_score_tuples
 
 def update_dream_shared_status_in_collection(dream_id, shared):
     collection.update(
