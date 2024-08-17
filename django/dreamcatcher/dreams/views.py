@@ -103,11 +103,12 @@ def view_similar_own(request, dream_id):
     llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
 
     similarity_prompt = (
-        f"This is the original dream: {llama_dreams[0]}.\n "
-        "Using embeddings, we have obtained a list of up to 5 most similar dreams. These dreams are the remaining\n "
-        "dreams in the list: {llama_dreams[1:]}. For each of these dreams, please explain the similarities between the\n"
-        " original dream and the respective dream. The output must be a dictionary of strings which represent the respective\n"
-        f"explanations in the same order as {llama_dreams[1:]}. Only output the list. Do not include any other information. ")
+        f"This is the original dream: {llama_dreams[0]}.\n"
+        "Using embeddings, we have obtained a list of up to 5 most similar dreams. These dreams are the remaining\n"
+        f"dreams in the list: {llama_dreams[1:]}. For each of these dreams, please explain the similarities between the\n"
+        "original dream and the respective dream. The output must be a list of strings representing the respective\n"
+        f"explanations in the same order as {llama_dreams[1:]}. Only output the list. Do not include any other information."
+    )
 
     try:
         # response generation
