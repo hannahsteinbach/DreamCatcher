@@ -400,8 +400,8 @@
     </div>
 
     <div class="dreams">
-        {% if dreams_scores %}
-            {% for dream, score in dreams_scores %}
+        {% if dreams_scores_explanation %}
+            {% for dream, score, explanation in dreams_scores_explanation %}
                 {% if not query or query|lower in dream.content|lower %}
                     <div class="dream">
                         {% if dream.title %}
@@ -411,6 +411,8 @@
                             <h3>Original Dream</h3>
                         {%else%}
                             <h3>Similarity Score: {{ score}}</h3>
+                        {%endif%}
+                            <h3>Similarity explanation: {{ explanation }}</h3>
                         {%endif%}
                         </p>
                         <h3 class="dream-date">{{ dream.date }}</h3>

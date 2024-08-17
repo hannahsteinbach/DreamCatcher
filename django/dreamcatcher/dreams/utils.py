@@ -106,4 +106,3 @@ def update_dream_shared_status_in_collection(dream_id, shared):
         metadatas={"shared": shared}
     )
     print(f"Updated dream {dream_id} shared status to {shared} in collection")
-
