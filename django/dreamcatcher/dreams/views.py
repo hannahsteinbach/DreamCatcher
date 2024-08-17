@@ -122,6 +122,8 @@ def view_similar_own(request, dream_id):
         (dream, score, explanation) for (dream, score), explanation in zip(dreams_scores, response)
     ]
 
+    print(dreams_scores_explanation)
+
     context = {
         'dreams_scores_explanation': dreams_scores_explanation,
         'query': request.GET.get('query', ''),
