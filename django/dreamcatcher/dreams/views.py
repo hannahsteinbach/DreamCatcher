@@ -102,17 +102,21 @@ def view_similar_own(request, dream_id):
     llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
 
     similarity_prompt = (
-    f"This is a dream: {llama_dreams[0]}\n"
-    f"{llama_dreams[1:]} is a list of dreams similar to the original dream. For each dream in {llama_dreams[1:]},  please provide a detailed comparison with the original dream. \n"
-    "Output the comparisons as a list of strings. Each string should be a comprehensive explanation for one similar dream, in the same order as the similar dreams listed above. The list should be formatted as a Python list. Output only the Python list, nothing else. Do not make any assumptions about the relationships between characters. Do not add any additional information or details."
-)
+        f"Here is an original dream:\n{llama_dreams[0]}\n\n"
+        f"Below is a list of dreams similar to the original dream:\n"
+        f"{llama_dreams[1:]}\n\n"
+        "For each similar dream, write a explanation of how it is similar to or different from the original dream. "
+        "Format the output as a list of strings where each string corresponds to one of the similar dreams. "
+        "The list should be formatted in Python syntax (e.g., ['Comparison 1', 'Comparison 2']). "
+        "Do not include any additional information or assumptions."
+    )
 
     try:
         # response generation
         response = llm.invoke(similarity_prompt)
-        print(response)
+        print("Raw response:", response)
         response = json.loads(response)
-        print(response)
+        print("JSON response:", response)
 
     except (json.JSONDecodeError, KeyError) as e:
         print(f"Error processing similarity explanation: {e}")
@@ -599,17 +603,17 @@ def personal_statistics(request):
         happiness_count = 0
         none_emotion_count = 0
 
-    # characters
     all_characters = []
     for dream in dreams:
         all_characters.extend(dream.characters)
 
-    normalized_characters = [character.lower() for character in all_characters]
-    characters_counted = Counter(normalized_characters)
+    character_counts = Counter()
+    for char in set(all_characters):
+        count = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(char)))).count()
+        character_counts[char] = count
 
-    characters_counted = dict(Counter(normalized_characters))
+    top_10_characters = dict(character_counts.most_common(10))
 
-    top_10_characters = dict(Counter(characters_counted).most_common(10))
 
     labels = list(top_10_characters.keys())
     character_counts = list(top_10_characters.values())
@@ -662,14 +666,16 @@ def personal_statistics(request):
     plot_data2 = base64.b64encode(buffer2.getvalue()).decode()
     buffer2.close()
 
-    # places
     all_places = []
     for dream in dreams:
         all_places.extend(dream.places)
 
-    places_counted = Counter(all_places)
+    place_counts = Counter()
+    for place in set(all_places):
+        count = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place)))).count()
+        place_counts[place] = count
 
-    top_10_places = places_counted.most_common(10)
+    top_10_places = place_counts.most_common(10)
 
     context = {
         'dreams': dreams,
