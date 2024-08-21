@@ -6,7 +6,6 @@ from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
 from .forms import SignUpForm, DreamForm, CommentForm, DateForm, TitleForm
 import logging
-from langchain_community.llms import ollama
 from django.shortcuts import render, redirect
 from .models import Dream, DreamLike, Comment, User
 from django.contrib.auth.decorators import login_required
@@ -103,17 +102,17 @@ def view_similar_own(request, dream_id):
     llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
 
     similarity_prompt = (
-        f"This is the original dream: {llama_dreams[0]}.\n"
-        "Using embeddings, we have obtained a list of up to 5 most similar dreams. These dreams are the remaining\n"
-        f"dreams in the list: {llama_dreams[1:]}. For each of these dreams, please explain the similarities between the\n"
-        "original dream and the respective dream. The output must be a list of strings representing the respective\n"
-        f"explanations in the same order as {llama_dreams[1:]}. Only output the list. Do not include any other information."
-    )
+    f"This is a dream: {llama_dreams[0]}\n"
+    f"{llama_dreams[1:]} is a list of dreams similar to the original dream. For each dream in {llama_dreams[1:]},  please provide a detailed comparison with the original dream. \n"
+    "Output the comparisons as a list of strings. Each string should be a comprehensive explanation for one similar dream, in the same order as the similar dreams listed above. The list should be formatted as a Python list. Output only the Python list, nothing else. Do not make any assumptions about the relationships between characters. Do not add any additional information or details."
+)
 
     try:
         # response generation
         response = llm.invoke(similarity_prompt)
+        print(response)
         response = json.loads(response)
+        print(response)
 
     except (json.JSONDecodeError, KeyError) as e:
         print(f"Error processing similarity explanation: {e}")
@@ -125,7 +124,7 @@ def view_similar_own(request, dream_id):
     print(dreams_scores_explanation)
 
     context = {
-        'dreams_scores_explanation': dreams_scores_explanation,
+        'dreams_scores': dreams_scores,
         'query': request.GET.get('query', ''),
         'user': user
     }
@@ -631,7 +630,7 @@ def personal_statistics(request):
     plt.plot(dates, dream_counts, marker='o', linestyle='-', color='skyblue')
 
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
     plt.xticks(rotation=45)
     plt.tick_params(axis='both', which='major', labelsize=10, labelcolor='black')
 
