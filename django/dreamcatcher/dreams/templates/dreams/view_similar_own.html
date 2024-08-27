@@ -57,24 +57,6 @@
         .sidenav a:hover {
             color: black;
         }
-        .container {
-        text-align: center;
-        }
-
-        .search-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .search-bar-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 800px;
-            margin-top: 20px;
-        }
-
         .search-bar-container input {
             padding: 10px;
             font-size: 16px;
@@ -86,57 +68,13 @@
             font-size: 16px;
             margin-right: 10px;
         }
-
-        .filters-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
         .filters-container select {
             padding: 10px;
             font-size: 16px;
         }
-
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            width: auto;
-            height: auto;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: white;
-            background-color: #6760f0;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #4a3da3;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            width: calc(100% - 200px);
-            margin-left: 200px;
-            margin-top: 30px;
-            z-index: 1;
-            max-width: 1200px;
-            margin-left: 180px;
-            margin: 0 auto;
-        }
         .container h2 {
             margin-top: 0;
         }
-        .search-form {
-            text-align: center;
-            width: 50%;
-            margin-left: 200px;
-        }
-
         .search-form input[type="text"] {
             width: 100%;
             padding: 10px;
@@ -263,114 +201,17 @@
         .menu.active .menu-content {
             display: block;
         }
-        .button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            height: auto;
-            width: auto;
-            margin-left: 2px;
-            background-color: rgba(103, 96, 240, 0.5);
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            font-family: 'Manrope', inherit;
-            letter-spacing: inherit;
-            color: white;
-        }
-        .button:hover {
-            background-color: rgba(103, 96, 240);
-            text-decoration: none;
-            color: #ffffff;
-        }
-        .menu-button {
-            padding: 12px 16px;
-            border: none;
-            background: none;
-            color: #3D3D3D;
-            font-size: 14px;
-            text-align: left;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            transition: background-color 0.3s;
-        }
-        .menu-button:hover {
-            background-color: #f1f1f1;
-            border-radius: 0;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-            margin-top: 20px;
-        }
-        .highlight {
-            background-color: rgba(103, 96, 240);
-            font-weight: bold;
-        }
-        #classification, #emotion {
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #3D3D3D;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        #classification option, #emotion option {
-            padding: 8px;
-            font-size: 14px;
-            background-color: #ffffff;
-            color: #3D3D3D;
-        }
-        #classification:hover, #emotion:hover {
-            background-color: #e9ecef;
-        }
-        .button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            height: auto;
-            width: auto;
-            background-color: #ffffff;
-            color: rgba(103, 96, 240);
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-family: 'Manrope', inherit;
-            letter-spacing: inherit;
-        }
         .buttons-container {
             display: flex;
             gap: 12px;
             margin-bottom: 10px;
             margin-top: 20px;
         }
-        .highlight {
-            background-color: rgba(103, 96, 240);
-            font-weight: bold;
-        }
-        #classification, #emotion {
-            padding: 8px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #3D3D3D;
-            cursor: pointer;
-            margin-right: 10px;
-        }
         #classification option, #emotion option {
             padding: 8px;
             font-size: 14px;
             background-color: #ffffff;
             color: rgba(103, 96, 240);
-        }
-        #classification:hover, #emotion:hover {
-            background-color: #e9ecef;
         }
     </style>
  <script>
@@ -387,6 +228,12 @@
     }
 </script>
     <div class="sidenav">
+        <a href="{% url 'dreams:profile' %}" class="profile-link">
+            <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+                 style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #808080;">
+            <br></br>
+            <span>My Profile</span>
+        </a>
         <a href="/">Home</a>
         <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
         <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
@@ -400,8 +247,8 @@
     </div>
 
     <div class="dreams">
-        {% if dreams_scores_explanation %}
-            {% for dream, score, explanation in dreams_scores_explanation %}
+        {% if dreams_scores %}
+            {% for dream, score in dreams_scores%}
                 {% if not query or query|lower in dream.content|lower %}
                     <div class="dream">
                         {% if dream.title %}
@@ -411,7 +258,6 @@
                             <h3>Original Dream</h3>
                         {%else%}
                             <h3>Similarity Score: {{ score}}</h3>
-                            <h3>Similarity explanation: {{ explanation }}</h3>
                         {%endif%}
                         </p>
                         <h3 class="dream-date">{{ dream.date }}</h3>

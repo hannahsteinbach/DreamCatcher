@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
-from .forms import SignUpForm, DreamForm, CommentForm, DateForm, TitleForm
+from .forms import SignUpForm, DreamForm, CommentForm, DateForm, UpdateProfileForm, UpdateUserForm
 import logging
 from django.shortcuts import render, redirect
 from .models import Dream, DreamLike, Comment, User
@@ -27,6 +27,9 @@ import json
 from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection, get_dream_by_id, update_dream_shared_status_in_collection
 from django.urls import reverse
 from langchain_community.llms import ollama
+from urllib.parse import unquote
+from django.shortcuts import render
+
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +42,26 @@ def home(request):
 
 def aboutus(request):
     return render(request, 'aboutus.html')
+
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='dreams:dream_journal')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'dreams/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
 
 @login_required
 def log_dream(request):
@@ -94,38 +117,39 @@ def view_similar_own(request, dream_id):
     n_results = min(6, dream_count)  # Check how many dreams user has, return at most 6
 
     dreams_scores = find_similar_dreams(dream, user, user_specific=True, n_results=n_results)
-    llama_dreams = []
+    # llama_dreams = []
 
-    for dream, scores in dreams_scores:
-        llama_dreams.append(dream.content)
+    # for dream, scores in dreams_scores:
+    #     llama_dreams.append(dream.content)
 
-    llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
+    # llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False)
 
-    similarity_prompt = (
-        f"Here is an original dream:\n{llama_dreams[0]}\n\n"
-        f"Below is a list of dreams similar to the original dream:\n"
-        f"{llama_dreams[1:]}\n\n"
-        "For each similar dream, write a explanation of how it is similar to or different from the original dream. "
-        "Format the output as a list of strings where each string corresponds to one of the similar dreams. "
-        "The list should be formatted in Python syntax (e.g., ['Comparison 1', 'Comparison 2']). "
-        "Do not include any additional information or assumptions."
-    )
+    # similarity_prompt = (
+    #     f"Here is an original dream:\n{llama_dreams[0]}\n\n"
+    #     f"Below is a list of dreams similar to the original dream:\n"
+    #     f"{llama_dreams[1:]}\n\n"
+    #     "For each similar dream, write a explanation of how it is similar to or different from the original dream. "
+    #     "Format the output as a list of strings where each string corresponds to one of the similar dreams. "
+    #     "The list should be formatted in Python syntax (e.g., ['Comparison 1', 'Comparison 2']). "
+    #     "Do not include any additional information or assumptions."
+    # )
 
-    try:
-        # response generation
-        response = llm.invoke(similarity_prompt)
-        print("Raw response:", response)
-        response = json.loads(response)
-        print("JSON response:", response)
+    # try:
+    #     # response generation
+    #     response = llm.invoke(similarity_prompt)
+    #     print("Raw response:", response)
+    #     response = json.loads(response)
+    #     print("JSON response:", response)
 
-    except (json.JSONDecodeError, KeyError) as e:
-        print(f"Error processing similarity explanation: {e}")
+    # except (json.JSONDecodeError, KeyError) as e:
+    #     print(f"Error processing similarity explanation: {e}")
 
-    dreams_scores_explanation = [
-        (dream, score, explanation) for (dream, score), explanation in zip(dreams_scores, response)
-    ]
+    # dreams_scores_explanation = [
+    #     (dream, score, explanation) for (dream, score), explanation in zip(dreams_scores, response)
+    # ]
 
-    print(dreams_scores_explanation)
+    # print(dreams_scores_explanation)
+
 
     context = {
         'dreams_scores': dreams_scores,
@@ -330,7 +354,7 @@ def view_users_dreams(request, username):
         'place_query': place_query,
         'emotion_query': emotion_query,
     }
-    return render(request, 'dreams/gallery.html', context)
+    return render(request, 'dreams/view_user.html', context)
 
 
 @login_required
@@ -425,6 +449,7 @@ def dream_journal(request):
     emotion_query = request.GET.get('emotion', '')
     character_query = request.GET.get('character', '')
     place_query = request.GET.get('place', '')
+    place_query = unquote(place_query)
     dreams = Dream.objects.filter(user=request.user)
     keyword_query = request.GET.get('keyword', '')
 
@@ -457,7 +482,7 @@ def dream_journal(request):
     paginator = Paginator(dreams, 10)  # Show 10 dreams per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
+    print(f"Decoded place: {place_query}")
 
 
     context = {

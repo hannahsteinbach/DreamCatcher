@@ -112,6 +112,12 @@
 </head>
 <body>
     <div class="sidenav">
+        <a href="{% url 'dreams:profile' %}" class="profile-link">
+            <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+                 style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #808080;">
+            <br></br>
+            <span>My Profile</span>
+        </a>
         <a href="/">Home</a>
         <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
         <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>

@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📔</text></svg>">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
+        .header {
+            background: #FFFFFF;
+            color: #3D3D3D;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .dreams {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto; 
+            width: 60%;
+            text-align: left;
+        }
+
+
+        .dreams label {
+            font-weight: bold;
+            color: #6760f0;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .dreams input[type="text"], .dreams input[type="email"], .dreams textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        .dreams input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .dreams img {
+            border-radius: 50%;
+            border: 2px #808080;
+            box-shadow: 0 0 10px #808080;
+        }
+
+        .dreams a {
+            color: #6760f0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .dreams a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-dark {
+            background-color: #6760f0;
+            color: white;
+        }
+
+        .btn-dark:hover {
+            background-color: #4a3da3;
+        }
+
+        .btn-lg {
+            font-size: 16px;
+            padding: 12px 24px;
+        }
+
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .alert .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #721c24;
+        }
+
+        .dreams hr {
+            border: 0;
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+        .avatar-selection {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .avatar-option {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .avatar-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 5px solid #808080;
+            box-shadow: 0 0 10px #808080;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .avatar-input:checked + .avatar-image {
+            border: 2px solid #6760f0;
+            box-shadow: 0 0 5px rgba(103, 96, 240, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <h2>Edit profile</h2>
+</div>
+{% block content %}
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="dreams">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-5">
+                    <label>Username:</label>
+                    {{ user_form.username }}
+                    <label>Email:</label>
+                    {{ user_form.email }}
+                </div>
+                <div>
+                    <label for="id_avatar">Choose a profile picture:</label>
+                    <div class="avatar-selection">
+                        {% for value, label in profile_form.fields.avatar.choices %}
+                            <label class="avatar-option">
+                                <input type="radio" name="avatar" value="{{ value }}" {% if value == user.profile.avatar %}checked{% endif %} class="avatar-input">
+                                <img src="{% static 'pfps/'|add:value %}" alt="{{ label }}" class="avatar-image">
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <label>Something about yourself:</label>
+                {{ profile_form.bio }}
+            </div>
+            <a href="{% url 'password_reset' %}"><b>Change password</b></a>
+            <br><br>
+            <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
+            <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+        </form>
+    </div>
+{% endblock content %}
+</body>
+</html>

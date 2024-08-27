@@ -1,10 +1,12 @@
 from django.urls import path
+from .views import profile
 from . import views
 
 app_name = 'dreams'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('profile/', views.profile, name='profile'),
     path('home_logged_in/', views.home_logged_in, name='home_logged_in'),
     path('log_dream/', views.log_dream, name='log_dream'),
     path('choose_title/<int:dream_id>/', views.choose_title, name='choose_title'),

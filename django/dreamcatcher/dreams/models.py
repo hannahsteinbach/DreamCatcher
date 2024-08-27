@@ -7,6 +7,32 @@ from django.dispatch import receiver
 from datetime import datetime
 from langchain_community.llms import ollama
 import json
+from django.contrib.auth.models import User
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    avatar = models.CharField(max_length=100, choices=[
+        ('1.jpg', 'Picture 1'),
+        ('3.jpg', 'Picture 3'),
+        ('4.jpg', 'Picture 4'),
+        ('5.jpg', 'Picture 5'),
+        ('6.jpg', 'Picture 6'),
+        ('7.jpg', 'Picture 7'),
+        ('8.jpg', 'Picture 8'),
+        ('9.jpg', 'Picture 9'),
+        ('10.jpg', 'Picture 10'),
+        ('11.jpg', 'Picture 11'),
+        ('12.jpg', 'Picture 12'),
+        ('13.jpg', 'Picture 13'),
+    ],
+                              default='1.jpg')
+    bio = models.TextField()
+
+    def __str__(self):
+        return self.user.username
+
 
 class Dream(models.Model):
     classification_options = [
@@ -129,3 +155,11 @@ def set_new_user(sender, instance, created, **kwargs):
     if created:
         instance.is_new = True
         instance.save()
+
+
+@receiver(post_save, sender=User)
+def create_or_update_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    else:
+        Profile.objects.get_or_create(user=instance)

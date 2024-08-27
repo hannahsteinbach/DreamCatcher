@@ -24,6 +24,13 @@
             background-color: rgba(248, 249, 250, 0.8);
             position: relative;
         }
+        .profile{
+            position: absolute;
+            top: 0px;
+            left: 20px;
+            margin-left: 100px;
+            font-size: 30px;
+        }
         .header h1 {
             margin: 0;
             font-size: 3vw;
@@ -37,7 +44,7 @@
             top: 0px;
             right: 20px;
             padding: 20px 40px;
-            font-size: 36px;
+            font-size: 30px;
         }
         .container {
             text-align: center;
@@ -207,6 +214,12 @@
 <body>
     <div class="header">
         <h1>DreamCatcher</h1>
+        <div class="profile">
+            <a href="{% url 'dreams:profile' %}">
+                <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+                     style="width: 80px; height: 80px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #cdb4eb;">
+            </a>
+        </div>
         <div class="logout-button">
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">

@@ -82,7 +82,7 @@
             color: black;
         }
         .container {
-        text-align: center;
+            text-align: center;
         }
 
         .search-form {
@@ -397,7 +397,8 @@
             background-color: #e9ecef;
         }
     </style>
- <script>
+
+    <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         document.querySelectorAll('.menu').forEach(menu => {
             menu.addEventListener('click', function() {
@@ -418,6 +419,12 @@
     <h2>Dream Journal 📔</h2>
 </div>
 <div class="sidenav">
+    <a href="{% url 'dreams:profile' %}" class="profile-link">
+        <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+             style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #cdb4eb;">
+        <br></br>
+        <span>My Profile</span>
+    </a>
     <a href="/">Home</a>
     <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
     <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
@@ -501,7 +508,7 @@
             {% for place in dream.places %}
                 <form class="class-form" method="get" action="{% url 'dreams:dream_journal' %}">
                     <input type="hidden" name="place" value="{{ place }}">
-                    <button type="submit">{{ place }}</button>
+                    <button type="submit">{{ place  }}</button>
                 </form>
             {% endfor %}
             {% endif %}
