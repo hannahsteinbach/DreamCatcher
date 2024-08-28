@@ -413,6 +413,8 @@
                             {% endif %}
                             {% if not dream.anon %}
                                 <h2 class="dream-user">
+                                    <img src="{% static 'pfps/'|add:dream.user.profile.avatar %}"
+                                         style="width: 40px; height: 40px; border-radius: 50%;border: 1px solid rgba(103, 96, 240); position: relative; top: 10px;">
                                     <a href="{% url 'dreams:view_users_dreams' dream.user.username %}" style="text-decoration: none; color: inherit;">
                                         @{{ dream.user.username }}
                                     </a>
