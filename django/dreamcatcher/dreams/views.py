@@ -651,7 +651,10 @@ def personal_statistics(request):
 
     dates = list(dream_dates_counted.keys())
     dream_counts = list(dream_dates_counted.values())
-    dates, counts = zip(*sorted(zip(dates, dream_counts)))
+    try:
+        dates, counts = zip(*sorted(zip(dates, dream_counts)))
+    except ValueError:
+        dates, counts = [], []
 
     # plot 1: dream count per month
     plt.figure(figsize=(10, 5))

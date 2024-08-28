@@ -432,6 +432,7 @@
     <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
     <a href="{% url 'logout' %}">Log out</a>
 </div>
+{% if dreams %}
 <div class="container">
     <form class="search-form" method="get" action="{% url 'dreams:dream_journal' %}">
         <div class="search-bar-container">
@@ -469,7 +470,6 @@
     </form>
 </div>
 <div class="dreams">
-    {% if dreams %}
     {% for dream in dreams%}
     {% if not query or query|lower in dream.content|lower %}
     <div class="dream">
@@ -593,6 +593,11 @@
     </div>
     {% endif %}
     {% endfor %}
+{% else %}
+    <div class="dream-title">
+        <p>No dreams found. You can log your dreams <a href="{% url 'dreams:log_dream' %}" >here.</a> </p>
+    </div>
+{% endif %}
     <div class="pagination">
             <span class="step-links">
                 {% for page_num in dreams.paginator.page_range %}
@@ -604,9 +609,6 @@
                 {% endfor %}
             </span>
     </div>
-    {% else %}
-    <p>No dreams found.</p>
-    {% endif %}
 </div>
 </body>
 </html>
