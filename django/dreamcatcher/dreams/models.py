@@ -71,7 +71,7 @@ class Dream(models.Model):
         )
 
         # initialization
-        llm = ollama.Ollama(model='llama3', temperature=0, top_p=1, verbose=False, system=SYSTEM_PROMPT)
+        llm = ollama.Ollama(model='llama3', temperature=0.5, top_p=1, verbose=False, system=SYSTEM_PROMPT)
 
         dream_prompt = (
             f"Here is my dream: {content_str}\n\n"
