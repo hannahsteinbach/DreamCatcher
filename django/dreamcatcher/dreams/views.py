@@ -323,6 +323,11 @@ def view_users_dreams(request, username):
     character_query = request.GET.get('character', '')
     place_query = request.GET.get('place', '')
 
+    dreams = dreams.order_by('-date', '-time')
+
+    paginator = Paginator(dreams, 10)  # Show 10 dreams per page
+    page_number = request.GET.get('page')
+
 
     if query:
         regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query),

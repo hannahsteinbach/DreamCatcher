@@ -373,7 +373,7 @@
 </div>
 <div class="sidenav">
     <a href="{% url 'dreams:profile' %}" class="profile-link">
-        <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+        <img src="{% static 'pfps/'|add:request.user.profile.avatar %}"
              style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #808080;">
         <br></br>
         <span>My Profile</span>
