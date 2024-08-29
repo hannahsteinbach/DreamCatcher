@@ -110,17 +110,17 @@ class Dream(models.Model):
         super().save(*args, **kwargs)
 
 
-        def likes_count(self):
-            return self.likes.count()
+    def likes_count(self):
+        return self.likes.count()
 
-        def liked_users(self):
-            return [like.user for like in self.likes.all()]
+    def liked_users(self):
+        return [like.user for like in self.likes.all()]
 
-        def classification_string(self):
-            return dict(self.classification_options).get(self.classification, "No classification")
+    def classification_string(self):
+        return dict(self.classification_options).get(self.classification, "No classification")
 
-        def __str__(self):
-            return f"{self.date}: {self.content[:50]}"
+    def __str__(self):
+        return f"{self.date}: {self.content[:50]}"
 
 
 class DreamLike(models.Model):
