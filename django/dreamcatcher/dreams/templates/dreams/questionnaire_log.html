@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗒️</text></svg>">
+    <title>{% block title %}Questionnaire{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header {
+            background: #FFFFFF;
+            color: #3D3D3D;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 180px;
+            margin-bottom: 220px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(103, 96, 240, 0.224);
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 18px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #3D3D3D;
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidenav a:last-child {
+            border-bottom: none;
+        }
+
+        .sidenav a:hover {
+            color: black;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Manrope';
+            justify-content: center;
+            align-items: center;
+            width: calc(100% - 200px);
+            height: calc(100vh - 150px);
+            margin-left: 200px;
+            z-index: 1;
+        }
+
+        .container h2 {
+            margin-top: 0;
+        }
+
+        .tutorial {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tutorial .step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 20%;
+            margin: auto;
+        }
+
+        .tutorial .next-step, .tutorial .finish-tutorial {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(103, 96, 240, 0.7);
+            color: white;
+            font-size: 1.2vw;
+            cursor: pointer;
+            height: auto;
+            transition: background-color 0.3s;
+        }
+
+        .tutorial .next-step:hover, .tutorial .finish-tutorial:hover {
+            background-color: rgba(103, 96, 240);
+        }
+
+        .form-container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #3D3D3D;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            background-color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+<div class="sidenav">
+    <a href="{% url 'dreams:profile' %}" class="profile-link">
+        <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+             style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #808080;">
+        <br></br>
+        <span>My Profile</span>
+    </a>
+    <a href="/">Home</a>
+    <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
+    <a href="{% url 'dreams:log_dream' %}"><b>Log a dream</b></a>
+    <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+    <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
+    <a href="{% url 'logout' %}">Log out</a>
+</div>
+<div class="header">
+    <h2>Questionnaire 🗒️</h2>
+</div>
+<div class="container">
+    <form class="form-container" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="butt btn-primary">Submit</button>
+    </form>
+</div>
+<div id="tutorial" class="tutorial">
+    <div class="step" data-step="0">
+        <p>Would you like to fill out a questionnaire about this dream?</p>
+        <button class="btn" class="btn">Sure!</button>
+        <form action="{% url 'dreams:dream_journal' %}">
+            <button type="submit" class="btn">Not today</button>
+        </form>
+    </div>
+</div>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tutorial = document.querySelector('.tutorial');
+        const steps = tutorial.querySelectorAll('.step');
+        let currentStep = 0;
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.style.display = index === stepIndex ? 'block' : 'none';
+            });
+        }
+
+        function nextStep() {
+            currentStep++;
+            if (currentStep < steps.length) {
+                showStep(currentStep);
+            } else {
+                tutorial.style.display = 'none';
+                sessionStorage.setItem('tutorialDisplayed', 'true');
+            }
+        }
+
+        tutorial.style.display = 'flex';
+        showStep(currentStep);
+
+        tutorial.querySelectorAll('.next-step, .btn').forEach(button => {
+            button.addEventListener('click', nextStep);
+        });
+    });
+</script>
+</body>
+</html>

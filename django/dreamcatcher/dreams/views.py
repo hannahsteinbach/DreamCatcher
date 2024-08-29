@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetView
 from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
-from .forms import SignUpForm, DreamForm, CommentForm, DateForm, UpdateProfileForm, UpdateUserForm
+from .forms import SignUpForm, DreamForm, CommentForm, DateForm, UpdateProfileForm, UpdateUserForm, QuestionnaireForm
 import logging
 from django.shortcuts import render, redirect
 from .models import Dream, DreamLike, Comment, User
@@ -12,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.db.models import F
 from django.db.models import Q
-from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from collections import Counter
 import re
@@ -26,7 +25,7 @@ import base64
 import json
 from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection, get_dream_by_id, update_dream_shared_status_in_collection
 from django.urls import reverse
-from langchain_community.llms import ollama
+#from langchain_community.llms import ollama
 from urllib.parse import unquote
 from django.shortcuts import render
 
@@ -79,7 +78,7 @@ def log_dream(request):
             classification=classification
         )
 
-        add_dream_to_collection(dream.id, dream.content)
+        # add_dream_to_collection(dream.id, dream.content)
 
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
@@ -220,8 +219,76 @@ def choose_emotion(request, dream_id):
         selected_emotion = request.POST.get('emotion')
         dream.emotion = selected_emotion
         dream.save()
-        return redirect('dreams:dream_journal')
+        return redirect('dreams:questionnaire_log', dream_id=dream.id)
     return render(request, 'dreams/choose_emotion.html', {'dream': dream})
+
+
+
+@login_required
+def questionnaire_log(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+
+    if hasattr(dream, 'questionnaire'):
+        questionnaire = dream.questionnaire
+        form = QuestionnaireForm(instance=questionnaire)
+
+    else:
+        questionnaire = None
+        form = QuestionnaireForm()
+
+
+    if request.method == 'POST':
+        form = QuestionnaireForm(request.POST, instance=questionnaire)
+        if form.is_valid():
+            if questionnaire is None:
+                questionnaire = form.save(commit=False)
+                questionnaire.dream = dream
+                questionnaire.save()
+            else:
+                form.save()
+            return redirect('dreams:dream_journal')
+
+    return render(request, 'dreams/questionnaire_log.html', {'form': form, 'dream': dream})
+
+
+@login_required
+def questionnaire(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    edit_questionnaire = False
+    view_only = request.method == 'GET'
+
+    if hasattr(dream, 'questionnaire'):
+        questionnaire = dream.questionnaire
+        form = QuestionnaireForm(instance=questionnaire)
+
+        # read only (for viewing questionnaire)
+        if view_only:
+            for field in form.fields.values():
+                field.widget.attrs['disabled'] = 'disabled'
+
+    else:
+        questionnaire = None
+        form = QuestionnaireForm()
+
+
+    if request.method == 'POST':
+        if 'edit_questionnaire' in request.POST:
+            edit_questionnaire = True
+            view_only = False
+            form = QuestionnaireForm(instance=questionnaire)
+            return render(request, 'dreams/questionnaire.html', {'form': form, 'dream': dream, 'view_only': view_only, 'edit_questionnaire': edit_questionnaire})
+
+        form = QuestionnaireForm(request.POST, instance=questionnaire)
+        if form.is_valid():
+            if questionnaire is None:
+                questionnaire = form.save(commit=False)
+                questionnaire.dream = dream
+                questionnaire.save()
+            else:
+                form.save()
+            return redirect('dreams:dream_journal')
+
+    return render(request, 'dreams/questionnaire.html', {'form': form, 'dream': dream, 'view_only': view_only, 'edit_questionnaire': edit_questionnaire})
 
 
 @login_required

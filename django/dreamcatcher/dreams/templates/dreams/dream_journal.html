@@ -536,6 +536,12 @@
         <div class="buttons-container">
         </div>
         <div class="menu">
+            <span class="icon" style="margin-right: 75px">🗒️</span>
+            <div class="menu-content">
+                <a href="{% url 'dreams:questionnaire' dream.id %}">View/edit the questionnaire</a>
+            </div>
+        </div>
+        <div class="menu">
             <span class="icon" style="margin-right: 25px">🪞</span>
             <div class="menu-content">
                 <a href="{% url 'dreams:view_similar_own' dream.id %}">View your own similar dreams</a>

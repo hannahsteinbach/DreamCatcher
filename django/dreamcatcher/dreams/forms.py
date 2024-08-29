@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.forms.widgets import TimeInput
 from django.contrib.auth.models import User
 from datetime import date
-from .models import Profile
+from .models import Profile, Questionnaire
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -29,6 +29,37 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['avatar', 'bio']
+
+
+class QuestionnaireForm(forms.ModelForm):
+    class Meta:
+        model = Questionnaire
+        fields = ['stress', 'creativity', 'sleep_duration', 'sleep_quality', 'awakening', 'morning_mood',
+        'dream_relation_oneself', 'dream_impact_mood', 'notes']
+
+        labels = {
+            'stress': 'Have you been feeling stressed lately?',
+            'creativity': 'Are you feeling more creative?',
+            'sleep_duration': 'How long did you sleep yesterday?',
+            'sleep_quality': 'How did you sleep last night?',
+            'awakening': 'Did you wake up because of your dream?',
+            'morning_mood': 'Did your dream affect your mood the next morning?',
+            'dream_relation_oneself': 'Is this dream directly related to you (any real-life experience associated with it)?',
+            'dream_impact_mood': 'Did your dream affect your mood the days after?',
+            'notes': 'Any notes about your dream (how it affected your mood, how it is related to your waking life)?',
+        }
+
+        widgets = {
+            'stress': forms.Select(attrs={'class': 'form-control'}),
+            'creativity': forms.Select(attrs={'class': 'form-control'}),
+            'sleep_duration': forms.Select(attrs={'class': 'form-control'}),
+            'sleep_quality': forms.Select(attrs={'class': 'form-control'}),
+            'awakening': forms.Select(attrs={'class': 'form-control'}),
+            'morning_mood': forms.Select(attrs={'class': 'form-control'}),
+            'dream_relation_oneself': forms.Select(attrs={'class': 'form-control'}),
+            'dream_impact_mood': forms.Select(attrs={'class': 'form-control'}),
+            'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        }
 
 
 class DreamForm(forms.ModelForm):
