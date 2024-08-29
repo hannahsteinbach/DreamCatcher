@@ -25,7 +25,7 @@ import base64
 import json
 from .utils import find_similar_dreams, add_dream_to_collection, remove_dream_from_collection, get_dream_by_id, update_dream_shared_status_in_collection
 from django.urls import reverse
-#from langchain_community.llms import ollama
+from langchain_community.llms import ollama
 from urllib.parse import unquote
 from django.shortcuts import render
 
@@ -78,7 +78,7 @@ def log_dream(request):
             classification=classification
         )
 
-        # add_dream_to_collection(dream.id, dream.content)
+        add_dream_to_collection(dream.id, dream.content)
 
         form = DateForm(request.POST, instance=dream)
         if form.is_valid():
