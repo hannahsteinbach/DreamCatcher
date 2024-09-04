@@ -188,9 +188,7 @@ def choose_title_log(request, dream_id):
                 if not dream.emotion:
                     return redirect('dreams:choose_emotion', dream_id=dream.id)
                 else:
-                    return redirect('dreams:dream_journal')
-          #  else:
-           #     messages.error(request, 'Please select a title.')
+                    return redirect('dreams:questionnaire_log', dream_id=dream.id)
     return render(request, 'dreams/choose_title_log.html', {'dream': dream})
 
 

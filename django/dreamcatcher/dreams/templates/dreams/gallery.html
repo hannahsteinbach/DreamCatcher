@@ -491,12 +491,12 @@
                                 </p>
                             </div>
                             <div class="menu">
-                                <span class="icon">
-                                    {% if dream.is_liked_by_user %}
+                                <span class="icon"style="margin-left: 35px;">
+                                    <!-- {% if dream.is_liked_by_user %}
                                         ♥
-                                    {% else %}
+                                    {% else %} -->
                                         ♡
-                                    {% endif %}
+                                    <!-- {% endif %} -->
                                 </span>
                                 <div class="menu-content">
                                     {% if dream.is_liked_by_user %}
@@ -513,7 +513,7 @@
                                 </div>
                             </div>
                             <div class="menu">
-                                <span class="icon" style="margin-right: 25px">🪞</span>
+                                <span class="icon" style="margin-right: 400px;">🪞</span>
                                 <div class="menu-content">
                                     <a href="{% url 'dreams:view_similar_own' dream.id %}">View your own similar dreams</a>
                                     <a href="{% url 'dreams:view_similar_all' dream.id %}">View other users' similar dreams</a>

@@ -126,7 +126,7 @@
             {%if dream.optional_titles%}
                 <p>Choose a title to display in your dream journal from the following options:</p>
                 {% for title in dream.optional_titles %}
-                    <form class="keyword-form" method="post" action="{% url 'dreams:choose_title' dream.id %}">
+                    <form class="keyword-form" method="post" action="{% url 'dreams:choose_title_log' dream.id %}">
                         {% csrf_token %}
                         <br>
                         <button type="submit" name="title" style="height: auto;" value="{{ title }}">{{ title }}</button>
