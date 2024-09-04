@@ -192,6 +192,7 @@
         }
         .menu {
             position: absolute;
+            margin-right: 15px;
             top: 10px;
             right: 10px;
             cursor: pointer;
@@ -234,7 +235,7 @@
             display: block;
         }
         .button {
-            padding: 8px, 12px;
+            padding: 8px 12px;
             width: auto;
             height: 30px;
             border: none;
@@ -491,12 +492,19 @@
                                 </p>
                             </div>
                             <div class="menu">
-                                <span class="icon"style="margin-left: 35px;">
-                                    <!-- {% if dream.is_liked_by_user %}
+                                <span class="icon" style="margin-right:30px">🪞</span>
+                                <div class="menu-content">
+                                    <a href="{% url 'dreams:view_similar_own' dream.id %}">View your own similar dreams</a>
+                                    <a href="{% url 'dreams:view_similar_all' dream.id %}">View other users' similar dreams</a>
+                                </div>
+                            </div>
+                            <div class="menu">
+                                <span class="icon">
+                                    {% if dream.is_liked_by_user %}
                                         ♥
-                                    {% else %} -->
+                                    {% else %}
                                         ♡
-                                    <!-- {% endif %} -->
+                                    {% endif %}
                                 </span>
                                 <div class="menu-content">
                                     {% if dream.is_liked_by_user %}
@@ -510,13 +518,6 @@
                                             <button type="submit">Like</button>
                                         </form>
                                     {% endif %}
-                                </div>
-                            </div>
-                            <div class="menu">
-                                <span class="icon" style="margin-right: 400px;">🪞</span>
-                                <div class="menu-content">
-                                    <a href="{% url 'dreams:view_similar_own' dream.id %}">View your own similar dreams</a>
-                                    <a href="{% url 'dreams:view_similar_all' dream.id %}">View other users' similar dreams</a>
                                 </div>
                             </div>
                             <div>

@@ -451,9 +451,6 @@ def gallery(request):
     character_query = request.GET.get('character', '')
     place_query = request.GET.get('place', '')
 
-    for dream in dreams:
-        dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
-
     if query:
         regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query),
                                                        re.escape(query))
@@ -475,6 +472,9 @@ def gallery(request):
         dreams = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place_query))))
 
     dreams = dreams.order_by('-date', '-time')
+
+    for dream in dreams:
+        dream.is_liked_by_user = DreamLike.objects.filter(user=request.user, dream=dream).exists()
 
     paginator = Paginator(dreams, 10)  # Show 10 dreams per page
     page_number = request.GET.get('page')
