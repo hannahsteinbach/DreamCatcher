@@ -136,7 +136,6 @@
         .search-selector {
             display: flex;
             margin-left: 180px;
-            margin-top: 50px;
             align-items: center;
         }
 
@@ -415,6 +414,15 @@
         <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
         <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
         <a href="{% url 'logout' %}">Log out</a>
+    </div>
+    <div class="button-container">
+        <div>
+            {% if is_liked_view %}
+                <a href="{% url 'dreams:gallery' %}" class="button">View all dreams</a>
+            {% else %}
+                <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
+            {% endif %}
+        </div>
     </div>
     <div class="container">
         <div class="search-selector">
