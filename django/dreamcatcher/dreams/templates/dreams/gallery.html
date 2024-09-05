@@ -86,8 +86,6 @@
             align-items: center;
             justify-content: flex-start;
             width: calc(100% - 200px);
-            margin-left: 200px;
-            margin-top: 30px;
             z-index: 1;
             max-width: 1200px;
             margin-left: 180px;
@@ -96,17 +94,19 @@
         .container h2 {
             margin-top: 0;
         }
+
         .search-form {
             text-align: center;
             width: 50%;
-            margin-left: 200px;
+            margin-top: 10px;
+            margin-left: 195px;
         }
 
         .search-form input[type="text"] {
             width: 100%;
             padding: 10px;
             font-size: 14px;
-            border: 1px solid #ffffff;
+            border: 1px solid #eae4e4;
             border-radius: 10px;
             height: 40px;
             margin-bottom: 10px;
@@ -133,7 +133,33 @@
             background-color: #ffffff;
             color: rgba(103, 96, 240);
         }
+        .search-selector {
+            display: flex;
+            margin-left: 180px;
+            margin-top: 50px;
+            align-items: center;
+        }
 
+        .search-selector label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .search-selector select {
+            margin-right: 10px;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid rgb(234, 228, 228);
+            font-family: 'Manrope', sans-serif;
+            background-color: rgba(103, 96, 240);
+            color: #ffffff;
+        }
+
+        .search-selector option {
+            background-color: #ffffff;
+            color: rgba(103, 96, 240);
+            padding: 10px;
+        }
         .keyword-form, .class-form {
             margin-bottom: 20px;
             text-align: center;
@@ -347,10 +373,28 @@
                     this.classList.toggle('active');
                 });
             });
+            toggleSearchForm();
         });
+
+        function toggleSearchForm() {
+            const searchType = document.getElementById('searchType').value;
+            const dreamsForm = document.getElementById('dreamsSearchForm');
+            const usersForm = document.getElementById('usersSearchForm');
+
+            if (searchType === 'dreams') {
+                dreamsForm.style.display = 'block';
+                usersForm.style.display = 'none';
+            } else if (searchType === 'users') {
+                dreamsForm.style.display = 'none';
+                usersForm.style.display = 'block';
+            }
+        }
+
         function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.querySelector('.search-form').submit();
+            document.getElementById('searchInputDream').value = '';
+            document.getElementById('searchInputUser').value = '';
+            document.getElementById('classification').value = '';
+            document.getElementById('emotion').value = '';
         }
     </script>
 </head>
@@ -372,18 +416,16 @@
         <a href="{% url 'dreams:personal_statistics' %}">Personal Statistics</a>
         <a href="{% url 'logout' %}">Log out</a>
     </div>
-    <div class="button-container">
-        <div>
-            {% if is_liked_view %}
-                <a href="{% url 'dreams:gallery' %}" class="button">View all dreams</a>
-            {% else %}
-                <a href="{% url 'dreams:view_liked' %}" class="button">View liked dreams</a>
-            {% endif %}
-        </div>
-    </div>
     <div class="container">
-        <form class="search-form" method="get" action="{% url 'dreams:gallery' %}">
-            <input id="searchInput" type="text" name="q" placeholder="Search everyone's dreams" value="{{ query }}">
+        <div class="search-selector">
+            <label for="searchType">Search type</label>
+            <select id="searchType" onchange="toggleSearchForm()">
+                <option value="dreams">Dreams</option>
+                <option value="users">Users</option>
+            </select>
+        </div>
+        <form id="dreamsSearchForm" class="search-form" method="get" action="{% url 'dreams:gallery' %}">
+            <input id="searchInputDream" type="text" name="q" placeholder="Search everyone's dreams" value="{{ query }}">
             <select id="classification" name="classification">
                 <option value="">All dream types</option>
                 <option value="0" {% if class_query == '0' %}selected{% endif %}>Nightmares</option>
@@ -402,6 +444,15 @@
             <button type="submit">Search</button>
             <button type="button" onclick="clearSearch()">Clear</button>
         </form>
+        <form id="usersSearchForm" class="search-form" method="get" action="{% url 'dreams:gallery' %}" style="display:none;">
+            <input id="searchInputUser" type="text" name="qu" placeholder="Search for user" value="{{ query_user }}">
+            <button type="submit">Search</button>
+            <button type="button" onclick="clearSearch()">Clear</button>
+        </form>
+
+        {% if not user_found %}
+            <p style="color: #4a1616;">User "{{ query_user }}" does not exist.</p>
+        {% endif %}
     </div>
     <div class="dreams">
         {% if dreams %}
@@ -566,7 +617,7 @@
                 </span>
             </div>
             {% else %}
-                <p>No liked dreams found.</p>
+                <p>No dreams found.</p>
             {% endif %}
             </div>
         </body>

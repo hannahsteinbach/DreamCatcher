@@ -444,12 +444,22 @@ def unshare_dream(request, dream_id):
 @login_required
 def gallery(request):
     query = request.GET.get('q', '')
+    query_user = request.GET.get('qu', '')
+    user_found = True
     dreams = Dream.objects.filter(shared=True)
     class_query = request.GET.get('classification', '')
     emotion_query = request.GET.get('emotion', '')
     keyword_query = request.GET.get('keyword', '')
     character_query = request.GET.get('character', '')
     place_query = request.GET.get('place', '')
+
+
+    if query_user:
+        user = User.objects.filter(username=query_user).first()
+        if user:
+            return redirect('dreams:view_users_dreams', username=query_user)
+        else:
+            user_found = False
 
     if query:
         regex_pattern = r'\b({}|{}s?|{}\'s?)\b'.format(re.escape(query), re.escape(query),
@@ -490,7 +500,10 @@ def gallery(request):
         'character_query': character_query,
         'place_query': place_query,
         'emotion_query': emotion_query,
+        'query_user': query_user,
+        'user_found': user_found,
     }
+
     return render(request, 'dreams/gallery.html', context)
 
 
@@ -813,28 +826,20 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            logger.info("Form data: %s", form.cleaned_data)
-            user = form.save()
-            user.refresh_from_db()
+            user = form.save(commit=False)
             user.email = form.cleaned_data.get('email')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
-            #messages.success(request, 'Your account was created successfully!')
-            return redirect('dreams:home_logged_in')
+            if user is not None:
+                login(request, user)
+                return redirect('dreams:home_logged_in')
         else:
             logger.error("Form errors: %s", form.errors)
-            if 'password2' in form.errors:
-                messages.error(request, 'Passwords do not match. Please try again.')
-            if 'email' in form.errors:
-                if 'unique' in form.errors['email']:
-                    messages.error(request, 'Email address is already in use.')
-                else:
-                    messages.error(request, 'Invalid email address. Please enter a valid email.')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
 
 
 @login_required

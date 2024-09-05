@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models.signals import post_save
+from django.db import transaction # avoid partial commits
 from django.dispatch import receiver
 from datetime import datetime
 from langchain_community.llms import ollama
@@ -195,7 +196,8 @@ def set_new_user(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def create_or_update_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    else:
-        Profile.objects.get_or_create(user=instance)
+    with transaction.atomic():
+        if created:
+            Profile.objects.get_or_create(user=instance)
+        else:
+            Profile.objects.get_or_create(user=instance)
