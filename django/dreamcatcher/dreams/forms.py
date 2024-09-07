@@ -5,6 +5,21 @@ from django.forms.widgets import TimeInput
 from django.contrib.auth.models import User
 from datetime import date
 from .models import Profile, Questionnaire
+from django.contrib.auth.forms import PasswordResetForm
+from django.core.exceptions import ValidationError
+
+class CustomPasswordResetForm(PasswordResetForm):
+    username = forms.CharField(max_length=150, required=True)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        username = cleaned_data.get('username')
+
+        if not User.objects.filter(username=username, email=email).exists():
+            raise ValidationError("The provided username and email do not match any user account.")
+
+        return cleaned_data
 
 
 class UpdateUserForm(forms.ModelForm):
