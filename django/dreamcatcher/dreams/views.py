@@ -1,6 +1,7 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
+from .forms import CustomPasswordResetForm
 from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
 from django.http import HttpResponseForbidden
@@ -872,12 +873,27 @@ def delete_comment(request, comment_id):
     comment.delete()
     return redirect('dreams:gallery')
 
+
 class CustomPasswordResetView(PasswordResetView):
-    template_name = 'password_reset.html'
+    form_class = CustomPasswordResetForm
+    template_name = 'registration/password_reset.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+def check_user_information(self, form):
+    email = form.cleaned_data.get('email')
+    username = form.cleaned_data.get('username')
+
+    users = User.objects.filter(email=email, username=username)
+
+    if not users.exists():
+        form.add_error(None, "No user found with that username and email combination.")
+        return self.form_invalid(form)
+
+    return super().check_user_information(form)
 
 
 @login_required
