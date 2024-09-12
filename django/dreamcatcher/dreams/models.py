@@ -172,8 +172,6 @@ class Questionnaire(models.Model):
         return f"Questionnaire for {self.dream.title}"
 
 
-
-
 class Comment(models.Model):
     dream = models.ForeignKey(Dream, related_name='comments', on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -186,6 +184,38 @@ class Comment(models.Model):
     def can_delete(self, user):
         return user == self.author
 
+'''
+class MonthlyRecap(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    month = models.DateField()
+
+    # Dream-related
+    # milestones?
+    dream_count = models.PositiveIntegerField(default=0)
+    is_favorite = models.BooleanField(default=False)
+    keywords = models.JSONField(default=list, blank=True)  # Most common keywords (TOP 3)
+    classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='')  # Most common type of dream
+    characters = models.JSONField(default=list, blank=True)  # Most common characters (TOP 3)
+    places = models.JSONField(default=list, blank=True)  # Most common places (TOP 3)
+    emotion = models.CharField(max_length=20, blank=True)  # Most common emotion
+
+    # Questionnaire-related
+    avg_stress = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True) #(on what days with high stress did u have nightmares or vice versa)
+    avg_sleep_duration = models.CharField(max_length=1, choices=duration_option, blank=True, null=True)
+    avg_sleep_quality = models.CharField(max_length=1, choices=quality_option, blank=True, null=True)
+    count_awakening = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
+    count_creativity = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
+    count_morning_mood = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
+    count_dream_relation_oneself = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
+    count_dream_impact_mood = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+
+    # Social media-related
+    total_likes_received = models.PositiveIntegerField(default=0)
+    total_likes_given = models.PositiveIntegerField(default=0)
+    total_comments_given = models.PositiveIntegerField(default=0)
+    total_comments_received = models.PositiveIntegerField(default=0)
+'''
 
 @receiver(post_save, sender=User)
 def set_new_user(sender, instance, created, **kwargs):
