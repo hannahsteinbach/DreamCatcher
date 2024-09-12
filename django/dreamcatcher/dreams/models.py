@@ -1,7 +1,11 @@
+import re
+from collections import Counter
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.utils import timezone
 from django.db.models.signals import post_save
+from datetime import timedelta
 from django.db import transaction # avoid partial commits
 from django.dispatch import receiver
 from datetime import datetime
@@ -184,38 +188,83 @@ class Comment(models.Model):
     def can_delete(self, user):
         return user == self.author
 
-'''
+
 class MonthlyRecap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     month = models.DateField()
 
-    # Dream-related
-    # milestones?
+    # Dream-related fields
     dream_count = models.PositiveIntegerField(default=0)
-    is_favorite = models.BooleanField(default=False)
-    keywords = models.JSONField(default=list, blank=True)  # Most common keywords (TOP 3)
-    classification = models.CharField(max_length=1, choices=classification_options, blank=True, null=True, default='')  # Most common type of dream
-    characters = models.JSONField(default=list, blank=True)  # Most common characters (TOP 3)
-    places = models.JSONField(default=list, blank=True)  # Most common places (TOP 3)
-    emotion = models.CharField(max_length=20, blank=True)  # Most common emotion
+    top_keywords = models.JSONField(default=list, blank=True)  # Most common keywords (TOP 3)
+    top_classification = models.JSONField(default=list, blank=True)  # Most common type of dream
+    top_characters = models.JSONField(default=list, blank=True)  # Most common characters (TOP 3)
+    top_places = models.JSONField(default=list, blank=True)  # Most common places (TOP 3)
+    top_emotion = models.CharField(max_length=20, blank=True)  # Most common emotion
 
-    # Questionnaire-related
-    avg_stress = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True) #(on what days with high stress did u have nightmares or vice versa)
-    avg_sleep_duration = models.CharField(max_length=1, choices=duration_option, blank=True, null=True)
-    avg_sleep_quality = models.CharField(max_length=1, choices=quality_option, blank=True, null=True)
-    count_awakening = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
-    count_creativity = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
-    count_morning_mood = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
-    count_dream_relation_oneself = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
-    count_dream_impact_mood = models.CharField(max_length=1, choices=boolean_option, blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
+    # Questionnaire-related fields
+    avg_stress = models.FloatField(default=0)  # how many days
+    avg_sleep_duration = models.JSONField(default=dict)  # dictionary
+    avg_sleep_quality = models.JSONField(default=dict)  # dictionary
+    count_awakening = models.PositiveIntegerField(default=0)
+    count_creativity = models.PositiveIntegerField(default=0)
+    count_morning_mood = models.PositiveIntegerField(default=0)
+    count_dream_relation_oneself = models.PositiveIntegerField(default=0)
+    count_dream_impact_mood = models.PositiveIntegerField(default=0)
 
-    # Social media-related
-    total_likes_received = models.PositiveIntegerField(default=0)
-    total_likes_given = models.PositiveIntegerField(default=0)
-    total_comments_given = models.PositiveIntegerField(default=0)
-    total_comments_received = models.PositiveIntegerField(default=0)
-'''
+
+    def generate_recap(self):
+        start_date = self.month.replace(day=1)
+        next_month = start_date + timedelta(days=32)
+        end_date = next_month.replace(day=1) - timedelta(days=1)
+        dreams = Dream.objects.filter(user=self.user, date__range=(start_date, end_date))
+
+        # amount of dreams
+        self.dream_count = dreams.count()
+
+        # places, keywords, characters, emotions, classification
+        all_places = []
+        all_characters = []
+        all_keywords = []
+        classification_counts = Counter()
+        emotion_counts = Counter()
+
+        for dream in dreams:
+            all_places.extend(dream.places)
+            all_characters.extend(dream.characters)
+            all_keywords.extend(dream.keywords)
+            emotion_counts[dream.emotion] += 1
+            classification_counts.update(dream.classification)
+
+        place_counts = Counter()
+        for place in set(all_places):
+            count = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place)))).count()
+            place_counts[place] = count
+
+        self.top_places = place_counts.most_common(3)
+
+        character_counts = Counter()
+        for char in set(all_characters):
+            count = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(char)))).count()
+            character_counts[char] = count
+
+        self.top_characters = character_counts.most_common(3)
+
+        keywords_counted = Counter(all_keywords)
+
+        self.top_keywords = keywords_counted.most_common(3)
+
+        if emotion_counts:
+            most_common_emotion, _ = emotion_counts.most_common(1)[0]
+            self.top_emotion = most_common_emotion
+
+        if classification_counts:
+            most_common_classification, _ = classification_counts.most_common(1)[0]
+            self.top_classification = most_common_classification
+        self.save()
+
+
+
+
 
 @receiver(post_save, sender=User)
 def set_new_user(sender, instance, created, **kwargs):
