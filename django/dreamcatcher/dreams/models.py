@@ -237,14 +237,14 @@ class MonthlyRecap(models.Model):
 
         place_counts = Counter()
         for place in set(all_places):
-            count = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place)))).count()
+            count = dreams.filter(Q(characters__icontains=place)).count()
             place_counts[place] = count
 
         self.top_places = place_counts.most_common(3)
 
         character_counts = Counter()
         for char in set(all_characters):
-            count = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(char)))).count()
+            count = dreams.filter(Q(characters__icontains=char)).count()
             character_counts[char] = count
 
         self.top_characters = character_counts.most_common(3)
