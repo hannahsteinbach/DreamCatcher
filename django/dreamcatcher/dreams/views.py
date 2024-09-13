@@ -719,7 +719,7 @@ def personal_statistics(request):
 
     character_counts = Counter()
     for char in set(all_characters):
-        count = dreams.filter(Q(characters__iregex=r'\b{}\b'.format(re.escape(char)))).count()
+        count = dreams.filter(Q(characters__iregex=r'(?i)\b{}\b'.format(re.escape(char)))).count()
         character_counts[char] = count
 
     top_10_characters = dict(character_counts.most_common(10))
@@ -785,7 +785,7 @@ def personal_statistics(request):
 
     place_counts = Counter()
     for place in set(all_places):
-        count = dreams.filter(Q(places__iregex=r'\b{}\b'.format(re.escape(place)))).count()
+        count = dreams.filter(Q(places__iregex=r'(?i)\b{}\b'.format(re.escape(place)))).count()
         place_counts[place] = count
 
     top_10_places = place_counts.most_common(10)

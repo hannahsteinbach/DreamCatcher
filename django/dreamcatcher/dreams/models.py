@@ -195,28 +195,45 @@ class MonthlyRecap(models.Model):
 
     # Dream-related fields
     dream_count = models.PositiveIntegerField(default=0)
-    top_keywords = models.JSONField(default=list, blank=True)  # Most common keywords (TOP 3)
-    top_classification = models.JSONField(default=list, blank=True)  # Most common type of dream
-    top_characters = models.JSONField(default=list, blank=True)  # Most common characters (TOP 3)
-    top_places = models.JSONField(default=list, blank=True)  # Most common places (TOP 3)
-    top_emotion = models.CharField(max_length=20, blank=True)  # Most common emotion
+    top_keywords = models.JSONField(default=list, blank=True)  # top 3
+    top_classification = models.JSONField(default=list, blank=True)
+    top_characters = models.JSONField(default=list, blank=True)  # top 3
+    top_places = models.JSONField(default=list, blank=True)  # top 3
+    top_emotion = models.CharField(max_length=20, blank=True)
 
     # Questionnaire-related fields
-    avg_stress = models.FloatField(default=0)  # how many days
-    avg_sleep_duration = models.JSONField(default=dict)  # dictionary
-    avg_sleep_quality = models.JSONField(default=dict)  # dictionary
-    count_awakening = models.PositiveIntegerField(default=0)
-    count_creativity = models.PositiveIntegerField(default=0)
-    count_morning_mood = models.PositiveIntegerField(default=0)
-    count_dream_relation_oneself = models.PositiveIntegerField(default=0)
-    count_dream_impact_mood = models.PositiveIntegerField(default=0)
+    avg_stress = models.FloatField(null=True, blank=True)
+    most_common_sleep_duration = models.JSONField(default=dict, blank=True)
+    most_common_sleep_quality = models.JSONField(default=dict)
+    avg_awakening = models.FloatField(null=True, blank=True)
+    avg_creativity = models.FloatField(null=True, blank=True)
+    avg_morning_mood = models.FloatField(null=True, blank=True)
+    avg_dream_relation_oneself = models.FloatField(null=True, blank=True)
+    avg_dream_impact_mood = models.FloatField(null=True, blank=True)
 
+    # Only nightmare-related fields
+    top_keywords_nightmare = models.JSONField(default=list, blank=True)  # top 3 in nightmares
+    top_characters_nightmare = models.JSONField(default=list, blank=True) # top 3 in nightmares
+    top_places_nightmare = models.JSONField(default=list, blank=True)  # top 3 in nightmares
+    top_emotion_nightmare = models.CharField(max_length=20, blank=True)  # top emotion in nightmares
+
+    avg_nightmare_stress =  models.FloatField(null=True, blank=True) #
+    most_common_sleep_duration_nightmares = models.JSONField(default=dict, blank=True)
+    most_common_sleep_quality_nightmares = models.JSONField(default=dict, blank=True)
+    avg_nightmare_awakening =  models.FloatField(null=True, blank=True)
+    avg_nightmare_creativity =  models.FloatField(null=True, blank=True)
+    avg_nightmare_morning_mood = models.FloatField(null=True, blank=True)
+    avg_nightmare_dream_relation_oneself =  models.FloatField(null=True, blank=True)
+    avg_nightmare_dream_impact_mood =  models.FloatField(null=True, blank=True)
 
     def generate_recap(self):
         start_date = self.month.replace(day=1)
         next_month = start_date + timedelta(days=32)
         end_date = next_month.replace(day=1) - timedelta(days=1)
         dreams = Dream.objects.filter(user=self.user, date__range=(start_date, end_date))
+        questionnaires = Questionnaire.objects.filter(dream__user=self.user, dream__date__range=(start_date, end_date))
+
+        ### DREAMS ###
 
         # amount of dreams
         self.dream_count = dreams.count()
@@ -229,41 +246,166 @@ class MonthlyRecap(models.Model):
         emotion_counts = Counter()
 
         for dream in dreams:
-            all_places.extend(dream.places)
-            all_characters.extend(dream.characters)
+            all_places.extend([place.lower() for place in dream.places]) # only for debugging now, mom and Mom two different characters, maybe prompt changing
+            all_characters.extend([char.lower() for char in dream.characters])
             all_keywords.extend(dream.keywords)
             emotion_counts[dream.emotion] += 1
             classification_counts.update(dream.classification)
 
         place_counts = Counter()
-        for place in set(all_places):
-            count = dreams.filter(Q(characters__icontains=place)).count()
+        for place in all_places:
+            count = dreams.filter(Q(places__iregex=r'(?i)\b{}\b'.format(re.escape(place)))).count()
             place_counts[place] = count
 
-        self.top_places = place_counts.most_common(3)
-
         character_counts = Counter()
-        for char in set(all_characters):
-            count = dreams.filter(Q(characters__icontains=char)).count()
+        for char in all_characters:
+            count = dreams.filter(Q(characters__iregex=r'(?i)\b{}\b'.format(re.escape(char)))).count()
             character_counts[char] = count
 
+        self.top_places = place_counts.most_common(3)
         self.top_characters = character_counts.most_common(3)
 
         keywords_counted = Counter(all_keywords)
-
         self.top_keywords = keywords_counted.most_common(3)
 
         if emotion_counts:
-            most_common_emotion, _ = emotion_counts.most_common(1)[0]
-            self.top_emotion = most_common_emotion
+            top_emotion, _ = emotion_counts.most_common(1)[0]
+            self.top_emotion = top_emotion
+        else:
+            self.top_emotion = ''
 
         if classification_counts:
-            most_common_classification, _ = classification_counts.most_common(1)[0]
-            self.top_classification = most_common_classification
+            top_classification, _ = classification_counts.most_common(1)[0]
+            self.top_classification = top_classification
+        else:
+            self.top_classification = ''
+
+        ### QUESTIONNAIRES ###
+
+        # count occurrences and filled out fields
+        boolean_fields = ['stress', 'creativity', 'awakening', 'morning_mood', 'dream_relation_oneself', 'dream_impact_mood']
+        boolean_counts = {field: 0 for field in boolean_fields}
+        filled_questionnaires = {field: 0 for field in boolean_fields}
+        not_filled_questionnaires = {field: 0 for field in boolean_fields}
+
+        for questionnaire in questionnaires:
+            for field in boolean_fields:
+                value = getattr(questionnaire, field)
+                if value is not None:
+                    if value == '1':
+                        boolean_counts[field] += 1
+                    filled_questionnaires[field] += 1
+                else:
+                    not_filled_questionnaires[field] += 1
+
+        # Calculate averages
+        for field in boolean_fields:
+            if filled_questionnaires[field] > 0:
+                avg_value = boolean_counts[field] / filled_questionnaires[field]
+            else:
+                avg_value = None
+            setattr(self, f'avg_{field}', avg_value)
+
+        duration_counts = Counter()
+        quality_counts = Counter()
+
+        for questionnaire in questionnaires:
+            if questionnaire.sleep_duration:
+                duration_counts[questionnaire.sleep_duration] += 1
+            if questionnaire.sleep_quality:
+                quality_counts[questionnaire.sleep_quality] += 1
+
+        if duration_counts:
+            max_duration_count = max(duration_counts.values())
+            self.most_common_sleep_duration = [k for k, v in duration_counts.items() if v == max_duration_count]
+        else:
+            self.most_common_sleep_duration = []
+
+        if quality_counts:
+            max_quality_count = max(quality_counts.values())
+            self.most_common_sleep_quality = [k for k, v in quality_counts.items() if v == max_quality_count]
+        else:
+            self.most_common_sleep_quality = []
+
+        ### ONLY NIGHTMARES
+        nightmares = dreams.filter(classification='0')
+
+        nightmare_questionnaires = questionnaires.filter(dream__in=nightmares)
+        nightmare_dreams = dreams.filter(classification='0')
+
+        all_places_nightmare = []
+        all_characters_nightmare = []
+        all_keywords_nightmare = []
+        emotion_counts_nightmare = Counter()
+
+        for dream in nightmare_dreams:
+            all_places_nightmare.extend([place.lower() for place in dream.places]) # only for debugging now, mom and Mom two different characters, maybe prompt changing
+            all_characters_nightmare.extend([char.lower() for char in dream.characters])
+            all_keywords_nightmare.extend(dream.keywords)
+            emotion_counts_nightmare[dream.emotion] += 1
+
+        place_counts_nightmare = Counter()
+        for place in all_places_nightmare:
+            count = nightmare_dreams.filter(Q(places__iregex=r'(?i)\b{}\b'.format(re.escape(place)))).count()
+            place_counts_nightmare[place] = count
+
+        character_counts_nightmare = Counter()
+        for char in all_characters_nightmare:
+            count = nightmare_dreams.filter(Q(characters__iregex=r'(?i)\b{}\b'.format(re.escape(char)))).count()
+            character_counts_nightmare[char] = count
+
+        self.top_places_nightmare = place_counts_nightmare.most_common(1)
+        self.top_characters_nightmare = character_counts_nightmare.most_common(1)
+
+        keywords_counted_nightmare = Counter(all_keywords_nightmare)
+        self.top_keywords_nightmare = keywords_counted_nightmare.most_common(1)
+
+        if emotion_counts_nightmare:
+            top_emotion_nightmare, _ = emotion_counts_nightmare.most_common(1)[0]
+            self.top_emotion_nightmare = top_emotion_nightmare
+        else:
+            self.top_emotion_nightmare = ''
+
+        boolean_counts_nightmares = {field: 0 for field in boolean_fields}
+        filled_nightmare_questionnaires = {field: 0 for field in boolean_fields}
+
+        for questionnaire in nightmare_questionnaires:
+            for field in boolean_fields:
+                value = getattr(questionnaire, field)
+                if value is not None:
+                    if value == '1':
+                        boolean_counts_nightmares[field] += 1
+                    filled_nightmare_questionnaires[field] += 1
+
+        for field in boolean_fields:
+            if filled_nightmare_questionnaires[field] > 0:
+                avg_value = boolean_counts_nightmares[field] / filled_nightmare_questionnaires[field]
+            else:
+                avg_value = None
+            setattr(self, f'avg_nightmare_{field}', avg_value)
+
+        duration_counts_nightmares = Counter()
+        quality_counts_nightmares = Counter()
+
+        for questionnaire in nightmare_questionnaires:
+            if questionnaire.sleep_duration:
+                duration_counts_nightmares[questionnaire.sleep_duration] += 1
+            if questionnaire.sleep_quality:
+                quality_counts_nightmares[questionnaire.sleep_quality] += 1
+
+        if duration_counts_nightmares:
+            max_duration_count = max(duration_counts_nightmares.values())
+            self.most_common_sleep_duration_nightmares = [k for k, v in duration_counts_nightmares.items() if v == max_duration_count]
+        else:
+            self.most_common_sleep_duration_nightmares = []
+
+        if quality_counts_nightmares:
+            max_quality_count = max(quality_counts_nightmares.values())
+            self.most_common_sleep_quality_nightmares = [k for k, v in quality_counts_nightmares.items() if v == max_quality_count]
+        else:
+            self.most_common_sleep_quality_nightmares = []
+
         self.save()
-
-
-
 
 
 @receiver(post_save, sender=User)
