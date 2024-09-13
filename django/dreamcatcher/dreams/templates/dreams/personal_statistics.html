@@ -335,7 +335,32 @@
         <a href="{% url 'dreams:personal_statistics' %}"><b>Personal Statistics</b></a>
         <a href="{% url 'logout' %}">Log out</a>
     </div>
+
 <div class="dreams">
+    <div class = "dream">
+        <h3>Monthly recap</h3> 
+        <form method="POST"> 
+            {% csrf_token %} 
+            <label for="desired_month">Select a month:</label>
+            <select name="desired_month" id="desired_month"> 
+                {% for month in available_months %} 
+                    <option value="{{ month|date:"Y-m" }}"
+                            {% if desired_month and desired_month == month %} 
+                            selected
+                            {% endif %}> 
+                        {{ month|date:"F Y" }}
+                    </option>
+                {% endfor %} 
+            </select> 
+            <br></br>
+            {% if recap_exists %}
+                <button type="submit" name="view" style="font-size: 14px;">View Recap</button>
+                <button type="submit" name="create" style="font-size: 14px;">Create Recap</button> 
+            {% else %}
+                <button type="submit" name="create" style="font-size: 14px;">Create Recap</button>
+            {% endif %}
+        </form>
+    </div>
     <div class="dream">
         <h3>Number of dreams </h3>
         <p class="dream-content">

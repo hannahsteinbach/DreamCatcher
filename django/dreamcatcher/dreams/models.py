@@ -276,7 +276,7 @@ class MonthlyRecap(models.Model):
 
         if classification_counts:
             top_classification, _ = classification_counts.most_common(1)[0]
-            self.top_classification = top_classification
+            self.top_classification =  dict(Dream.classification_options).get(top_classification, "No classification")
         else:
             self.top_classification = ''
 
@@ -301,7 +301,7 @@ class MonthlyRecap(models.Model):
         # Calculate averages
         for field in boolean_fields:
             if filled_questionnaires[field] > 0:
-                avg_value = boolean_counts[field] / filled_questionnaires[field]
+                avg_value = round(boolean_counts[field] / filled_questionnaires[field] * 100, 2)
             else:
                 avg_value = None
             setattr(self, f'avg_{field}', avg_value)
@@ -317,13 +317,15 @@ class MonthlyRecap(models.Model):
 
         if duration_counts:
             max_duration_count = max(duration_counts.values())
-            self.most_common_sleep_duration = [k for k, v in duration_counts.items() if v == max_duration_count]
+            most_common_sleep_duration = [k for k, v in duration_counts.items() if v == max_duration_count]
+            self.most_common_sleep_duration = [dict(Questionnaire.duration_option).get(duration, "") for duration in most_common_sleep_duration]
         else:
             self.most_common_sleep_duration = []
 
         if quality_counts:
             max_quality_count = max(quality_counts.values())
-            self.most_common_sleep_quality = [k for k, v in quality_counts.items() if v == max_quality_count]
+            most_common_sleep_quality = [k for k, v in quality_counts.items() if v == max_quality_count]
+            self.most_common_sleep_quality = [dict(Questionnaire.quality_option).get(quality, "") for quality in most_common_sleep_quality]
         else:
             self.most_common_sleep_quality = []
 
@@ -379,7 +381,7 @@ class MonthlyRecap(models.Model):
 
         for field in boolean_fields:
             if filled_nightmare_questionnaires[field] > 0:
-                avg_value = boolean_counts_nightmares[field] / filled_nightmare_questionnaires[field]
+                avg_value = round(boolean_counts_nightmares[field] / filled_nightmare_questionnaires[field] * 100, 0)
             else:
                 avg_value = None
             setattr(self, f'avg_nightmare_{field}', avg_value)
@@ -395,13 +397,15 @@ class MonthlyRecap(models.Model):
 
         if duration_counts_nightmares:
             max_duration_count = max(duration_counts_nightmares.values())
-            self.most_common_sleep_duration_nightmares = [k for k, v in duration_counts_nightmares.items() if v == max_duration_count]
+            most_common_sleep_duration_nightmares = [k for k, v in duration_counts_nightmares.items() if v == max_duration_count]
+            self.most_common_sleep_duration_nightmares = [dict(Questionnaire.duration_option).get(duration, "") for duration in most_common_sleep_duration_nightmares]
         else:
             self.most_common_sleep_duration_nightmares = []
 
         if quality_counts_nightmares:
             max_quality_count = max(quality_counts_nightmares.values())
-            self.most_common_sleep_quality_nightmares = [k for k, v in quality_counts_nightmares.items() if v == max_quality_count]
+            most_common_sleep_quality_nightmares = [k for k, v in quality_counts_nightmares.items() if v == max_quality_count]
+            self.most_common_sleep_quality_nightmares = [dict(Questionnaire.quality_option).get(quality, "") for quality in most_common_sleep_quality_nightmares]
         else:
             self.most_common_sleep_quality_nightmares = []
 

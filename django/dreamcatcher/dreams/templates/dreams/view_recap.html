@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Recap for {{desired_month_month}}{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header {
+            background:  #FFFFFF;
+            color: #3D3D3D;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 40%;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 180px;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+        }
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgba(103, 96, 240, 0.224);
+            overflow-x: hidden;
+            padding-top: 50px;
+        }
+        .sidenav a {
+            padding: 6px 8px 6px 18px;
+            text-decoration: blink;
+            font-size: 16px;
+            color: #3D3D3D;
+            display: block;
+            border-bottom: 1px solid #ddd;
+        }
+        .sidenav a:last-child {
+            border-bottom: none;
+        }
+        .sidenav a:hover {
+            color: black;
+        }
+        .dreams {
+            width: 100%;
+            max-width: 900px;
+            margin-left: 180px;
+        }
+        .dream {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: relative;
+            width: 100%;
+        }
+        .nightmare{
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(67, 67, 113, 0.65);
+            color: rgb(255, 255, 255);
+            position: relative;
+            width: 100%;
+        }
+        .outline{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .outline-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 120px;
+        }
+        .outline-item h4 {
+            margin: 10px 0;
+        }
+        .outline-item span {
+            display: block;
+            font-size: 1.2em;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.menu').forEach(menu => {
+                menu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.querySelector('.search-form').submit();
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <h2>Recap for {{desired_month}}</h2>
+</div>
+<div class="sidenav">
+    <a href="{% url 'dreams:profile' %}" class="profile-link">
+        <img src="{% static 'pfps/'|add:user.profile.avatar %}"
+             style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #cdb4eb; box-shadow: 0 0 10px #808080;">
+        <br></br>
+        <span>My Profile</span>
+    </a>
+    <a href="/">Home</a>
+    <a href="{% url 'dreams:gallery' %}">Dream Gallery</a>
+    <a href="{% url 'dreams:log_dream' %}">Log a dream</a>
+    <a href="{% url 'dreams:dream_journal' %}">Dream Journal</a>
+    <a href="{% url 'dreams:personal_statistics' %}"><b>Personal Statistics</b></a>
+    <a href="{% url 'logout' %}">Log out</a>
+</div>
+<div class="dreams">
+    <div class="dream">
+        <h2>General Statistics</h2>
+        <p><strong>Total dreams:</strong> {{ recap.dream_count }}</p>
+        <p><strong>Most frequent emotion:</strong> {% if recap.top_emotion%} {{ recap.top_emotion}} {% else %} Neutral {% endif %}</p>
+        <p><strong>Most frequent dream type:</strong> {{ recap.top_classification }}</p>
+        <p><strong>Keywords:</strong></p>
+        <div class="outline">
+            {% if recap.top_keywords %}
+                {% for keyword, count in recap.top_keywords %}
+                    <div class="outline-item">
+                        <h4>{{ forloop.counter }}. {{ keyword }}</h4>
+                        <span style="font-size: smaller;">>
+                            {% if count == 1%}
+                                {{count}} occurrence
+                            {% else %}
+                                {{count}} occurrences
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No keywords available.</p>
+            {% endif %}
+        </div>
+        <p><strong>Top Characters:</strong></p>
+        <div class="outline">
+            {% if recap.top_characters %}
+                {% for char, count in recap.top_characters %}
+                    <div class="outline-item">
+                        <h4>{{ forloop.counter }}. {{ char }}</h4>
+                        <span style="font-size: smaller;">>               
+                            {% if count == 1%}
+                                {{count}} occurrence
+                            {% else %}
+                                {{count}} occurrences
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No characters available.</p>
+            {% endif %}
+        </div>
+        <p><strong>Top Places:</strong></p>
+        <div class="outline">
+            {% if recap.top_places %}
+                {% for place, count in recap.top_places %}
+                    <div class="outline-item">
+                        <h4>{{ forloop.counter }}. {{ place }}</h4>
+                        <span style="font-size: smaller;">>                          
+                            {% if count == 1%}
+                                {{count}} occurrence
+                            {% else %}
+                                {{count}} occurrences
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No places available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="dream">
+        <h2>Questionnaire Statistics</h2>
+        <p><strong>Stress:</strong> {% if recap.avg_stress is not None %} You have reported feeling stressed in {{ recap.avg_stress }}% of the filled-out questionnaires {% else %} No information available {% endif %}</p>
+        <p><strong>You Have Slept Mostly:</strong>
+        <div class="outline">
+            {% if recap.most_common_sleep_duration is not None %}
+                {% for dur in recap.most_common_sleep_duration %}
+                    <div class="outline-item">
+                        <h4>{{ dur }}</h4>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No information about sleep duration available</p>
+            {% endif %}
+        </div>
+        </p>
+        <p><strong>Your sleep's quality was most frequently:</strong>
+        <div class="outline">
+            {% if recap.most_common_sleep_quality is not None %}
+                {% for qual in recap.most_common_sleep_quality %}
+                    <div class="outline-item">
+                        <h4>{{ qual }}</h4>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No information about sleep quality available</p>
+            {% endif %}
+        </div>
+        </p>
+        <p><strong>Awakening:</strong> {% if recap.avg_awakening is not None %} You were woken up by a dream in <strong>{{ recap.avg_awakening }}%</strong> of the reported cases {% else %} No information available {% endif %}</p>
+        <p><strong>Creativity:</strong> {% if recap.avg_creativity is not None %} <strong>{{ recap.avg_creativity }}%</strong> of the dreams made you feel more creative {% else %} No information available {% endif %}</p>
+        <p><strong>Morning Mood:</strong> {% if recap.avg_morning_mood is not None %} In <strong>{{ recap.avg_morning_mood }}%</strong> of the reported cases, your dreams had an influence on your mood the next morning {% else %} No information available  {% endif %}</p>
+        <p><strong>Relation:</strong> {% if recap.avg_dream_relation_oneself is not None %} <strong>{{ recap.avg_dream_relation_oneself }}%</strong> of the dreams were directly related to your current waking life {% else %} No information available {% endif %}</p>
+        <p><strong>Mood:</strong> {% if recap.avg_dream_impact_mood is not None %} In <strong>{{ recap.avg_dream_impact_mood }}%</strong> of the reported cases, your mood in the days after was influenced by your dreams {% else %} No information available {% endif %}</p>
+    </div>
+
+    <div class="nightmare">
+        <h2>Nightmare-Specific Statistics</h2>
+        {% if nightmares%}
+            <p><strong>Most frequent emotion in your nightmares:</strong> {% if recap.top_emotion_nightmare%} {{ recap.top_emotion_nightmare }} {% else %} No emotion available. {% endif %}</p>
+            <p><strong>Top keywords in your nightmares:</strong></p>
+            <div class="outline">
+                {% if recap.top_keywords_nightmare %}
+                    {% for keyword, count in recap.top_keywords_nightmare %}
+                        <div class="outline-item">
+                            <h4>{{ forloop.counter }}. {{ keyword }}</h4>
+                            <span style="font-size: smaller;">>
+                                {% if count == 1%}
+                                    {{count}} occurrence
+                                {% else %}
+                                    {{count}} occurrences
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No keywords available for nightmares</p>
+                {% endif %}
+            </div>
+            <p><strong>Top Characters in Nightmares:</strong></p>
+            <div class="outline">
+                {% if recap.top_characters_nightmare %}
+                    {% for char, count in recap.top_characters_nightmare %}
+                        <div class="outline-item">
+                            <h4>{{ forloop.counter }}. {{ char }}</h4>
+                            <span style="font-size: smaller;">>                         
+                                {% if count == 1%}
+                                    {{count}} occurrence
+                                {% else %}
+                                    {{count}} occurrences
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No characters available for nightmares.</p>
+                {% endif %}
+            </div>
+            <p><strong>Top Places in Nightmares:</strong></p>
+            <div class="outline">
+                {% if recap.top_places_nightmare %}
+                    {% for place, count in recap.top_places_nightmare %}
+                        <div class="outline-item">
+                            <h4>{{ forloop.counter }}. {{ place }}</h4>
+                            <span style="font-size: smaller;">>
+                                {% if count == 1%}
+                                    {{count}} occurrence
+                                {% else %}
+                                    {{count}} occurrences
+                                {% endif %}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No places available for nightmares</p>
+                {% endif %}
+            </div>
+            <p><strong>You Have Slept Mostly:</strong>
+            <div class="outline">
+                {% if recap.most_common_sleep_duration_nightmares is not None %}
+                    {% for dur in recap.most_common_sleep_duration_nightmares %}
+                        <div class="outline-item">
+                            <h4>{{ dur }}</h4>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No information about sleep duration available for nightmares</p>
+                {% endif %}
+            </div>
+            </p>
+            <p><strong>Your sleep's quality was most frequently:</strong>
+            <div class="outline">
+                {% if recap.most_common_sleep_quality_nightmares is not None %}
+                    {% for qual in recap.most_common_sleep_quality_nightmares %}
+                        <div class="outline-item">
+                            <h4>{{ qual }}</h4>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No information about sleep quality available for nightmares</p>
+                {% endif %}
+            </div>
+            </p>
+            <p><strong>Stress in your nightmares:</strong> {% if recap.avg_nightmare_stress is not None %} You have reported feeling stressed in <strong>{{ recap.avg_nightmare_stress }}%</strong> of the filled-out questionnaires related to nightmares {% else %} No information available {% endif %}</p>
+            <p><strong>Awakening:</strong> {% if recap.avg_nightmare_awakening is not None %} You were woken up by a nightmare in <strong>{{ recap.avg_nightmare_awakening }}%</strong> of the reported cases {% else %} No information available {% endif %}</p>
+            <p><strong>Creativity:</strong> {% if recap.avg_nightmare_creativity is not None %} <strong>{{ recap.avg_nightmare_creativity }}%</strong> of the nightmares made you feel more creative {% else %} No information available {% endif %}</p>
+            <p><strong>Morning Mood:</strong> {% if recap.avg_nightmare_morning_mood is not None %} In <strong>{{ recap.avg_nightmare_morning_mood }}%</strong> of the reported cases, your nightmares had an influence on your mood the next morning. {% else %} No information available {% endif %}</p>
+            <p><strong>Relation:</strong> {% if recap.avg_nightmare_dream_relation_oneself is not None %} <strong>{{ recap.avg_nightmare_dream_relation_oneself }}%</strong> of the nightmares were directly related to your current waking life. {% else %} No information available {% endif %}</p>
+            <p><strong>Mood:</strong> {% if recap.avg_nightmare_dream_impact_mood is not None %} In <strong>{{ recap.avg_nightmare_dream_impact_mood }}%</strong> of the reported cases, your mood in the days after was influenced by your nightmares. {% else %} No information available {% endif %}</p>
+        {% else %}
+            You have not yet reported any nightmares this month.
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

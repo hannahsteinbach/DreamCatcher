@@ -1,6 +1,8 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
+from django.utils.timezone import now
+
 from .forms import CustomPasswordResetForm
 from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
@@ -8,9 +10,9 @@ from django.http import HttpResponseForbidden
 from .forms import SignUpForm, DreamForm, CommentForm, DateForm, UpdateProfileForm, UpdateUserForm, QuestionnaireForm
 import logging
 from django.shortcuts import render, redirect
-from .models import Dream, DreamLike, Comment, User
+from .models import Dream, DreamLike, Comment, User, MonthlyRecap
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from datetime import date, timedelta
 from django.db.models import F
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
@@ -790,6 +792,53 @@ def personal_statistics(request):
 
     top_10_places = place_counts.most_common(10)
 
+    ### MONTHLY RECAP
+    current_month = now().date().replace(day=1)
+    desired_month = None
+    recap_exists = False  # already a recap for this month?
+
+    if request.method == 'POST':
+        desired_month_user = request.POST.get('desired_month')
+
+        if desired_month_user:
+            year, month = map(int, desired_month_user.split('-'))
+            desired_month = date(year, month, 1)
+
+            recap = MonthlyRecap.objects.filter(user=request.user, month=desired_month).first()
+            if recap:
+                recap_exists = True
+
+            # view recap of desired month
+            if 'view' in request.POST and recap_exists:
+                nightmares = True
+                dreams_in_month = dreams.filter(date__year=year, date__month=month)
+                if not dreams_in_month.filter(classification='0').exists():
+                    nightmares = False
+                context = {
+                    'recap': recap,
+                    'desired_month': desired_month.strftime('%B %Y') if desired_month else None,
+                    'nightmares': nightmares
+                }
+                return render(request, 'dreams/view_recap.html', context)
+
+            # create recap of desired month (also if it already exists, as often as user wants)
+            elif 'create' in request.POST:
+                recap, _ = MonthlyRecap.objects.get_or_create(user=request.user, month=desired_month)
+                recap.generate_recap()
+                recap.save()
+
+    if not desired_month:
+        recap, _ = MonthlyRecap.objects.get_or_create(user=request.user, month=current_month)
+        recap_exists = MonthlyRecap.objects.filter(user=request.user, month=current_month).exists()
+
+    first_dream = Dream.objects.filter(user=request.user).order_by('date').first()  # get first dream to get first month
+    first_month = first_dream.date.replace(day=1) if first_dream else current_month
+
+    available_months = []
+    while current_month >= first_month:
+        available_months.append(current_month)
+        current_month = (current_month - timedelta(days=1)).replace(day=1)
+
     context = {
         'dreams': dreams,
         'dream_count': dream_count,
@@ -812,9 +861,14 @@ def personal_statistics(request):
         'confusion_count': confusion_count,
         'happiness_count': happiness_count,
         'none_emotion_count': none_emotion_count,
+        'recap': recap,
+        'available_months': available_months,
+        'desired_month': desired_month,
+        'recap_exists': recap_exists,
     }
 
     return render(request, 'dreams/personal_statistics.html', context)
+
 
 @login_required
 def logout_view(request):
