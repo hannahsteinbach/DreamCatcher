@@ -101,6 +101,30 @@
             margin-left: 200px;
             font-family: 'Manrope', 'sans-serif';
         }
+        #loading-icon {
+        width: 40px; 
+        height: 40px; 
+        margin-right: 10px;
+        }
+        #loading-content {
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        }
+        #loading-container {
+            display: none;
+            text-align: center;
+        }
+        #loading-message {
+        font-size: 16px;
+        margin: 0;
+        }
+
+        #loading-info {
+            font-size: 16px; 
+            margin: 0;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -132,7 +156,7 @@
                         <button type="submit" name="title" style="height: auto;" value="{{ title }}">{{ title }}</button>
                         <br>
                     </form>
-                {% endfor %}
+                {% endfor %}                
             {% else %}
                 <p>No optional titles available. Are you sure you logged a dream?</p>
                 <a type="submit" class="button" href="{% url 'dreams:log_dream' %}">Log a dream</a>

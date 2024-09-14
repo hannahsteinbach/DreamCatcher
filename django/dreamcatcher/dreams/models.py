@@ -80,7 +80,6 @@ class Dream(models.Model):
         dream_prompt = (
             f"Here is my dream: {content_str}\n\n"
             "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
-            "- titleop: Three creative title options, formatted as a Python list of strings.\n"
             "- emotion: The prevalent emotion from these options formatted as a string: anger, apprehension, sadness, confusion, happiness if it is above a 50% threshold, otherwise an empty string.\n"
             "- characters: All characters, formatted as a Python list of strings, without articles or pronouns. A character is a single entity (e.g. a person or animal) that plays an active role in the dream narrative. I and you don't count. If none are found, return an empty string.\n"
             "- places: All places, formatted as a Python list of strings, without articles. If none are found, return an empty string.\n"
@@ -94,20 +93,36 @@ class Dream(models.Model):
             response = json.loads(response)
 
             # metadata extraction
-            self.optional_titles = response.get('titleop', [])
             self.keywords = response.get('keywords', [])
             self.emotion = response.get('emotion', "")
             self.characters = response.get('characters', [])
             self.places = response.get('places', [])
+            self.generate_titles() 
             self.processed = True
         except (json.JSONDecodeError, KeyError) as e:
-            self.optional_titles = []
             self.keywords = []
             self.emotion = ""
             self.characters = []
             self.places = []
             self.processed = False
             print(f"Error processing dream metadata: {e}")
+
+    def generate_titles(self):
+        content_str = str(self.content)
+        title_prompt = (
+            f"Here is my dream: {content_str}\n\n"
+            "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
+            " - titleop: three creative title options, formatted as a Python list of strings."
+            "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
+        )
+        llm = ollama.Ollama(model='llama3', temperature=1, top_p=1, verbose=False)
+        try:
+            response = llm.invoke(title_prompt)
+            response = json.loads(response)
+            self.optional_titles = response.get('titleop', [])
+        except Exception as e:
+            self.optional_titles = []
+            print(f"Error generating titles: {e}")
 
     def save(self, *args, **kwargs):
         if not self.pk:
