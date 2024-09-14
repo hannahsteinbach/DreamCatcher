@@ -301,7 +301,7 @@ class MonthlyRecap(models.Model):
         # Calculate averages
         for field in boolean_fields:
             if filled_questionnaires[field] > 0:
-                avg_value = round(boolean_counts[field] / filled_questionnaires[field] * 100, 2)
+                avg_value = round(boolean_counts[field] / filled_questionnaires[field] * 100, 0)
             else:
                 avg_value = None
             setattr(self, f'avg_{field}', avg_value)

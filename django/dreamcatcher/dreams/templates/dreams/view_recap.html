@@ -199,8 +199,8 @@
 
     <div class="dream">
         <h2>Questionnaire Statistics</h2>
-        <p><strong>Stress:</strong> {% if recap.avg_stress is not None %} You have reported feeling stressed in {{ recap.avg_stress }}% of the filled-out questionnaires {% else %} No information available {% endif %}</p>
-        <p><strong>You Have Slept Mostly:</strong>
+        <p><strong>Stress:</strong> {% if recap.avg_stress is not None %} You have reported feeling stressed in <strong>{{ recap.avg_stress }}%</strong> of the filled-out questionnaires {% else %} No information available {% endif %}</p>
+        <p><strong>You have slept mostly for:</strong>
         <div class="outline">
             {% if recap.most_common_sleep_duration is not None %}
                 {% for dur in recap.most_common_sleep_duration %}
@@ -293,7 +293,7 @@
                     <p>No places available for nightmares</p>
                 {% endif %}
             </div>
-            <p><strong>You Have Slept Mostly:</strong>
+            <p><strong>You have slept mostly for:</strong>
             <div class="outline">
                 {% if recap.most_common_sleep_duration_nightmares is not None %}
                     {% for dur in recap.most_common_sleep_duration_nightmares %}

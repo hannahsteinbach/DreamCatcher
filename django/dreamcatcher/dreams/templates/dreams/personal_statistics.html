@@ -315,6 +315,10 @@
             document.getElementById('searchInput').value = '';
             document.querySelector('.search-form').submit();
         }
+        document.getElementById('desired_month').addEventListener('change', function() {
+            this.form.submit();
+        });
+
     </script>
 </head>
 <body>
@@ -353,12 +357,7 @@
                 {% endfor %} 
             </select> 
             <br></br>
-            {% if recap_exists %}
-                <button type="submit" name="view" style="font-size: 14px;">View Recap</button>
-                <button type="submit" name="create" style="font-size: 14px;">Create Recap</button> 
-            {% else %}
-                <button type="submit" name="create" style="font-size: 14px;">Create Recap</button>
-            {% endif %}
+            <button type="submit" name="create" style="font-size: 14px;">View recap</button>
         </form>
     </div>
     <div class="dream">
