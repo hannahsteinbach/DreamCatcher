@@ -11,6 +11,7 @@ urlpatterns = [
     path('log_dream/', views.log_dream, name='log_dream'),
     path('choose_title/<int:dream_id>/', views.choose_title, name='choose_title'),
     path('choose_title_log/<int:dream_id>/', views.choose_title_log, name='choose_title_log'),
+    path('dreams/regenerate_titles/<int:dream_id>/', views.regenerate_titles, name='regenerate_titles'),
     path('choose_emotion/<int:dream_id>/', views.choose_emotion, name='choose_emotion'),
     path('questionnaire/<int:dream_id>/', views.questionnaire, name='questionnaire'),
     path('questionnaire_log/<int:dream_id>/', views.questionnaire_log, name='questionnaire_log'),
@@ -34,5 +35,5 @@ urlpatterns = [
     path('add_comment/<int:dream_id>/', views.add_comment, name='add_comment'),
     path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     path('statistics/', views.personal_statistics, name='personal_statistics'),
-    path('gallery/', views.gallery, name='gallery'),
+    path('gallery/', views.gallery, name='gallery')
 ]

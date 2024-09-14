@@ -214,6 +214,13 @@ def choose_title(request, dream_id):
 
 
 @login_required
+def regenerate_titles(request, dream_id):
+    dream = get_object_or_404(Dream, id=dream_id)
+    dream.generate_titles()  # Call the title regeneration function
+    dream.save()  # Save the updated titles
+    return redirect('dreams:choose_title_log', dream_id=dream.id)
+
+@login_required
 def choose_emotion(request, dream_id):
     dream = get_object_or_404(Dream, id=dream_id)
     if request.method == 'POST':
@@ -222,7 +229,6 @@ def choose_emotion(request, dream_id):
         dream.save()
         return redirect('dreams:questionnaire_log', dream_id=dream.id)
     return render(request, 'dreams/choose_emotion.html', {'dream': dream})
-
 
 
 @login_required

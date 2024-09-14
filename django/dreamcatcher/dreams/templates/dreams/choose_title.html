@@ -8,7 +8,6 @@
     <title>{% block title %}Log a Dream{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
@@ -77,30 +76,48 @@
             z-index: 2;
             position: relative;
         }
-        .playlist-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-left: 200px;
-        }
-        .playlist-container iframe {
-            border-radius: 12px;
-            width: 45%;
-            height: 352px;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .show-playlists .playlist-container {
-            display: flex;
-        }
-
         .centered-text {
             text-align: center;
             margin-left: 200px;
             font-family: 'Manrope', 'sans-serif';
         }
+        .title-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #loading-icon {
+            width: 40px; 
+            height: 40px; 
+            margin-right: 10px;
+        }
+        #loading-content {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+        }
+        #loading-container {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #loading-message {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .btn-title {
+            padding: 10px 20px;
+            background-color: rgba(103, 96, 240);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        } */
+
+        /* .btn:hover {
+            background-color: #4e47d1;
+        } */
     </style>
 </head>
 <body>
@@ -123,35 +140,58 @@
     </div>
     <section class="content">
         <div class="centered-text">
-            {%if dream.optional_titles%}
+            <div id="loading-container">
+                <div id="loading-content">
+                    <img id="loading-icon" src="{% static 'images/loading.gif' %}" alt="Loading...">
+                    <p id="loading-message">Generating other title options... 💫</p>
+                </div>
+            </div>
+
+            {% if dream.optional_titles %}
                 <p>Choose a title to display in your dream journal from the following options:</p>
-                {% for title in dream.optional_titles %}
-                    <form class="keyword-form" method="post" action="{% url 'dreams:choose_title' dream.id %}">
-                        {% csrf_token %}
-                        <br>
-                        <button type="submit" name="title" style="height: auto;" value="{{ title }}">{{ title }}</button>
-                        <br>
-                    </form>
-                {% endfor %}
+                <div class="title-options">
+                    {% for title in dream.optional_titles %}
+                        <form class="keyword-form" method="post" action="{% url 'dreams:choose_title_log' dream.id %}">
+                            {% csrf_token %}
+                            <br>
+                            <button type="submit" class="btn-title" name="title" style="height: auto;" value="{{ title }}">{{ title }}</button>
+                            <br>
+                        </form>
+                    {% endfor %}
+                </div>
+                <br>
+                {% if dream.id %}
+                    <button class="btn" id="regenerate-btn" onclick="regenerateTitles()">Regenerate Titles</button>
+                {% else %}
+                    <p>Error: Dream ID is missing or invalid. Please try again later.</p>
+                {% endif %}
             {% else %}
                 <p>No optional titles available. Are you sure you logged a dream?</p>
-                <a type="submit" class="button" href="{% url 'dreams:log_dream' %}">Log a dream</a>
+                <a type="submit" class="btn" href="{% url 'dreams:log_dream' %}">Log a dream</a>
             {% endif %}
-           </div>
+        </div>
     </section>
-    {% if messages %}
-    <div class="alert alert-success">
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
+
+    <script>
+        function regenerateTitles() {
+            const loadingContainer = document.getElementById('loading-container');
+            loadingContainer.style.display = 'block';
+    
+            const dreamId = "{{ dream.id }}";
+            if (dreamId) {
+                setTimeout(function() {
+                    window.location.href = "{% url 'dreams:regenerate_titles' dream.id %}";
+                }, 500);
+            } else {
+                console.error('Dream ID is missing or invalid.');
+                loadingContainer.style.display = 'none';  
+                alert('Error: Dream ID is missing or invalid.');
+            }
+        }
+    </script>
+
     <footer>
         <p>&copy; 2024 DreamCatcher | Raluca Rilla & Hannah Steinbach | <a class="btn btn-primary" href="{% url 'aboutus' %}">About us</a></p>
     </footer>
-
-
 </body>
 </html>
