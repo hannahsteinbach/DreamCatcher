@@ -177,9 +177,11 @@
             if (dreamId) {
                 setTimeout(function() {
                     window.location.href = "{% url 'dreams:regenerate_titles' dream.id %}";
-                }, 500);  
+                }, 500);
             } else {
                 console.error('Dream ID is missing or invalid.');
+                loadingContainer.style.display = 'none';  
+                alert('Error: Dream ID is missing or invalid.');
             }
         }
     </script>
