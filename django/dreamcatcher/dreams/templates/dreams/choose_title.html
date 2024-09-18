@@ -151,7 +151,7 @@
                 <p>Choose a title to display in your dream journal from the following options:</p>
                 <div class="title-options">
                     {% for title in dream.optional_titles %}
-                        <form class="keyword-form" method="post" action="{% url 'dreams:choose_title_log' dream.id %}">
+                        <form class="keyword-form" method="post" action="{% url 'dreams:choose_title' dream.id %}">
                             {% csrf_token %}
                             <br>
                             <button type="submit" class="btn-title" name="title" style="height: auto;" value="{{ title }}">{{ title }}</button>
@@ -176,7 +176,7 @@
         function regenerateTitles() {
             const loadingContainer = document.getElementById('loading-container');
             loadingContainer.style.display = 'block';
-    
+
             const dreamId = "{{ dream.id }}";
             if (dreamId) {
                 setTimeout(function() {
@@ -184,7 +184,7 @@
                 }, 500);
             } else {
                 console.error('Dream ID is missing or invalid.');
-                loadingContainer.style.display = 'none';  
+                loadingContainer.style.display = 'none';
                 alert('Error: Dream ID is missing or invalid.');
             }
         }
