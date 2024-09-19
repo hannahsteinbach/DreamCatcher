@@ -121,27 +121,25 @@ def zero_shot_prompting(content_str):
         }
 
 
-# json_data = []
-# i = 1
+json_data = []
 
-# for dream in dreamy_data:
-#     metadata = zero_shot_prompting(dream) 
-#     csv_row = {
-#         'text': dream,
-#         'keywords': metadata['keywords'],
-#         'characters': metadata['characters'],
-#         'places': metadata['places'],
-#         'emotion': metadata['emotion'],
-#     }
-#     json_data.append(csv_row)
-#     print(f"zero shot prompt for dream {i}")
-#     i += 1
+for dream in dreamy_data:
+    metadata = zero_shot_prompting(dream) 
+    csv_row = {
+        'text': dream,
+        'keywords': metadata['keywords'],
+        'characters': metadata['characters'],
+        'places': metadata['places'],
+        'emotion': metadata['emotion'],
+    }
+    json_data.append(csv_row)
+    print(f"zero shot prompt for dream {dreamy_data.index(dream)}")
 
-# # Save to JSON file
-# json_file = "zeroshot_llama.json"
+# Save to JSON file
+json_file = "zeroshot_llama.json"
 
-# with open(json_file, mode='w', encoding='utf-8') as file:
-#     json.dump(json_data, file, indent=4)
+with open(json_file, mode='w', encoding='utf-8') as file:
+    json.dump(json_data, file, indent=4)
 
 
 ### Multishot
@@ -194,7 +192,6 @@ def multi_shot_prompting(content_str):
         }
 
 json_data = []
-i = 1
 
 for dream in dreamy_data:
     metadata = multi_shot_prompting(dream)
@@ -206,8 +203,7 @@ for dream in dreamy_data:
         'emotion': metadata['emotion'],
     }
     json_data.append(csv_row)
-    print(f"multishot prompt for dream {i}")
-    i += 1
+    print(f"multishot prompt for dream {dreamy_data.index(dream)}")
 
 
 # Save to JSON file
