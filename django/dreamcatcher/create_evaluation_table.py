@@ -21,8 +21,8 @@ for index, row in random_dreams.iterrows():
     })
     dreamy_data.append(dream_content)
 
-'''
-### DREAMY
+
+### DREAMY for later
 dream_df = pd.DataFrame(dream_data)
 dream_df.to_csv('dreams_evaluation.csv', index=False)
 
@@ -74,7 +74,7 @@ dream_df = pd.DataFrame({
 dream_df.to_csv('keybert_keywords_one.csv', index=False)
 
 print("Keywords extracted and saved to 'dream_keywords.csv'.")
-'''
+
 
 
 ### ZERO SHOT
