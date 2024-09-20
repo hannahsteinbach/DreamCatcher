@@ -694,6 +694,15 @@ def personal_statistics(request):
         existential_count = 0
         none_count = 0
 
+    dream_types = [
+            {'name': 'Nightmares', 'count': nightmare_count},
+            {'name': 'Mundane dreams', 'count': mundane_count},
+            {'name': 'Lucid dreams', 'count': lucid_count},
+            {'name': 'Existential dreams', 'count': existential_count},
+            {'name': 'Not classified', 'count': none_count},
+        ]
+
+    dream_types_sorted = sorted(dream_types, key=lambda x: x['count'], reverse=True)
 
     # keywords
     all_keywords = []
@@ -720,6 +729,17 @@ def personal_statistics(request):
         confusion_count = 0
         happiness_count = 0
         none_emotion_count = 0
+
+    emotions = [
+        {'name': 'Anger', 'count': anger_count},
+        {'name': 'Apprehension', 'count': apprehension_count},
+        {'name': 'Sadness', 'count': sadness_count},
+        {'name': 'Confusion', 'count': confusion_count},
+        {'name': 'Happiness', 'count': happiness_count},
+        {'name': 'Neutral', 'count': none_emotion_count},
+    ]
+
+    emotions_sorted = sorted(emotions, key=lambda x: x['count'], reverse=True)
 
     all_characters = []
     for dream in dreams:
@@ -837,11 +857,8 @@ def personal_statistics(request):
         'dreams': dreams,
         'dream_count': dream_count,
         'liked_count': liked_count,
-        'nightmare_count': nightmare_count,
-        'mundane_count': mundane_count,
-        'lucid_count': lucid_count,
-        'existential_count': existential_count,
-        'none_count': none_count,
+        'emotions': emotions_sorted,
+        'dream_types': dream_types_sorted,
         'shared_count': shared_count,
         'favorite_count': favorite_count,
         'top_10_keywords': top_10_keywords,

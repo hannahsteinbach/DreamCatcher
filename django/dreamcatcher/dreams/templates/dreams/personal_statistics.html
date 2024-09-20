@@ -370,13 +370,11 @@
     </div>
     <div class="dream">
         <h3>Types of dreams </h3>
-            <ul>
-                <li> Nightmares: {{nightmare_count}}% </li>
-                <li> Mundane Dreams: {{mundane_count}}% </li>
-                <li> Lucid dreams: {{lucid_count}}% </li>
-                <li> Existential dreams: {{existential_count}}% </li>
-                <li> Not classified: {{none_count}}% </li>
-            </ul>
+        <ul>
+            {% for dream_type in dream_types %}
+            <li> {{ dream_type.name }}: {{ dream_type.count }}% </li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="dream">
         <h3>Top 10 Keywords</h3>
@@ -440,13 +438,10 @@
     <div class="dream">
         <h3>Emotions</h3>
         <ul>
-                <li> Anger: {{anger_count}}% </li>
-                <li> Apprehension: {{apprehension_count}}% </li>
-                <li> Sadness: {{sadness_count}}% </li>
-                <li> Confusion: {{confusion_count}}% </li>
-                <li> Happiness: {{happiness_count}}% </li>
-                <li> Not classified: {{none_emotion_count}}% </li>
-            </ul>
+            {% for emotion in emotions %}
+            <li> {{ emotion.name }}: {{ emotion.count }}% </li>
+            {% endfor %}
+        </ul>
     </div>
     <div id="dream-frequency-chart"></div>
         <h3>Dream Frequency</h3>
