@@ -67,7 +67,7 @@ class Dream(models.Model):
         content_str = str(self.content)
 
         SYSTEM_PROMPT = (
-            "You are a dreamcatcher who logs dreams in a journal. You have logged a dream and want to extract metadata from it. "
+            "You are a dreamcatcher that logs dreams in a journal. You have logged a dream and want to extract metadata from it. "
             "You want to extract the title, keywords, emotion, characters, and places from the dream. "
             "You want to use this metadata to better understand the dream and categorize it. "
             "You need to ensure that the content is not toxic or harmful. "
