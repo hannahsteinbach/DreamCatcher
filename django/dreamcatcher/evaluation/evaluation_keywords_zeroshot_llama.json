@@ -1,0 +1,2163 @@
+{
+    "Keywords": {
+        "TP": 202,
+        "FP": 178,
+        "FN": 550,
+        "Details": [
+            {
+                "Dream ID": 1,
+                "True Positives": [
+                    "baby",
+                    "rent",
+                    "house"
+                ],
+                "False Positives": [
+                    "deal",
+                    "conservation"
+                ],
+                "False Negatives": [
+                    "hesitate",
+                    "$1500 ",
+                    "pay",
+                    "struggle"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 2,
+                "True Positives": [
+                    "warm",
+                    "new"
+                ],
+                "False Positives": [
+                    "lived-in",
+                    "pretty",
+                    "apartment"
+                ],
+                "False Negatives": [
+                    "new appartments",
+                    "boxes",
+                    "unpacked boxes",
+                    "young man",
+                    "furniture",
+                    "mess",
+                    "warm lived-in feeling"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 3,
+                "True Positives": [
+                    "home",
+                    "deserted"
+                ],
+                "False Positives": [
+                    "alone",
+                    "unrecognized",
+                    "family"
+                ],
+                "False Negatives": [
+                    "unknown house",
+                    "paris",
+                    "ride",
+                    "stranger",
+                    "walking",
+                    "upset"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 4,
+                "True Positives": [
+                    "shoes"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "wrong"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 5,
+                "True Positives": [
+                    "tree",
+                    "book",
+                    "lights",
+                    "pamphlet",
+                    "library"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "waterbowl tree",
+                    "rocks",
+                    "ed rickett",
+                    "john steinbeck"
+                ],
+                "TP_count": 5,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 6,
+                "True Positives": [],
+                "False Positives": [
+                    "tornadoes"
+                ],
+                "False Negatives": [
+                    "small town",
+                    "shelter",
+                    "soft swirling",
+                    "swirling",
+                    "tornado",
+                    "hold",
+                    "hand",
+                    "radio"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 7,
+                "True Positives": [
+                    "fraternity"
+                ],
+                "False Positives": [
+                    "affair",
+                    "chandeliers",
+                    "social",
+                    "corridor"
+                ],
+                "False Negatives": [
+                    "silver filigree bracelet",
+                    "alone",
+                    "constant activity",
+                    "wide silver filigree bracelet",
+                    "fraternity social affair",
+                    "date"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 8,
+                "True Positives": [
+                    "garbage",
+                    "dump"
+                ],
+                "False Positives": [
+                    "church",
+                    "school",
+                    "fishing"
+                ],
+                "False Negatives": [
+                    "concert",
+                    "fishing haven",
+                    "dance show",
+                    "snowing",
+                    "driving"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 10,
+                "True Positives": [
+                    "syringe",
+                    "healing"
+                ],
+                "False Positives": [
+                    "revival",
+                    "needle",
+                    "fluid"
+                ],
+                "False Negatives": [
+                    "repeating",
+                    "long needle",
+                    "do-loop",
+                    "leaks out",
+                    "healing fluid",
+                    "wheelchair"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 11,
+                "True Positives": [
+                    "comics",
+                    "stilts",
+                    "cartoons"
+                ],
+                "False Positives": [
+                    "bowling ball",
+                    "men singing"
+                ],
+                "False Negatives": [
+                    "flying",
+                    "apartments",
+                    "gun",
+                    "moving objects",
+                    "selling"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 12,
+                "True Positives": [
+                    "integration",
+                    "opposites"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "words",
+                    "integration of opposites",
+                    "written"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 13,
+                "True Positives": [
+                    "water",
+                    "movies",
+                    "bicycle"
+                ],
+                "False Positives": [
+                    "bridge"
+                ],
+                "False Negatives": [
+                    "fell",
+                    "bikes",
+                    "draw bridge",
+                    "effort",
+                    "returned",
+                    "fall"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 14,
+                "True Positives": [
+                    "tour",
+                    "basketball"
+                ],
+                "False Positives": [
+                    "group",
+                    "boots"
+                ],
+                "False Negatives": [
+                    "hiking boots",
+                    "not comfortable",
+                    "leather hiking boots",
+                    "uncomfortable",
+                    "gym",
+                    "leave"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 15,
+                "True Positives": [
+                    "close",
+                    "dog",
+                    "love",
+                    "wish"
+                ],
+                "False Positives": [
+                    "grandpa"
+                ],
+                "False Negatives": [
+                    "understand",
+                    "loyalty"
+                ],
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 16,
+                "True Positives": [
+                    "competition",
+                    "snowboarding"
+                ],
+                "False Positives": [
+                    "skiing"
+                ],
+                "False Negatives": [
+                    "bog",
+                    "ski lift",
+                    "spinning",
+                    "grass"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 17,
+                "True Positives": [
+                    "hot buttered rum",
+                    "ice cream"
+                ],
+                "False Positives": [
+                    "motor",
+                    "van"
+                ],
+                "False Negatives": [
+                    "blue jeans",
+                    "fixed",
+                    "motor sound",
+                    "loping",
+                    " van",
+                    "pay"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 18,
+                "True Positives": [
+                    "court",
+                    "obstacles",
+                    "croquet",
+                    "game"
+                ],
+                "False Positives": [
+                    "ball"
+                ],
+                "False Negatives": [
+                    "strike",
+                    "corner",
+                    "wicket",
+                    "grass"
+                ],
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 19,
+                "True Positives": [
+                    "packing",
+                    "trunk",
+                    "suitcase"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "full",
+                    "roll",
+                    "knickers",
+                    "trouble",
+                    "hurry"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 20,
+                "True Positives": [
+                    "hearing aid"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "hears",
+                    "tired",
+                    "complains"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 21,
+                "True Positives": [
+                    "parent",
+                    "children"
+                ],
+                "False Positives": [
+                    "family"
+                ],
+                "False Negatives": [
+                    "loving",
+                    "gay",
+                    "parenting",
+                    "married"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 22,
+                "True Positives": [
+                    "treatment"
+                ],
+                "False Positives": [
+                    "mental illness",
+                    "psychology",
+                    "service",
+                    "placement"
+                ],
+                "False Negatives": [
+                    "sick",
+                    "physician",
+                    "street car",
+                    "treatments",
+                    "mob",
+                    "feelings",
+                    "afraid"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 23,
+                "True Positives": [
+                    "vacuum",
+                    "business"
+                ],
+                "False Positives": [
+                    "profits",
+                    "tips",
+                    "change"
+                ],
+                "False Negatives": [
+                    "counceling",
+                    "changes",
+                    "airline",
+                    "sabotage",
+                    "angel",
+                    "clinical counseling",
+                    "business changes"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 24,
+                "True Positives": [
+                    "hamburger",
+                    "veggie-burger"
+                ],
+                "False Positives": [
+                    "cheese",
+                    "patty"
+                ],
+                "False Negatives": [
+                    "deception",
+                    "diner",
+                    "meat",
+                    "veggie/soy patty",
+                    "rotten",
+                    "vegetables"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 25,
+                "True Positives": [
+                    "keyboard",
+                    "storybook"
+                ],
+                "False Positives": [
+                    "joey",
+                    "kids",
+                    "instrument"
+                ],
+                "False Negatives": [
+                    "music major",
+                    "babysitting",
+                    "figures",
+                    "instruments"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 26,
+                "True Positives": [
+                    "alarm",
+                    "explosion"
+                ],
+                "False Positives": [
+                    "ominous"
+                ],
+                "False Negatives": [
+                    "flash",
+                    "duck",
+                    "table",
+                    "factory",
+                    "light"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 27,
+                "True Positives": [
+                    "car",
+                    "questions",
+                    "strangers",
+                    "911"
+                ],
+                "False Positives": [
+                    "home"
+                ],
+                "False Negatives": [
+                    "playing",
+                    "drove",
+                    "get in"
+                ],
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 28,
+                "True Positives": [
+                    "sleeping bags",
+                    "drinks"
+                ],
+                "False Positives": [
+                    "kitchen cabinet"
+                ],
+                "False Negatives": [
+                    "asleep",
+                    "floor",
+                    "3 am",
+                    "scared",
+                    "trouble"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 29,
+                "True Positives": [
+                    "awards",
+                    "playwright"
+                ],
+                "False Positives": [
+                    "banquet",
+                    "newspaper"
+                ],
+                "False Negatives": [
+                    "embarassed",
+                    "newspaper clipping",
+                    "coding",
+                    "old box",
+                    "jealous"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 30,
+                "True Positives": [
+                    "traffic",
+                    "cans"
+                ],
+                "False Positives": [
+                    "car"
+                ],
+                "False Negatives": [
+                    "hit",
+                    "biting",
+                    "stomach",
+                    "face",
+                    "stopped",
+                    "knocked out"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 31,
+                "True Positives": [
+                    "african food",
+                    "scrapbooks"
+                ],
+                "False Positives": [
+                    "psychic events"
+                ],
+                "False Negatives": [
+                    "invisible",
+                    "flying",
+                    "higher",
+                    "wings"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 32,
+                "True Positives": [
+                    "truck",
+                    "coal"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "trunk",
+                    "loading",
+                    "driving"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 33,
+                "True Positives": [
+                    "annunciation",
+                    "painting"
+                ],
+                "False Positives": [
+                    "party"
+                ],
+                "False Negatives": [
+                    "birthday party",
+                    "pictures",
+                    "impressed",
+                    "wait",
+                    "appreciative"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 34,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "penis",
+                    "erection",
+                    "old bedroom",
+                    "attic",
+                    "ejaculate",
+                    "fellatio",
+                    "autofellatio"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 35,
+                "True Positives": [
+                    "shower",
+                    "heart",
+                    "nitroglycerin"
+                ],
+                "False Positives": [
+                    "pill",
+                    "medicine"
+                ],
+                "False Negatives": [
+                    "maalox",
+                    "heart pills",
+                    "health",
+                    "nitrogylcerin",
+                    "trouble"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 36,
+                "True Positives": [],
+                "False Positives": [
+                    "frustration",
+                    "love"
+                ],
+                "False Negatives": [
+                    "naked",
+                    "frustation",
+                    "discomfort",
+                    "manipulate",
+                    "uncomfortable",
+                    "make love",
+                    "consent",
+                    "sex"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 37,
+                "True Positives": [],
+                "False Positives": [
+                    "dragon"
+                ],
+                "False Negatives": [
+                    "heating bill",
+                    "paper",
+                    "pay",
+                    "board",
+                    "bill",
+                    "the dragon"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 38,
+                "True Positives": [
+                    "meeting"
+                ],
+                "False Positives": [
+                    "school",
+                    "nursery",
+                    "photography",
+                    "criticism"
+                ],
+                "False Negatives": [
+                    "ashamed",
+                    "criticize",
+                    "bottle",
+                    "nursery school",
+                    "baby"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 39,
+                "True Positives": [
+                    "ditch digging",
+                    "dinner"
+                ],
+                "False Positives": [
+                    "line"
+                ],
+                "False Negatives": [
+                    "chairs",
+                    "in line",
+                    "circle leader",
+                    "digging",
+                    "help"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 40,
+                "True Positives": [
+                    "snow",
+                    "trapped",
+                    "panic"
+                ],
+                "False Positives": [
+                    "school",
+                    "mold"
+                ],
+                "False Negatives": [
+                    "ballerina",
+                    "blue snow",
+                    "get out",
+                    "spinning",
+                    "break"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 41,
+                "True Positives": [
+                    "fly",
+                    "window"
+                ],
+                "False Positives": [
+                    "swatter",
+                    "kitchen",
+                    "trees"
+                ],
+                "False Negatives": [
+                    "falling",
+                    "giant trees",
+                    "tree",
+                    "fliesswatting",
+                    "press",
+                    "breaking"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 42,
+                "True Positives": [
+                    "igloo",
+                    "trip"
+                ],
+                "False Positives": [
+                    "wolf",
+                    "garbage",
+                    "kids"
+                ],
+                "False Negatives": [
+                    "wet bed",
+                    "early",
+                    "scared",
+                    "white wolf",
+                    "apple muffins"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 43,
+                "True Positives": [
+                    "washing machine"
+                ],
+                "False Positives": [
+                    "vibration"
+                ],
+                "False Negatives": [
+                    "shaking",
+                    "loud",
+                    "house",
+                    "vibrating"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 44,
+                "True Positives": [
+                    "train"
+                ],
+                "False Positives": [
+                    "meeting",
+                    "woman"
+                ],
+                "False Negatives": [
+                    "angry",
+                    "dorothy",
+                    "meet",
+                    "dissuade",
+                    "frank",
+                    "leave"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 45,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "small town",
+                    "wandering",
+                    "making",
+                    "making something"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 46,
+                "True Positives": [
+                    "breakfast dishes",
+                    "mink stoles"
+                ],
+                "False Positives": [
+                    "road",
+                    "ambulance",
+                    "college"
+                ],
+                "False Negatives": [
+                    "white high heels",
+                    "painful",
+                    "accident",
+                    "shelf",
+                    "racing",
+                    "breakfast",
+                    "wheelchair"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 47,
+                "True Positives": [
+                    "hill",
+                    "camera"
+                ],
+                "False Positives": [
+                    "travel",
+                    "view",
+                    "bus"
+                ],
+                "False Negatives": [
+                    "ticket booth",
+                    "idyllic",
+                    "spanish",
+                    "traveling",
+                    "delighted",
+                    "scenery"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 48,
+                "True Positives": [
+                    "birthday",
+                    "milk",
+                    "synthesizer"
+                ],
+                "False Positives": [
+                    "automation",
+                    "mixer"
+                ],
+                "False Negatives": [
+                    "wrap",
+                    "watson center",
+                    "organ sound",
+                    "complainers",
+                    "summer transition program"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 49,
+                "True Positives": [
+                    "intent",
+                    "psychology cognition report",
+                    "writing"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "redo",
+                    "criticize",
+                    "cognition report",
+                    "appointment",
+                    "low score"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 50,
+                "True Positives": [
+                    "machine guns",
+                    "rampage",
+                    "bombs"
+                ],
+                "False Positives": [
+                    "school",
+                    "shooting"
+                ],
+                "False Negatives": [
+                    "blood",
+                    "janitor",
+                    "carelessness",
+                    "school rampage",
+                    "careless"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 51,
+                "True Positives": [
+                    "bcb"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "bill c",
+                    "edits",
+                    "titles",
+                    "work"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 52,
+                "True Positives": [
+                    "embarrassment"
+                ],
+                "False Positives": [
+                    "obligation",
+                    "avoidance",
+                    "sex",
+                    "desire"
+                ],
+                "False Negatives": [
+                    "visa bill",
+                    "uncomfortable",
+                    "sexually excited",
+                    "wimpy behaviour",
+                    "night gowns",
+                    "festivities",
+                    "orgy",
+                    "prostitutes"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 53,
+                "True Positives": [
+                    "overhaulin"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "tv show"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 54,
+                "True Positives": [
+                    "water",
+                    "dizzy",
+                    "river"
+                ],
+                "False Positives": [
+                    "christ",
+                    "cross"
+                ],
+                "False Negatives": [
+                    "life-size crucifix",
+                    "baby seals",
+                    "drink",
+                    "right choice",
+                    "ill",
+                    "crucifix",
+                    "drinking"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 55,
+                "True Positives": [
+                    "killing"
+                ],
+                "False Positives": [
+                    "boys",
+                    "torture"
+                ],
+                "False Negatives": [
+                    "ping-pong ball",
+                    "native tongue",
+                    "oriental",
+                    "playing",
+                    "torturted",
+                    "tortue",
+                    "ball"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 56,
+                "True Positives": [
+                    "razor blade",
+                    "money",
+                    "gun"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "scared",
+                    "captured",
+                    "blood",
+                    "yell"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 57,
+                "True Positives": [
+                    "hail",
+                    "stones",
+                    "bridge"
+                ],
+                "False Positives": [
+                    "gas station"
+                ],
+                "False Negatives": [
+                    "alone",
+                    "laughing",
+                    "ducked",
+                    "caught",
+                    "afraid"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 58,
+                "True Positives": [
+                    "gun",
+                    "pheasants"
+                ],
+                "False Positives": [
+                    "shells"
+                ],
+                "False Negatives": [
+                    "beat up",
+                    "nude",
+                    "flying",
+                    "running",
+                    "beating",
+                    "hunting"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 59,
+                "True Positives": [
+                    "canoe",
+                    "arrows",
+                    "competition",
+                    "store"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "different colors",
+                    "close",
+                    "colors",
+                    "shooting"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 60,
+                "True Positives": [
+                    "innocent"
+                ],
+                "False Positives": [
+                    "kitties",
+                    "leader",
+                    "compound",
+                    "dangerous"
+                ],
+                "False Negatives": [
+                    "tell off",
+                    "throws out",
+                    "furious",
+                    "grandma cat",
+                    "pet",
+                    "dalmatian",
+                    "trusted",
+                    "safety",
+                    "danger"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 9
+            },
+            {
+                "Dream ID": 61,
+                "True Positives": [
+                    "glow",
+                    "atom bomb",
+                    "failure"
+                ],
+                "False Positives": [
+                    "cloud"
+                ],
+                "False Negatives": [
+                    "thieves",
+                    "handbag",
+                    "dark cloud",
+                    "beach"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 62,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "sun umber",
+                    "voice",
+                    "bet"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 63,
+                "True Positives": [
+                    "snow",
+                    "cinders",
+                    "marrow bones"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "rubbish",
+                    "stick",
+                    "dish"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 64,
+                "True Positives": [
+                    "whiskers"
+                ],
+                "False Positives": [
+                    "thron",
+                    "israel"
+                ],
+                "False Negatives": [
+                    "chorus",
+                    "play",
+                    "king of israel",
+                    "audience",
+                    "fake whiskers",
+                    "throne",
+                    "fall",
+                    "the king of israel"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 65,
+                "True Positives": [
+                    "trap"
+                ],
+                "False Positives": [
+                    "old",
+                    "police",
+                    "man",
+                    "kids"
+                ],
+                "False Negatives": [
+                    "horrible",
+                    "pedophile",
+                    "torments",
+                    "hitting on",
+                    "favorite things",
+                    "dirty",
+                    "treasure",
+                    "aunt",
+                    "dust"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 9
+            },
+            {
+                "Dream ID": 66,
+                "True Positives": [
+                    "files",
+                    "computer"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "listening",
+                    "keyboard",
+                    "typing",
+                    "reading"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 67,
+                "True Positives": [
+                    "tub",
+                    "mistakes"
+                ],
+                "False Positives": [
+                    "bath",
+                    "firing",
+                    "assistant"
+                ],
+                "False Negatives": [
+                    "fired",
+                    "personal assistant",
+                    "disability",
+                    "work"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 68,
+                "True Positives": [
+                    "elevator"
+                ],
+                "False Positives": [
+                    "college",
+                    "wheelchair",
+                    "stairs",
+                    "work"
+                ],
+                "False Negatives": [
+                    "soap opera",
+                    "disabled student's department",
+                    "fourth floor",
+                    "high heels"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 69,
+                "True Positives": [
+                    "x-men"
+                ],
+                "False Positives": [
+                    "wallace",
+                    "bridge",
+                    "sheep",
+                    "elaine"
+                ],
+                "False Negatives": [
+                    "suckle",
+                    "sky-view",
+                    "suckling",
+                    "futurama",
+                    "seinfeld",
+                    "bad guy",
+                    "wallace and gromit",
+                    "heritage",
+                    "tv shows"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 9
+            },
+            {
+                "Dream ID": 70,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "killer grandfather",
+                    "information"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 71,
+                "True Positives": [
+                    "swim",
+                    "haze"
+                ],
+                "False Positives": [
+                    "accomplishment",
+                    "fear",
+                    "distance"
+                ],
+                "False Negatives": [
+                    "lonely",
+                    "beach party",
+                    "blanket"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 72,
+                "True Positives": [],
+                "False Positives": [
+                    "complexity",
+                    "harps",
+                    "talent",
+                    "puzzles"
+                ],
+                "False Negatives": [
+                    "eye",
+                    "jigsaw pattern",
+                    "talented",
+                    "ornate",
+                    "harp",
+                    "jigsaw patterns",
+                    "picture"
+                ],
+                "TP_count": 0,
+                "FP_count": 4,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 73,
+                "True Positives": [
+                    "popsicle"
+                ],
+                "False Positives": [
+                    "neighborhood",
+                    "shopping",
+                    "convenience store",
+                    "walking"
+                ],
+                "False Negatives": [
+                    "napping",
+                    "puddles",
+                    "stores",
+                    "rain",
+                    "tennis",
+                    "water puddles",
+                    "shops",
+                    "driving"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 76,
+                "True Positives": [
+                    "art",
+                    "painting"
+                ],
+                "False Positives": [
+                    "boat"
+                ],
+                "False Negatives": [
+                    "slap",
+                    "paintings",
+                    "colony",
+                    "glad",
+                    "ladder",
+                    "threat",
+                    "contrite"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 77,
+                "True Positives": [
+                    "medications",
+                    "alter"
+                ],
+                "False Positives": [
+                    "scrubs",
+                    "minds",
+                    "injuries"
+                ],
+                "False Negatives": [
+                    "boxes",
+                    "hair care",
+                    "threaten",
+                    "ad",
+                    "abrasions",
+                    "bleeding"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 78,
+                "True Positives": [
+                    "cd",
+                    "stereo",
+                    "pink crush"
+                ],
+                "False Positives": [
+                    "bob mould"
+                ],
+                "False Negatives": [
+                    "music",
+                    "oval",
+                    "bob mould cd",
+                    "listen",
+                    "oblong",
+                    "pink"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 79,
+                "True Positives": [
+                    "apartments",
+                    "brake"
+                ],
+                "False Positives": [
+                    "car",
+                    "selling",
+                    "city"
+                ],
+                "False Negatives": [
+                    "cold",
+                    "sell",
+                    "windshield",
+                    "'55 ford",
+                    "control",
+                    "fuller brush",
+                    "collapse"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 80,
+                "True Positives": [
+                    "falling",
+                    "flying",
+                    "direction",
+                    "clouds",
+                    "control"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "diamonds"
+                ],
+                "TP_count": 5,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 81,
+                "True Positives": [
+                    "marriage",
+                    "love"
+                ],
+                "False Positives": [
+                    "friend"
+                ],
+                "False Negatives": [
+                    "high school",
+                    "parents",
+                    "arranged",
+                    "married"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 82,
+                "True Positives": [],
+                "False Positives": [
+                    "helpfulness",
+                    "friendship",
+                    "betrayal"
+                ],
+                "False Negatives": [
+                    "hot summer night",
+                    "betrayed",
+                    "complaining",
+                    "yogurt",
+                    "curious",
+                    "motor",
+                    "teasing",
+                    "secrets",
+                    "wheelchair"
+                ],
+                "TP_count": 0,
+                "FP_count": 3,
+                "FN_count": 9
+            },
+            {
+                "Dream ID": 83,
+                "True Positives": [
+                    "late"
+                ],
+                "False Positives": [
+                    "class",
+                    "oversleeping",
+                    "friend",
+                    "mother"
+                ],
+                "False Negatives": [
+                    "bathroom",
+                    "actress",
+                    "woken up",
+                    "congregated",
+                    "wondering",
+                    "tv"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 85,
+                "True Positives": [
+                    "cousin"
+                ],
+                "False Positives": [
+                    "sister",
+                    "wrestling",
+                    "house",
+                    "meeting"
+                ],
+                "False Negatives": [
+                    "angry",
+                    "gotten up",
+                    "couch",
+                    "sleep",
+                    "wrestle jokingly",
+                    "wrestle"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 86,
+                "True Positives": [
+                    "letters",
+                    "blood bank"
+                ],
+                "False Positives": [
+                    "picture"
+                ],
+                "False Negatives": [
+                    "beautiful picture",
+                    "collected",
+                    "steamer trunk",
+                    "purple blouse",
+                    "mail",
+                    "honor",
+                    "b- blood"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 87,
+                "True Positives": [
+                    "classmate",
+                    "serenade"
+                ],
+                "False Positives": [
+                    "house",
+                    "boyfriend"
+                ],
+                "False Negatives": [
+                    "dogs",
+                    "black hair",
+                    "strange",
+                    "good friend",
+                    "friend"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 88,
+                "True Positives": [
+                    "vegetation",
+                    "fishing"
+                ],
+                "False Positives": [
+                    "water",
+                    "boat",
+                    "fish"
+                ],
+                "False Negatives": [
+                    "knife",
+                    "swimming",
+                    "fishing poles",
+                    "storm drain",
+                    "motorcycle",
+                    "shallow",
+                    "cleaning",
+                    "eagle"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 89,
+                "True Positives": [
+                    "computer"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "closeness",
+                    "fix",
+                    "close",
+                    "enjoyed",
+                    "bent over"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 90,
+                "True Positives": [
+                    "driving"
+                ],
+                "False Positives": [
+                    "path",
+                    "blockage"
+                ],
+                "False Negatives": [
+                    "turn around",
+                    "blocked off",
+                    "blocked"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 91,
+                "True Positives": [
+                    "swim",
+                    "nipple",
+                    "jerbils"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "clear water",
+                    "food",
+                    "separated",
+                    "orange-brown water"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 92,
+                "True Positives": [
+                    "keys",
+                    "rebellion"
+                ],
+                "False Positives": [
+                    "pill",
+                    "aspirin"
+                ],
+                "False Negatives": [
+                    "pills",
+                    "loyal",
+                    "bruised",
+                    "preaching",
+                    "anditheran"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 93,
+                "True Positives": [
+                    "cheeseburger",
+                    "mcdonald's"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "grease",
+                    "quarter-pound cheeseburger",
+                    "possible",
+                    "marketed"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 94,
+                "True Positives": [
+                    "party",
+                    "fountain",
+                    "pond",
+                    "buffet"
+                ],
+                "False Positives": [
+                    "water"
+                ],
+                "False Negatives": [
+                    "crafting",
+                    "cardboard",
+                    "hosting",
+                    "poured",
+                    "styrofoam balls"
+                ],
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 95,
+                "True Positives": [
+                    "penis",
+                    "beer",
+                    "groceries"
+                ],
+                "False Positives": [
+                    "magots",
+                    "flies"
+                ],
+                "False Negatives": [
+                    "art show",
+                    "tired",
+                    "roller skate",
+                    "stealing"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 96,
+                "True Positives": [
+                    "wooden floor",
+                    "repair",
+                    "strangely"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "odd position",
+                    "repaired",
+                    "raise",
+                    "tip down"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 97,
+                "True Positives": [
+                    "car",
+                    "afraid",
+                    "park"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "parking",
+                    "corner",
+                    "success",
+                    "able",
+                    "road",
+                    "driving"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 98,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "penis",
+                    "snake",
+                    "trunk",
+                    "defensive",
+                    "naked",
+                    "argument",
+                    "younger days"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 99,
+                "True Positives": [
+                    "channel"
+                ],
+                "False Positives": [
+                    "water",
+                    "independence",
+                    "path",
+                    "ocean"
+                ],
+                "False Negatives": [
+                    "wasting",
+                    "sand",
+                    "monthly payments",
+                    "weave",
+                    "payments",
+                    "digging",
+                    "van"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 100,
+                "True Positives": [
+                    "water",
+                    "mist"
+                ],
+                "False Positives": [
+                    "couch",
+                    "boat",
+                    "yacht"
+                ],
+                "False Negatives": [
+                    "blue",
+                    "wet",
+                    "officer's cap",
+                    "cocky",
+                    "small yacht",
+                    "dates"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 101,
+                "True Positives": [
+                    "escape",
+                    "flying",
+                    "guns"
+                ],
+                "False Positives": [
+                    "bandits",
+                    "capture"
+                ],
+                "False Negatives": [
+                    "gangsters",
+                    "gang",
+                    "fly",
+                    "gun",
+                    "respect"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 102,
+                "True Positives": [
+                    "metal bars"
+                ],
+                "False Positives": [
+                    "jail",
+                    "train",
+                    "radical feminists"
+                ],
+                "False Negatives": [
+                    "contamination",
+                    "musical notes",
+                    "tongs",
+                    "boxes",
+                    "teaching",
+                    "hot metal boxes",
+                    "bars"
+                ],
+                "TP_count": 1,
+                "FP_count": 3,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 103,
+                "True Positives": [
+                    "funeral"
+                ],
+                "False Positives": [
+                    "clown",
+                    "song"
+                ],
+                "False Negatives": [
+                    "seated",
+                    "banquet",
+                    "clown makeup",
+                    "singing",
+                    "talking"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 104,
+                "True Positives": [
+                    "school"
+                ],
+                "False Positives": [
+                    "children"
+                ],
+                "False Negatives": [
+                    "way to school",
+                    "property",
+                    "house",
+                    "shortcut",
+                    "cutting through"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 105,
+                "True Positives": [
+                    "music",
+                    "concert",
+                    "wave"
+                ],
+                "False Positives": [
+                    "joy",
+                    "thrill"
+                ],
+                "False Negatives": [
+                    "rhythmically",
+                    "waye",
+                    "seats",
+                    "physical high",
+                    "comfortable chairs",
+                    "ecstatic"
+                ],
+                "TP_count": 3,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 106,
+                "True Positives": [
+                    "meet",
+                    "plane",
+                    "phone"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "phoned",
+                    "japan",
+                    "leave"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 107,
+                "True Positives": [
+                    "party",
+                    "jacuzzi"
+                ],
+                "False Positives": [
+                    "curtains",
+                    "house",
+                    "bedrooms"
+                ],
+                "False Negatives": [
+                    "after-prom party",
+                    "wealthy",
+                    "beds",
+                    "rooms",
+                    "making-out",
+                    "white"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 108,
+                "True Positives": [
+                    "football",
+                    "baseball"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "flattered",
+                    "practising",
+                    "list",
+                    "practicing",
+                    "substituted",
+                    "substitute"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 109,
+                "True Positives": [
+                    "sign"
+                ],
+                "False Positives": [
+                    "peace"
+                ],
+                "False Negatives": [
+                    "european city",
+                    "peace on earth",
+                    "spelling out"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 3
+            }
+        ]
+    }
+}

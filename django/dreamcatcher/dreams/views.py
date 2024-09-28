@@ -2,7 +2,7 @@ from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 from django.utils.timezone import now
-
+from datetime import timedelta, datetime
 from .forms import CustomPasswordResetForm
 from django.core.paginator import Paginator
 from django.views.generic.detail import DetailView
@@ -756,38 +756,29 @@ def personal_statistics(request):
     labels = list(top_10_characters.keys())
     character_counts = list(top_10_characters.values())
 
-    dream_dates = []
-    for dream in dreams:
-        dream_dates.append(dream.date)
-    
+    dream_dates = [dream.date for dream in dreams]
     dream_dates_counted = Counter(dream_dates)
 
-    dates = list(dream_dates_counted.keys())
+    dates = [date.strftime('%Y-%m-%d') for date in dream_dates_counted.keys()]
     dream_counts = list(dream_dates_counted.values())
-    try:
-        dates, counts = zip(*sorted(zip(dates, dream_counts)))
-    except ValueError:
-        dates, counts = [], []
 
-    # plot 1: dream count per month
-    plt.figure(figsize=(10, 5))
-    plt.gca().set_facecolor('#f0f0f0')
-    plt.plot(dates, dream_counts, marker='o', linestyle='-', color='skyblue')
+    dates_json = json.dumps(dates)
+    dream_counts_json = json.dumps(dream_counts)
 
-    plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    plt.xticks(rotation=45)
-    plt.tick_params(axis='both', which='major', labelsize=10, labelcolor='black')
+    current_month = datetime.now().date().replace(day=1)
+    
+    first_dream = dreams.order_by('date').first()
+    if first_dream:
+        first_month = first_dream.date.replace(day=1)
+    else:
+        first_month = current_month  
 
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
-    plt.tight_layout()
+    available_months = []
+    while current_month >= first_month:
+        available_months.append(current_month)
+        current_month = (current_month - timedelta(days=1)).replace(day=1)
 
-    # bytes buffer
-    buffer1 = BytesIO()
-    plt.savefig(buffer1, format='png', transparent=True)
-    buffer1.seek(0)
-    plot_data1 = base64.b64encode(buffer1.getvalue()).decode()
-    buffer1.close()
+    available_months = [current_month - timedelta(days=30 * i) for i in range((current_month - first_month).days // 30 + 1)]
 
     # plot 2: top characters
     plt.figure(figsize=(6, 3))
@@ -800,7 +791,6 @@ def personal_statistics(request):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
 
-    # Save the second plot to a bytes buffer
     buffer2 = BytesIO()
     plt.savefig(buffer2, format='png', transparent=True)
     buffer2.seek(0)
@@ -867,13 +857,14 @@ def personal_statistics(request):
         'anger_count': anger_count,
         'apprehension_count': apprehension_count,
         'sadness_count': sadness_count,
-        'plot_data1': plot_data1,
         'plot_data2': plot_data2,
         'confusion_count': confusion_count,
         'happiness_count': happiness_count,
         'none_emotion_count': none_emotion_count,
         'available_months': available_months,
         'desired_month': desired_month,
+        'dates': dates_json,
+        'dream_counts': dream_counts_json
     }
 
     return render(request, 'dreams/personal_statistics.html', context)

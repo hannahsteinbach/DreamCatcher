@@ -5,6 +5,7 @@
     <title>{% block title %}Personal Statistics{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;700&display=swap');
         body, html {
@@ -302,7 +303,6 @@
             cursor: pointer;
         }
     </style>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> // Want to use this later!!!
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelectorAll('.menu').forEach(menu => {
@@ -319,6 +319,85 @@
             this.form.submit();
         });
 
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var dates = JSON.parse('{{ dates|safe }}');
+            var dreamCounts = JSON.parse('{{ dream_counts|safe }}');
+    
+            var trace = {
+                x: dates,
+                y: dreamCounts,
+                type: 'bar',
+                mode: 'lines+markers',
+                marker: {
+                    color: 'lightblue',
+                    size: 8
+                },
+                line: {
+                    color: 'lightblue',
+                    width: 2
+                }
+            };
+    
+            var layout = {
+                title: 'Dream Count Per Date',
+                xaxis: {
+                    title: 'Date',
+                    showgrid: true,
+                    tickformat: '%d/%m', 
+                    rangeslider: {}, 
+                    rangeselector: {
+                        buttons: [
+                            {
+                                count: 1,
+                                label: '1m',
+                                step: 'month',
+                                stepmode: 'backward'
+                            },
+                            {
+                                count: 6,
+                                label: '6m',
+                                step: 'month',
+                                stepmode: 'backward'
+                            },
+                            {step: 'all', label: 'All'}
+                        ]
+                    },
+                    ticklabelmode: "period",
+                },
+                yaxis: {
+                    title: 'Number of Dreams',
+                    tickmode: 'linear',
+                    dtick: 1, 
+                },
+                margin: {
+                    l: 50,
+                    r: 50,
+                    t: 50,
+                    b: 50
+                },
+                paper_bgcolor: 'rgba(255,255,255,0)',
+                plot_bgcolor: 'rgba(255,255,255,0)',
+                responsive: true
+            };
+    
+            Plotly.newPlot('dream-frequency-chart', [trace], layout);
+    
+            document.getElementById('dream-frequency-chart').on('plotly_relayout', function(eventData) {
+                var layoutUpdate = {};
+                if (eventData['xaxis.range[0]']) {
+                 
+                    var zoomLevel = new Date(eventData['xaxis.range[1]']) - new Date(eventData['xaxis.range[0]']);
+                    if (zoomLevel <= (30 * 24 * 60 * 60 * 1000)) {
+                        layoutUpdate['xaxis.tickformat'] = '%b %d';
+                    } else {
+                        layoutUpdate['xaxis.tickformat'] = '%b %Y';
+                    }
+                    Plotly.relayout('dream-frequency-chart', layoutUpdate);
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -393,12 +472,8 @@
         </ul>
     </div>
     <div class="dream">
-        <h3>Dream Count Per Month</h3>
-            {% if plot_data1 %}
-                <img src="data:image/png;base64,{{ plot_data1 }}" alt="Dream Count Per Month Plot">
-            {% else %}
-                <p>No data available to plot.</p>
-            {% endif %}
+        <h3>Dream Count</h3>
+        <div id="dream-frequency-chart" style="width: 100%; height: 400px;"></div>
 
             <h3>Top 10 Characters</h3>
             {% if plot_data2 %}

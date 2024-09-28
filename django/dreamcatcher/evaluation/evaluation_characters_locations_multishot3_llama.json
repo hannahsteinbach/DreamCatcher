@@ -1,0 +1,3177 @@
+{
+    "Characters": {
+        "TP": 187,
+        "FP": 64,
+        "FN": 217,
+        "Details": [
+            {
+                "Dream ID": 1,
+                "True Positives": [
+                    "howard",
+                    "man"
+                ],
+                "False Positives": [
+                    "old man"
+                ],
+                "False Negatives": [
+                    "baby",
+                    "men"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 2,
+                "True Positives": [],
+                "False Positives": [
+                    "young man"
+                ],
+                "False Negatives": [
+                    "man"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 3,
+                "True Positives": [
+                    "parents",
+                    "brother"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 4,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 5,
+                "True Positives": [
+                    "supervisor",
+                    "ed ricketts",
+                    "lauren"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "narrator",
+                    "john steinbeck"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 6,
+                "True Positives": [],
+                "False Positives": [
+                    "aunt"
+                ],
+                "False Negatives": [
+                    "man"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 7,
+                "True Positives": [
+                    "date"
+                ],
+                "False Positives": [
+                    "friend",
+                    "mother"
+                ],
+                "False Negatives": [
+                    "groups",
+                    "people",
+                    "girl",
+                    "o",
+                    "mother of a friend",
+                    "friend's mother"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 8,
+                "True Positives": [
+                    "mike hollow",
+                    "woman",
+                    "andy jones",
+                    "rock star",
+                    "phoebe mills",
+                    "archie weber",
+                    "beth mock"
+                ],
+                "False Positives": [
+                    "francois"
+                ],
+                "False Negatives": [
+                    "kid",
+                    "childhood friend",
+                    "man",
+                    "people",
+                    "police",
+                    "friends",
+                    "michael jackson"
+                ],
+                "TP_count": 7,
+                "FP_count": 1,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 10,
+                "True Positives": [
+                    "bonnie",
+                    "mateo"
+                ],
+                "False Positives": [
+                    "husband",
+                    "older woman"
+                ],
+                "False Negatives": [
+                    "woman",
+                    "woman's husband",
+                    "people"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 11,
+                "True Positives": [
+                    "paul"
+                ],
+                "False Positives": [
+                    "dill's guard"
+                ],
+                "False Negatives": [
+                    "people",
+                    "fellows",
+                    "men"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 12,
+                "True Positives": [],
+                "False Positives": [
+                    "words"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 13,
+                "True Positives": [
+                    "boy"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "student"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 14,
+                "True Positives": [
+                    "male friend"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "group",
+                    "women",
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 15,
+                "True Positives": [
+                    "grandpa's dog",
+                    "dog"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 16,
+                "True Positives": [
+                    "bud slick",
+                    "amy leopard",
+                    "carol derth",
+                    "lyle zeffman",
+                    "gino teavor",
+                    "kari otis",
+                    "alec johnson",
+                    "stephen ramos"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "guys",
+                    "man",
+                    "women",
+                    "people"
+                ],
+                "TP_count": 8,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 17,
+                "True Positives": [
+                    "mother"
+                ],
+                "False Positives": [
+                    "brother dwight"
+                ],
+                "False Negatives": [
+                    "dwight"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 18,
+                "True Positives": [],
+                "False Positives": [
+                    "grandpa"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 19,
+                "True Positives": [
+                    "sister",
+                    "drayman"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 20,
+                "True Positives": [
+                    "miss w"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 21,
+                "True Positives": [
+                    "karyn l",
+                    "mary kay c"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "children"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 22,
+                "True Positives": [
+                    "advisors",
+                    "godmother's daughter"
+                ],
+                "False Positives": [
+                    "r"
+                ],
+                "False Negatives": [
+                    "placement advisor",
+                    "g",
+                    "person",
+                    "man",
+                    "godmother",
+                    "mob"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 23,
+                "True Positives": [
+                    "salesman",
+                    "husband",
+                    "stylist",
+                    "client"
+                ],
+                "False Positives": [
+                    "angel/fairy"
+                ],
+                "False Negatives": [
+                    "stylists",
+                    "evil person",
+                    "employees"
+                ],
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 24,
+                "True Positives": [
+                    "woman"
+                ],
+                "False Positives": [
+                    "counter woman"
+                ],
+                "False Negatives": [
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 25,
+                "True Positives": [
+                    "mother",
+                    "joey"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "woman",
+                    "letty",
+                    "person",
+                    "girls",
+                    "girl",
+                    "kids",
+                    "somebody else",
+                    "boy"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 26,
+                "True Positives": [
+                    "women"
+                ],
+                "False Positives": [
+                    "couple"
+                ],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 27,
+                "True Positives": [
+                    "molly",
+                    "molly's mom"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "strangers",
+                    "stranger"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 28,
+                "True Positives": [
+                    "lingermans",
+                    "norman",
+                    "nancy",
+                    "bonita"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "nancy's boyfriend",
+                    "sister",
+                    "wife",
+                    "harold",
+                    "bonita and norman's parents"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 29,
+                "True Positives": [
+                    "man"
+                ],
+                "False Positives": [
+                    "i"
+                ],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 30,
+                "True Positives": [
+                    "kid",
+                    "cow"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "bull"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 31,
+                "True Positives": [
+                    "friend",
+                    "guy",
+                    "mother"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "women",
+                    "elvis presley",
+                    "person",
+                    "man"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 32,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 33,
+                "True Positives": [
+                    "amy",
+                    "hillary",
+                    "reynaldo",
+                    "father andrew",
+                    "wendy"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 5,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 34,
+                "True Positives": [
+                    "ramona"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 35,
+                "True Positives": [
+                    "cashier",
+                    "gynecologist"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "males",
+                    "females",
+                    "people"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 36,
+                "True Positives": [
+                    "howard"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 37,
+                "True Positives": [],
+                "False Positives": [
+                    "my dad"
+                ],
+                "False Negatives": [
+                    "dad"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 38,
+                "True Positives": [
+                    "mrs pearlman",
+                    "father andrew"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "dignitaries",
+                    "group",
+                    "teachers"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 39,
+                "True Positives": [
+                    "circle leader"
+                ],
+                "False Positives": [
+                    "blond young man"
+                ],
+                "False Negatives": [
+                    "man"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 40,
+                "True Positives": [],
+                "False Positives": [
+                    "ballerina"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 41,
+                "True Positives": [
+                    "neighbor",
+                    "steve",
+                    "denny carter"
+                ],
+                "False Positives": [
+                    "two daughters",
+                    "his wife",
+                    "grandma"
+                ],
+                "False Negatives": [
+                    "press",
+                    "photographer",
+                    "denny carter's wife",
+                    "flies",
+                    "fly",
+                    "denny carter's daughters"
+                ],
+                "TP_count": 3,
+                "FP_count": 3,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 42,
+                "True Positives": [
+                    "ramona",
+                    "melvin redding",
+                    "jens nils",
+                    "natasha lens",
+                    "wally"
+                ],
+                "False Positives": [
+                    "white wolf"
+                ],
+                "False Negatives": [
+                    "kids",
+                    "family"
+                ],
+                "TP_count": 5,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 43,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 44,
+                "True Positives": [
+                    "frank",
+                    "dorothy",
+                    "zena"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 45,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 46,
+                "True Positives": [
+                    "ambulance driver"
+                ],
+                "False Positives": [
+                    "young man"
+                ],
+                "False Negatives": [
+                    "woman",
+                    "someone",
+                    "driver's mother",
+                    "man"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 47,
+                "True Positives": [
+                    "cousin abner",
+                    "dovre"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "woman",
+                    "tourists",
+                    "driver"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 48,
+                "True Positives": [
+                    "edith",
+                    "bonnie",
+                    "stella",
+                    "josie"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "students",
+                    "instructor",
+                    "guy",
+                    "student"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 49,
+                "True Positives": [
+                    "woman",
+                    "rachel steiner"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "everyone",
+                    "man"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 50,
+                "True Positives": [
+                    "father",
+                    "blake",
+                    "stuart"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "shooter",
+                    "shooters",
+                    "police",
+                    "people"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 51,
+                "True Positives": [
+                    "bill c"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 52,
+                "True Positives": [
+                    "prostitutes"
+                ],
+                "False Positives": [
+                    "younger woman",
+                    "married woman"
+                ],
+                "False Negatives": [
+                    "woman",
+                    "mother",
+                    "people",
+                    "woman's husband",
+                    "men",
+                    "guy",
+                    "women"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 53,
+                "True Positives": [],
+                "False Positives": [
+                    "overhaulin"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 54,
+                "True Positives": [
+                    "christ",
+                    "baby seals",
+                    "man"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 55,
+                "True Positives": [
+                    "boys"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "boy"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 56,
+                "True Positives": [
+                    "elena",
+                    "evelyn",
+                    "dora"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "guy"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 57,
+                "True Positives": [
+                    "youths"
+                ],
+                "False Positives": [
+                    "colored gas station attendant"
+                ],
+                "False Negatives": [
+                    "gas station attendant",
+                    "group"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 58,
+                "True Positives": [
+                    "mr fisher",
+                    "bob"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "pheasants",
+                    "man",
+                    "men",
+                    "rabbit",
+                    "police"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 59,
+                "True Positives": [
+                    "woman",
+                    "people"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 60,
+                "True Positives": [
+                    "grandma cat",
+                    "man"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "boomer",
+                    "leader",
+                    "kitty"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 61,
+                "True Positives": [],
+                "False Positives": [
+                    "we",
+                    "everyone"
+                ],
+                "False Negatives": [
+                    "thieves",
+                    "people"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 62,
+                "True Positives": [
+                    "sun umber"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 63,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 64,
+                "True Positives": [
+                    "god's angel"
+                ],
+                "False Positives": [
+                    "the king of israel"
+                ],
+                "False Negatives": [
+                    "chorus",
+                    "god",
+                    "audience",
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 65,
+                "True Positives": [
+                    "aunt",
+                    "kids"
+                ],
+                "False Positives": [
+                    "dirty old man"
+                ],
+                "False Negatives": [
+                    "mouse",
+                    "police",
+                    "man"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 66,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 67,
+                "True Positives": [
+                    "nancy",
+                    "mary",
+                    "charlene"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "personal assistant"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 68,
+                "True Positives": [
+                    "students",
+                    "tyler",
+                    "angel",
+                    "dylan",
+                    "women"
+                ],
+                "False Positives": [
+                    "community college"
+                ],
+                "False Negatives": [
+                    "counselors"
+                ],
+                "TP_count": 5,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 69,
+                "True Positives": [
+                    "zoidberg",
+                    "elaine",
+                    "shaun",
+                    "wallace"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "black sheep",
+                    "sheep",
+                    "herd of sheep",
+                    "x-men",
+                    "herd",
+                    "baby sheep"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 70,
+                "True Positives": [
+                    "killer grandfather"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 71,
+                "True Positives": [],
+                "False Positives": [
+                    "i"
+                ],
+                "False Negatives": [
+                    "fellow",
+                    "people"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 72,
+                "True Positives": [
+                    "bonnie",
+                    "son"
+                ],
+                "False Positives": [
+                    "grandma mildred"
+                ],
+                "False Negatives": [
+                    "lady"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 73,
+                "True Positives": [
+                    "matthew"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "neighbors",
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 76,
+                "True Positives": [
+                    "beverly",
+                    "marissa camden",
+                    "father andrew"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "boys"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 77,
+                "True Positives": [
+                    "noah wyle",
+                    "doctors",
+                    "patients"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "doctor b",
+                    "person",
+                    "employees",
+                    "coworkers",
+                    "supervisor",
+                    "nurse"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 78,
+                "True Positives": [
+                    "bob mould"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 79,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "boss' daughters",
+                    "boss",
+                    "moss"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 80,
+                "True Positives": [],
+                "False Positives": [
+                    "i"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 81,
+                "True Positives": [
+                    "matt",
+                    "marc"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "parents"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 82,
+                "True Positives": [
+                    "friend",
+                    "boy"
+                ],
+                "False Positives": [
+                    "mother",
+                    "son",
+                    "brother",
+                    "father",
+                    "dark-haired woman"
+                ],
+                "False Negatives": [
+                    "woman",
+                    "woman's teenage children",
+                    "others",
+                    "man",
+                    "people",
+                    "claude",
+                    "woman's boyfriend",
+                    "girl",
+                    "children's father",
+                    "boy's brother",
+                    "woman's friend",
+                    "couple",
+                    "neighbors"
+                ],
+                "TP_count": 2,
+                "FP_count": 5,
+                "FN_count": 13
+            },
+            {
+                "Dream ID": 83,
+                "True Positives": [
+                    "nancy"
+                ],
+                "False Positives": [
+                    "nancy's mom"
+                ],
+                "False Negatives": [
+                    "actress",
+                    "nancy's mother",
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 85,
+                "True Positives": [
+                    "jessica",
+                    "tina",
+                    "james",
+                    "annie"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "thomas' cousin"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 86,
+                "True Positives": [
+                    "woman",
+                    "man"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "emma"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 87,
+                "True Positives": [
+                    "classmate"
+                ],
+                "False Positives": [
+                    "boyfriend",
+                    "mother",
+                    "father",
+                    "dogs"
+                ],
+                "False Negatives": [
+                    "classmate's boyfriend's dogs",
+                    "classmate's boyfriend",
+                    "classmate's parents"
+                ],
+                "TP_count": 1,
+                "FP_count": 4,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 88,
+                "True Positives": [
+                    "nate nelling",
+                    "norman noman",
+                    "walt",
+                    "stephen ramos"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "fish",
+                    "nate nelling's mother",
+                    "muskies",
+                    "northern pike",
+                    "bald eagle"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 89,
+                "True Positives": [
+                    "boy"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 90,
+                "True Positives": [
+                    "father"
+                ],
+                "False Positives": [
+                    "grandma jane"
+                ],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 91,
+                "True Positives": [
+                    "frank",
+                    "stan",
+                    "brenda hichman"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "jerbils"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 92,
+                "True Positives": [
+                    "frank",
+                    "reynaldo",
+                    "father andrew"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "people",
+                    "martyrs",
+                    "men",
+                    "strangers",
+                    "children",
+                    "women"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 93,
+                "True Positives": [],
+                "False Positives": [
+                    "mcdonald's"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 94,
+                "True Positives": [],
+                "False Positives": [
+                    "i",
+                    "new guests"
+                ],
+                "False Negatives": [
+                    "spanish class",
+                    "guests"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 95,
+                "True Positives": [
+                    "miss pat",
+                    "dora",
+                    "mother",
+                    "rudy",
+                    "hank finley",
+                    "grandma",
+                    "keith"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "lady's baby",
+                    "lady",
+                    "artist",
+                    "people",
+                    "man",
+                    "men",
+                    "strangers",
+                    "guy",
+                    "children",
+                    "women"
+                ],
+                "TP_count": 7,
+                "FP_count": 0,
+                "FN_count": 10
+            },
+            {
+                "Dream ID": 96,
+                "True Positives": [],
+                "False Positives": [
+                    ""
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 97,
+                "True Positives": [
+                    "sister",
+                    "mother"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 98,
+                "True Positives": [
+                    "bill cosby"
+                ],
+                "False Positives": [
+                    "black man",
+                    "white man"
+                ],
+                "False Negatives": [
+                    "man"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 99,
+                "True Positives": [
+                    "brother"
+                ],
+                "False Positives": [
+                    "girl cousin"
+                ],
+                "False Negatives": [
+                    "cousin",
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 100,
+                "True Positives": [
+                    "boy"
+                ],
+                "False Positives": [
+                    "young people's group"
+                ],
+                "False Negatives": [
+                    "group"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 101,
+                "True Positives": [
+                    "carl fisher"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "bandits",
+                    "cows"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 102,
+                "True Positives": [
+                    "josh",
+                    "pedro"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "students",
+                    "girl",
+                    "physically disabled",
+                    "radical feminists"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 103,
+                "True Positives": [
+                    "aunt muriel",
+                    "terence",
+                    "uncle willis",
+                    "patricia"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "people"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 104,
+                "True Positives": [
+                    "children"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 105,
+                "True Positives": [
+                    "mammas and pappas"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "friends",
+                    "audience",
+                    "people"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 106,
+                "True Positives": [
+                    "father"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 107,
+                "True Positives": [],
+                "False Positives": [
+                    "young people",
+                    "wealthy people"
+                ],
+                "False Negatives": [
+                    "someone",
+                    "owners",
+                    "people",
+                    "kids",
+                    "people's parents",
+                    "couple"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 108,
+                "True Positives": [
+                    "larry poponovo",
+                    "tommy jacobson",
+                    "joe sizemore"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "coach"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 109,
+                "True Positives": [
+                    "mother",
+                    "man"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            }
+        ]
+    },
+    "Locations": {
+        "TP": 159,
+        "FP": 46,
+        "FN": 216,
+        "Details": [
+            {
+                "Dream ID": 1,
+                "True Positives": [
+                    "hall",
+                    "garage",
+                    "bedroom",
+                    "living room",
+                    "house"
+                ],
+                "False Positives": [
+                    "office",
+                    "stairway"
+                ],
+                "False Negatives": [
+                    "outside stairway",
+                    "room",
+                    "man's office",
+                    "bathroom"
+                ],
+                "TP_count": 5,
+                "FP_count": 2,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 2,
+                "True Positives": [
+                    "apartments"
+                ],
+                "False Positives": [
+                    "624"
+                ],
+                "False Negatives": [
+                    "#624",
+                    "place",
+                    "upstairs",
+                    "rooms"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 3,
+                "True Positives": [
+                    "home",
+                    "paris"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "streets",
+                    "stores",
+                    "town",
+                    "car",
+                    "street",
+                    "house"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 4,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 5,
+                "True Positives": [
+                    "green city",
+                    "library"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "nursery",
+                    "main room",
+                    "california"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 6,
+                "True Positives": [
+                    "house",
+                    "small town",
+                    "market"
+                ],
+                "False Positives": [
+                    "my aunt's house"
+                ],
+                "False Negatives": [
+                    "hills",
+                    "aunt's house",
+                    "store",
+                    "buildings"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 7,
+                "True Positives": [
+                    "corridor",
+                    "living room",
+                    "home"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "lounge"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 8,
+                "True Positives": [
+                    "fishing haven",
+                    "slope avenue",
+                    "thru highway",
+                    "elgins house",
+                    "carter church basement",
+                    "gymnasium",
+                    "1st street",
+                    "big resort area",
+                    "carter school",
+                    "parking lot",
+                    "oak valley"
+                ],
+                "False Positives": [
+                    "hill avenue"
+                ],
+                "False Negatives": [
+                    "intersection of 1st street and slope avenue",
+                    "intersection",
+                    "road",
+                    "bathroom",
+                    "sidewalk",
+                    "1st street between hill and slope avenues",
+                    "church",
+                    "southeast corner",
+                    "ground",
+                    "storage room",
+                    "truck",
+                    "francois' restaurant",
+                    "dump",
+                    "concert",
+                    "liquor store"
+                ],
+                "TP_count": 11,
+                "FP_count": 1,
+                "FN_count": 15
+            },
+            {
+                "Dream ID": 10,
+                "True Positives": [
+                    "aisle"
+                ],
+                "False Positives": [
+                    "meeting"
+                ],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 11,
+                "True Positives": [
+                    "apartments",
+                    "streets",
+                    "suburbs"
+                ],
+                "False Positives": [
+                    "tree trunks"
+                ],
+                "False Negatives": [
+                    "homes",
+                    "dill's",
+                    "terraces",
+                    "houses"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 12,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 13,
+                "True Positives": [
+                    "bridge",
+                    "movies",
+                    "canal"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "surface",
+                    "water"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 14,
+                "True Positives": [
+                    "gym"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 15,
+                "True Positives": [
+                    "neighbor's house"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "outside"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 16,
+                "True Positives": [
+                    "mountain",
+                    "hill",
+                    "bog",
+                    "ski slope"
+                ],
+                "False Positives": [
+                    "ski bog"
+                ],
+                "False Negatives": [
+                    "ski lift",
+                    "table",
+                    "drift area",
+                    "chair",
+                    "sled race area",
+                    "line",
+                    "tracks"
+                ],
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 17,
+                "True Positives": [
+                    "m city"
+                ],
+                "False Positives": [
+                    "old house"
+                ],
+                "False Negatives": [
+                    "home",
+                    "house"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 18,
+                "True Positives": [
+                    "grandpa's house"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "court"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 19,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 20,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 21,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 22,
+                "True Positives": [
+                    "building",
+                    "house"
+                ],
+                "False Positives": [
+                    "car",
+                    "street"
+                ],
+                "False Negatives": [
+                    "street car",
+                    "room",
+                    "outside",
+                    "g's house",
+                    "home"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 23,
+                "True Positives": [
+                    "private room"
+                ],
+                "False Positives": [
+                    "lot",
+                    "salon"
+                ],
+                "False Negatives": [
+                    "husband's lot",
+                    "styling salon",
+                    "auto and appliance repair business",
+                    "bleachers"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 24,
+                "True Positives": [
+                    "diner"
+                ],
+                "False Positives": [
+                    "library"
+                ],
+                "False Negatives": [
+                    "counter"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 25,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "kids' room"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 26,
+                "True Positives": [
+                    "cafe",
+                    "factory",
+                    "street"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "booth",
+                    "table"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 27,
+                "True Positives": [
+                    "vacation state",
+                    "house",
+                    "street"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "car",
+                    "home"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 28,
+                "True Positives": [
+                    "house"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "kitchen"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 29,
+                "True Positives": [
+                    "m city"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "fair store"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 30,
+                "True Positives": [
+                    "car"
+                ],
+                "False Positives": [
+                    "face"
+                ],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 31,
+                "True Positives": [
+                    "centennial loop",
+                    "carnival stage"
+                ],
+                "False Positives": [
+                    "african food",
+                    "street light",
+                    "telephone wires",
+                    "memphis"
+                ],
+                "False Negatives": [
+                    "monuments",
+                    "mid-air",
+                    "street",
+                    "bridge",
+                    "bridges"
+                ],
+                "TP_count": 2,
+                "FP_count": 4,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 32,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "truck"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 33,
+                "True Positives": [
+                    "m city"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "birthday party",
+                    "home"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 34,
+                "True Positives": [
+                    "attic",
+                    "upstairs",
+                    "home"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "downstairs",
+                    "bedroom",
+                    "ramona's bedroom"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 35,
+                "True Positives": [
+                    "waldbaum's food mart"
+                ],
+                "False Positives": [
+                    "picnic tables"
+                ],
+                "False Negatives": [
+                    "shower",
+                    "place with picnic tables",
+                    "cashiers place"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 36,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "bed"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 37,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 38,
+                "True Positives": [
+                    "bridge",
+                    "nursery school"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "bed",
+                    "under a bridge"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 39,
+                "True Positives": [
+                    "house",
+                    "foreign language building"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "ditch"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 40,
+                "True Positives": [
+                    "glass ball"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 41,
+                "True Positives": [
+                    "grandma's house",
+                    "mother's kitchen"
+                ],
+                "False Positives": [
+                    "driveway",
+                    "kitchen"
+                ],
+                "False Negatives": [
+                    "neighbor's driveway",
+                    "neighbor's house"
+                ],
+                "TP_count": 2,
+                "FP_count": 2,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 42,
+                "True Positives": [
+                    "ramona's room",
+                    "home",
+                    "upstairs",
+                    "back yard"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "room",
+                    "kid's bed",
+                    "bed",
+                    "ramona's bed",
+                    "downstairs",
+                    "snow fort"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 43,
+                "True Positives": [
+                    "house"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "room"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 44,
+                "True Positives": [
+                    "phoenix"
+                ],
+                "False Positives": [
+                    "train"
+                ],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 45,
+                "True Positives": [
+                    "small town"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 46,
+                "True Positives": [
+                    "fire house",
+                    "lawn",
+                    "road",
+                    "town"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "downtown",
+                    "manual chair",
+                    "sidewalk",
+                    "lawn bank",
+                    "ambulance",
+                    "entrance to the fire house",
+                    "entrance",
+                    "college"
+                ],
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 47,
+                "True Positives": [
+                    "germany"
+                ],
+                "False Positives": [
+                    "paris, france"
+                ],
+                "False Negatives": [
+                    "room",
+                    "france",
+                    "hill",
+                    "paris",
+                    "bus",
+                    "cafe"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 48,
+                "True Positives": [
+                    "full sail",
+                    "watson center"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "room",
+                    "car",
+                    "home"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 49,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 50,
+                "True Positives": [
+                    "car",
+                    "cyclone fence",
+                    "payphone"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "school"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 51,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 52,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "bed",
+                    "bedroom"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 53,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 54,
+                "True Positives": [
+                    "river"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 55,
+                "True Positives": [
+                    "living room",
+                    "kitchen"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "place"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 56,
+                "True Positives": [
+                    "oaks cinema",
+                    "tree house",
+                    "town square"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 57,
+                "True Positives": [
+                    "westlake hotel",
+                    "bridge",
+                    "rocky river"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "gas station",
+                    "shed",
+                    "sidewalks",
+                    "large city",
+                    "suburbs",
+                    "city",
+                    "home"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 7
+            },
+            {
+                "Dream ID": 58,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "bushes"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 59,
+                "True Positives": [
+                    "mainland",
+                    "island"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "canoe",
+                    "store"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 60,
+                "True Positives": [
+                    "outlying area",
+                    "compound"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "area"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 61,
+                "True Positives": [
+                    "shore",
+                    "beach"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "outdoors",
+                    "home"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 62,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 63,
+                "True Positives": [
+                    "hill",
+                    "ground"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "pile"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 64,
+                "True Positives": [
+                    "stage",
+                    "throne",
+                    "bleachers"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 65,
+                "True Positives": [
+                    "bathroom",
+                    "attic"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "room",
+                    "lair"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 66,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 67,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "tub",
+                    "living room"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 68,
+                "True Positives": [
+                    "table"
+                ],
+                "False Positives": [
+                    "second floor",
+                    "fourth floor"
+                ],
+                "False Negatives": [
+                    "stairs",
+                    "room",
+                    "community college",
+                    "elevator"
+                ],
+                "TP_count": 1,
+                "FP_count": 2,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 69,
+                "True Positives": [
+                    "body of water",
+                    "truss bridge"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "bridge",
+                    "beam"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 70,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 71,
+                "True Positives": [
+                    "shore",
+                    "water"
+                ],
+                "False Positives": [
+                    "beach"
+                ],
+                "False Negatives": [
+                    "car"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 72,
+                "True Positives": [
+                    "grandma mildred's house"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "school"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 73,
+                "True Positives": [
+                    "stores",
+                    "street",
+                    "country road",
+                    "parking lot",
+                    "house"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "car",
+                    "shops",
+                    "convenience store",
+                    "home",
+                    "tennis courts"
+                ],
+                "TP_count": 5,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 76,
+                "True Positives": [
+                    "loft",
+                    "new york",
+                    "art colony"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "ladder",
+                    "water",
+                    "art studio"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 77,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "shelves",
+                    "loft",
+                    "shelf",
+                    "upstairs",
+                    "locker room"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 5
+            },
+            {
+                "Dream ID": 78,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 79,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "center of a city",
+                    "car",
+                    "large city",
+                    "area",
+                    "hill",
+                    "city center",
+                    "apartment houses",
+                    "expressway",
+                    "city",
+                    "boston",
+                    "new york"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 11
+            },
+            {
+                "Dream ID": 80,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "clouds"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 81,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 82,
+                "True Positives": [
+                    "small town",
+                    "porch"
+                ],
+                "False Positives": [
+                    "claude's",
+                    "summer vacation spot street",
+                    "basement room"
+                ],
+                "False Negatives": [
+                    "basement",
+                    "bed",
+                    "outside",
+                    "house"
+                ],
+                "TP_count": 2,
+                "FP_count": 3,
+                "FN_count": 4
+            },
+            {
+                "Dream ID": 83,
+                "True Positives": [
+                    "hall",
+                    "dorm room",
+                    "bathroom"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "bed",
+                    "class"
+                ],
+                "TP_count": 3,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 85,
+                "True Positives": [],
+                "False Positives": [
+                    "thomas'",
+                    "house"
+                ],
+                "False Negatives": [
+                    "annie's house",
+                    "floor",
+                    "room"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 86,
+                "True Positives": [
+                    "post office",
+                    "home"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "table"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 87,
+                "True Positives": [],
+                "False Positives": [
+                    "six-story building",
+                    "house"
+                ],
+                "False Negatives": [
+                    "classmate's boyfriend's house",
+                    "building"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 88,
+                "True Positives": [
+                    "garage",
+                    "ditch",
+                    "alaska",
+                    "fishing boat",
+                    "storm drain"
+                ],
+                "False Positives": [
+                    "house"
+                ],
+                "False Negatives": [
+                    "nate nelling's house",
+                    "water"
+                ],
+                "TP_count": 5,
+                "FP_count": 1,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 89,
+                "True Positives": [],
+                "False Positives": [
+                    "computer"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 90,
+                "True Positives": [],
+                "False Positives": [
+                    "my maternal grandma jane's house",
+                    "dirt path"
+                ],
+                "False Negatives": [
+                    "grandma jane's house",
+                    "path"
+                ],
+                "TP_count": 0,
+                "FP_count": 2,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 91,
+                "True Positives": [
+                    "lake",
+                    "canal"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "home"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 92,
+                "True Positives": [
+                    "bathroom",
+                    "church"
+                ],
+                "False Positives": [
+                    "next door"
+                ],
+                "False Negatives": [
+                    "bed"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 93,
+                "True Positives": [
+                    "mcdonald's"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 94,
+                "True Positives": [
+                    "table",
+                    "house"
+                ],
+                "False Positives": [
+                    "backdrop"
+                ],
+                "False Negatives": [
+                    "buffet"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 95,
+                "True Positives": [
+                    "creek",
+                    "church",
+                    "grandma's",
+                    "office depot",
+                    "greenville"
+                ],
+                "False Positives": [
+                    "porch"
+                ],
+                "False Negatives": [
+                    "railroad tracks",
+                    "location",
+                    "front room",
+                    "grandma's porch",
+                    "car",
+                    "india",
+                    "ramp",
+                    "home"
+                ],
+                "TP_count": 5,
+                "FP_count": 1,
+                "FN_count": 8
+            },
+            {
+                "Dream ID": 96,
+                "True Positives": [
+                    "building",
+                    "room"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 97,
+                "True Positives": [
+                    "road",
+                    "corner"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "car"
+                ],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 98,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 99,
+                "True Positives": [
+                    "ocean",
+                    "house"
+                ],
+                "False Positives": [
+                    "sand"
+                ],
+                "False Negatives": [
+                    "paths"
+                ],
+                "TP_count": 2,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 100,
+                "True Positives": [
+                    "bank",
+                    "cabin",
+                    "pond"
+                ],
+                "False Positives": [
+                    "gangplank"
+                ],
+                "False Negatives": [
+                    "couch"
+                ],
+                "TP_count": 3,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 101,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "hall",
+                    "field"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 2
+            },
+            {
+                "Dream ID": 102,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "train",
+                    "class",
+                    "jail"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 103,
+                "True Positives": [],
+                "False Positives": [
+                    "banquet"
+                ],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 104,
+                "True Positives": [
+                    "house"
+                ],
+                "False Positives": [
+                    "property"
+                ],
+                "False Negatives": [
+                    "school"
+                ],
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
+            },
+            {
+                "Dream ID": 105,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [
+                    "row",
+                    "outdoors",
+                    "concert"
+                ],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 3
+            },
+            {
+                "Dream ID": 106,
+                "True Positives": [
+                    "japan",
+                    "china"
+                ],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 107,
+                "True Positives": [],
+                "False Positives": [
+                    "large house"
+                ],
+                "False Negatives": [
+                    "bedrooms",
+                    "suite",
+                    "front room",
+                    "jacuzzi",
+                    "house",
+                    "rooms"
+                ],
+                "TP_count": 0,
+                "FP_count": 1,
+                "FN_count": 6
+            },
+            {
+                "Dream ID": 108,
+                "True Positives": [],
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 0,
+                "FP_count": 0,
+                "FN_count": 0
+            },
+            {
+                "Dream ID": 109,
+                "True Positives": [
+                    "european city"
+                ],
+                "False Positives": [],
+                "False Negatives": [
+                    "city"
+                ],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 1
+            }
+        ]
+    }
+}

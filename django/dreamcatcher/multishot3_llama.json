@@ -10,7 +10,8 @@
         ],
         "characters": [
             "Howard",
-            "man"
+            "man",
+            "old man"
         ],
         "places": [
             "house",
@@ -19,17 +20,16 @@
             "hall",
             "bedroom",
             "office",
-            "stairs"
+            "stairway"
         ],
-        "emotion": ""
+        "emotion": "happiness"
     },
     {
         "text": "A young man and I are running upstairs to our new apartments which are side by side. I am now alone and I see the door to his apartment open. It's #624. I peek around the corner and happily call out to him because I know he's there and I really want to see the apartment. He says, \"Come in,\" and I walk around the corner. I see two rooms separated by a yellow lace curtain hanging on dark beautiful wood round hoops. I see pictures on the wall and furniture in place. The place has a warm lived-in feeling. Very pretty. I think, \"How did he do that so fast?\" My place is a mess with boxes stacked and nothing unpacked yet.",
         "keywords": [
             "apartment",
             "boxes",
-            "unpacking",
-            "warm",
+            "unpack",
             "lived-in"
         ],
         "characters": [
@@ -37,7 +37,7 @@
         ],
         "places": [
             "apartments",
-            "new apartments"
+            "624"
         ],
         "emotion": ""
     },
@@ -62,8 +62,12 @@
     },
     {
         "text": "I notice I have put on the wrong pair of shoes.",
-        "keywords": [],
-        "characters": [],
+        "keywords": [
+            "shoes"
+        ],
+        "characters": [
+            ""
+        ],
         "places": [],
         "emotion": ""
     },
@@ -71,10 +75,9 @@
         "text": "My supervisor tried the lights in the main room of the library -- for some reason they wouldn't go on for her. Me either. So we decided to tell Lauren we couldn't open the library because there would be no light. Lauren showed up and banged on the door -- I let her in, scowling, and told her what was happening, whereupon she tried the lights and found they worked for her. DAMN. So we had to run through the whole process of setting up, and I was angry with my supervisor for having raised my hopes in the first place. In the other room it was exactly the way everything had been in my room in Green City, except instead of my bookcase there was the pamphlet file, and of course I had no bed there. Hiding behind my chair and a large pile of books I poked idly through the 'A' file. In between American Artists and American Indians I was secretly composing a book, a few pages at a time. At one point Lauren burst in, but thankfully she didn't notice what I was doing. Somehow I began reading a pamphlet about Ed Ricketts, and I began to see the scene as it was narrated by a Steinbeck-like voice: \"Back in the thirties, we hired Ed to do some rock crushing for us.\" (The view slowly zoomed in on Ricketts, who was standing behind a large pile of rocks in work overalls from the thirties, holding a shovel. He was beckoning me over. Narrator:) \"Come over here,\" he said to me one day. \"Look at this.\" (I walked up and saw that he had dug up some strange sort of tree, one which had branches coming off it like a trimmed palm tree -- that is, the branches had been sawed off -- but these chevron-shaped branches had the color and consistency of celery. Narrator:) \"Ed! Thank God you cut this off at the root, because that's a part we can regrow. This is a water-bowl tree, Ed. It'll bring us a fortune!\" (Ed flushed and looked abashed. He helped me pick up the tree and load it into the nursery. While this scene was going on the voice-over said:) \"I think the waterbowl tree brought us $900 in 1948, the year of Rickett's death. With the money we established a memorial. I hope Ed, wherever he is, understands what we have done. These words were taken from John Steinbeck's \"My Life in California\".\"",
         "keywords": [
             "lights",
-            "bookcase",
             "pamphlet file",
-            "rock crushing",
-            "water-bowl tree"
+            "bookcase",
+            "rock crushing"
         ],
         "characters": [
             "supervisor",
@@ -83,8 +86,7 @@
         ],
         "places": [
             "library",
-            "Green City",
-            "nursery"
+            "Green City"
         ],
         "emotion": ""
     },
@@ -97,12 +99,13 @@
             "wind"
         ],
         "characters": [
-            ""
+            "aunt"
         ],
         "places": [
             "small town",
             "market",
-            "aunt's house"
+            "house",
+            "my aunt's house"
         ],
         "emotion": ""
     },
@@ -133,8 +136,7 @@
             "garbage",
             "dump",
             "concert",
-            "wristbands",
-            "tickets"
+            "Michael Jackson"
         ],
         "characters": [
             "Andy Jones",
@@ -241,7 +243,7 @@
             "tour",
             "group",
             "basketball",
-            "boots"
+            "hiking boots"
         ],
         "characters": [
             "male friend"
@@ -261,7 +263,8 @@
             "wish"
         ],
         "characters": [
-            "dog"
+            "dog",
+            "grandpa's dog"
         ],
         "places": [
             "neighbor's house"
@@ -337,15 +340,14 @@
             "suitcase",
             "knickers",
             "brush",
-            "comb"
+            "comb",
+            "trunk"
         ],
         "characters": [
             "sister",
             "drayman"
         ],
-        "places": [
-            "trunk"
-        ],
+        "places": [],
         "emotion": ""
     },
     {
@@ -356,7 +358,7 @@
             "time"
         ],
         "characters": [
-            "Miss W."
+            "Miss W"
         ],
         "places": [],
         "emotion": ""
@@ -381,10 +383,10 @@
         "text": "r had taken my Godmother's daughter, who is 17 and like a sister to me, to some sort of a lesson & while waiting for her I thought I would talk with one of the advisors at this building. I believed it to be like a placement service. I went into a room and found a man well dressed who spoke like a physician instead of a placement advisor. He began questioning me about my feelings, I became afraid for he said I would need a series of treatment which would be expensive. I told him the reason I came was that I wanted to find some sort of part time work. He didn't seem to understand, & he told me to take G. home but to come back because I was a sick person. I hurried out, but didn't have any thought of returning. It was raining when we went out side - as we walked along I noticed that this mob was following us. I saw a street car coming so I told G. to on to my house, that I was going to take the street car & go to her house. I felt that I must talk to her mother about what had happened. However when I was on the car I found that this person was there also. I had forgotten to get a transfer so I went back and obtained one. When it was time to change cars I got up quickly & ran for the next car. It seemed as if I got on the car with out being followed this time. Interpretation Perhaps it was related some what to all the reading I have been doing about psychology and mental illness. Answers to questions 2. I was afraid and anxious3. actual participant4. unpleasant5. Room, street, street car6. No7. Dark suit of the man",
         "keywords": [
             "lesson",
+            "placement service",
             "treatment",
-            "work",
-            "transfer",
-            "reading"
+            "part time work",
+            "transfer"
         ],
         "characters": [
             "R",
@@ -397,7 +399,7 @@
             "street",
             "car"
         ],
-        "emotion": "apprehension"
+        "emotion": ""
     },
     {
         "text": "I was the owner of a large styling salon. A salesman came in to demonstrate and try to sell me a vacuum. It was a very powerful machine. I tried it out by vacuuming the entire salon. I used the attachments and vacuumed hair from around the baseboards. I accidentally moved the attachment right by a client's face and the stylist insinuated that the vacuum removed her facial hair from that side of her face by complimenting the client on how beautiful her skin was. I looked and noticed that she had facial hair on the other side of her face. I didn't do or say anything else about it. I finally told the salesman that I was going to be working on budgetary items during the coming week so I would be able to give him my decision then. I wanted the vacuum but I also think I was trying to give him an excuse rather than saying no to him at that point. My husband owned an auto and appliance repair business right next door to my salon. I went and talked to him about my intentions with budget and that I was considering some business changes that would improve both sales and profits and allow the stylists to make more money as well. I found out that my stylists rarely get any tips. I suggested that we should put a little sticker on the corner of each of their mirrors that says Tips are appreciated as this is an important part of our stylists income. When I first started talking to my stylists about some of the changes I was going to make all but 2 or 3 of them got up and quit. Eventually they all came back. I think as they spoke with the ones who stayed about the changes they became convinced that it would be a very good thing. My husband wasn't very supportive but he didn't stand in my way either. He didn't want me to do anything with his business though. I did suggest that they put up a basketball goal on the corner of his lot so the employees could relax a little on their breaks by shooting hoops. I also thought this was something that the employees wanted. I don't know if it actually happened or not. there was some kind of an evil person trying to sabotage my business. I don't remember much about this part. I did find out later that he was connected to my husband. as though my husband was behind it. I managed to get rid of this person though and the changes were being very successful. The stylists were dressing much nicer when they came to work. They were much happier, getting nice tips, and the clients were very happy with the changes. There was one stylist that was the hardest to win over. She had studied clinical counseling but then decided to become a stylist instead. She took care of her clients in a private room so they could speak privately with her while she took care of them. She wasn't acting in an official counseling capacity but used her knowledge to help them while she was taking care of their styling needs. She combined them in a manner as to not put herself or us in any kind of legal jeopardy. She was very happy when I encouraged this and gave her a private room so she could do so more effectively. Her clients were especially pleased with her. They had something to do with an airline or flights. There was a person that looked like or was dressed like an angel or a fairy, with sparkling wings that fell gently from the sky. She landed, or her wings became caught, on something like bleachers. This is where I found her and freed her. She was somehow connected to my husband and this evil person that I had to deal with earlier. Maybe she was a distraction.",
@@ -406,13 +408,13 @@
             "budgetary items",
             "business changes",
             "tips",
-            "sabotage"
+            "counseling"
         ],
         "characters": [
             "salesman",
             "client",
+            "stylist",
             "husband",
-            "stylists",
             "angel/fairy"
         ],
         "places": [
@@ -428,10 +430,12 @@
             "Veggie-Burger",
             "hamburger",
             "cheese",
-            "peppers"
+            "peppers",
+            "veggie patty"
         ],
         "characters": [
-            "woman"
+            "woman",
+            "counter woman"
         ],
         "places": [
             "diner",
@@ -444,9 +448,7 @@
         "keywords": [
             "keyboard",
             "instrument",
-            "storybook",
-            "Easter rabbit",
-            "candy"
+            "storybook"
         ],
         "characters": [
             "Joey",
@@ -460,9 +462,7 @@
         "keywords": [
             "alarm",
             "explosion",
-            "boom",
-            "table",
-            "valor"
+            "boom"
         ],
         "characters": [
             "couple",
@@ -480,8 +480,7 @@
         "keywords": [
             "car",
             "questions",
-            "911",
-            "home"
+            "911"
         ],
         "characters": [
             "Molly",
@@ -515,8 +514,8 @@
         "text": "I am looking through an old box of things and come across a newspaper clipping. I also see a paper I wrote on. The beginning word of each sentence created its own sentence, when you put them together. I chuckle to see my old childish way of coding words. I read the words. It says, \"I am a playwright.\" I look at the newspaper clipping: a head and shoulders shot of me, like when I was the manager of the Fair Store in M City. The paragraph under it said I had received some awards for my writing. Some man, who is annoyed and jealous, says that I always get mentioned before and after banquet events. How come? I feel a little embarrassed.",
         "keywords": [
             "newspaper clipping",
-            "paper",
             "writing",
+            "awards",
             "banquet events"
         ],
         "characters": [
@@ -552,12 +551,13 @@
             "Elvis Presley",
             "scrapbooks",
             "psychic events",
-            "flying",
-            "wings"
+            "wings",
+            "food"
         ],
         "characters": [
             "friend",
-            "mother"
+            "mother",
+            "guy"
         ],
         "places": [
             "Centennial Loop",
@@ -578,9 +578,7 @@
         "characters": [
             ""
         ],
-        "places": [
-            ""
-        ],
+        "places": [],
         "emotion": ""
     },
     {
@@ -608,7 +606,7 @@
         "keywords": [
             "fellatio",
             "erection",
-            "ejaculation"
+            "ejaculate"
         ],
         "characters": [
             "Ramona"
@@ -627,7 +625,7 @@
             "heart",
             "Maalox",
             "pill",
-            "stomach"
+            "shower"
         ],
         "characters": [
             "cashier",
@@ -635,8 +633,7 @@
         ],
         "places": [
             "Waldbaum's Food Mart",
-            "picnic tables",
-            "shower"
+            "picnic tables"
         ],
         "emotion": ""
     },
@@ -645,9 +642,7 @@
         "keywords": [
             "bed",
             "love",
-            "married",
-            "feelings",
-            "manipulate"
+            "frustration"
         ],
         "characters": [
             "Howard"
@@ -664,7 +659,7 @@
             "heating bill"
         ],
         "characters": [
-            "dad"
+            "my dad"
         ],
         "places": [],
         "emotion": ""
@@ -719,7 +714,7 @@
         "places": [
             "glass ball"
         ],
-        "emotion": "anger"
+        "emotion": "scared"
     },
     {
         "text": "I was at Grandma's house. Denny Carter and his wife were there. They had two daughters. One was walking and the other one was still small and in a buggy. The walking one went to the buggy and I was afraid it would harm the small one by scratching the eyes for face, but she just looked at it and went on walking. There was a big fly in the house. I got the fly swatter and hit the big fly and knocked it down on the floor. There were a lot of small flies on the floor, so I was swatting them all. We had two trees in the kitchen. My brother Steve said, \"Looks like one of them moved a little to the falling stage.\" I looked and sure enough, down it came. Then sometime later the other tree came down also. It hit the window, broke the panes, then when the top of the tree went thru the window as the top hit the ground, it flopped over and landed on the neighbor's driveway. To my surprise, the trees were about 40 ft. high and still they were supposed to be growing in my mother's kitchen and the ceiling is only 9 ft. high. I went outside and looked at the tree. It lay on the neighbor's driveway. I thought of calling the press and have a photographer come and take a picture of it. It was an unusual freak of work. I was looking at a neighbor's name plate on his house and it was Buick.",
@@ -727,21 +722,22 @@
             "fly",
             "swatter",
             "trees",
-            "kitchen",
-            "driveway"
+            "window",
+            "panes"
         ],
         "characters": [
             "Grandma",
             "Denny Carter",
             "his wife",
-            "the walking one",
-            "the small one",
-            "Steve"
+            "two daughters",
+            "Steve",
+            "neighbor"
         ],
         "places": [
             "Grandma's house",
-            "my mother's kitchen",
-            "neighbor's driveway"
+            "kitchen",
+            "driveway",
+            "mother's kitchen"
         ],
         "emotion": ""
     },
@@ -750,8 +746,8 @@
         "keywords": [
             "trip",
             "bed",
+            "wolf",
             "garbage",
-            "igloo",
             "muffins"
         ],
         "characters": [
@@ -790,7 +786,6 @@
             "meet",
             "anger",
             "dissuade",
-            "already",
             "leave"
         ],
         "characters": [
@@ -822,15 +817,15 @@
     {
         "text": "(12/17/99)[\"Upset ambulance driver.\"] I am talking to a young man. We are looking at a large expanse of lawn and a curvy dangerous road. I am telling him that the new road will cut across this lawn and be safer and easier to get to the college. Now we both get in my manual chair to go back toward town. We slide off the sidewalk onto a lawn bank. I am wearing white high heels which makes pushing the wheelchair with my feet very hard and painful. We struggle to get the wheelchair back on the sidewalk. He gets out to make it easier. I am now going downhill and call out this is the fun part. I go faster and faster. Then I hit gravel and come to a stop. I get out and we walk toward the town. Now we are in the back of an ambulance racing toward town. We are observing. A woman is supposedly dead and bloody under a sheet. She met with some terrible fatal accident. But I hear breathing. I'm not sure if she is dead or not. We arrive downtown. We get out. I hear a woman say if you want help fixing up the fire house, you have to buy my two mink stoles that are in litigation with my case I'm doing. We agree to do that. I place the two mink stoles on a shelf in the entrance to the fire house. The entrance is blocked by these shelves. A woman who likes the ambulance driver puts a series of yummy breakfast dishes on the other shelves. The driver comes there and sees this. He is angry and upset. His mother had two mink stoles she would have liked to get rid of and now she can't. And someone broke the tradition of the breakfast dishes. He is angry at the woman who likes him. She is trying to convince him to relax and enjoy the breakfast dishes. Sweet rolls and so on. He is in a huff.",
         "keywords": [
-            "ambulance",
             "wheelchair",
+            "manual chair",
+            "gravel",
             "mink stoles",
-            "breakfast dishes",
-            "gravel"
+            "breakfast dishes"
         ],
         "characters": [
-            "young man",
-            "woman"
+            "ambulance driver",
+            "young man"
         ],
         "places": [
             "lawn",
@@ -900,7 +895,7 @@
             "rampage",
             "machine guns",
             "bombs",
-            "shooting",
+            "shelter",
             "police"
         ],
         "characters": [
@@ -931,14 +926,13 @@
         "text": "A married woman who looks a little like me and whose hair feels like my mother's has suggested we make love. I feel uncomfortable, but also sexually excited, and I get into bed with her. I turn over on my side, with my back to her, thinking it would be better if we sleep first and then make love after we've rested. Actually, what I'm doing is avoiding it. So she approaches me and I shrug my shoulders and turn to face her. I can barely look her in the eye. I feel slightly disgusted and apprehensive. As she starts to take off my several layers of night gowns, I feel very excited, and then a younger woman comes into the bedroom through a skinny door by the bed. She glances at me and then says, \"They're here.\" She goes to another door and opens it up. Several young, good-looking men come in and more women come in. These men are prostitutes. Her husband let them in. The woman goes to them and in a very business like manner. These people couple up, the man behind like he's riding a horse. They're all grunting and pumping. It's a pure sex act. I'm embarrassed. One guy comes to me and acts like he'll do me next. I say, \"No.\" The woman whose bed I'm in is annoyed and disgusted with me. What a weenie! So she goes to the men and they're all going at it. I'm still sexually excited. I lay in the bed waiting for it to be all over and she returns so we can continue. Someone brings me the Visa bill to sign for my part of the festivities. I almost sign and then decide that since I didn't partake, I didn't have to pay. The woman heard this and glared at me. She's really disgusted with my wimpy behavior. I want to leave, but feel some obligation to wait and continue with plans as they originally were.",
         "keywords": [
             "make love",
-            "bed",
             "night gowns",
-            "prostitutes",
             "Visa bill"
         ],
         "characters": [
             "married woman",
-            "younger woman"
+            "younger woman",
+            "prostitutes"
         ],
         "places": [],
         "emotion": "apprehension"
@@ -960,16 +954,15 @@
         "keywords": [
             "water",
             "drink",
-            "wrong",
-            "choice"
+            "crucifix"
         ],
         "characters": [
             "baby seals",
-            "man"
+            "man",
+            "Christ"
         ],
         "places": [
-            "river",
-            "crucifix"
+            "river"
         ],
         "emotion": ""
     },
@@ -977,7 +970,8 @@
         "text": "I was in a place I was unfamiliar with but I was in the living room, I knew that. I was sitting on the floor in the middle of the room. There was no furnishings in it at all, I have no idea why I was there. I was aware that behind me, sort of at the far wall there were 2 boys. They seemed oriental I could hear their murmured voices, but I couldn't understand what they were saying because I do believe they were talking in their native tongue. I knew though, that these 2 boys had been brought there to be tortured before being killed. Now in the kitchen which was in front of me, there was another boy, and all of them seemed to be around the same age and I would guess, from the voices, 10 or 11 years old. The one in the kitchen didn't seem to be in any particular danger, he was just out there playing with a small sized ball I would say, a Ping-Pong ball or a superball or maybe he was just simply bouncing it around. I don't know what happened. I don't want to know.",
         "keywords": [
             "Ping-Pong ball",
-            "superball"
+            "superball",
+            "bouncing"
         ],
         "characters": [
             "boys"
@@ -1015,8 +1009,8 @@
             "hail",
             "stones",
             "gas station",
-            "suburbs",
-            "walking"
+            "walking",
+            "suburbs"
         ],
         "characters": [
             "youths",
@@ -1033,28 +1027,25 @@
         "text": "I was unraveling some string I was going to tie on a post. Some men gathered around me and were going to beat me up. They accused me of going around nude. I yelled for, \u00d2Help Police,\u00d3 but no one came. I seemed to get away from them and was running and kind of going up flying like. Mr. Fisher (deceased) was coming behind me, then he turned into a young man and he was catching me by the foot. Bob and I were hunting. He shot twice and got two pheasants. I walked over and picked one of them up. As I was walking, I saw a rabbit standing. I thought he was dead and stiff. I was going to poke him with my gun. When I got close he ran. By the time I got my gun up, he was in the bushes and I found out my gun was broke. I had no shells in it.",
         "keywords": [
             "string",
+            "post",
             "nude",
             "pheasants",
-            "gun",
-            "shells"
+            "gun"
         ],
         "characters": [
             "Mr. Fisher",
             "Bob"
         ],
-        "places": [
-            "post",
-            "bushes"
-        ],
+        "places": [],
         "emotion": ""
     },
     {
         "text": "I was in a canoe with several people. We were shooting arrows at a women's clothing store which was on a kind of an island. We had a store on the mainland, and they were our competition and had forced us to close. When we had each shot three arrows, we were all out of arrows and had to stop shooting. I got out of our canoe and went into the store. It had heavy glass doors. I told the woman who owned it that we had lost the fight, and I wanted to pick up our arrows. I began to pick them up, and as I did so I picked up some of her arrows. Most of the arrows were hers, but they were not marked. The arrows were all different colors, and all the green ones belonged to her. Mine were red and purple, but I could not find many of mine. Instead, I took some of the arrows that could not be identified.",
         "keywords": [
-            "canoe",
             "arrows",
-            "store",
+            "canoe",
             "competition",
+            "store",
             "fight"
         ],
         "characters": [
@@ -1107,8 +1098,7 @@
     {
         "text": "On going to bet, Sun Umber came to me as a voice.",
         "keywords": [
-            "bet",
-            "Sun"
+            "bet"
         ],
         "characters": [
             "Sun Umber"
@@ -1119,13 +1109,16 @@
     {
         "text": "There were a few marrow bones in a dish. There were large piles of cinders or rubbish piled up on a hill like. I found a small stick in the pile of cinders. There was snow on the ground.",
         "keywords": [
-            ""
+            "marrow bones",
+            "cinders",
+            "snow"
         ],
         "characters": [
             ""
         ],
         "places": [
-            ""
+            "hill",
+            "ground"
         ],
         "emotion": ""
     },
@@ -1161,7 +1154,6 @@
         "characters": [
             "dirty old man",
             "kids",
-            "mouse",
             "Aunt"
         ],
         "places": [
@@ -1198,25 +1190,29 @@
             "Charlene"
         ],
         "places": [],
-        "emotion": "apprehension"
+        "emotion": "sadness"
     },
     {
         "text": "(02/11/97)[\"Returning to work at Community College.\"] I returned to work at Community College. They have moved the Disabled Student's department upstairs on the fourth floor. I walk up the stairs, wondering if I should use the elevator. But I feel strong enough to make it. I see women working there that remember me and we talk. I am led to a room off in a corner which was used for storage. It is long and narrow but has a window and a nice oak desk with pigeon holes drawers in them. I say this will be nice when we get it fixed up. The students can use that end by the door for their support groups and connecting and I can use this desk for the paper work. I come back out and start to walk down the stairs but the stairs are steep and the steps are tilted so it is dangerous to walk on it. I am wearing high heels too. So I decide to find the elevator. I find it but can't figure out what to push. There are two metal plates with words on them. One is loose and keeps moving. I walk down the stairs after all, this time with no problem. I ask someone where my wheelchair is. I had left it on the second floor. I go where it should be and a play is going on. I sit at a small round table, Angel my assistant is there. Now I see that they are filming a soap opera there and Dylan has an acting part. And Tyler and other counselors are a part of the crowd scene. Apparently they do this every day.",
         "keywords": [
-            "work",
-            "stairs",
-            "elevator",
             "wheelchair",
-            "paper work"
+            "paperwork",
+            "support groups",
+            "connecting",
+            "soap opera"
         ],
         "characters": [
             "Community College",
-            "women"
+            "women",
+            "students",
+            "Angel",
+            "Dylan",
+            "Tyler"
         ],
         "places": [
-            "Community College",
             "fourth floor",
-            "second floor"
+            "second floor",
+            "table"
         ],
         "emotion": ""
     },
@@ -1262,12 +1258,12 @@
             "attention"
         ],
         "characters": [
-            "fellow"
+            "I"
         ],
         "places": [
             "beach",
-            "water",
-            "shore"
+            "shore",
+            "water"
         ],
         "emotion": "apprehension"
     },
@@ -1336,13 +1332,14 @@
         "keywords": [
             "ER",
             "alter",
-            "cuffs",
-            "scrubs"
+            "mind",
+            "injuries",
+            "medications"
         ],
         "characters": [
             "Noah Wyle",
             "Doctors",
-            "Nurse"
+            "Patients"
         ],
         "places": [],
         "emotion": "apprehension"
@@ -1369,8 +1366,14 @@
     },
     {
         "text": "I was flying. It was the best feeling in the world. I started drifting with the clouds, but soon I was really flying. I could control what direction I was going in. The clouds were blue, purple, orange, pink and green. They were diamonds. I landed on one of the light blue ones. When I got up and tried to fly again, I found I could not fly any more. I was falling.",
-        "keywords": [],
-        "characters": [],
+        "keywords": [
+            "flying",
+            "clouds",
+            "direction"
+        ],
+        "characters": [
+            "I"
+        ],
         "places": [],
         "emotion": ""
     },
@@ -1403,9 +1406,8 @@
             "boy",
             "mother",
             "father",
-            "girl",
-            "small boy",
-            "brother"
+            "brother",
+            "son"
         ],
         "places": [
             "small town",
@@ -1421,13 +1423,13 @@
         "keywords": [
             "class",
             "bedroom",
+            "friend",
             "mother",
-            "late",
             "overslept"
         ],
         "characters": [
             "Nancy",
-            "Nancy's mother"
+            "Nancy's mom"
         ],
         "places": [
             "dorm room",
@@ -1481,7 +1483,8 @@
         "keywords": [
             "serenade",
             "boyfriend's house",
-            "Saturday"
+            "black hair",
+            "brown eyes"
         ],
         "characters": [
             "classmate",
@@ -1514,7 +1517,7 @@
         "places": [
             "Alaska",
             "fishing boat",
-            "Nate's house",
+            "house",
             "garage",
             "storm drain",
             "ditch"
@@ -1524,7 +1527,6 @@
     {
         "text": "I dreamt I was at the computer, and a boy bent over the to fix something.  I enjoyed the closeness.",
         "keywords": [
-            "computer",
             "fix",
             "closeness"
         ],
@@ -1540,8 +1542,10 @@
         "text": "I was driving and being passed by my father on the way to my maternal Grandma Jane's house.  Then I was driving somewhere on a dirt path, and found that it was blocked off.  Another car was trying to turn around and I was going to have to as well.",
         "keywords": [
             "driving",
-            "blocked off",
-            "turn around"
+            "path",
+            "blocked",
+            "turning",
+            "house"
         ],
         "characters": [
             "father",
@@ -1558,9 +1562,7 @@
         "keywords": [
             "swim",
             "nipple",
-            "jerbils",
-            "water",
-            "food"
+            "jerbils"
         ],
         "characters": [
             "Brenda Hichman",
@@ -1633,9 +1635,30 @@
     },
     {
         "text": "We were at Grandma's. In the front room. I had been very very busy and tired. I had hung one art show and taken down another and instead of resting, My mother wanted me to go to church. I paused to rest on the way under the railroad tracks at the creek. Railroad ties were stacked up under there. A strange lady wanted to clean them up but I said, \"Don't, they're holding up the bridge.\" Then we went to Grandmas, me and my mother and Rudy. My mother finally said ??? we have to go to church. People were there and strangers. Grandma was there. It was the front room. I was tired. A guy I didn't know, divorced with 2 children, told me, \"Why don't you get a beer from the window sill?\" and I pulled back the curtains and saw beer bottles and glasses of orange juice. Grandma had put them there for people who wanted beer. I took some beer and forgot where I put it. I was tired. I wanted to leave and go to sleep. Rudy didn't go to church. ??? a dark skinned lady who was lying told Dora she needed groceries for her baby and Dora believed her. I don't. I was mad that Dora helped her instead of taking me home to rest. They took the car and went away. I was looking for a specific type face on the computer to weave a story about 2 women, 3 men. I typed the letters and the letters turned into their clothes. It said Happy Birthday ___________.??? A famous artist, woman in a magazine, had a photograph in a magazine of an old pink chair painted pale pink. She had a picture of a penis only painted pale blue. She was about 100 years old. Only the penis, not the man, was in the picture. Dora was not back yet. When they came back, they had just gotten back from the Office Depot, changed cars and drove all the way to Greenville and I wanted to go home. Then the lady was stealing a burlap bag of vegetables with maggots, flies from Grandma's porch. An old old man from India was leafing through a scroll of writing--and knowing exactly where. Then the scroll became his robe. The knowledge from his robe became a book in 2 volumes, each about 10 inches thick. Miss Pat was Keith. Hank Finley was with Keith. I went to hug Hank. I didn't have a bra on. He said oh this is what he missed; he'd been divorced 15 years. Me and Dora and Rudy got in the car and we stopped to roller skate and the lady said, \"Couples only,\" and I was on the ramp. I said, \"I can't go down the ramp?\" And she said, \"No.\" I took one skate off. Children with hardly any hair were milling around. The hair they did have was scarlet red and very silky and straight. Some were pale blonde--but hardly any hair. It caught the sun.",
-        "keywords": [],
-        "characters": [],
-        "places": [],
+        "keywords": [
+            "beer",
+            "groceries",
+            "magots",
+            "flies",
+            "scroll"
+        ],
+        "characters": [
+            "Grandma",
+            "Mother",
+            "Rudy",
+            "Dora",
+            "Hank Finley",
+            "Miss Pat",
+            "Keith"
+        ],
+        "places": [
+            "Grandma's",
+            "church",
+            "creek",
+            "Office Depot",
+            "Greenville",
+            "porch"
+        ],
         "emotion": ""
     },
     {
@@ -1675,13 +1698,18 @@
         "text": "(05/05/97)[\"Bill Cosby's Unusual penis.\"] I see a naked black man in profile. He is in some argument with a white man. They are standing facing each other, the black man in a more defensive position. I am curious and look down to see if I can see his penis. It is long and thick, and hangs straight down. Then as I watch, it begins to snake around and I see that the tip is like an elephant's trunk, sniffing around. I think the black man is Bill Cosby, in his younger days.",
         "keywords": [
             "penis",
-            "elephant's trunk"
+            "elephant's trunk",
+            "snake",
+            "trunk",
+            "sniffing"
         ],
         "characters": [
-            "Bill Cosby"
+            "Bill Cosby",
+            "black man",
+            "white man"
         ],
         "places": [],
-        "emotion": "curiosity"
+        "emotion": ""
     },
     {
         "text": "Two people were digging a path in the sand to channel water to flow to the ocean from a large house. There were two paths. The water flowed by the house. A fence of water was in the middle of the one close to the house. I asked my brother to push back the fence so I could walk in the water to follow it to the ocean. It was resistant but he could move it. I then waded to the ocean. I was disappointed to see that the water hadn't made it that far. I saw sand and dirt. I felt the channels were wasting water. I saw the ocean waves coming up the dry path and covered it all. Then there were a series of tasks I had to do to be able to leave the house and go on my own. I did these all successfully, except the last one which was very hard. I had to look at a picture and weave a reproduction of it. I attempted it but the weave was loose. It was close enough. Someone, a girl cousin, was snotty to me. I then was figuring out my monthly payments on my van. 7 to 9 months at $125 each month. $105 was principle and $20 was the finance charge. I figured I'd have it paid off in a few months (July or August).",
@@ -1744,9 +1772,9 @@
         "keywords": [
             "jail",
             "bars",
-            "metal",
             "train",
-            "papers"
+            "papers",
+            "money"
         ],
         "characters": [
             "Josh",
@@ -1760,7 +1788,6 @@
         "keywords": [
             "funeral",
             "song",
-            "clown",
             "makeup"
         ],
         "characters": [
@@ -1778,7 +1805,6 @@
         "text": "I was living in a house. Children on their way to school were cutting through our property.",
         "keywords": [
             "school",
-            "children",
             "property"
         ],
         "characters": [
@@ -1794,17 +1820,14 @@
         "text": "Under a dark night sky, I am sitting outdoors at a large, popular music concert with a group of friends. The seats are the overly soft, somewhat worn, but very comfortable chairs that are found in many old movie theaters. My friends and I are all sitting in the same row listening to the music, which is very loud and is being perfomed by the \"Mammas and Pappas\". Their song intoxicates the entire audience. One row in front of us some people stand up and sit down to form a \"wave\". This wave is carried everywhere and I feel the chair I am sitting in rhythmically rise and fall every few seconds, as if it were floating on a sea with real waves of great height. This is a pleasurable thrill, a joyous release, and I am ecstatically carried away in the motion of the chair, the loud music, and the happiness of everyone around me. This physical high lasts for quite a while.",
         "keywords": [
             "music",
+            "concert",
             "wave",
-            "chair",
-            "pleasure",
-            "thrill"
+            "chair"
         ],
         "characters": [
             "Mammas and Pappas"
         ],
-        "places": [
-            "concert"
-        ],
+        "places": [],
         "emotion": "happiness"
     },
     {
@@ -1812,7 +1835,7 @@
         "keywords": [
             "plane",
             "meet",
-            "leave"
+            "phone"
         ],
         "characters": [
             "Father"
@@ -1827,10 +1850,10 @@
         "text": "I was in this very large house. It belonged to very wealthy people. Some young people were having a party here. I don't think their parents knew about it. Perhaps it was an after-prom party, but I'm not sure. Many of the kids were making-out in several of the rooms. Particularly, I found a couple in one of the bedrooms. I was wondering through the house, simply because it was such a large, expensive home and I was interested in seeing all the rooms. I would go up a flight of stairs and the only room would be another bedroom. Another flight of stairs, one bedroom. Etc. I did this several times. On one floor of the building, the bedroom was all white, the furnishings, and everything. It was more like a suite. The front room, I think, was the bathroom and then led into the area where the bed was. In the bed area, the walls seemed to be covered with white billowy curtains. For some reason, I think there were two beds, side by side, instead of one. This doesn't make sense to me because this is the room where the owners of the house would go to make love. Maybe I'm not remembering it right but it just doesn't feel right. I don't know if it was one large bed or two twin beds. Anyway, the bed(s) face an extremely large Jacuzzi. It is the walls around the Jacuzzi that have the white billowy curtains. I thought what a beautiful room this was. But there were no other furnishings or decorations in this room. Just the beds, the Jacuzzi, and the curtains. I think I may have been with someone as I was later checking all the rooms. I don't know if I was checking to make sure everyone was gone or if I was looking for someone. Actually, I think I was looking for someone, but found individual people in more than one bedroom.",
         "keywords": [
             "party",
+            "rooms",
             "bedroom",
             "Jacuzzi",
-            "curtains",
-            "rooms"
+            "curtains"
         ],
         "characters": [
             "young people",
@@ -1846,7 +1869,9 @@
         "keywords": [
             "football",
             "baseball",
-            "Coach"
+            "list",
+            "name",
+            "year"
         ],
         "characters": [
             "Joe Sizemore",
