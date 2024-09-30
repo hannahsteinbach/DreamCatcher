@@ -4,7 +4,7 @@ We present the _DreamCatcher_, a digital dream journal powered by a large langua
 
 Our goal extended beyond merely building an application; we aimed to thoroughly evaluate Llama3's performance on these specific NLP tasks. To do so, we manually annotated 105 dream reports and compared Llama3 in two different versions (zero-shot and few-shot prompting) to our gold labels as well as to other tools designed to perform these tasks. ALl of the files used for evaluation can be found in ```cd django/dreamcatcher/evaluation```
 
-Relevant dream research that we cite in our paper to embed our application in can be found in  ```cd ./literature```
+Relevant dream research that we cite in our paper to embed our application in can be found in  ```cd literature/```
 
 
 
