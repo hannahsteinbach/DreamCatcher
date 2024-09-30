@@ -81,9 +81,9 @@ class Dream(models.Model):
             f"Here is my dream: {content_str}\n\n"
             "Please provide the following information in a Python dictionary format with the specified keys:\n\n"
             "- emotion: The prevalent emotion from these options formatted as a string: anger, apprehension, sadness, confusion, happiness if it is above a 50% threshold, otherwise an empty string.\n"
-            "- characters: All characters, formatted as a Python list of strings, without articles or pronouns. A character is a single entity (e.g. a person or animal) that plays an active role in the dream narrative. I and you don't count. If none are found, return an empty string.\n"
-            "- places: All places, formatted as a Python list of strings. Exclude articles, adjectives, and pronouns. If none are found, return an empty string.\n"
-            "- keywords: A list of keywords extracted from the dream content, excluding variants of 'dream' and stop words. Keywords can also be a fixed expression (e.g. compound nouns).\n"
+            "- characters: All characters, formatted as a Python list of strings, without articles, adjectives, or pronouns.   A character is a single entity (e.g. a person or animal). Instead of personal pronouns in a possessive form, use the noun being referred to. e.g. \"Raluca met with her boyfriend\" would have the characters [\"Raluca\", \"Raluca's boyfriend\"]. I and you don't count. If none are found, return an empty string.  \n"
+            "- places: All places, formatted as a Python list of strings. Exclude articles, adjectives, and pronouns. If none are found, return an empty string. Instead of personal pronouns in a possessive form, use the noun being referred to. e.g. \"I met with Hannah. We went to her dreamhouse.\" would have the places [\"Hannah's dreamhouse\"].\n"
+            "- keywords: A list of at most 5 keywords extracted from the dream content, excluding variants of 'dream' and stop words. Keywords can also be a fixed expression (e.g. compound nouns).\n"
             "Only output the dictionary. Do not include any other information. All values should be on the same line. The keys should be in double quotes."
         )
 

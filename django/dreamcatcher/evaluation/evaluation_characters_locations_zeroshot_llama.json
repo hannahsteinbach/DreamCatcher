@@ -101,13 +101,12 @@
                     "mother of a friend",
                     "girl",
                     "o",
-                    "friend's mother",
                     "groups",
                     "people"
                 ],
                 "TP_count": 1,
                 "FP_count": 2,
-                "FN_count": 6
+                "FN_count": 5
             },
             {
                 "Dream ID": 8,
@@ -123,7 +122,6 @@
                 "False Negatives": [
                     "man",
                     "friends",
-                    "childhood friend",
                     "rock star",
                     "woman",
                     "kid",
@@ -132,7 +130,7 @@
                 ],
                 "TP_count": 6,
                 "FP_count": 0,
-                "FN_count": 8
+                "FN_count": 7
             },
             {
                 "Dream ID": 10,
@@ -196,19 +194,17 @@
             {
                 "Dream ID": 14,
                 "True Positives": [
-                    "group"
-                ],
-                "False Positives": [
+                    "group",
                     "friend"
                 ],
+                "False Positives": [],
                 "False Negatives": [
                     "women",
-                    "people",
-                    "male friend"
+                    "people"
                 ],
                 "TP_count": 1,
                 "FP_count": 1,
-                "FN_count": 3
+                "FN_count": 2
             },
             {
                 "Dream ID": 15,
@@ -335,18 +331,17 @@
                     "stylist",
                     "client",
                     "husband",
-                    "salesman"
-                ],
-                "False Positives": [
+                    "salesman",
                     "angel/fairy"
                 ],
+                "False Positives": [],
                 "False Negatives": [
                     "employees",
                     "stylists",
                     "evil person"
                 ],
-                "TP_count": 4,
-                "FP_count": 1,
+                "TP_count": 5,
+                "FP_count": 0,
                 "FN_count": 3
             },
             {
@@ -383,12 +378,11 @@
                     "woman",
                     "person",
                     "girls",
-                    "somebody else",
                     "boy"
                 ],
                 "TP_count": 1,
                 "FP_count": 4,
-                "FN_count": 9
+                "FN_count": 8
             },
             {
                 "Dream ID": 26,
@@ -511,12 +505,11 @@
                 "True Positives": [],
                 "False Positives": [],
                 "False Negatives": [
-                    "ramona",
                     "people"
                 ],
                 "TP_count": 0,
                 "FP_count": 0,
-                "FN_count": 2
+                "FN_count": 1
             },
             {
                 "Dream ID": 35,
@@ -689,12 +682,11 @@
                 ],
                 "False Negatives": [
                     "man",
-                    "driver's mother",
-                    "someone"
+                    "driver's mother"
                 ],
                 "TP_count": 2,
                 "FP_count": 1,
-                "FN_count": 3
+                "FN_count": 2
             },
             {
                 "Dream ID": 47,
@@ -741,12 +733,11 @@
                     "asian man"
                 ],
                 "False Negatives": [
-                    "man",
-                    "everyone"
+                    "man"
                 ],
                 "TP_count": 2,
                 "FP_count": 1,
-                "FN_count": 2
+                "FN_count": 1
             },
             {
                 "Dream ID": 50,
@@ -1005,12 +996,10 @@
                     "nancy"
                 ],
                 "False Positives": [],
-                "False Negatives": [
-                    "personal assistant"
-                ],
+                "False Negatives": [],
                 "TP_count": 3,
                 "FP_count": 0,
-                "FN_count": 1
+                "FN_count": 0
             },
             {
                 "Dream ID": 68,
@@ -1041,27 +1030,23 @@
                 "False Negatives": [
                     "x-men",
                     "sheep",
-                    "herd of sheep",
-                    "black sheep",
                     "baby sheep",
                     "herd"
                 ],
                 "TP_count": 4,
                 "FP_count": 0,
-                "FN_count": 6
+                "FN_count": 4
             },
             {
                 "Dream ID": 70,
-                "True Positives": [],
-                "False Positives": [
+                "True Positives": [
                     "grandfather"
                 ],
-                "False Negatives": [
-                    "killer grandfather"
-                ],
-                "TP_count": 0,
-                "FP_count": 1,
-                "FN_count": 1
+                "False Positives": [],
+                "False Negatives": [],
+                "TP_count": 1,
+                "FP_count": 0,
+                "FN_count": 0
             },
             {
                 "Dream ID": 71,
@@ -1085,14 +1070,13 @@
                     "bonnie"
                 ],
                 "False Positives": [
-                    "doctor a",
                     "grandma mildred"
                 ],
                 "False Negatives": [
                     "lady"
                 ],
                 "TP_count": 2,
-                "FP_count": 2,
+                "FP_count": 1,
                 "FN_count": 1
             },
             {
@@ -1214,18 +1198,16 @@
                     "friend",
                     "woman's friend",
                     "people",
-                    "others",
                     "woman",
                     "couple",
                     "neighbors",
                     "woman's boyfriend",
                     "boy's brother",
-                    "woman's teenage children",
-                    "claude"
+                    "woman's teenage children"
                 ],
                 "TP_count": 2,
                 "FP_count": 3,
-                "FN_count": 13
+                "FN_count": 11
             },
             {
                 "Dream ID": 83,
@@ -1296,26 +1278,22 @@
             {
                 "Dream ID": 88,
                 "True Positives": [
-                    "walt"
-                ],
-                "False Positives": [
+                    "walt",
                     "stephen",
                     "nate",
                     "norman"
                 ],
+                "False Positives": [],
                 "False Negatives": [
                     "bald eagle",
                     "muskies",
                     "nate nelling's mother",
-                    "stephen ramos",
                     "northern pike",
-                    "nate nelling",
-                    "norman noman",
                     "fish"
                 ],
-                "TP_count": 1,
-                "FP_count": 3,
-                "FN_count": 8
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 5
             },
             {
                 "Dream ID": 89,
@@ -1518,20 +1496,20 @@
                 "Dream ID": 102,
                 "True Positives": [
                     "josh",
-                    "pedro"
+                    "pedro",
+                    "student"
                 ],
                 "False Positives": [
-                    "little girl",
-                    "student"
+                    "little girl"
                 ],
                 "False Negatives": [
                     "students",
                     "girl",
-                    "radical feminists",
+                    "feminists",
                     "physically disabled"
                 ],
-                "TP_count": 2,
-                "FP_count": 2,
+                "TP_count": 3,
+                "FP_count": 1,
                 "FN_count": 4
             },
             {
@@ -1600,12 +1578,11 @@
                     "owners",
                     "people's parents",
                     "couple",
-                    "people",
-                    "someone"
+                    "people"
                 ],
                 "TP_count": 1,
                 "FP_count": 2,
-                "FN_count": 5
+                "FN_count": 4
             },
             {
                 "Dream ID": 108,
@@ -1640,9 +1617,9 @@
         ]
     },
     "Locations": {
-        "TP": 152,
-        "FP": 56,
-        "FN": 223,
+        "TP": 164,
+        "FP": 45,
+        "FN": 208,
         "Details": [
             {
                 "Dream ID": 1,
@@ -1650,22 +1627,21 @@
                     "bedroom",
                     "bathroom",
                     "living room",
+					"stairway",
                     "house",
                     "garage",
                     "hall"
                 ],
                 "False Positives": [
-                    "stairway",
                     "office"
                 ],
                 "False Negatives": [
-                    "outside stairway",
                     "room",
                     "man's office"
                 ],
-                "TP_count": 6,
-                "FP_count": 2,
-                "FN_count": 3
+                "TP_count": 7,
+                "FP_count": 1,
+                "FN_count": 2
             },
             {
                 "Dream ID": 2,
@@ -2009,16 +1985,16 @@
             {
                 "Dream ID": 24,
                 "True Positives": [
-                    "diner"
+                    "diner",
+					"library"
                 ],
                 "False Positives": [
-                    "library"
                 ],
                 "False Negatives": [
                     "counter"
                 ],
-                "TP_count": 1,
-                "FP_count": 1,
+                "TP_count": 2,
+                "FP_count": 0,
                 "FN_count": 1
             },
             {
@@ -2211,12 +2187,11 @@
                 "False Positives": [],
                 "False Negatives": [
                     "nursery school",
-                    "bed",
-                    "under a bridge"
+                    "bed"
                 ],
                 "TP_count": 1,
                 "FP_count": 0,
-                "FN_count": 3
+                "FN_count": 2
             },
             {
                 "Dream ID": 39,
@@ -2329,37 +2304,33 @@
                 ],
                 "False Positives": [],
                 "False Negatives": [
-                    "manual chair",
                     "downtown",
                     "lawn bank",
-                    "entrance to the fire house",
                     "entrance",
                     "sidewalk",
                     "ambulance"
                 ],
                 "TP_count": 5,
                 "FP_count": 0,
-                "FN_count": 7
+                "FN_count": 5
             },
             {
                 "Dream ID": 47,
                 "True Positives": [
-                    "germany"
+                    "germany",
+					"paris"
                 ],
                 "False Positives": [
-                    "paris, france"
                 ],
                 "False Negatives": [
                     "room",
-                    "france",
                     "hill",
                     "bus",
-                    "paris",
                     "cafe"
                 ],
-                "TP_count": 1,
-                "FP_count": 1,
-                "FN_count": 6
+                "TP_count": 2,
+                "FP_count": 0,
+                "FN_count": 4
             },
             {
                 "Dream ID": 48,
@@ -2534,12 +2505,11 @@
                 ],
                 "False Negatives": [
                     "outlying area",
-                    "compound",
-                    "area"
+                    "compound"
                 ],
                 "TP_count": 0,
                 "FP_count": 2,
-                "FN_count": 3
+                "FN_count": 2
             },
             {
                 "Dream ID": 61,
@@ -2632,11 +2602,11 @@
             {
                 "Dream ID": 68,
                 "True Positives": [
-                    "community college"
+                    "community college",
+					"fourth floor",
+                    "second floor"
                 ],
                 "False Positives": [
-                    "fourth floor",
-                    "second floor"
                 ],
                 "False Negatives": [
                     "elevator",
@@ -2644,8 +2614,8 @@
                     "table",
                     "room"
                 ],
-                "TP_count": 1,
-                "FP_count": 2,
+                "TP_count": 3,
+                "FP_count": 0,
                 "FN_count": 4
             },
             {
@@ -2655,13 +2625,12 @@
                 ],
                 "False Positives": [],
                 "False Negatives": [
-                    "bridge",
                     "beam",
                     "body of water"
                 ],
                 "TP_count": 1,
                 "FP_count": 0,
-                "FN_count": 3
+                "FN_count": 2
             },
             {
                 "Dream ID": 70,
@@ -2776,16 +2745,14 @@
                 ],
                 "False Positives": [],
                 "False Negatives": [
-                    "center of a city",
                     "city center",
                     "city",
                     "area",
-                    "car",
-                    "large city"
+                    "car"
                 ],
                 "TP_count": 5,
                 "FP_count": 0,
-                "FN_count": 6
+                "FN_count": 4
             },
             {
                 "Dream ID": 80,
@@ -2813,22 +2780,21 @@
                 "Dream ID": 82,
                 "True Positives": [
                     "porch",
-                    "small town"
+                    "small town",
+					"claude's",
+					"basement"
                 ],
                 "False Positives": [
-                    "basement room",
-                    "claude's",
                     "summer vacation spot street"
                 ],
                 "False Negatives": [
-                    "basement",
                     "bed",
                     "outside",
                     "house"
                 ],
-                "TP_count": 2,
-                "FP_count": 3,
-                "FN_count": 4
+                "TP_count": 4,
+                "FP_count": 1,
+                "FN_count": 3
             },
             {
                 "Dream ID": 83,
@@ -2893,20 +2859,19 @@
                 "True Positives": [
                     "ditch",
                     "storm drain",
-                    "alaska"
+                    "alaska",
+					"nate's house"
                 ],
                 "False Positives": [
-                    "nate's house"
                 ],
                 "False Negatives": [
                     "garage",
                     "water",
-                    "fishing boat",
-                    "nate nelling's house"
+                    "fishing boat"
                 ],
-                "TP_count": 3,
-                "FP_count": 1,
-                "FN_count": 4
+                "TP_count": 4,
+                "FP_count": 0,
+                "FN_count": 3
             },
             {
                 "Dream ID": 89,
@@ -2919,18 +2884,18 @@
             },
             {
                 "Dream ID": 90,
-                "True Positives": [],
+                "True Positives": [ 
+				"dirt path"
+				],
                 "False Positives": [
-                    "dirt path",
                     "maternal grandma jane's house"
                 ],
                 "False Negatives": [
-                    "grandma jane's house",
-                    "path"
+                    "grandma jane's house"
                 ],
-                "TP_count": 0,
-                "FP_count": 2,
-                "FN_count": 2
+                "TP_count": 1,
+                "FP_count": 1,
+                "FN_count": 1
             },
             {
                 "Dream ID": 91,
@@ -3066,16 +3031,16 @@
                 "True Positives": [
                     "pond",
                     "bank",
-                    "cabin"
+                    "cabin",
+					"gangplank"
                 ],
                 "False Positives": [
-                    "gangplank"
                 ],
                 "False Negatives": [
                     "couch"
                 ],
-                "TP_count": 3,
-                "FP_count": 1,
+                "TP_count": 4,
+                "FP_count": 0,
                 "FN_count": 1
             },
             {
@@ -3117,16 +3082,16 @@
             {
                 "Dream ID": 104,
                 "True Positives": [
-                    "house"
+                    "house",
+					"property"
                 ],
                 "False Positives": [
-                    "property"
                 ],
                 "False Negatives": [
                     "school"
                 ],
-                "TP_count": 1,
-                "FP_count": 1,
+                "TP_count": 2,
+                "FP_count": 0,
                 "FN_count": 1
             },
             {
@@ -3159,10 +3124,10 @@
             {
                 "Dream ID": 107,
                 "True Positives": [
-                    "jacuzzi"
+                    "jacuzzi",
+					"bedroom"
                 ],
                 "False Positives": [
-                    "bedroom",
                     "large house",
                     "bathroom"
                 ],
@@ -3173,7 +3138,7 @@
                     "suite",
                     "front room"
                 ],
-                "TP_count": 1,
+                "TP_count": 2,
                 "FP_count": 3,
                 "FN_count": 5
             },
@@ -3193,12 +3158,11 @@
                     "a european city"
                 ],
                 "False Negatives": [
-                    "city",
                     "european city"
                 ],
                 "TP_count": 0,
                 "FP_count": 1,
-                "FN_count": 2
+                "FN_count": 1
             }
         ]
     }
