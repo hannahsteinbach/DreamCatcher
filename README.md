@@ -27,4 +27,4 @@ If you want to have an enhanced user-experience, you are welcome to log into one
 - **Password**: `defaultpassword123`
 
 ## The Creators
-![Raluca Rilla & Hannah Steinbach](cd ./django/dreamcatcher/static/images/creators.jpg)
+![Raluca Rilla & Hannah Steinbach](.django/dreamcatcher/static/images/creators.jpg)
