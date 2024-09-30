@@ -16,12 +16,12 @@ Relevant dream research that we cite in our paper to embed our application in ca
 - run the following command: 
 ```python manage.py runserver```
 
-## Enjoy our application and **dream on 💫🫧🪁
+## Enjoy our application and dream on 💫🫧🪁
 
 Note: For convenience, we have also containerized our application using Docker.
 
-If you want to have an enhanced user-experience, you are welcome to log into one of our dummy users vickie, whose dream journal was populated with dreams from the DreamBank: 
+If you want to have an enhanced user-experience, you are welcome to log into one of our dummy users vickie, whose dream journal was populated with dreams from the DreamBank:
 
-### Log into our dummy dreamer:
+### Log into our dummy dreamer
 - **Username**: `vickie`  
 - **Password**: `defaultpassword123`
