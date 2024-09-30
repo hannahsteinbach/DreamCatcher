@@ -10,10 +10,10 @@ Relevant dream research that we cite in our paper to embed our application in ca
 
 ### All you have to do to test the website: 
 
-go into repository: 
+- go into repository: 
 ```cd ./django/dreamcatcher```
 
-run the following command: 
+- run the following command: 
 ```python manage.py runserver```
 
 ### Enjoy our application and **dream on 💫🫧🪁
