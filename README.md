@@ -16,6 +16,8 @@ Relevant dream research that we cite in our paper to embed our application in ca
 - run the following command: 
 ```python manage.py runserver```
 
+All dependencies can be found in ```/django/dreamcatcher/requirements.txt```
+
 ## Enjoy our application and dream on 💫🫧🪁
 
 Note: For convenience, we have also containerized our application using Docker.
