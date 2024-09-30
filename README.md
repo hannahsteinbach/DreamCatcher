@@ -16,6 +16,11 @@ go into repository:
 run the following command: 
 ```python manage.py runserver```
 
-## Enjoy our application and **dream on **💫🫧🪁
+## Enjoy our application and **dream on 💫🫧🪁
 
 Note: For convenience, we have also containerized our application using Docker.
+
+If you want to have an enhanced user-experience, you are welcome to log into one of our dummy users vickie, whose dream journal was populated with dreams from the DreamBank: 
+
+uername: vickie
+password: defaultpassword123
