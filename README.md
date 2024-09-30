@@ -25,3 +25,6 @@ If you want to have an enhanced user-experience, you are welcome to log into one
 ### Log into our dummy dreamer
 - **Username**: `vickie`  
 - **Password**: `defaultpassword123`
+
+## The Creators
+![Alt text](path/to/image.png)
