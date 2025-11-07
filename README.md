@@ -29,3 +29,7 @@ If you want to have an enhanced user-experience, you are welcome to log into one
 - **Password**: `defaultpassword123`
 
 Or simply create your own account and start logging dreams.
+
+## The Creators
+![Raluca Rilla & Hannah Steinbach](django/dreamcatcher/static/images/creators.jpg)
+Hannah Steinbach & Raluca Rilla
